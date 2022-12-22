@@ -1,0 +1,16 @@
+local function n(key, action, desc)
+  vim.keymap.set('n', key, action, { desc = desc })
+end
+
+n('<leader>gg', vim.cmd.Git, "run fugitive")
+n('<leader>gc', ':Git commit<CR>', "Git commit")
+n('<leader>gd', ':Git diff<CR>', "Git diff")
+n('<leader>gl', ':Git log<CR>', "Git log")
+n('<leader>gp', ':Git push<cr>', "Git push")
+n('<leader>gr', ':Git remove<CR>', "Git remove")
+n('<leader>gt', ':Git status<CR>', "Git status")
+n('<leader>ga', ':GitGutterStageHunk<CR>', "git stage hunk")
+n('<leader>gn', ':GitGutterNextHunk<CR>', "git goto next hunk")
+n('<leader>gp', ':GitGutterPrevHunk<CR>', "git goto previous hunk")
+n(']h', ':GitGutterNextHunk<CR>', "git goto next hunk")
+n('[h', ':GitGutterPrevHunk<CR>', "git goto previous hunk")
