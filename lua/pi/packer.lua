@@ -24,5 +24,6 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'sheerun/vim-polyglot'
   use 'flazz/vim-colorschemes'
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 end)
 
