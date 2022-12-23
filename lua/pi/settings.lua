@@ -12,6 +12,24 @@ vim.o.sidescrolloff = 8
 -- opt: "global, window and buffer" ?? not sure 
 vim.opt.cursorline = true
 vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.smarttab = true
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
 vim.opt.syntax = enable
-vim.o.signcolumn = yes
+
+vim.opt.ignorecase = on
+vim.opt.smartcase = on
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+vim.opt.swapfile = false
+vim.opt.undofile = true
+
+-- Test test
+-- vim.bo.signcolumn = yes
+
 

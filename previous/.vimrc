@@ -7,10 +7,6 @@ endif
 " plugins {{{
 call plug#begin('~/.local/share/nvim/plugged')
 
-" plugins of collections of plugins :D
-Plug 'sheerun/vim-polyglot'
-Plug 'flazz/vim-colorschemes'
-
 " basic plugins: don't ever go without them
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -35,8 +31,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'machakann/vim-highlightedyank'
 
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
@@ -53,7 +47,6 @@ Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 
 " --- eval ---
 " testing debugging:
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 call plug#end()
 Plug 'neovim/nvim-lspconfig'
 " }}}
@@ -78,42 +71,17 @@ set cmdheight=2
 set laststatus=3
 
 " lua: conversion {{{
-lua require('plugins')
-lua require('maps')
 lua require('lsp')
-" lua require('paq')
 " }}}
 
-" nvim-gdb {{{
-" We're going to define single-letter keymaps, so don't try to define them
-" in the terminal window.  The debugger CLI should continue accepting text commands.
-function! NvimGdbNoTKeymaps()
-  tnoremap <silent> <buffer> <esc> <c-\><c-n>
-endfunction
-
-let g:nvimgdb_config_override = {
-  \ 'key_next': 'n',
-  \ 'key_step': 's',
-  \ 'key_finish': 'f',
-  \ 'key_continue': 'c',
-  \ 'key_until': 'u',
-  \ 'key_breakpoint': 'b',
-  \ 'set_tkeymaps': "NvimGdbNoTKeymaps",
-  \ }
-" }}}
 " basic settings {{{
-let mapleader = " "
-let maplocalleader = ","
 
-set scrolloff=5
 filetype plugin on
 filetype indent on
 
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
+" TODO: figure out what that actually does
 set whichwrap+=<,>,h,l
-" Show matching brackets when text indicator is over them
-set showmatch
+
 
 " visual bell
 set visualbell
@@ -122,20 +90,13 @@ set visualbell
 syntax on
 
 " indentation settings
-set autoindent
-set smartindent
 set cindent
-set tabstop=2
-set shiftwidth=2
-set smarttab
+
 " set nowrap
 set linebreak
 set sidescroll=8
 " vim-rooter
 let g:rooter_patterns = ['stack.yaml', '.git/', 'compile_commands.json']
-
-map <F1> <Esc>
-imap <F1> <Esc>
 
 " Move by line
 nnoremap j gj
@@ -145,37 +106,6 @@ nnoremap k gk
 " nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " }}}
-" fuzzy finder / fzf configuration {{{
-" mnemonic: p --> project; b --> buffer
-nnoremap <leader>pf :Files<CR>
-nnoremap <leader>pg :GFiles<CR>
-nnoremap <leader>pr :History<CR>
-nnoremap <leader>pa :Rg<CR>
-nnoremap <silent> <leader>pw :Rg <C-R><C-W><CR>
-nnoremap <leader>pl :Lines<CR>
-nnoremap <leader>pt :Tags<CR>
-nnoremap <leader>pd :Tags <C-R><C-W><CR>
-nnoremap <leader>pc :Commits<CR>
-" git status
-nnoremap <leader>ps :GFiles?<CR>
-
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>bt :BTags<CR>
-nnoremap <leader>bl :BLines<CR>
-nnoremap <silent> <leader>bw :BLines <C-R><C-W><CR>
-nnoremap <leader>bc :BCommits<CR>
-nnoremap <leader>hc :History:<CR>
-nnoremap <leader>h/ :History/<CR>
-
-" let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%', '?'),
-  \                 <bang>0)
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-" }}}
 
 " visuals {{{
 set background=dark
@@ -183,14 +113,6 @@ set termguicolors
 set t_Co=256
 let g:solarized_termtrans = 1
 colorscheme solarized8_dark
-
-set nocompatible
-set relativenumber
-" number is still required to show absolute for the current line.
-set number
-set cursorline
-" set cursorcolumn
-set enc=utf-8
 
 " from: https://begriffs.com/posts/2019-07-19-history-use-vim.html
 set swapfile
@@ -205,87 +127,17 @@ if has("patch-8.1.0251")
 	set backupdir^=~/.vim/backup//
 end
 
-" persist the undo tree for each file
-set undofile
-set undodir^=~/.vim/undo// path=**
-
 set nobackup
 set nowritebackup
 set noswapfile
 set wildignore+=*.pyc,*.class,.hg/
-set hidden
-
-" smartcase + ignorecase: use ignorecase only when search term is all-lower.
-set ignorecase
-set smartcase
 
 " let g:airline_theme='solarized'
 " }}}
-" fugitive / diff keybindings {{{
+
 set diffopt+=iwhite
 
-map <Leader>1 :diffget LOCAL<CR>
-map <Leader>2 :diffget BASE<CR>
-map <Leader>3 :diffget REMOTE<CR>
-" }}}
-" keybindings save / quit / reload / window management {{{
 
-" nnoremap <leader>fs :w<cr>
-" nnoremap <leader>fw :w<cr>
-" nnoremap <leader>fc :close<cr>
-" nnoremap <localleader>d :close<cr>
-" nnoremap <leader>fq :wq<cr>
-" nnoremap <leader>qq :wqa<cr>
-nnoremap <leader>RR :source $MYVIMRC<cr>
-" nnoremap <leader>]b :next<CR>
-" nnoremap <leader>[b :prev<CR>
-
-" inoremap jk <Esc>
-" inoremap jw <Esc>:w<CR>
-" inoremap jq <Esc>:wq<CR>
-
-" nnoremap <leader>w/ :vs<CR>
-" nnoremap <leader>w- :sp<CR>
-" nnoremap <leader>w= <C-w>=
-" nnoremap <leader>wH <C-w>H
-" nnoremap <leader>wJ <C-w>J
-" nnoremap <leader>wK <C-w>K
-" nnoremap <leader>wL <C-w>L
-
-nnoremap <silent> <leader>sc :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
-nnoremap <silent> <Leader>t- :let &scrolloff=999-&scrolloff<CR>
-nnoremap <silent> <leader>tl :ToggleBlameLine<CR>
-nnoremap <silent> <leader>tp :set pastetoggle<CR>
-nnoremap <silent> <leader>tr :set relativenumber!<CR>
-nnoremap <silent> <leader>tc :set cursorcolumn!<CR>
-nnoremap <silent> <leader>tw :set wrap!<CR>
-nnoremap <silent> <leader>td :colorscheme solarized8_dark<CR>
-nnoremap <silent> <leader>tD :colorscheme solarized8_light<CR>
-
-" }}}
-" keybindings: navigate buffers and location lists {{{
-map <leader><Tab> <C-^>
-map <M-space> <C-^>
-
-" nnoremap <Tab> za
-" }}}
-" terraform {{{
-let g:terraform_align=1
-let g:terraform_fold_sections=0
-let g:terraform_fmt_on_save=1
-autocmd BufRead,BufNewFile *.hcl set filetype=terraform
-" }}}
-" nerdtree {{{
-nnoremap <leader>nf :NERDTreeFind<CR>
-nnoremap <leader>nt :NERDTree<CR>
-" }}}
-" tagbar {{{
-" tagbar: open tagbar, jump to it, and close after jumping back to editor
-nnoremap <leader>tb :TagbarOpen fjc<CR>
-" tagbar: open. if already open, jump to it instead.
-nnoremap <leader>tt :TagbarOpen j<CR>
-let g:tagbar_left = 1
-" }}}
 " forwards and backwards {{{
 nnoremap [E :cfirst<CR>
 nnoremap ]e :cnext<CR>
@@ -328,22 +180,4 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <expr> %f getcmdtype() == ':' ? expand('%:t:r') : '%f'
 cnoremap <expr> %p getcmdtype() == ':' ? expand('%:p:.') : '%p'
 "
-" insert current file name (no ending)
-inoremap <C-i>fn <C-R>=expand("%:t:r")<CR>
-inoremap <C-i>pk <C-R>=expand("%:h")<CR>
-
-" }}}
-" clipboard settings: yank, paste w/ clipboard {{{
-" set clipboard^=autoselect " not working in neovim (see https://github.com/neovim/neovim/issues/2325)
-vmap <leader>Y "*y
-map <leader>Y "*y
-map <leader>P "*p
-vmap <leader>y "+y
-map <leader>y "+y
-map <leader>p "+p
-map <leader>aP :%y*<CR>
-map <leader>ap :%y+<CR>
-" }}}
-" pandoc configuration {{{
-let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 " }}}

@@ -56,6 +56,8 @@ nnoremap('<leader>wh', '<C-w>h', "go to  pane to the left")
 nnoremap('<leader>wj', '<C-w>j', "go to  pane down")
 nnoremap('<leader>wk', '<C-w>k', "go to  pane up")
 nnoremap('<leader>wl', '<C-w>l', "go to  pane to the right")
+nnoremap('<leader>ww', ':vertical resize ', "vertical resize window")
+nnoremap('<leader>wr', ':resize ', "horizontal resize window")
 
 tnoremap('<C-h>', '<C-\\><C-N><C-w>h')
 tnoremap('<C-j>', '<C-\\><C-N><C-w>j')
