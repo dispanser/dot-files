@@ -70,6 +70,9 @@ nnoremap('<C-j>', '<C-w>j')
 nnoremap('<C-k>', '<C-w>k')
 nnoremap('<C-l>', '<C-w>l')
 
+vim.keymap.set('', '<M-j>', 'gT')
+vim.keymap.set('', '<M-k>', 'gt')
+
 nnoremap('<leader>sc', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>', "clear search")
 nnoremap('<Leader>t-', ':let &scrolloff=999-&scrolloff<CR>', "toggle centered mode")
 nnoremap('<leader>tl', ':ToggleBlameLine<CR>', "toggle blame line")

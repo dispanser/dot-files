@@ -267,14 +267,6 @@ nnoremap <silent> <leader>tD :colorscheme solarized8_light<CR>
 map <leader><Tab> <C-^>
 map <M-space> <C-^>
 
-if has("nvim")
-else
-	execute "set <M-p>=\ep"
-	execute "set <M-n>=\en"
-endif
-map <M-j> gT
-map <M-k> gt
-
 " nnoremap <Tab> za
 " }}}
 " terraform {{{
