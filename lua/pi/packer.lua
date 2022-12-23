@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use 'Soares/base16.nvim'
   use (
     'nvim-treesitter/nvim-treesitter',
     { run = ':TSUpdate' }
@@ -23,5 +22,7 @@ return require('packer').startup(function(use)
   }
   use 'mbbill/undotree'
   use 'tpope/vim-fugitive'
+  use 'sheerun/vim-polyglot'
+  use 'flazz/vim-colorschemes'
 end)
 

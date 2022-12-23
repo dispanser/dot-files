@@ -1,14 +1,31 @@
+local function n (key, action, desc)
+  vim.keymap.set('n', key, action, { desc = desc })
+end
+
+local function v (key, action, desc)
+  vim.keymap.set('v', key, action, { desc = desc })
+end
+
+local function i (key, action, desc)
+  vim.keymap.set('i', key, action, { desc = desc })
+end
+
 local function nnoremap (key, action, desc)
-	vim.keymap.set('n', key, action, { noremap = true, desc = desc })
+  vim.keymap.set('n', key, action, { noremap = true, desc = desc })
+end
+
+local function tnoremap (key, action)
+  vim.keymap.set('t', key, action, { noremap = true })
 end
 
 local function inoremap (key, action, desc)
-	vim.keymap.set('i', key, action, { noremap = true, desc = desc })
+  vim.keymap.set('i', key, action, { noremap = true, desc = desc })
 end
 
 -- map the leader key
 vim.keymap.set('n', '<Space>', '', {})
 vim.g.mapleader = ' '  -- 'vim.g' sets global variables
+vim.g.maplocalleader = ','  -- 'vim.g' sets global variables
 
 -- file mappings
 nnoremap('<leader>fs', ':w<cr>', "file save")
@@ -40,6 +57,19 @@ nnoremap('<leader>wj', '<C-w>j', "go to  pane down")
 nnoremap('<leader>wk', '<C-w>k', "go to  pane up")
 nnoremap('<leader>wl', '<C-w>l', "go to  pane to the right")
 
+tnoremap('<C-h>', '<C-\\><C-N><C-w>h')
+tnoremap('<C-j>', '<C-\\><C-N><C-w>j')
+tnoremap('<C-k>', '<C-\\><C-N><C-w>k')
+tnoremap('<C-l>', '<C-\\><C-N><C-w>l')
+inoremap('<C-h>', '<C-\\><C-N><C-w>h')
+inoremap('<C-j>', '<C-\\><C-N><C-w>j')
+inoremap('<C-k>', '<C-\\><C-N><C-w>k')
+inoremap('<C-l>', '<C-\\><C-N><C-w>l')
+nnoremap('<C-h>', '<C-w>h')
+nnoremap('<C-j>', '<C-w>j')
+nnoremap('<C-k>', '<C-w>k')
+nnoremap('<C-l>', '<C-w>l')
+
 nnoremap('<leader>sc', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>', "clear search")
 nnoremap('<Leader>t-', ':let &scrolloff=999-&scrolloff<CR>', "toggle centered mode")
 nnoremap('<leader>tl', ':ToggleBlameLine<CR>', "toggle blame line")
@@ -47,4 +77,11 @@ nnoremap('<leader>tp', ':set pastetoggle<CR>', "toggle paste")
 nnoremap('<leader>tr', ':set relativenumber!<CR>', "toggle relative line numbers")
 nnoremap('<leader>tc', ':set cursorcolumn!<CR>', "toggle cursorcolumn")
 nnoremap('<leader>tw', ':set wrap!<CR>', "toggle line wrap")
+
+v('<leader>Y', '"*y', "yank to primary clipboard")
+v('<leader>y', '"+y', "yank to system clipboard")
+n('<leader>Y', '"*y', "yank to primary clipboard")
+n('<leader>y', '"+y', "yank to system clipboard")
+n('<leader>P', '"*p', "put from primary clipboard")
+n('<leader>p', '"+p', "put from system clipboard")
 
