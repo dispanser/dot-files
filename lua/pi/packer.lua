@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   }
   use 'mbbill/undotree'
   use 'tpope/vim-fugitive'
+  use 'airblade/vim-gitgutter'
   use 'sheerun/vim-polyglot'
   use 'flazz/vim-colorschemes'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }

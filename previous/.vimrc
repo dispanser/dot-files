@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 " basic plugins: don't ever go without them
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -32,7 +31,6 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-rooter'
-Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 
