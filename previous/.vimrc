@@ -30,8 +30,6 @@ Plug 'airblade/vim-rooter'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 
-Plug 'machakann/vim-swap'
-
 Plug 'LnL7/vim-nix'
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 
@@ -41,18 +39,6 @@ call plug#end()
 Plug 'neovim/nvim-lspconfig'
 " }}}
 
-let mapleader = " "
-
-" tenzir / C++ setup: lsp, clangd
-set expandtab
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=yes
-else
-  set signcolumn=yes
-endif
 
 set shortmess+=c
 set cmdheight=2
