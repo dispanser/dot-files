@@ -34,5 +34,6 @@ return require('packer').startup(function(use)
     end
   }
   use 'tveskag/nvim-blame-line'
+  use 'machakann/vim-highlightedyank'
 end)
 
