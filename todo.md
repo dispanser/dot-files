@@ -20,6 +20,9 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
   - technically that was installed previously, but I can't remember using it
 - [vim-swap](machakann/vim-swap): text objects and swap function arguments
   - this was already enabled, but never actively used
+- [vim-cutlass](https://github.com/svermeulen/vim-cutlass)
+  - do not put the deleted / changed stuff (cc, dw, ...) into a register
+  - while this sounds useful, it changes my current mental model
 
 ## Replacements
 

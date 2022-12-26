@@ -37,4 +37,3 @@ n('<leader>bs', builtin.current_buffer_fuzzy_find, "search current buffer")
 
 n('<leader>fr', builtin.oldfiles, "recently loaded files")
 n('<leader>ts', builtin.treesitter, "treesitter symbols")
-
