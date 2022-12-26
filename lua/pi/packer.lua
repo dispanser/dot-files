@@ -35,5 +35,8 @@ return require('packer').startup(function(use)
   }
   use 'tveskag/nvim-blame-line'
   use 'machakann/vim-highlightedyank'
+  use 'roxma/vim-tmux-clipboard'
+  use 'christoomey/vim-tmux-navigator'
+  use 'tmux-plugins/vim-tmux'
 end)
 

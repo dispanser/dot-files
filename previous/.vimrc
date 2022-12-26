@@ -12,8 +12,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux'
 
 Plug 'itchyny/lightline.vim'
 set noshowmode " because mode's in the statusline anyway
@@ -27,15 +25,12 @@ let g:lightline = {
       \ }
 
 Plug 'junegunn/vim-easy-align'
-Plug 'machakann/vim-highlightedyank'
 
-Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-rooter'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 
 Plug 'machakann/vim-swap'
-Plug 'roxma/vim-tmux-clipboard'
 
 Plug 'LnL7/vim-nix'
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
