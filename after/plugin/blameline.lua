@@ -1,1 +1,4 @@
-vim.keymap.set('n', '<leader>tl', ':ToggleBlameLine<CR>', { desc = "toggle blame line" } )
+vim.cmd [[
+  autocmd BufEnter * EnableBlameLine
+]]
+vim.keymap.set('n', '<leader>tl', vim.cmd.ToggleBlameLine, { desc = "toggle blame line" } )

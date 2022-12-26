@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<leader>dv', ":DiffviewOpen<CR>", { desc = "diff view"} )
+vim.keymap.set('n', '<leader>dv', vim.cmd.DiffviewOpen, { desc = "diff view"} )

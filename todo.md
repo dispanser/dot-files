@@ -9,3 +9,7 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
 
 - "center toggle" (t-) does not work (generally, `scrolloff)
 - colors are ugly as hell
+
+# Plugins
+
+- potential replacement for gitgutter: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)

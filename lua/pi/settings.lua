@@ -2,6 +2,9 @@
 
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
+vim.o.signcolumn = 'auto:2'
+vim.o.linebreak = true
+vim.o.visualbell = on
 
 -- wo: window-scoped
 
@@ -28,8 +31,4 @@ vim.opt.relativenumber = true
 
 vim.opt.swapfile = false
 vim.opt.undofile = true
-
--- Test test
--- vim.bo.signcolumn = yes
-
 

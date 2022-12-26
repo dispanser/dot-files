@@ -27,9 +27,7 @@ n('<leader>ll', builtin.loclist, "location list")
 n('<leader><leader>', builtin.resume, "resume previous search")
 n('<leader>lp', builtin.pickers, "previous pickers")
 n('<leader>lh', builtin.help_tags, "help tags")
--- TODO: doesn't work, error message
 n('<leader>lr', builtin.registers, "registers")
-
 
 n('<leader>qF', builtin.quickfixhistory, "quick fix history")
 n('<leader>qf', builtin.quickfix, "quick fix list")

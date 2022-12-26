@@ -81,12 +81,6 @@ set whichwrap+=<,>,h,l
 " visual bell
 set visualbell
 
-" enable syntax highlighting
-syntax on
-
-" indentation settings
-set cindent
-
 " set nowrap
 set linebreak
 set sidescroll=8
