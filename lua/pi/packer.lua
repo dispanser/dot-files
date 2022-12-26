@@ -33,5 +33,6 @@ return require('packer').startup(function(use)
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end
   }
+  use 'tveskag/nvim-blame-line'
 end)
 

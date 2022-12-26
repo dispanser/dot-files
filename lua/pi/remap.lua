@@ -77,7 +77,6 @@ vim.keymap.set('', '<M-k>', 'gt')
 
 nnoremap('<leader>sc', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>', "clear search")
 nnoremap('<Leader>t-', ':let &scrolloff=999-&scrolloff<CR>', "toggle centered mode")
-nnoremap('<leader>tl', ':ToggleBlameLine<CR>', "toggle blame line")
 nnoremap('<leader>tp', ':set pastetoggle<CR>', "toggle paste")
 nnoremap('<leader>tr', ':set relativenumber!<CR>', "toggle relative line numbers")
 nnoremap('<leader>tc', ':set cursorcolumn!<CR>', "toggle cursorcolumn")

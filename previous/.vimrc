@@ -36,10 +36,7 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'machakann/vim-swap'
 Plug 'roxma/vim-tmux-clipboard'
-" supposedly allows % to work on language-specific blocks
-" Plug 'andymass/vim-matchup' " not sure, don't see it.
 
-Plug 'tveskag/nvim-blame-line'
 Plug 'LnL7/vim-nix'
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 
