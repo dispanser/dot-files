@@ -34,6 +34,8 @@ n('<leader>qf', builtin.quickfix, "quick fix list")
 
 n('<leader>bb', builtin.buffers, "buffer list")
 n('<leader>bs', builtin.current_buffer_fuzzy_find, "search current buffer")
+n('<leader>/', builtin.current_buffer_fuzzy_find, "search current buffer")
+n('<leader>?', builtin.live_grep, "search entire project")
 
 n('<leader>fr', builtin.oldfiles, "recently loaded files")
 n('<leader>ts', builtin.treesitter, "treesitter symbols")
