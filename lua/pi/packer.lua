@@ -41,6 +41,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
+  use 'tpope/vim-unimpaired'
   use 'svermeulen/vim-yoink'
   use {
     "chrisgrieser/nvim-various-textobjs",
