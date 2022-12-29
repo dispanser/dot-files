@@ -2,7 +2,6 @@
 
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
-vim.o.signcolumn = 'auto:2'
 vim.o.linebreak = true
 vim.o.visualbell = on
 
@@ -20,15 +19,12 @@ vim.opt.smarttab = true
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-
+vim.opt.signcolumn = 'yes:2'
 vim.opt.syntax = enable
-
 vim.opt.ignorecase = on
 vim.opt.smartcase = on
-
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
