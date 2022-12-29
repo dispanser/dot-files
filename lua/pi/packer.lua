@@ -42,5 +42,11 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'svermeulen/vim-yoink'
+  use {
+    "chrisgrieser/nvim-various-textobjs",
+    config = function () 
+      require("various-textobjs").setup({ useDefaultKeymaps = true })
+    end,
+  }
 end)
 
