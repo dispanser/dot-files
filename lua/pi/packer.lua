@@ -43,6 +43,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'tpope/vim-unimpaired'
   use 'svermeulen/vim-yoink'
+  use 'machakann/vim-swap'
   use {
     "chrisgrieser/nvim-various-textobjs",
     config = function () 
