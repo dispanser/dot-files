@@ -5,11 +5,6 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
   - look into other `telescope.actions` - there may be additional gems hiding
 - lr -> list registers doesn't work, there's an error message
 
-# General
-
-- "center toggle" (t-) does not work (generally, `scrolloff)
-- colors are ugly as hell
-
 # Plugins
 
 ## New functionality
@@ -23,6 +18,15 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
 - [vim-cutlass](https://github.com/svermeulen/vim-cutlass)
   - do not put the deleted / changed stuff (cc, dw, ...) into a register
   - while this sounds useful, it changes my current mental model
+- treesitter extensions:
+  - [nvim-dap](https://github.com/mfussenegger/nvim-dap): debug (extension of LSP?)
+     - [available adapters](https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/)
+     - all the stuff you'd hope for, except for a scala-specific one (doh!)
+  - [nvim-treehopper](https://github.com/mfussenegger/nvim-treehopper): navigate via treesitter AST
+  - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+- [mini.ai](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md) textobjects with continuous expansion
+  - e.g., hitting a) multiple times expands the selection to more outer parens
+  - top-level project hosts 20 "swiss-army knife" plugins, check those out as well
 
 ## Replacements
 
@@ -33,3 +37,6 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
 - [diffview](https://github.com/sindrets/diffview.nvim): also supports file history: 
   - the diff looks beautiful, I want that as well :-) (green / red)
 
+## For Inspiration
+
+- [kickstart](https://github.com/nvim-lua/kickstart.nvim): good set of defaults

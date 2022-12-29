@@ -7,11 +7,6 @@ endif
 " plugins {{{
 call plug#begin('~/.local/share/nvim/plugged')
 
-" basic plugins: don't ever go without them
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-
 
 Plug 'itchyny/lightline.vim'
 set noshowmode " because mode's in the statusline anyway
