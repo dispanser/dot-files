@@ -13,6 +13,7 @@ vim.o.updatetime = 250
 -- bo: buffer-scoped options
 
 -- opt: "global, window and buffer" ?? not sure 
+vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true

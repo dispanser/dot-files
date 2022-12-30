@@ -71,5 +71,9 @@ return require('packer').startup(function(use)
       require("various-textobjs").setup({ useDefaultKeymaps = true })
     end,
   }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 end)
 
