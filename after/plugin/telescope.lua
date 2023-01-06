@@ -48,6 +48,7 @@ n('<leader>gt', builtin.git_branches, "git branchescommits")
 n('<leader>bb', builtin.buffers, "buffer list")
 n('<leader>b/', builtin.current_buffer_fuzzy_find, "search current buffer")
 n('<leader>/', builtin.current_buffer_fuzzy_find, "search current buffer")
+n('/', builtin.current_buffer_fuzzy_find, "search current buffer")
 n('<leader>?', builtin.live_grep, "search entire project")
 
 n('<leader>fr', builtin.oldfiles, "recently loaded files")

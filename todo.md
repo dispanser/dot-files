@@ -24,6 +24,7 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
      - all the stuff you'd hope for, except for a scala-specific one (doh!)
   - [nvim-treehopper](https://github.com/mfussenegger/nvim-treehopper): navigate via treesitter AST
   - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+  - [nvim-textsubjects](https://github.com/RRethy/nvim-treesitter-textsubjects)
 - [mini.ai](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md) textobjects with continuous expansion
   - e.g., hitting a) multiple times expands the selection to more outer parens
   - top-level project hosts 20 "swiss-army knife" plugins, check those out as well
@@ -36,6 +37,7 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
 
 - [diffview](https://github.com/sindrets/diffview.nvim): also supports file history: 
   - the diff looks beautiful, I want that as well :-) (green / red)
+- [telescope-lsp-handlers](https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim): use telescope for "normal" lsp-related actions, no need for telescope-specific mappings
 
 ## For Inspiration
 
