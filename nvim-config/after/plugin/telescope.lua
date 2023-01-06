@@ -3,6 +3,15 @@ require('telescope').setup {
     cache_picker = {
       num_pickers = 10,
     },
+    layout_config = {
+      vertical = { width = 0.7 }
+      -- other layout configuration here
+    },
+    pickers = {
+      find_files = {
+        find_command="rg,--ignore,--hidden,--files prompt_prefix=🔍"
+      }
+    },
   },
 }
 
