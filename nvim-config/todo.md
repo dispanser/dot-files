@@ -9,8 +9,6 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
 
 ## New functionality
 
-- note-taking, beautiful: [mind.nvim](https://github.com/phaazon/mind.nvim)
-  - youtube series, [part 2](https://www.reddit.com/r/neovim/comments/zuwpi0/mind_nvim_part_25_content_fuzzy_searching_and_more/)
 - git commit browser [gv](https://github.com/junegunn/gv.vim)
   - technically that was installed previously, but I can't remember using it
 - [vim-swap](machakann/vim-swap): text objects and swap function arguments
