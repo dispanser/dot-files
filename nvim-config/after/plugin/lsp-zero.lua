@@ -20,4 +20,13 @@ local cmp_config = lsp.defaults.cmp_config({
   }
 })
 
+local function n(key, action, desc)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr, desc = desc }
+  vim.keymap.set('n', key, action, bufopts)
+end
+
+
+n('<space>ea', vim.lsp.buf.code_action, "code actions" )
+n('<space>ef', function() vim.lsp.buf.format { async = true } end, "code format")
+
 cmp.setup(cmp_config)
