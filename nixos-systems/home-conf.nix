@@ -22,6 +22,7 @@ in {
       home/git.nix
       home/helix.nix
       home/kitty.nix
+      home/qutebrowser.nix
       home/ssh.nix
       home/starship.nix
       home/tmux.nix
