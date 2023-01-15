@@ -109,5 +109,10 @@
       };
 
     };
+    quickmarks = {
+      gn = "https://github.com/notifications";
+      gp = "https://github.com/pulls";
+      gr = "https://github.com/pulls/review-requested";
+    };
   };
 }
