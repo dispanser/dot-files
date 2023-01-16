@@ -1,0 +1,28 @@
+name:        xmonad-config
+version:     0.1.0.0
+category:    configuration
+synopsis:    xmonad configuration as a complete stack project
+description: >
+  Personal XMonad configuration as a complete, self-contained stack project,
+  mostly for being able to use standard development tools like ghc-mod or intero.
+author:      Thomas Peiselt
+license:     MIT
+ghc-options: -Wall
+dependencies:
+  - base >= 4.8.0 && <5
+  - xmonad # >= 0.15 && < 0.16
+  - xmonad-contrib # >= 0.15 && < 0.16
+  - containers
+
+library:
+  source-dirs: src
+  dependencies:
+    - directory
+    - filepath
+
+executables:
+  xmonad:
+    source-dirs: xmonad
+    main:        xmonad.hs
+    dependencies:
+      - xmonad-config

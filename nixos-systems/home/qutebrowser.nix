@@ -57,7 +57,8 @@
     keyBindings = {
       normal = {
         "sp" = "set-cmd-text :open -t https://getpocket.com/edit?url={url}&tags=";
-        "sr" = "open -t https://getpocket.com/edit?url={url}&tags=remarkable";
+        "sr" = "set-cmd-text :open -t https://getpocket.com/edit?url={url}&tags=remarkable";
+        "ps" = "spawn --userscript qute-pass";
         "J" = "scroll-page 0 0.7";
         "K" = "scroll-page 0 -0.7";
         "<Ctrl-Space>" = "tab-focus last";
@@ -73,6 +74,8 @@
         "O" = "set-cmd-text :open {url:pretty}";
         "<Ctrl-o>" = "back";
         "<Ctrl-i>" = "forward";
+        "<Ctrl-h>" = "back";
+        "<Ctrl-l>" = "forward";
         "gh" = "open -t qute://history/";
         "gb" = "open -t qute://bookmarks/";
         "ya" = "hint links yank";

@@ -1,0 +1,4 @@
+/.direnv/
+*.o
+*.hi
+/xmonad-config.cabal
