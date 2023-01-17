@@ -24,7 +24,7 @@ import           System.FilePath.Posix            ((</>))
 projects :: IO [Project]
 projects = do
   home      <- getHomeDirectory
-  let pr    =  home </> "wip"
+  let pr    =  home </> "projects"
   entries   <- filter (not . (`elem` [".done", ".todo", ".hold"])) <$> listDirectory pr
   dirs      <- filterM (doesDirectoryExist . (pr </>)) entries
   return $ tmpProject home : concatMap (projectsForDir pr) dirs
