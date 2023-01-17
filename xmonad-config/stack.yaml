@@ -14,4 +14,4 @@ extra-package-dbs: []
 nix:
     enable: true
     # pure: false
-    packages: [ xorg.libX11, xorg.libXrandr, xorg.libXext, pkgconfig, xorg.libXft ]
+    packages: [ xorg.libX11, xorg.libXrandr, xorg.libXext, pkgconfig, xorg.libXft xorg.libXScrnSaver xorg.libXinerama ]
