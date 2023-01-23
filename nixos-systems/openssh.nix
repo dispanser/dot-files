@@ -3,7 +3,7 @@
 {
   services.openssh = {
 	  enable                 = true;
-	  passwordAuthentication = false;
+	  settings.passwordAuthentication = false;
 	  startWhenNeeded        = false;
 	  listenAddresses        = [
 	    { addr = "0.0.0.0"; port = 65423; } 
