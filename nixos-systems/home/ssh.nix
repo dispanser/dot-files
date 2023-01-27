@@ -48,6 +48,13 @@ in {
         identityFile = id_keys;
       };
 
+      "x1t3" = {
+        hostname = "10.1.3.3";
+        user = "pi";
+        port = 65423;
+        identityFile = id_keys;
+      };
+
     };
   };
 }
