@@ -8,9 +8,10 @@
     ./security.nix
     ./flakes.nix
     ./adguard_dns.nix
-	  ./brother.nix
+    ./brother.nix
     ./yubico.nix
   ];
+  console.font = "sun12x22";
 
   services.undervolt = {
     temp = 90;
