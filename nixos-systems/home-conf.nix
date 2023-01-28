@@ -19,6 +19,7 @@ in {
 
     imports = [
       (import home/fish.nix { pkgs = pkgs; editor = editor; })
+      home/alacritty.nix
       home/git.nix
       home/helix.nix
       home/kitty.nix
@@ -105,10 +106,6 @@ in {
     };
 
     wezterm = {
-      enable = true;
-    };
-
-    alacritty = {
       enable = true;
     };
 

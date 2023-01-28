@@ -34,9 +34,21 @@ data ScratchApp  = ScratchApp
         , hook     :: Maybe ManageHook
         }
 
+-- start a terminal with the provided (shell) command and class name
 term :: String -> String -> String
-term shellCommand cn  =
+term = alacritty
+
+-- start a kitty instance with the provided (shell) command and class name
+kitty :: String -> String -> String
+kitty shellCommand cn  =
   "kitty --name " ++ cn ++ " -e " ++ shellCommand
+
+-- start an alacritty instance with the provided (shell) command and class name
+-- Alacritty would use the class name for both WM_CLASS attrs, hence we
+-- override both explicity, keeping the "other" one as "Alacritty".
+alacritty :: String -> String -> String
+alacritty shellCommand cn  =
+  "alacritty --class Alacritty," ++ cn ++ " -e " ++ shellCommand
 
 tmux :: String -> String
 tmux session = " sh -c \"tmux attach -t " ++ session ++ " || tmux new-session -s " ++ session ++ "\""
