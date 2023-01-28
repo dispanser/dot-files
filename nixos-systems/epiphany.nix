@@ -130,7 +130,7 @@
 
   fileSystems  = {
     "/boot"    = { device = "/dev/disk/by-uuid/DB6D-3788"; fsType = "vfat"; };
-    "/"        = { device = "/dev/epiphany/other-root";    fsType = "ext4"; };
+    "/"        = { device = "/dev/epiphany/nix-root";    fsType = "ext4"; };
     "/home"    = { device = "/dev/epiphany/home";          fsType = "ext4"; };
   };
 
