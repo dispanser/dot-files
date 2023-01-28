@@ -2,7 +2,7 @@
 
 module PiMonad.Scratches ( fromScratchOrFocus
                          , triggerScratch
-                         , globalKitty
+                         , globalScratchTerm
                          , globalTmux
                          , globalScratch
                          , localTmux
@@ -51,8 +51,8 @@ globalScratch command query rect = ScratchApp {
     hook     = Just (query --> doRectFloat rect)
 }
 
-globalKitty :: String -> W.RationalRect -> ScratchApp
-globalKitty shellCommand = globalScratch command query
+globalScratchTerm :: String -> W.RationalRect -> ScratchApp
+globalScratchTerm shellCommand = globalScratch command query
   where
     name'   = filter (/= ' ') shellCommand
     command = term shellCommand name'

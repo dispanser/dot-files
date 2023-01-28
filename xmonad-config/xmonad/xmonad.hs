@@ -100,8 +100,8 @@ myPromptConfig = def
 -- is the lack of a global scratchpad lookup place. We create top-level bindings
 -- and reference them where needed.
 journal, htop, hud, confT, obsidian :: S.ScratchApp
-journal     = S.globalKitty "journalctl -xf" centeredRect
-htop        = S.globalKitty "htop" centeredRect
+journal     = S.globalScratchTerm "journalctl -xf" centeredRect
+htop        = S.globalScratchTerm "htop" centeredRect
 hud         = S.globalTmux  "hud" upperBarRect
 confT       = S.globalTmux  "config" leftBarRect
 obsidian    = S.globalScratch "obsidian" (className =? "obsidian") centeredRect
