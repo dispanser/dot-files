@@ -321,8 +321,8 @@ myMainKeys =
   , ( (myModMask,               xK_q),         S.triggerScratch hud)
   , ( (myShiftMask,             xK_q),         S.triggerScratch confT)
   , ( (myModMask,               xK_f),         sendMessage $ Toggle FULL)
-  , ( (myModMask,               xK_t),         workspaceKitty "term")
-  , ( (myShiftMask,             xK_t),         workspaceKitty "term" >> promote)
+  , ( (myModMask,               xK_t),         workspaceTerm "term")
+  , ( (myShiftMask,             xK_t),         workspaceTerm "term" >> promote)
   , ( (myModMask,               xK_slash),     focusUrgent)
 
   -- SubLayout: go / swap in the four directions
@@ -429,8 +429,8 @@ toggleTag tag window = do
   then delTag tag window
   else addTag tag window
 
-workspaceKitty :: String -> X ()
-workspaceKitty suffix = do
+workspaceTerm :: String -> X ()
+workspaceTerm suffix = do
   workspace <- gets (W.currentTag . windowset)
   let localName = workspace ++ "_" ++ suffix
   raiseMaybe (spawn $ S.tmuxTerm localName localName) (appName =? localName)
