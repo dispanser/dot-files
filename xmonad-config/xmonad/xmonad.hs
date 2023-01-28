@@ -72,7 +72,7 @@ myTerminal, myBrowser, myEditor, myQute :: String
 myBrowser  = "vimb"
 myQute     = "qutebrowser --backend webengine --qt-arg name global_qute"
 myEditor   = "emacsclient -c"
-myTerminal = "kitty -1"
+myTerminal = "alacritty"
 
 -- for word-level edit operations, split at each non-alpha char
 wordSeparator :: Char -> Bool
