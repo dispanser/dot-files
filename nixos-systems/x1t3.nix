@@ -119,6 +119,12 @@
     "/home"      = { device = "/dev/x1t3/home";              fsType = "ext4"; neededForBoot = true;};
   };
 
+  swapDevices = [
+    {
+      device = "/dev/x1t3/swap";
+    }
+  ];
+
   nix.settings.max-jobs                     = lib.mkDefault 8;
 
   # The NixOS release to be compatible with for stateful data such as databases.
