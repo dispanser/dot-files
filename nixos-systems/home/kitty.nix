@@ -19,8 +19,13 @@
       "ctrl+shift+minus"       = "no_op";
       "ctrl+shift+kp_subtract" = "no_op";
     };
-    font.name = "Victor Mono";
-    font.package = pkgs.victor-mono;
+    font = {
+      # doesn't seem to work - font size is accepted, but changing the font
+      # itself is not change
+      name = "VictorMono Nerd Font";
+      package = pkgs.nerdfonts;
+      size = 20;
+    };
     extraConfig = ''
       # BEGIN_KITTY_THEME
       # Solarized Dark
