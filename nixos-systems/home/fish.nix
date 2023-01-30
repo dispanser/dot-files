@@ -90,6 +90,10 @@
       vgf.body   = "${editor} (git ls-files | fzf)";
       vgr.body   = "${editor} (git ls-files (git root) | fzf)";
       rcd.body   = "tmux rename-window (basename (git root 2>/dev/null && echo (git root) || echo (pwd)))";
+      fish_greeting = {
+        description = "Greeting to show when starting a fish shell";
+        body = "";
+      };
     };
     interactiveShellInit = ''
       fish_hybrid_key_bindings
