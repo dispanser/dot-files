@@ -1,0 +1,2 @@
+,nix-root-mount.sh 7a3362b0-cde4-4749-ab9f-08a6b07e8412 5673-6F9A yuking
+sudo mount /dev/yuking/data /mnt/home/data

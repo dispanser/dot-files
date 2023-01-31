@@ -13,6 +13,10 @@ in {
 
   home.stateVersion = "22.05";
 
+  home.file = {
+    bin.source = ../scripts;
+  };
+
   home.packages =
     let pkgSets =  import ./packages.nix pkgs;
     in with pkgSets; desktopPkgs ++ develPkgs;

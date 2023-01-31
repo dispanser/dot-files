@@ -1,0 +1,5 @@
+COMPILER="${C:-clang}"
+REL_TYPE="${R:-debug}"
+echo running preset nix-${COMPILER}-${REL_TYPE}
+time cmake --build --preset nix-${COMPILER}-${REL_TYPE} --target vast-test && time build/${COMPILER}/${REL_TYPE}/bin/vast-test $* -- --vast-verbosity=debug
+echo build/${COMPILER}/${REL_TYPE}/bin/vast-test $* -- --vast-verbosity=debug

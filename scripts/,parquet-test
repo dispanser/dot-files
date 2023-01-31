@@ -1,0 +1,4 @@
+COMPILER="${C:-clang}"
+REL_TYPE="${R:-debug}"
+echo running preset nix-${COMPILER}-${REL_TYPE}
+time cmake --build --preset nix-${COMPILER}-${REL_TYPE} --target parquet-test && time build/${COMPILER}/${REL_TYPE}/bin/parquet-test $* -- --vast-verbosity=debug
