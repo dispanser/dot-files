@@ -41,7 +41,7 @@ function undock() {
 function dock() {
 	case ${#EXT[@]} in
 		"1")
-			xrandr --output ${EXT[0]} --auto --right-of $INT --output $INT --auto
+			xrandr --output ${EXT[0]} --auto --right-of $INT --rotate right --output $INT --auto
 			;;
 		"2")
 			xrandr --output ${EXT[0]} --auto --output ${EXT[1]} --auto --right-of ${EXT[0]} --output $INT --off
@@ -54,11 +54,11 @@ function dock() {
 }
 
 function home() {
-	xrandr --output ${EXT[0]} --auto --right-of $INT --output $INT --auto
+	xrandr --output ${EXT[0]} --auto --right-of $INT --rotate right --output $INT --auto
 }
 
 function ext() {
-	xrandr --output ${EXT[0]}  --auto --output $INT --off
+	xrandr --output ${EXT[0]}  --auto --rotate right --output $INT --off
 }
 
 case "$cmd" in  
