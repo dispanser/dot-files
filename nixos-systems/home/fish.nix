@@ -71,6 +71,7 @@
       ndf     = "nix develop --command fish";
       tl      = "tmux list-sessions";
       nixq    = "nix search nixpkgs";
+      t       = "${pkgs.time}/bin/time";
     } // editor_abbrevations;
     shellAliases = {
       gcm  = "git branch | rg main && git switch main || git switch master";
