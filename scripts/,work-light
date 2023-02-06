@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+nix-shell -p hueadm --run 'hueadm light 9 =255'
+nix-shell -p hueadm --run 'hueadm group Bedroom off'
