@@ -33,7 +33,15 @@ in {
       home/tmux.nix
       home/xsuspender.nix
     ];
+
   services.notify-osd.enable = true;
+
+  # TBD - this is not perfect because it doesn't allow for actually editing these files
+  xdg.configFile.nvim = {
+    source = ../nvim-config;
+    recursive = true;
+  };
+
   services.xidlehook = {
     enable         = true;
     # detect-sleep   = true;

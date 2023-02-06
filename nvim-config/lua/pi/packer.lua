@@ -77,5 +77,17 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use {'stevearc/dressing.nvim'}
+  use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+        require("lspsaga").setup({})
+      end,
+      requires = { {"nvim-tree/nvim-web-devicons"} }
+    })
+  use {"nvim-tree/nvim-web-devicons"}
+  use 'simrat39/rust-tools.nvim'
+  use 'mfussenegger/nvim-dap'
+  use 'ray-x/lsp_signature.nvim'
 end)
 
