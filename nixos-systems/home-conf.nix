@@ -80,6 +80,15 @@ in {
 
   programs = {
 
+    atuin = {
+      enable = true;
+      settings = { 
+        style = "full";
+        search_mode = "fuzzy";
+        dialect = "uk";
+        update_check = false;
+      };
+    };
     zoxide.enable = true;
 
     direnv = {
