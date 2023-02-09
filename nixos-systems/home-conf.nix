@@ -85,6 +85,7 @@ in {
       settings = { 
         style = "full";
         search_mode = "fuzzy";
+        filter_mode_shell_up_key_binding = "directory";
         dialect = "uk";
         update_check = false;
       };
