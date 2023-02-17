@@ -100,6 +100,7 @@
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR nvim
+      set PATH $PATH:$HOME/bin
       set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
       set PROJECT_DIR ~/projects/$PROJECT
       # this is picked up by vim.
