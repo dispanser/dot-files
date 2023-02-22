@@ -11,12 +11,8 @@ set REM_DIR $argv[2]
 set FILE (basename $MARKDOWN .md)
 set PDF /home/data/tmp/md2remarkable/{$FILE}.pdf
 
-echo pdf: $PDF
-
 pandoc $MARKDOWN --to=pdf -o $PDF
-echo $PDF | xclip -in -selection clipboard
 
-# ./browser.sh my.remarkable.com
 rmapi -ni rm {$REM_DIR}/{$FILE}_previous
 rmapi -ni mv {$REM_DIR}/{$FILE} {$REM_DIR}/{$FILE}_previous
 rmapi -ni put $PDF $REM_DIR

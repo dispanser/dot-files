@@ -1,0 +1,13 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i fish -p fish pandoc texlive.combined.scheme-full
+
+## Watch a markdown file, format to pdf via pandoc, and show with zathura
+## arguments:
+# 1. markdown file
+# 2. some additional files to watch, if given
+
+set MARKDOWN $argv[1]
+set FILE (basename $MARKDOWN .md)
+set PDF /home/data/tmp/md2pandoc/{$FILE}.pdf
+
+echo $argv | entr pandoc $MARKDOWN --to=pdf -o $PDF
