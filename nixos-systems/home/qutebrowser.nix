@@ -41,6 +41,7 @@
       sc      = "https://app.shortcut.com/tenzir/story/{}";
     };
     settings = {
+      zoom.default = "125%";
       tabs = {
         background = true;
         last_close = "close";

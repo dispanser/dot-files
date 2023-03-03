@@ -97,7 +97,7 @@
       }; 
     };
       # from https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/p14s/amd/gen2/default.nix 
-      kernelParams = ["amdgpu.backlight=0" "acpi_backlight=none"];
+      kernelParams = ["amdgpu.backlight=0" ];
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
       initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
