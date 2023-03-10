@@ -21,7 +21,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home-conf.nix;
+            home-manager.users.pi = import ./home.nix;
           }
         ];
       };
@@ -33,7 +33,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home-conf.nix;
+            home-manager.users.pi = import ./home.nix;
           }
         ];
       };
@@ -45,7 +45,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home-conf.nix;
+            home-manager.users.pi = import ./home.nix;
           }
         ];
       };
@@ -57,7 +57,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home-conf.nix;
+            home-manager.users.pi = import ./home.nix;
           }
         ];
       };
@@ -69,7 +69,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home-conf.nix;
+            home-manager.users.pi = import ./home.nix;
           }
         ];
       };
@@ -81,7 +81,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home-conf.nix;
+            home-manager.users.pi = import ./home.nix;
           }
         ];
       };
