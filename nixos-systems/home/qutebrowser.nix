@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   programs.qutebrowser = {
-    enable = true;
+    enable = lib.mkIf pkgs.stdenv.isLinux true;
     enableDefaultBindings = true; # Default
     extraConfig = ''
         config.unbind('<ctrl-p>')

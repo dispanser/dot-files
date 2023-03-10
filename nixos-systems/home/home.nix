@@ -9,12 +9,12 @@ in {
   };
 
   home.username = "pi";
-  home.homeDirectory = "/home/pi";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/pi" else "/home/pi";
 
   home.stateVersion = "22.05";
 
   home.file = {
-    bin.source = ../scripts;
+    bin.source = ../../scripts;
   };
 
   home.packages =
@@ -22,30 +22,30 @@ in {
     in with pkgSets; desktopPkgs ++ develPkgs;
 
     imports = [
-      (import home/fish.nix { pkgs = pkgs; editor = editor; })
-      home/alacritty.nix
-      home/git.nix
-      home/helix.nix
-      home/kitty.nix
-      home/qutebrowser.nix
-      home/ssh.nix
-      home/starship.nix
-      home/tmux.nix
-      home/xsuspender.nix
+      (import ./fish.nix { pkgs = pkgs; editor = editor; })
+      ./alacritty.nix
+      ./git.nix
+      ./helix.nix
+      ./kitty.nix
+      ./qutebrowser.nix
+      ./ssh.nix
+      ./starship.nix
+      ./tmux.nix
+      ./xsuspender.nix
     ];
 
-  services.notify-osd.enable = true;
+  services.notify-osd.enable = if pkgs.stdenv.isLinux then true else false;
 
   # TBD - this is not perfect because it doesn't allow for actually editing these files
   xdg.configFile.nvim = {
-    source = ../nvim-config;
+    source = ../../nvim-config;
     recursive = true;
   };
 
   services.xidlehook = {
-    enable         = true;
+    enable           = if pkgs.stdenv.isLinux then true else false;
     # detect-sleep   = true;
-    not-when-audio = false;
+    not-when-audio   = false;
     not-when-fullscreen = false; # TBE
     environment = {
       PATH    = "$PATH:/run/current-system/sw/bin";
@@ -70,7 +70,7 @@ in {
     ];
   };
   services.gpg-agent = {
-    enable = true;
+    enable = if pkgs.stdenv.isLinux then true else false;
     enableSshSupport = true;
     defaultCacheTtl = 3600;
     defaultCacheTtlSsh = 3600;

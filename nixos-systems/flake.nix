@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs.url = "/home/pi/src/github/dispanser/nixpkgs";
-    # consistent, system-wide nix pkgs for user + system configuration
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +19,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home.nix;
+            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
@@ -33,7 +31,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home.nix;
+            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
@@ -45,7 +43,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home.nix;
+            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
@@ -57,7 +55,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home.nix;
+            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
@@ -69,7 +67,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home.nix;
+            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
@@ -81,10 +79,15 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home.nix;
+            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
     };
+#     homeConfigurations.pi = {
+#       # defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
+#       pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+#       modules = [ ./home.nix ];
+#     };
   };
 }

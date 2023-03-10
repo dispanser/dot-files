@@ -6,40 +6,44 @@ with pkgs; let
 #  };
   desktopPkgs = [
     any-nix-shell
-    simple-scan
     obsidian
-    rofi
-    spotify
-    qutebrowser
     youtube-dl
     units
-    scrot feh
+    feh
     entr
-    signal-desktop slack threema-desktop tdesktop
-    pavucontrol ponymix
-    nextcloud-client
+    slack
     zathura
-    firefox ungoogled-chromium
     dmenu
     mplayer
-    rxvt_unicode 
-    xbindkeys
-    xclip xsel
-    irssi
     pinentry
-    xfontsel
-    xorg.xmessage xdotool
-    xlsfonts
-    xss-lock
-    xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
-    xvkbd
     pandoc
-    xorg.xinit
+    exa delta ripgrep neovim
   ];
   develPkgs = [
     watchexec
     ctags
     sloc
+  ];
+  linuxOnly = [
+    simple-scan
+    xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
+    xbindkeys
+    xclip xsel
+    xorg.xmessage xdotool
+    pavucontrol ponymix
+    xorg.xinit
+    rofi
+    spotify
+    scrot 
+    signal-desktop threema-desktop tdesktop
+    nextcloud-client
+    firefox
+    xfontsel
+    xlsfonts
+    xss-lock
+    xvkbd
+    ungoogled-chromium
+    qutebrowser
   ];
 in {
   desktopPkgs = desktopPkgs;
