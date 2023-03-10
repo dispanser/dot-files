@@ -4,6 +4,9 @@ with pkgs; let
 #  neovim = pkgs.neovim.override {
 #    extraPythonPackages = pythonPkgs: [ pythonPkgs.sexpdata pythonPkgs.websocket_client ];
 #  };
+  darwinOnly = [
+    openssh
+  ];
   desktopPkgs = [
     any-nix-shell
     obsidian
@@ -48,5 +51,7 @@ with pkgs; let
 in {
   desktopPkgs = desktopPkgs;
   develPkgs   = develPkgs;
+  linuxOnly   = linuxOnly;
+  darwinOnly  = darwinOnly;
 }
   

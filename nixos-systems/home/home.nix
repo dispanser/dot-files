@@ -19,7 +19,7 @@ in {
 
   home.packages =
     let pkgSets =  import ./packages.nix pkgs;
-    in with pkgSets; desktopPkgs ++ develPkgs;
+    in with pkgSets; desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
 
     imports = [
       (import ./fish.nix { pkgs = pkgs; editor = editor; })

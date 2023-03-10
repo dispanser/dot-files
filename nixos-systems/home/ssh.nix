@@ -1,10 +1,13 @@
 { pkgs, ... }:
 
-let id_remarkable = "/home/pi/.ssh/remarkable";
-    id_yubi =  "/home/pi/.ssh/yubikey_c.pub";
-    id_feitian_solo = "/home/pi/.ssh/id_feitian_solo_ecdsa_sk";
-    id_feitian_chain = "/home/pi/.ssh/id_feitian_chain_ecdsa_sk";
-    id_ecdsa_pass = "/home/pi/.ssh/id_ecdsa";
+let home = if pkgs.stdenv.isDarwin
+		then "/Users/pi/.ssh"
+		else "/home/pi/.ssh";
+    id_remarkable = "${home}/remarkable";
+    id_yubi =  "${home}/yubikey_c.pub";
+    id_feitian_solo = "${home}/id_feitian_solo_ecdsa_sk";
+    id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";
+    id_ecdsa_pass = "${home}/id_ecdsa";
     id_keys = [ id_yubi id_feitian_solo id_feitian_chain id_ecdsa_pass ];
 in {
   programs.ssh = {
@@ -17,7 +20,7 @@ in {
       "rm" = {
         hostname     = "192.168.1.31";
         user         = "root";
-        identityFile = "/home/pi/.ssh/remarkable";
+        identityFile = id_remarkable;
         extraOptions = {
           "HostkeyAlgorithms" = "+ssh-rsa";
           "PubkeyAcceptedAlgorithms" = "+ssh-rsa";
@@ -28,7 +31,7 @@ in {
       "rmd" = {
         hostname = "10.11.99.1";
         user = "root";
-        identityFile = "~/.ssh/remarkable";
+        identityFile = id_remarkable;
         extraOptions = {
           "HostkeyAlgorithms" = "+ssh-rsa";
           "PubkeyAcceptedAlgorithms" = "+ssh-rsa";
