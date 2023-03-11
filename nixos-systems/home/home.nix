@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let editor = "nvim";
 in {
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "obsidian"
+    "slack"
+  ];
 
   systemd.user.sessionVariables = {
   # home.sessionVariables = {
@@ -95,14 +100,6 @@ in {
     direnv = {
       enable                  = true;
       nix-direnv.enable       = true;
-    };
-
-    mcfly = {
-      enableFishIntegration = false;
-      enable                = false;
-      fuzzySearchFactor     = 2;
-      keyScheme             = "vim";
-      # fuzzySearchFactor      = 4;
     };
 
     fzf = {
