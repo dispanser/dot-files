@@ -66,31 +66,59 @@
       mouse_follows_focus = "on";
       window_placement    = "second_child";
       window_opacity      = "off";
+      layout              = "bsp";
       top_padding         = 10;
       bottom_padding      = 10;
       left_padding        = 10;
       right_padding       = 10;
       window_gap          = 10;
     };
+
   };
 
   services.skhd = {
     enable = true;
     skhdConfig = ''
-      alt - x : yabai -m window --focus recent
-      alt - h : yabai -m window --focus west
-      alt - j : yabai -m window --focus south
-      alt - k : yabai -m window --focus north
-      alt - l : yabai -m window --focus east
-      alt - z : yabai -m window --focus stack.prev
-      alt - c : yabai -m window --focus stack.next
+      rcmd - x : yabai -m window --focus recent
+      rcmd - h : yabai -m window --focus west
+      rcmd - j : yabai -m window --focus south
+      rcmd - k : yabai -m window --focus north
+      rcmd - l : yabai -m window --focus east
+      rcmd - 0x2B : yabai -m window --focus stack.prev
+      rcmd - 0x2F : yabai -m window --focus stack.next
 
       # swap window
-      shift + alt - x : yabai -m window --swap recent
-      shift + alt - h : yabai -m window --swap west
-      shift + alt - j : yabai -m window --swap south
-      shift + alt - k : yabai -m window --swap north
-      shift + alt - l : yabai -m window --swap east
+      shift + rcmd - x : yabai -m window --swap recent
+      shift + rcmd - h : yabai -m window --swap west
+      shift + rcmd - j : yabai -m window --swap south
+      shift + rcmd - k : yabai -m window --swap north
+      shift + rcmd - l : yabai -m window --swap east
+
+      # move window
+      shift + ctrl + rcmd - h : yabai -m window --warp west
+      shift + ctrl + rcmd - j : yabai -m window --warp south
+      shift + ctrl + rcmd - k : yabai -m window --warp north
+      shift + ctrl + rcmd - l : yabai -m window --warp east
+
+      # stack window
+      alt + rcmd - h : yabai -m window --stack west
+      alt + rcmd - j : yabai -m window --stack south
+      alt + rcmd - k : yabai -m window --stack north
+      alt + rcmd - l : yabai -m window --stack east
+
+      # # resize split(s)
+      # yabai -m window --resize right:-20:0
+      lctrl + rcmd - l : yabai -m window --resize right:50:0  || yabai -m window --resize left:50:0
+      lctrl + rcmd - h : yabai -m window --resize right:-50:0  || yabai -m window --resize left:-50:0
+      lctrl + rcmd - j : yabai -m window --resize bottom:0:100  || yabai -m window --resize top:0:100
+      lctrl + rcmd - k : yabai -m window --resize bottom:0:-100  || yabai -m window --resize top:0:-100
+
+      rcmd - f : yabai -m window --toggle zoom-fullscreen
+      rcmd + shift - f : yabai -m window --toggle zoom-parent
+      # # focus monitor
+      # # tpx014
+      rcmd - s  : yabai -m display --focus recent
+      rcmd - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
     '';
   };
 }
