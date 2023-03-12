@@ -22,7 +22,9 @@ with pkgs; let
     mplayer
     pinentry
     pandoc
-    exa delta ripgrep neovim
+    exa delta ripgrep neovim fzf fd
+    iotop iftop
+    stow
   ];
   develPkgs = [
     watchexec
