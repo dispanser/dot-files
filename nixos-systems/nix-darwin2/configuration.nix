@@ -84,8 +84,12 @@
       rcmd - j : yabai -m window --focus south
       rcmd - k : yabai -m window --focus north
       rcmd - l : yabai -m window --focus east
-      rcmd - 0x2B : yabai -m window --focus stack.prev
-      rcmd - 0x2F : yabai -m window --focus stack.next
+      rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+      rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+      rcmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+      rcmd - o : yabai -m window --toggle topmost
+      rcmd - 0x2C : yabai -m window --toggle split
 
       # swap window
       shift + rcmd - x : yabai -m window --swap recent
@@ -115,10 +119,29 @@
 
       rcmd - f : yabai -m window --toggle zoom-fullscreen
       rcmd + shift - f : yabai -m window --toggle zoom-parent
-      # # focus monitor
-      # # tpx014
+
+      # switch display monitor
       rcmd - s  : yabai -m display --focus recent
-      rcmd - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+      rcmd + shift - r  : yabai -m window --space recent
+      rcmd + shift - 1  : yabai -m window --space 1
+      rcmd + shift - 2  : yabai -m window --space 2
+      rcmd + shift - 3  : yabai -m window --space 3
+      rcmd + shift - 4  : yabai -m window --space 4
+      rcmd + shift - 5  : yabai -m window --space 5
+      rcmd + shift - 6  : yabai -m window --space 6
+
+      # send window to monitor and follow focus
+      rcmd + shift - s  : yabai -m window --display recent && yabai -m display --focus recent
+
+      # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
+      rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+
+
+      # application-specific magic
+      rcmd + rctrl - s : ,y_focus.fish Slack
+      rcmd + rctrl - c : ,y_focus.fish Calendar
+      rcmd + rctrl - m : ,y_focus.fish Mail
+      rcmd + rctrl - b : ,y_focus.fish Safari
     '';
   };
 }

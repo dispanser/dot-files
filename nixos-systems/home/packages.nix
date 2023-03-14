@@ -23,7 +23,7 @@ with pkgs; let
     pinentry
     pandoc
     exa delta ripgrep neovim fzf fd
-    iotop iftop
+    iftop
     stow
   ];
   develPkgs = [
@@ -51,6 +51,7 @@ with pkgs; let
     xvkbd
     ungoogled-chromium
     qutebrowser
+    iotop
   ];
 in {
   desktopPkgs = desktopPkgs;
