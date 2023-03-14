@@ -6,6 +6,8 @@
     ./openssh.nix
   ];
 
+  services.ddccontrol.enable = true;
+
   nixpkgs.config.permittedInsecurePackages = [
     ## pulled in via offlineimap. Not using kerberos, so hopefully OK?
     "python3.10-kerberos-1.3.1"
