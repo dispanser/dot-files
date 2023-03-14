@@ -28,6 +28,15 @@
 
   # Enable experimental nix command and flakes
 
+  homebrew = {
+    enable = true;
+    casks = [
+      "qutebrowser"
+    ];
+    brews = [
+      "openssh"
+    ];
+  };
   nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
     auto-optimise-store = true
