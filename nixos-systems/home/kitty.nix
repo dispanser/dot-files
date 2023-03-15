@@ -9,6 +9,7 @@
       allow_remote_control = true;
       cursor_shape = "underline";
       adjust_column_width	= "100%";
+      macos_option_as_alt = "yes";
     };
     keybindings = {
       "ctrl+minus"             = "change_font_size all -2.0";
@@ -29,7 +30,7 @@
     extraConfig = ''
       # BEGIN_KITTY_THEME
       # Solarized Dark
-      include current-theme.conf
+      # include current-theme.conf
       # END_KITTY_THEME
     '';
   };
