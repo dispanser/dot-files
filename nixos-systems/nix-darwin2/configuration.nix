@@ -95,6 +95,11 @@
       left_padding        = 10;
       right_padding       = 10;
       window_gap          = 10;
+      # a pretty orange, notable border
+      active_window_border_color = "0xFFF7744A";
+      normal_window_border_color = "0x7f353535";
+      window_border_width = 4;
+      window_border = "on";
     };
     extraConfig = ''
       yabai -m space 1 --label code
@@ -178,10 +183,10 @@
 
 
       # application-specific magic which currently doesn't work
-      rcmd + rctrl - s : /Users/pi/bin/,y_focus.fish Slack
+      rcmd - m : /Users/pi/bin/,y_focus.fish Slack
       rcmd + rctrl - c : /Users/pi/bin/,y_focus.fish Calendar
       rcmd + rctrl - m : /Users/pi/bin/,y_focus.fish Mail
-      rcmd + rctrl - b : /Users/pi/bin/,y_focus.fish Safari
+      rcmd - b : /Users/pi/bin/,y_focus.fish "Google Chrome"
     '';
   };
 }
