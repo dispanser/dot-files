@@ -6,7 +6,6 @@ with pkgs; let
 #  };
   darwinOnly = [
     openssh
-    karabiner-elements
     goku
   ];
   desktopPkgs = [

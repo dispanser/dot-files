@@ -31,7 +31,6 @@
       sc      = "sudo cat";
       grep    = "rg --color=auto";
       mkp     = "mkdir -p";
-      sysctl  = "sudo systemctl";
       fn      = "find -name";
       RBT     = "RUST_BACKTRACE=1";
       rmr     = "rm -r";

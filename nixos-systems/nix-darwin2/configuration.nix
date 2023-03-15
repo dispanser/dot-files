@@ -32,6 +32,7 @@
     enable = true;
     casks = [
       "qutebrowser"
+      "intellij-idea-ce"
     ];
     brews = [
       "openssh"
@@ -50,11 +51,22 @@
   system.keyboard = {
     enableKeyMapping = true;
     swapLeftCommandAndLeftAlt = true;
-    remapCapsLockToEscape = true;
+    # remapCapsLockToEscape = true;
     # TODO: does not work for the ThinkPad Keyboard II - no tilde at all
-    nonUS.remapTilde = false;
+    # nonUS.remapTilde = false;
   };
-
+  system.defaults.dock = {
+    static-only = true;
+    tilesize = 32;
+    autohide = true;
+    mru-spaces = false;
+  };
+  system.defaults.finder = {
+    AppleShowAllExtensions = true;
+    AppleShowAllFiles = true;
+    CreateDesktop = false;
+    ShowPathbar = true;
+  };
   # Auto upgrade nix package and the daemon service.
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -67,6 +79,8 @@
 
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
+
+  services.karabiner-elements.enable = false;
 
   services.yabai = {
     enable = true;
@@ -82,6 +96,20 @@
       right_padding       = 10;
       window_gap          = 10;
     };
+    extraConfig = ''
+      yabai -m space 1 --label code
+      yabai -m space 2 --label term
+      yabai -m space 3 --label docs
+      yabai -m space 4 --label slack
+      yabai -m space 5 --label mail
+      yabai -m space 6 --label zoom
+
+      yabai -m rule --add app='^Mail' space=mail
+      yabai -m rule --add app='^Slack' space=slack
+      yabai -m rule --add app='^zoom.us' space=zoom
+
+      yabai -m rule --add app='System Settings' manage=off
+    '';
 
   };
 
@@ -96,7 +124,8 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-      rcmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish kitty kitty
+      rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - o : yabai -m window --toggle topmost
       rcmd - 0x2C : yabai -m window --toggle split
 
@@ -130,7 +159,6 @@
       rcmd + shift - f : yabai -m window --toggle zoom-parent
 
       # switch display monitor
-      rcmd - s  : yabai -m display --focus recent
       rcmd + shift - r  : yabai -m window --space recent
       rcmd + shift - 1  : yabai -m window --space 1
       rcmd + shift - 2  : yabai -m window --space 2
@@ -138,19 +166,22 @@
       rcmd + shift - 4  : yabai -m window --space 4
       rcmd + shift - 5  : yabai -m window --space 5
       rcmd + shift - 6  : yabai -m window --space 6
+      rcmd + shift - 0x21  : yabai -m window --space prev
+      rcmd + shift - 0x1E  : yabai -m window --space next
 
-      # send window to monitor and follow focus
+      # display stufj
+      rcmd - s  : yabai -m display --focus next || yabai -m display --focus prev
       rcmd + shift - s  : yabai -m window --display recent && yabai -m display --focus recent
 
       # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
       rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
 
-      # application-specific magic
-      rcmd + rctrl - s : ,y_focus.fish Slack
-      rcmd + rctrl - c : ,y_focus.fish Calendar
-      rcmd + rctrl - m : ,y_focus.fish Mail
-      rcmd + rctrl - b : ,y_focus.fish Safari
+      # application-specific magic which currently doesn't work
+      rcmd + rctrl - s : /Users/pi/bin/,y_focus.fish Slack
+      rcmd + rctrl - c : /Users/pi/bin/,y_focus.fish Calendar
+      rcmd + rctrl - m : /Users/pi/bin/,y_focus.fish Mail
+      rcmd + rctrl - b : /Users/pi/bin/,y_focus.fish Safari
     '';
   };
 }
