@@ -47,6 +47,19 @@ in {
     recursive = true;
   };
 
+  # TODO: bring existing espanso config into home-manager, if it's still useful
+  services.espanso = {
+    enable    = if pkgs.stdenv.isLinux then true else false;
+    settings  = {
+      matches = [
+        {
+          trigger = ":espanso";
+          replace = "Hi there!";
+        }
+      ];
+    };
+  };
+
   services.xidlehook = {
     enable           = if pkgs.stdenv.isLinux then true else false;
     # detect-sleep   = true;
