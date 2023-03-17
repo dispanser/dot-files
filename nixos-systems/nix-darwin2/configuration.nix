@@ -12,6 +12,7 @@
       openssh
     ];
 
+  nixpkgs.config.allowUnfree = true;
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"
@@ -110,10 +111,14 @@
       yabai -m space 6 --label zoom
 
       yabai -m rule --add app='^Mail' space=mail
-      yabai -m rule --add app='^Slack' space=slack
+      # yabai -m rule --add app='^Slack' space=slack
       yabai -m rule --add app='^zoom.us' space=zoom
 
       yabai -m rule --add app='System Settings' manage=off
+      yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
+      yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
+      yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
+      yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
     '';
 
   };
@@ -121,7 +126,10 @@
   services.skhd = {
     enable = true;
     skhdConfig = ''
-      rcmd - x : yabai -m window --focus recent
+      # remap keys for basic sanity
+      0x0A : ${pkgs.skhd}/bin/skhd -t "`"
+      shift - 0x0A : ${pkgs.skhd}/bin/skhd -t "~"
+      rcmd - space : yabai -m window --focus recent
       rcmd - h : yabai -m window --focus west
       rcmd - j : yabai -m window --focus south
       rcmd - k : yabai -m window --focus north
@@ -129,7 +137,7 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish kitty kitty
+      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish kitty ${pkgs.kitty}/bin/kitty
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - o : yabai -m window --toggle topmost
       rcmd - 0x2C : yabai -m window --toggle split
@@ -181,12 +189,14 @@
       # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
       rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
-
-      # application-specific magic which currently doesn't work
-      rcmd - m : /Users/pi/bin/,y_focus.fish Slack
+      # rcmd - m : /Users/pi/bin/,y_focus.fish Slack
       rcmd + rctrl - c : /Users/pi/bin/,y_focus.fish Calendar
       rcmd + rctrl - m : /Users/pi/bin/,y_focus.fish Mail
       rcmd - b : /Users/pi/bin/,y_focus.fish "Google Chrome"
+      rcmd - i : /Users/pi/bin/,y_focus.fish "IntelliJ IDEA"
+      rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack #
+      rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian
+      rcmd - o : /Users/pi/bin/,y_overlay.fish kitty ${pkgs.kitty}/bin/kitty
     '';
   };
 }
