@@ -1,0 +1,169 @@
+{
+  "main": {
+    "id": "bc33ef875f03f3a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8866728f5377be5",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "home/smart-home.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d551e7e1394a69bf",
+    "type": "split",
+    "children": [
+      {
+        "id": "d144f0944a10375c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d39193a4e423eed3",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "8f6880b661e19172",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "p14s",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2aa10943aa2d413b",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 286.0036334991455
+  },
+  "right": {
+    "id": "23b11fa974df16b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "9cf905b963d94b0a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "31035b83eb1d633b",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "3b79db47417e5d76",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "home/smart-home.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4419eb51166997e5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "home/smart-home.md"
+              }
+            }
+          },
+          {
+            "id": "f47c0b2f7dbad507",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "home/smart-home.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8d6db580a092fc49",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "42cdc637c94d3bee",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "4fed9c023a7d1944",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 302.1653747558594,
+    "collapsed": true
+  },
+  "active": "e8866728f5377be5",
+  "lastOpenFiles": [
+    "personal/systems/tech-cleanup.md",
+    "personal/system/fprintd.md",
+    "projects/bloom-lake/project.md",
+    "daily/2022-10-15.md",
+    "daily/2022-10-14.md",
+    "tech/databases/tigerbeetle/lsm-tree-forest.md",
+    "daily/2022-10-13.md",
+    "cards/cpp/pointers.md",
+    "tech/databases/bitmaps/Roaring Bitmaps.md",
+    "daily/2022-10-12.md"
+  ]
+}

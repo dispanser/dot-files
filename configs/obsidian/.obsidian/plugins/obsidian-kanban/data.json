@@ -1,0 +1,12 @@
+{
+  "new-line-trigger": "enter",
+  "show-checkboxes": true,
+  "hide-tags-in-title": true,
+  "tag-colors": [
+    {
+      "tagKey": "",
+      "color": "",
+      "backgroundColor": ""
+    }
+  ]
+}
