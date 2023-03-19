@@ -61,6 +61,8 @@
     tilesize = 32;
     autohide = true;
     mru-spaces = false;
+    # either requires a restart or is ignored, needed to modify dock settings
+    mineffect = "scale"; 
   };
   system.defaults.finder = {
     AppleShowAllExtensions = true;
@@ -119,6 +121,7 @@
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
       yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
+      yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
     '';
 
   };
@@ -137,9 +140,8 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish kitty ${pkgs.kitty}/bin/kitty
+      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish kitty "${pkgs.kitty}/Applications/kitty.app/Contents/MacOS/kitty --1" 
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
-      rcmd - o : yabai -m window --toggle topmost
       rcmd - 0x2C : yabai -m window --toggle split
 
       # swap window
@@ -194,9 +196,9 @@
       rcmd + rctrl - m : /Users/pi/bin/,y_focus.fish Mail
       rcmd - b : /Users/pi/bin/,y_focus.fish "Google Chrome"
       rcmd - i : /Users/pi/bin/,y_focus.fish "IntelliJ IDEA"
-      rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack #
-      rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian
-      rcmd - o : /Users/pi/bin/,y_overlay.fish kitty ${pkgs.kitty}/bin/kitty
+      rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack
+      rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian >> /tmp/overlay
+      rcmd - o : /Users/pi/bin/,y_overlay.fish kitty "${pkgs.kitty}/Applications/kitty.app/Contents/MacOS/kitty --1" local >> /tmp/overlay
     '';
   };
 }

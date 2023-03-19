@@ -63,6 +63,7 @@
         bind-key -n C-M-o copy-mode \; send-keys -X search-backward "tp\\\;"
         bind-key -n C-M-e copy-mode \; send-keys -X search-backward "FAILED"
 
+        bind -n M-§ select-window -t :=0
         bind -n M-` select-window -t :=0
         bind -n M-0 select-window -t :=0
         bind -n M-1 select-window -t :=1

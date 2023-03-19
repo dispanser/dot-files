@@ -100,8 +100,11 @@
       fish_hybrid_key_bindings
       set -x EDITOR nvim
       set PATH $PATH:$HOME/bin
+      /opt/homebrew/bin/brew shellenv | source
       set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
       set PROJECT_DIR ~/projects/$PROJECT
+      ulimit -n 128800
+      ulimit -u 8000
       # this is picked up by vim.
       set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
       set fzf_fd_opts --hidden --exclude=.git # for fzf.fish
