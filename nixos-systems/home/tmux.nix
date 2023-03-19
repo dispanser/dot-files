@@ -32,7 +32,7 @@
       secureSocket = true;
       extraConfig = ''
         set-option -sa terminal-overrides ",*:Tc"
-        set -g default-terminal "tmux-256color"
+        # set -g default-terminal "tmux-256color"
         set-option -g set-titles on
         set-option -g set-titles-string "#S"
         set-option -g status on
