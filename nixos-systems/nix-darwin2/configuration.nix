@@ -34,6 +34,7 @@
     casks = [
       "qutebrowser"
       "intellij-idea-ce"
+      "firefox"
     ];
     brews = [
       "openssh"
@@ -126,7 +127,10 @@
 
   };
 
-  services.skhd = {
+  services.skhd = let
+    vStepSize = "200" ;
+    hStepSize = "150";
+  in {
     enable = true;
     skhdConfig = ''
       # remap keys for basic sanity
@@ -165,10 +169,18 @@
 
       # # resize split(s)
       # yabai -m window --resize right:-20:0
-      lctrl + rcmd - l : yabai -m window --resize right:50:0  || yabai -m window --resize left:50:0
-      lctrl + rcmd - h : yabai -m window --resize right:-50:0  || yabai -m window --resize left:-50:0
-      lctrl + rcmd - j : yabai -m window --resize bottom:0:100  || yabai -m window --resize top:0:100
-      lctrl + rcmd - k : yabai -m window --resize bottom:0:-100  || yabai -m window --resize top:0:-100
+      lctrl + rcmd - l : yabai -m window --resize right:${vStepSize}:0  || yabai -m window --resize left:${vStepSize}:0
+      lctrl + rcmd - h : yabai -m window --resize right:-${vStepSize}:0  || yabai -m window --resize left:-${vStepSize}:0
+      lctrl + rcmd - j : yabai -m window --resize bottom:0:${vStepSize}  || yabai -m window --resize top:0:${vStepSize}
+      lctrl + rcmd - k : yabai -m window --resize bottom:0:-${vStepSize}  || yabai -m window --resize top:0:-${vStepSize}
+
+      lctrl + rcmd - w : yabai -m window --resize top:0:-${vStepSize}  || yabai -m window --resize bottom:0:-${vStepSize}
+      lctrl + rcmd - s : yabai -m window --resize top:0:${vStepSize}  || yabai -m window --resize bottom:0:${vStepSize}
+      lctrl + rcmd - a : yabai -m window --resize left:-${vStepSize}:0  || yabai -m window --resize right:-${vStepSize}:0
+      lctrl + rcmd - d : yabai -m window --resize left:${vStepSize}:0  || yabai -m window --resize right:${vStepSize}:0
+
+      lctrl + rcmd - 0x2B : /Users/pi/bin/,y_float.fish 1:2:0:0:1:1
+      lctrl + rcmd - 0x2F : /Users/pi/bin/,y_float.fish 1:2:1:0:1:1
 
       rcmd - f : yabai -m window --toggle zoom-fullscreen
       rcmd + shift - f : yabai -m window --toggle zoom-parent

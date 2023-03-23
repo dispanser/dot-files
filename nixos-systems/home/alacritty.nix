@@ -26,6 +26,7 @@
       key_bindings = [
         { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
         { key = "F"; mods = "Alt"; chars = "\\x1bf"; }
+        { key = "D"; mods = "Alt"; chars = "\\x1bd"; }
         { key = "Period"; mods = "Alt"; chars = "\\x1b."; }
         { key = "Period"; mods = "Alt|Shift"; chars = "\\x1b>"; }
       ];
