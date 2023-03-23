@@ -144,7 +144,7 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish kitty "${pkgs.kitty}/Applications/kitty.app/Contents/MacOS/kitty --1" 
+      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty 
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - 0x2C : yabai -m window --toggle split
 
@@ -210,7 +210,7 @@
       rcmd - i : /Users/pi/bin/,y_focus.fish "IntelliJ IDEA"
       rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack
       rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian >> /tmp/overlay
-      rcmd - o : /Users/pi/bin/,y_overlay.fish kitty "${pkgs.kitty}/Applications/kitty.app/Contents/MacOS/kitty --1" local >> /tmp/overlay
+      rcmd - o : /Users/pi/bin/,y_overlay.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty local >> /tmp/overlay
     '';
   };
 }
