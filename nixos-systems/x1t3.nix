@@ -40,6 +40,7 @@
 
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
+  hardware.sensor.iio.enable = true;
 
   hardware.firmware = with pkgs; [ 
     wireless-regdb 
