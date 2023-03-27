@@ -81,6 +81,7 @@ localTmux :: String -> W.RationalRect -> ScratchApp
 localTmux suffix rect =
   let session pr =  getMainWorkspace (projectName pr) ++ "_" ++ suffix
   in ScratchApp {
+      -- e.g., term (tmux "personal_overlay") "personal_overlay"
       commandF = \pr -> term (tmux $ session pr) (session pr),
       queryF   = \pr -> appName =? session pr,
       hook     = Nothing

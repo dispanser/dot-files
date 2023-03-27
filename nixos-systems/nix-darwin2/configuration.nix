@@ -10,6 +10,7 @@
       alacritty
       tmux
       openssh
+      docker-compose
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -123,6 +124,7 @@
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
       yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
       yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
+      yabai -m rule --add app='Alacritty' manage=off grid=6:6:3:0:3:5 border=off
     '';
 
   };
@@ -181,6 +183,8 @@
 
       lctrl + rcmd - 0x2B : /Users/pi/bin/,y_float.fish 1:2:0:0:1:1
       lctrl + rcmd - 0x2F : /Users/pi/bin/,y_float.fish 1:2:1:0:1:1
+      lctrl + rcmd - c : /Users/pi/bin/,y_float.fish 4:4:1:1:2:2
+      lctrl + rcmd + shift - c : /Users/pi/bin/,y_float.fish 6:6:1:1:4:4
 
       rcmd - f : yabai -m window --toggle zoom-fullscreen
       rcmd + shift - f : yabai -m window --toggle zoom-parent
@@ -196,8 +200,9 @@
       rcmd + shift - 0x21  : yabai -m window --space prev
       rcmd + shift - 0x1E  : yabai -m window --space next
 
-      # display stufj
+      # display stuff
       rcmd - s  : yabai -m display --focus next || yabai -m display --focus prev
+      lcmd - s  : pmset sleepnow
       rcmd + shift - s  : yabai -m window --display recent && yabai -m display --focus recent
 
       # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
@@ -210,7 +215,7 @@
       rcmd - i : /Users/pi/bin/,y_focus.fish "IntelliJ IDEA"
       rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack
       rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian >> /tmp/overlay
-      rcmd - o : /Users/pi/bin/,y_overlay.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty local >> /tmp/overlay
+      rcmd - o : /Users/pi/bin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tmux_overlay
     '';
   };
 }
