@@ -1,0 +1,138 @@
+" search for actions: :actionlist <patter>
+
+" see a very interesting config here: 
+" https://github.com/citizenmatt/dotfiles/blob/master/ideavimrc
+
+" Plugins
+Plug 'machakann/vim-highlightedyank'
+
+" Settings
+set ideajoin
+set relativenumber
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+set wrapscan
+
+set scrolloff=10 sidescrolloff=10
+
+" https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
+" set multiple-cursors
+set commentary
+set surround                      " emulate vim-surround plugin
+set ideajoin
+set ideastatusicon=disabled
+
+let mapleader = " "
+
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+" established (new) bindings
+
+"  S-Esc: only works from within an editor window, also remap outside:
+" Settings -> keymap -> Main Men -> Window -> Active Tool Window
+nmap <leader>h :action HideActiveWindow<CR>
+nmap <A-h> :action HideActiveWindow<CR>
+nmap <C-A-h> :action HideAllWindows<CR>
+nmap <C-space> :action JumpToLastWindow<CR>
+nmap <leader>tb :action Annotate<CR>
+
+nmap <leader>er :action FindUsages<CR>
+
+" nmap ,de :action XDebugger.Evaluate.Code.Fragment.Editor.Popup<CR>
+
+" vim basics:
+nmap g; :action JumpToLastChange<CR>
+
+" vetted 
+nmap <leader>fr :action RecentFiles<CR>
+nmap <leader>fs :write<CR>
+imap jw <Esc>:write<CR>
+imap jk <Esc>
+nnoremap <leader>w/ :vs<CR>
+nnoremap <leader>w- :sp<CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" UNDER EVALUATION
+nmap ,pi :action ParameterInfo<CR>
+nmap <A-6> :action ActivateEventLogToolWindow<CR>
+
+" tabs: it doesn't work like in vim, but at least a little
+nmap <leader>Tab :action VimMotionPreviousTab<CR>
+nmap <A-k> :action NextTab<CR>
+nmap <A-j> :action PreviousTab<CR>
+nmap <leader>w<Tab> :action MoveEditorToOppositeTabGroup<CR>
+nmap <leader>wc :action UnsplitAll<CR>
+
+" generic
+nmap <leader>RR :source ~/.ideavimrc<CR>
+
+" project-related: open, close, search
+nmap <leader>pw :action ActivateProjectToolWindow<CR>
+nmap <leader>pq :action CloseProject<CR>
+nmap <leader>pf :action GotoFile<CR>
+nmap <leader>pc :action GotoClass<CR>
+nmap <leader>ps :action GotoSymbol<CR>
+nmap <leader>? :action FindInPath<CR>
+
+" buffer-related
+
+nmap <leader>sb :action NewScratchBuffer<CR>
+nmap <leader>ss :action Synchronize<CR>
+nmap <leader>bf :action SelectIn<CR>
+nmap <leader>bs :action FileStructurePopup<CR>
+nmap <leader><tab> :action VimFilePrevious<CR>
+nmap <leader>gc :action CommentByLineComment<CR>
+nmap gcc :action CommentByLineComment<CR>
+
+" building proejct / module
+nmap <leader>bm :action MakeGradleModule<CR>
+nmap <leader>bp :action MakeGradleProject<CR>
+nmap <leader>dm :action ToggleDistractionFreeMode<CR>
+
+" navigating back and forth
+nmap ]c :action VcsShowNextChangeMarker<CR>
+nmap [c :action VcsShowPrevChangeMarker<CR>
+nmap ]e :action GotoNextError<CR>
+nmap [e :action GotoPreviousError<CR>
+
+" java and scala
+nmap <leader>en :action RenameElement<CR>
+nmap ,re :action ExtractInterface<CR>
+nmap ,gi :action GotoImplementation<CR>
+nmap ,gs :action GotoSuperMethod<CR>
+nmap ,gt :action GotoTest<CR>
+nmap ,ch :action CallHierarchy<CR>
+nmap ,th :action TypeHierarchy<CR>
+
+" debug + run mappings
+nmap ,dw :action ActivateDebugToolWindow<CR>
+nmap ,da :action XDebugger.AttachToProcess<CR>
+nmap ,dx :action ContextDebug<CR>
+nmap <S-Return> :action SmartStepInto<CR>
+nmap <S-Space> :action StepOver<CR>
+nmap <S-Backspace> :action StepOut<CR>
+nmap ,ds :action Stop<CR>
+nmap ,d<space> :action RunToCursor<CR>
+nmap ,dd :action ToggleLineBreakpoint<CR>
+nmap ,dr :action Resume<CR>
+nmap ,dv :action QuickEvaluateExpression<CR>
+nmap ,de :action EvaluateExpression<CR>
+nmap ,db :action ViewBreakpoints<CR>
+
+nmap ,rx :action ContextRun<CR>
+
+" java-specific: mirroring 
+nmap ,jd :action QuickJavaDoc<CR>
+nmap ,jnc :action NewClass<CR>
+
+" scala-specific: ,s prefix
+nmap ,snc :action Scala.NewClass<CR>
+nmap ,ti :action Scala.TypeInfo<CR>
+
+
