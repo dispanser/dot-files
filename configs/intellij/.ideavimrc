@@ -81,10 +81,10 @@ nmap <leader>ps :action GotoSymbol<CR>
 nmap <leader>? :action FindInPath<CR>
 
 " buffer-related
-
 nmap <leader>sb :action NewScratchBuffer<CR>
 nmap <leader>ss :action Synchronize<CR>
 nmap <leader>bf :action SelectIn<CR>
+nmap <leader>bc :close<CR>
 nmap <leader>bs :action FileStructurePopup<CR>
 nmap <leader><tab> :action VimFilePrevious<CR>
 nmap <leader>gc :action CommentByLineComment<CR>
@@ -102,6 +102,7 @@ nmap ]e :action GotoNextError<CR>
 nmap [e :action GotoPreviousError<CR>
 
 " java and scala
+nmap <leader>ei :action OptimizeImports<CR>
 nmap <leader>en :action RenameElement<CR>
 nmap ,re :action ExtractInterface<CR>
 nmap ,gi :action GotoImplementation<CR>

@@ -7,6 +7,7 @@ with pkgs; let
   darwinOnly = [
     openssh
     goku
+    pass # on linux, pass is installed system-wide because it can be used outside of my home context
   ];
   desktopPkgs = [
     any-nix-shell

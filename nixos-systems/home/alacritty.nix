@@ -27,6 +27,7 @@
         { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
         { key = "F"; mods = "Alt"; chars = "\\x1bf"; }
         { key = "D"; mods = "Alt"; chars = "\\x1bd"; }
+        { key = "C"; mods = "Alt"; chars = "\\x1bc"; }
 
         { key = "Caret"; mods = "Alt"; chars = "\\x1b0"; }
         { key = "Key0"; mods = "Alt"; chars = "\\x1b0"; }

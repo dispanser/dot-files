@@ -36,6 +36,7 @@
       "qutebrowser"
       "intellij-idea-ce"
       "firefox"
+      "microsoft-azure-storage-explorer"
     ];
     brews = [
       "openssh"
@@ -119,6 +120,7 @@
       yabai -m rule --add app='^zoom.us' space=zoom
 
       yabai -m rule --add app='System Settings' manage=off
+      yabai -m rule --add app='IntelliJ IDEA' title='Breakpoints' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
@@ -213,6 +215,7 @@
       rcmd + rctrl - m : /Users/pi/bin/,y_focus.fish Mail
       rcmd - b : /Users/pi/bin/,y_focus.fish "Google Chrome"
       rcmd - i : /Users/pi/bin/,y_focus.fish "IntelliJ IDEA"
+      rcmd - z : /Users/pi/bin/,y_focus.fish "zoom.us"
       rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack
       rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian >> /tmp/overlay
       rcmd - o : /Users/pi/bin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tmux_overlay
