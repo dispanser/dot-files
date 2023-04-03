@@ -20,7 +20,7 @@
     };
 
     ignores = [
-      "/target" "/.envrc" "/.direnv/"
+      "/target" "/.envrc" "/.direnv/" ".abbr"
     ];
 
     extraConfig = {
