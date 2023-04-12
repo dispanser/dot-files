@@ -95,9 +95,7 @@
       epoch.body = "date --date=@$argv[1]";
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
-      rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
       rlft.body  = "tmux setb (readlink -f $argv | tr -d '\n')";
-      rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
       vrg.body   = "${editor} (rg -l --hidden $argv| fzf --multi)";
       vgf.body   = "${editor} (git ls-files | fzf)";
       vgr.body   = "${editor} (git ls-files (git root) | fzf)";
@@ -106,7 +104,14 @@
         description = "Greeting to show when starting a fish shell";
         body = "";
       };
-    };
+    } // (if pkgs.stdenv.isLinux then {
+        rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
+        rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
+      } else {
+        rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | pbcopy";
+        # same command as the distinction between primary and secondary does not exist on MacOS
+        rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | pbcopy";
+      });
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR nvim
