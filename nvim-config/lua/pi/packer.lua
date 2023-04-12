@@ -101,8 +101,9 @@ return require('packer').startup(function(use)
     })
   use {"nvim-tree/nvim-web-devicons"}
   use 'simrat39/rust-tools.nvim'
-  use 'mfussenegger/nvim-dap'
   use 'ray-x/lsp_signature.nvim'
+  use 'mfussenegger/nvim-dap'
+  use 'mfussenegger/nvim-jdtls'
   if packer_bootstrap then
     require('packer').sync()
   end
