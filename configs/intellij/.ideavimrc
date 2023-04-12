@@ -48,6 +48,7 @@ nmap g; :action JumpToLastChange<CR>
 
 " vetted 
 nmap <leader>fr :action RecentFiles<CR>
+nmap <leader>fc :action RecentChangedFiles<CR>
 nmap <leader>fs :write<CR>
 imap jw <Esc>:write<CR>
 imap jk <Esc>
