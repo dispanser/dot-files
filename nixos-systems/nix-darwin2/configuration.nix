@@ -55,7 +55,7 @@
   system.keyboard = {
     enableKeyMapping = true;
     swapLeftCommandAndLeftAlt = true;
-    # remapCapsLockToEscape = true;
+    remapCapsLockToEscape = true;
     # TODO: does not work for the ThinkPad Keyboard II - no tilde at all
     # nonUS.remapTilde = false;
   };
