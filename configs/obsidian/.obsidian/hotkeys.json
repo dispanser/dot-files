@@ -36,7 +36,7 @@
   "app:go-forward": [
     {
       "modifiers": [
-        "Mod"
+        "Ctrl"
       ],
       "key": "I"
     }
@@ -135,7 +135,7 @@
   "daily-notes": [
     {
       "modifiers": [
-        "Mod",
+        "Ctrl",
         "Shift"
       ],
       "key": "D"
@@ -220,7 +220,7 @@
   "app:go-back": [
     {
       "modifiers": [
-        "Mod"
+        "Ctrl"
       ],
       "key": "O"
     }
