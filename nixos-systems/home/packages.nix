@@ -5,9 +5,11 @@ with pkgs; let
 #    extraPythonPackages = pythonPkgs: [ pythonPkgs.sexpdata pythonPkgs.websocket_client ];
 #  };
   darwinOnly = [
-    openssh
+    openssh # override the ancient default install (TODO: could be homebrew'ed)
     goku
     pass # on linux, pass is installed system-wide because it can be used outside of my home context
+    mc
+    google-cloud-sdk
   ];
   desktopPkgs = [
     any-nix-shell
