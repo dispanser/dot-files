@@ -148,7 +148,7 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-      rcmd - t : /Users/pi/bin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty 
+      rcmd - t : /Users/pi/bin/darwin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - 0x2C : yabai -m window --toggle split
 
@@ -183,10 +183,10 @@
       lctrl + rcmd - a : yabai -m window --resize left:-${vStepSize}:0  || yabai -m window --resize right:-${vStepSize}:0
       lctrl + rcmd - d : yabai -m window --resize left:${vStepSize}:0  || yabai -m window --resize right:${vStepSize}:0
 
-      lctrl + rcmd - 0x2B : /Users/pi/bin/,y_float.fish 1:2:0:0:1:1
-      lctrl + rcmd - 0x2F : /Users/pi/bin/,y_float.fish 1:2:1:0:1:1
-      lctrl + rcmd - c : /Users/pi/bin/,y_float.fish 4:4:1:1:2:2
-      lctrl + rcmd + shift - c : /Users/pi/bin/,y_float.fish 6:6:1:1:4:4
+      lctrl + rcmd - 0x2B : /Users/pi/bin/darwin/,y_float.fish 1:2:0:0:1:1
+      lctrl + rcmd - 0x2F : /Users/pi/bin/darwin/,y_float.fish 1:2:1:0:1:1
+      lctrl + rcmd - c : /Users/pi/bin/darwin/,y_float.fish 4:4:1:1:2:2
+      lctrl + rcmd + shift - c : /Users/pi/bin/darwin/,y_float.fish 6:6:1:1:4:4
 
       rcmd - f : yabai -m window --toggle zoom-fullscreen
       rcmd + shift - f : yabai -m window --toggle zoom-parent
@@ -210,15 +210,15 @@
       # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
       rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
-      # rcmd - m : /Users/pi/bin/,y_focus.fish Slack
-      rcmd + rctrl - c : /Users/pi/bin/,y_focus.fish Calendar
-      rcmd + rctrl - m : /Users/pi/bin/,y_focus.fish Mail
-      rcmd - b : /Users/pi/bin/,y_focus.fish "Google Chrome"
-      rcmd - i : /Users/pi/bin/,y_focus.fish "IntelliJ IDEA"
-      rcmd - z : /Users/pi/bin/,y_focus.fish "zoom.us"
-      rcmd - m : /Users/pi/bin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack
-      rcmd - g : /Users/pi/bin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian >> /tmp/overlay
-      rcmd - o : /Users/pi/bin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tmux_overlay
+      # rcmd - m : /Users/pi/bin/darwin/,y_focus.fish Slack
+      rcmd + rctrl - c : /Users/pi/bin/darwin/,y_focus.fish Calendar
+      rcmd + rctrl - m : /Users/pi/bin/darwin/,y_focus.fish Mail
+      rcmd - b : /Users/pi/bin/darwin/,y_focus.fish "Google Chrome"
+      rcmd - i : /Users/pi/bin/darwin/,y_focus.fish "IntelliJ IDEA"
+      rcmd - z : /Users/pi/bin/darwin/,y_focus.fish "zoom.us"
+      rcmd - m : /Users/pi/bin/darwin/,y_overlay.fish Slack ${pkgs.slack}/bin/slack
+      rcmd - g : /Users/pi/bin/darwin/,y_overlay.fish Obsidian ${pkgs.obsidian}/bin/obsidian >> /tmp/overlay
+      rcmd - o : /Users/pi/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tmux_overlay
     '';
   };
 }

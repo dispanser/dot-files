@@ -115,7 +115,6 @@
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR nvim
-      set PATH $PATH:$HOME/bin
       /opt/homebrew/bin/brew shellenv | source
       set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
       set PROJECT_DIR ~/projects/$PROJECT
@@ -129,6 +128,10 @@
       # note that a later incarnation of this command overwrites everything, even unmentioned
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
       bind --mode insert \cz fg
-    '';
+      '' + (if pkgs.stdenv.isDarwin then ''
+        set PATH $PATH:$HOME/bin:$HOME/bin/darwin
+      '' else ''
+        set PATH $PATH:$HOME/bin:$HOME/bin/linux
+      '');
   };
 }

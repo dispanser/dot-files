@@ -19,7 +19,15 @@ in {
   home.stateVersion = "22.05";
 
   home.file = {
-    bin.source = ../../scripts;
+    "bin" = {
+      source = ../../scripts;
+      recursive = true;
+    };
+    "bin/darwin" = {
+      source = ../../darwin-scripts;
+      recursive = true;
+      enable = lib.mkIf pkgs.stdenv.isDarwin true;
+    };
   };
 
   home.packages =
