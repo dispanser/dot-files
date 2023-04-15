@@ -4,6 +4,17 @@
   home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
   programs.fish = {
     enable = true;
+    plugins = [
+      {
+        name = "dir-abbr-fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "rcoedo";
+          repo = "dir-abbr-fish";
+          rev = "f5757fa5e6a5b12cdd7868dfafa598b984658469";
+          sha256 = "18kdffa8dcyclg88zbvywbmxbkwf457rkdrmh0gwnr7ng1c3fy95";
+        };
+      } 
+    ];
     shellAbbrs = let 
       editor_abbrevations = if editor == "hx" then {
         ed    = "nvim -d"; # helix doesn't have diff mode AFAIK
@@ -31,7 +42,6 @@
       sc      = "sudo cat";
       grep    = "rg --color=auto";
       mkp     = "mkdir -p";
-      sysctl  = "sudo systemctl";
       fn      = "find -name";
       RBT     = "RUST_BACKTRACE=1";
       rmr     = "rm -r";
@@ -85,9 +95,7 @@
       epoch.body = "date --date=@$argv[1]";
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
-      rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
       rlft.body  = "tmux setb (readlink -f $argv | tr -d '\n')";
-      rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
       vrg.body   = "${editor} (rg -l --hidden $argv| fzf --multi)";
       vgf.body   = "${editor} (git ls-files | fzf)";
       vgr.body   = "${editor} (git ls-files (git root) | fzf)";
@@ -96,13 +104,22 @@
         description = "Greeting to show when starting a fish shell";
         body = "";
       };
-    };
+    } // (if pkgs.stdenv.isLinux then {
+        rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
+        rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
+      } else {
+        rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | pbcopy";
+        # same command as the distinction between primary and secondary does not exist on MacOS
+        rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | pbcopy";
+      });
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR nvim
-      set PATH $PATH:$HOME/bin
+      /opt/homebrew/bin/brew shellenv | source
       set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
       set PROJECT_DIR ~/projects/$PROJECT
+      ulimit -n 128800
+      ulimit -u 8000
       # this is picked up by vim.
       set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
       set fzf_fd_opts --hidden --exclude=.git # for fzf.fish
@@ -111,6 +128,10 @@
       # note that a later incarnation of this command overwrites everything, even unmentioned
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
       bind --mode insert \cz fg
-    '';
+      '' + (if pkgs.stdenv.isDarwin then ''
+        set PATH $PATH:$HOME/bin:$HOME/bin/darwin
+      '' else ''
+        set PATH $PATH:$HOME/bin:$HOME/bin/linux
+      '');
   };
 }

@@ -57,6 +57,10 @@ in {
         port = 65423;
         identityFile = id_keys;
       };
+      "gerrit.drem.io" = {
+        identityFile = [ id_feitian_chain id_feitian_solo "${home}/id_ed25519" ];
+        user = "pi";
+      };
 
     };
   };

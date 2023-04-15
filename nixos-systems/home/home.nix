@@ -19,7 +19,15 @@ in {
   home.stateVersion = "22.05";
 
   home.file = {
-    bin.source = ../../scripts;
+    "bin" = {
+      source = ../../scripts;
+      recursive = true;
+    };
+    "bin/darwin" = {
+      source = ../../darwin-scripts;
+      recursive = true;
+      enable = lib.mkIf pkgs.stdenv.isDarwin true;
+    };
   };
 
   home.packages =
@@ -45,6 +53,19 @@ in {
   xdg.configFile.nvim = {
     source = ../../nvim-config;
     recursive = true;
+  };
+
+  # TODO: bring existing espanso config into home-manager, if it's still useful
+  services.espanso = {
+    enable    = if pkgs.stdenv.isLinux then true else false;
+    settings  = {
+      matches = [
+        {
+          trigger = ":espanso";
+          replace = "Hi there!";
+        }
+      ];
+    };
   };
 
   services.xidlehook = {

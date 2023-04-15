@@ -5,9 +5,11 @@ with pkgs; let
 #    extraPythonPackages = pythonPkgs: [ pythonPkgs.sexpdata pythonPkgs.websocket_client ];
 #  };
   darwinOnly = [
-    openssh
-    karabiner-elements
+    openssh # override the ancient default install (TODO: could be homebrew'ed)
     goku
+    pass # on linux, pass is installed system-wide because it can be used outside of my home context
+    mc
+    google-cloud-sdk
   ];
   desktopPkgs = [
     any-nix-shell
@@ -22,7 +24,9 @@ with pkgs; let
     mplayer
     pinentry
     pandoc
-    exa delta ripgrep neovim
+    exa delta ripgrep neovim fzf fd
+    iftop
+    stow
   ];
   develPkgs = [
     watchexec
@@ -49,6 +53,7 @@ with pkgs; let
     xvkbd
     ungoogled-chromium
     qutebrowser
+    iotop
   ];
 in {
   desktopPkgs = desktopPkgs;
