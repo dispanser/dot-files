@@ -106,6 +106,7 @@
     "vm.swappiness" = 5;
     "vm.dirty_writeback_centisecs" = 2000;
   };
+  boot.tmp.cleanOnBoot = true;
 
   nixpkgs.config.allowUnfree = true;
 }
