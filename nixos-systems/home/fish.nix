@@ -115,7 +115,6 @@
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR nvim
-      /opt/homebrew/bin/brew shellenv | source
       set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
       set PROJECT_DIR ~/projects/$PROJECT
       ulimit -n 128800
@@ -130,6 +129,7 @@
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
         set PATH $PATH:$HOME/bin:$HOME/bin/darwin
+        /opt/homebrew/bin/brew shellenv | source
       '' else ''
         set PATH $PATH:$HOME/bin:$HOME/bin/linux
       '');
