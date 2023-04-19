@@ -37,9 +37,11 @@
       "intellij-idea-ce"
       "firefox"
       "microsoft-azure-storage-explorer"
+      "google-cloud-sdk"
     ];
     brews = [
       "openssh"
+      "ansible"
     ];
   };
   nix.package = pkgs.nixUnstable;
