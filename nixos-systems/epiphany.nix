@@ -86,6 +86,8 @@
     host.enableExtensionPack = true;
   };
 
+
+  programs.fuse.userAllowOther = true;
 # programs.slock.enable       = true;
   # services.physlock.enable                      = true;
 
