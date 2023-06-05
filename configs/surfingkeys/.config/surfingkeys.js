@@ -44,6 +44,8 @@ api.map('<Alt-k>', 'R');
 //api.map('<Ctrl-o>', 'S')
 //api.map('<Ctrl-i>', 'D')
 
+
+api.addSearchAlias('mvn', 'maven central', 'https://central.sonatype.com/search?smo=true&q=');
 api.addSearchAlias('dc', 'dremio confluence', 'https://dremio.atlassian.net/wiki/search?text=');
 api.addSearchAlias('dx', 'dremio jira DX', 'https://dremio.atlassian.net/browse/DX-');
 api.addSearchAlias('hp', 'heise preisvergleich', 'http://www.heise.de/preisvergleich/?in=&x=0&y=0&fs=');
