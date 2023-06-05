@@ -17,5 +17,4 @@ local config = {
 		'-data', '/Users/pi/dremio/jdtls-workspace'
 	},
 }
-print("twh; java.lua")
 require('jdtls').start_or_attach(config)

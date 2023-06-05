@@ -10,6 +10,7 @@ with pkgs; let
     pass # on linux, pass is installed system-wide because it can be used outside of my home context
     mc
     google-cloud-sdk
+    rsync
   ];
   desktopPkgs = [
     any-nix-shell
