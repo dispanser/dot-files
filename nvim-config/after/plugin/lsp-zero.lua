@@ -31,6 +31,7 @@ n('<space>ef', function() vim.lsp.buf.format { async = true } end, "code format"
 n('<leader>en', vim.lsp.buf.rename, "refactor: rename")
 n('[e', vim.diagnostic.goto_prev)
 n(']e', vim.diagnostic.goto_next)
+n('gd', vim.lsp.buf.definition)
 --n('gl', vim.diagnostic.open_float)
 
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
