@@ -24,6 +24,7 @@
       id      = "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q={}";
       hp      = "http://www.heise.de/preisvergleich/?fs={}&in=&x=0&y=0";
       leo     = "http://dict.leo.org/ende?search={}";
+      lef     = "https://dict.leo.org/franz%C3%B6sisch-deutsch/{}";
       cd      = "https://dictionary.cambridge.org/dictionary/english/{}";
       map     = "https://www.openstreetmap.org/search?query={}";
       gmap    = "https://www.google.de/maps/search/{}";

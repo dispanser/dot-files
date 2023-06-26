@@ -61,7 +61,6 @@ in {
         identityFile = [ id_feitian_chain id_feitian_solo "${home}/id_dremio" ];
         user = "pi";
       };
-
     };
   };
 }
