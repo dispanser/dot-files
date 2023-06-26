@@ -23,10 +23,14 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use (
+
+  use {
     'nvim-treesitter/nvim-treesitter',
-    { run = ':TSUpdate' }
-  )
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
   use {
     "folke/which-key.nvim",
     config = function()

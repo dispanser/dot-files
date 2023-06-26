@@ -30,6 +30,7 @@ with pkgs; let
     stow
   ];
   develPkgs = [
+    zig
     watchexec
     ctags
     sloc
