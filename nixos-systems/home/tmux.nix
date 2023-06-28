@@ -11,12 +11,20 @@
       tmuxPlugins.extrakto
       tmuxPlugins.jump
       {
-        plugin = tmuxPlugins.fingers;
+        plugin = tmuxPlugins.tmux-thumbs;
         extraConfig = ''
-            set -g @fingers-hint-format-nocompact "#[fg=red,bold][%s]"
-            set -g @fingers-hint-format "#[fg=red,bold][%s"]
-            set -g @fingers-compact-hints '1'
-            set -g @fingers-key ^F
+          set -g @thumbs-key m
+          # gives shorter hints closer to the curser; evaluate
+          set -g @thumbs-reverse enabled
+          set -g @thumbs-unique enabled
+          set -g @thumbs-fg-color blue
+          set -g @thumbs-hints-fg-color red
+          set -g @thumbs-contrast 1
+          set -g @thumbs-osc52 0
+          # set -g @thumbs-bg-color
+          bind-key -n M-C-v thumbs-pick
+          # set -g @thumbs-command 'echo -n {} | pbcopy'
+          # set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\"'
         '';
       }
       {
