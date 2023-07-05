@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./yubico.nix
     ./desktop.nix
     ./zerotier.nix
     ./security.nix

@@ -2,10 +2,16 @@
 
 {
   services.pcscd.enable = true;
+
   security.pam.yubico = {                                           
-      enable = true;
+      enable = false;
       debug  = true;
       mode   = "challenge-response";
+  };
+
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
   };
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
