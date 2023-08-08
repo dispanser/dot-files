@@ -122,8 +122,6 @@ in {
         ''--pointer="▶"''
         ''--marker="✗"''
         ''--bind "?:toggle-preview"''
-        ''--bind "ctrl-y:execute-silent(echo {+} | xargs tmux setb)"'' 
-        ''--bind "ctrl-e:execute(echo {+} | xargs -o nvim)"''
       ];
     };
 
@@ -132,10 +130,6 @@ in {
       config = {
         theme = "Solarized (dark)";
       };
-    };
-
-    wezterm = {
-      enable = true;
     };
 
     htop.enable         = true;
