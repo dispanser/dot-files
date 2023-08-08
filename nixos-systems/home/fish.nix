@@ -66,8 +66,7 @@
       gaip    = "git add --interactive --patch";
       grip    = "git restore --patch";
       gvl     = "git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat";
-      gvd     = "git difftool --tool=vimdiff --no-prompt";
-      gdt     = "git difftool --no-prompt";
+      # gdt     = "git difftool --no-prompt";
       gdtc    = "git difftool --cached --no-prompt";
       ga      = "git add";
       gst     = "git status";
@@ -92,6 +91,7 @@
       l    = "ls -laF";
     };
     functions = {
+      gdt.body   = ''nvim "+DiffviewOpen $argv"'';
       epoch.body = "date --date=@$argv[1]";
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
@@ -100,10 +100,6 @@
       vgf.body   = "${editor} (git ls-files | fzf)";
       vgr.body   = "${editor} (git ls-files (git root) | fzf)";
       rcd.body   = "tmux rename-window (basename (git root 2>/dev/null && echo (git root) || echo (pwd)))";
-      fish_greeting = {
-        description = "Greeting to show when starting a fish shell";
-        body = "";
-      };
     } // (if pkgs.stdenv.isLinux then {
         rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
         rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
