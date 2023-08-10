@@ -127,6 +127,7 @@ nmap ,dv :action QuickEvaluateExpression<CR>
 nmap ,de :action EvaluateExpression<CR>
 nmap ,db :action ViewBreakpoints<CR>
 
+nmap ,rr :action RerunTests<CR>
 nmap ,rx :action ContextRun<CR>
 
 " java-specific: mirroring 
