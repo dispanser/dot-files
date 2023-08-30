@@ -32,7 +32,7 @@
 
   virtualisation.docker.enable = true;
 
-  services.espanso.enable = true;
+  services.espanso.enable = false;
 
 
   services.atd.enable   = true;
