@@ -216,7 +216,6 @@
       "key": "J"
     }
   ],
-  "editor:toggle-checklist-status": [],
   "app:go-back": [
     {
       "modifiers": [
@@ -232,5 +231,14 @@
       ],
       "key": "H"
     }
-  ]
+  ],
+  "editor:toggle-fold": [
+    {
+      "modifiers": [
+        "Shift"
+      ],
+      "key": "Tab"
+    }
+  ],
+  "editor:toggle-checklist-status": []
 }
