@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i fish -p jdk
+#! nix-shell -i fish -p zulu
 
 # get "the fucking jar" from
 # https://github.com/casidiablo/parquet-tools-for-dumb-people-like-me/releases/download/1.11.0/parquet-tools-1.11.0.jar
