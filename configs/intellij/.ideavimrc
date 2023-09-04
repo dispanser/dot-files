@@ -7,7 +7,6 @@
 Plug 'machakann/vim-highlightedyank'
 
 " Settings
-set ideajoin
 set relativenumber
 set hlsearch
 set ignorecase
@@ -87,6 +86,7 @@ nmap <leader>ss :action Synchronize<CR>
 nmap <leader>bf :action SelectIn<CR>
 nmap <leader>bc :close<CR>
 nmap <leader>bs :action FileStructurePopup<CR>
+nmap <leader>bb :action RecentFiles<CR>
 nmap <leader><tab> :action VimFilePrevious<CR>
 nmap <leader>gc :action CommentByLineComment<CR>
 nmap gcc :action CommentByLineComment<CR>
