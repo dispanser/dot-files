@@ -8,6 +8,7 @@ let home = if pkgs.stdenv.isDarwin
     id_feitian_solo = "${home}/id_feitian_solo_ecdsa_sk";
     id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";
     id_ecdsa_pass = "${home}/id_ecdsa";
+    id_dremio_rsa = "${home}/id_dremio";
     id_keys = [ id_yubi id_feitian_solo id_feitian_chain id_ecdsa_pass ];
 in {
   programs.ssh = {
@@ -55,7 +56,7 @@ in {
         hostname = "10.1.3.3";
         user = "pi";
         port = 65423;
-        identityFile = id_keys;
+        identityFile = id_keys ++ [ id_dremio_rsa ];
       };
       "gerrit.drem.io" = {
         identityFile = [ id_feitian_chain id_feitian_solo "${home}/id_dremio" ];

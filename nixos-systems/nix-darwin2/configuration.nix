@@ -59,7 +59,7 @@
     swapLeftCommandAndLeftAlt = true;
     remapCapsLockToEscape = true;
     # TODO: does not work for the ThinkPad Keyboard II - no tilde at all
-    # nonUS.remapTilde = false;
+    nonUS.remapTilde = false;
   };
   system.defaults.dock = {
     static-only = true;

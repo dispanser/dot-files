@@ -92,6 +92,8 @@
     };
     functions = {
       gdt.body   = ''nvim "+DiffviewOpen $argv"'';
+      gdc.body   = ''nvim "+DiffviewOpen $argv[1]^1..$argv[1]"'';
+      gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
       epoch.body = "date --date=@$argv[1]";
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
@@ -124,10 +126,10 @@
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
-        set PATH $PATH:$HOME/bin:$HOME/bin/darwin
-        /opt/homebrew/bin/brew shellenv | source
+        set PATH $HOME/.cargo/bin:$HOME/bin:$HOME/bin/darwin:$PATH
+        # /opt/homebrew/bin/brew shellenv | source
       '' else ''
-        set PATH $PATH:$HOME/bin:$HOME/bin/linux
+        set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
   };
 }
