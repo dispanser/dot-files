@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./keychron.nix
     ./yubico.nix
     ./desktop.nix
     ./zerotier.nix
