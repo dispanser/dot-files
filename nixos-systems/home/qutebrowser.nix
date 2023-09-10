@@ -58,8 +58,8 @@
     };
     keyBindings = {
       normal = {
-        "sp" = "set-cmd-text :open -t https://getpocket.com/edit?url={url}&tags=";
-        "sr" = "set-cmd-text :open -t https://getpocket.com/edit?url={url}&tags=remarkable";
+        "sp" = "cmd-set-text :open -t https://getpocket.com/edit?url={url}&tags=";
+        "sr" = "cmd-set-text :open -t https://getpocket.com/edit?url={url}&tags=remarkable";
         "yr" = "hint links run set-cmd-text :open -t https://getpocket.com/edit?url={hint-url}&tags=remarkable";
         "ps" = "spawn --userscript qute-pass";
         "J" = "scroll-page 0 0.7";
