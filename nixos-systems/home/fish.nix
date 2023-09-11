@@ -13,9 +13,9 @@
           rev = "f5757fa5e6a5b12cdd7868dfafa598b984658469";
           sha256 = "18kdffa8dcyclg88zbvywbmxbkwf457rkdrmh0gwnr7ng1c3fy95";
         };
-      } 
+      }
     ];
-    shellAbbrs = let 
+    shellAbbrs = let
       editor_abbrevations = if editor == "hx" then {
         ed    = "nvim -d"; # helix doesn't have diff mode AFAIK
         se    = "sudo hx";
@@ -126,7 +126,12 @@
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
-        set PATH $HOME/.cargo/bin:$HOME/bin:$HOME/bin/darwin:$PATH
+        fish_add_path --move $HOME/bin
+        fish_add_path --move $HOME/darwin/bin
+        fish_add_path --move $HOME/.cargo/bin
+        for p in (string split " " $NIX_PROFILES)
+          fish_add_path --prepend --move $p/bin
+        end
         # /opt/homebrew/bin/brew shellenv | source
       '' else ''
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
