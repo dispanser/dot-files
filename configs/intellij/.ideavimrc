@@ -122,6 +122,7 @@ nmap <S-Backspace> :action StepOut<CR>
 nmap ,ds :action Stop<CR>
 nmap ,d<space> :action RunToCursor<CR>
 nmap ,dd :action ToggleLineBreakpoint<CR>
+nmap ,dt :action ToggleBreakpointEnabled<CR>
 nmap ,dr :action Resume<CR>
 nmap ,dv :action QuickEvaluateExpression<CR>
 nmap ,de :action EvaluateExpression<CR>
