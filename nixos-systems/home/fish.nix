@@ -37,8 +37,6 @@
       tf      = "tail -f";
       fm      = "free -m";
       dum     = "du -sm";
-      restloc = "restic -r sftp:backup-zerotier:/fs/thomas_stuff/backup --password-file /home/data/backup/secret";
-      restb2  = "restic -r b2:yukon-backup:/backup/yukon/home --password-file /home/data/backup/secret";
       sc      = "sudo cat";
       grep    = "rg --color=auto";
       mkp     = "mkdir -p";
@@ -84,6 +82,8 @@
       t       = "${pkgs.time}/bin/time";
     } // editor_abbrevations;
     shellAliases = {
+      restloc = "restic -r sftp:backup-zerotier:/fs/thomas_stuff/backup --password-file /home/data/backup/secret";
+      restb2  = "restic -r b2:yukon-backup:/backup/yukon/home --password-file /home/data/backup/secret";
       gcm  = "git branch | rg main && git switch main || git switch master";
       tree = "exa -Tl --git";
       ls   = "exa --git";
