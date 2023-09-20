@@ -60,7 +60,7 @@
       normal = {
         "sp" = "cmd-set-text :open -t https://getpocket.com/edit?url={url}&tags=";
         "sr" = "cmd-set-text :open -t https://getpocket.com/edit?url={url}&tags=remarkable";
-        "yr" = "hint links run set-cmd-text :open -t https://getpocket.com/edit?url={hint-url}&tags=remarkable";
+        "yr" = "hint links run cmd-set-text :open -t https://getpocket.com/edit?url={hint-url}&tags=remarkable";
         "ps" = "spawn --userscript qute-pass";
         "J" = "scroll-page 0 0.7";
         "K" = "scroll-page 0 -0.7";
@@ -69,12 +69,12 @@
         "<" = "tab-move -";
         "x" = "tab-close";
         "X" = "undo";
-        "u" = "set-cmd-text :undo ";
+        "u" = "cmd-set-text :undo ";
         ",RR" = "config-source";
-        "go" = "set-cmd-text -s :open";
-        "t" = "set-cmd-text -s :open -t";
-        "T" = "set-cmd-text :open -t {url:pretty}";
-        "O" = "set-cmd-text :open {url:pretty}";
+        "go" = "cmd-set-text -s :open";
+        "t" = "cmd-set-text -s :open -t";
+        "T" = "cmd-set-text :open -t {url:pretty}";
+        "O" = "cmd-set-text :open {url:pretty}";
         "<Ctrl-o>" = "back";
         "<Ctrl-i>" = "forward";
         "<Ctrl-h>" = "back";
