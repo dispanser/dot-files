@@ -26,7 +26,7 @@ with pkgs; let
     mplayer
     pinentry
     pandoc
-    exa delta ripgrep neovim fzf fd
+    eza delta ripgrep neovim fzf fd
     iftop
     stow
   ];

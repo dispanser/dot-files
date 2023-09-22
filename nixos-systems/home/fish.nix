@@ -85,8 +85,8 @@
       restloc = "restic -r sftp:backup-zerotier:/fs/thomas_stuff/backup --password-file /home/data/backup/secret";
       restb2  = "restic -r b2:yukon-backup:/backup/yukon/home --password-file /home/data/backup/secret";
       gcm  = "git branch | rg main && git switch main || git switch master";
-      tree = "exa -Tl --git";
-      ls   = "exa --git";
+      tree = "eza -Tl --git";
+      ls   = "eza --git";
       lt   = "ls -t modified";
       l    = "ls -laF";
     };
