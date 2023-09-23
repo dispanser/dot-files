@@ -60,8 +60,11 @@
     i7z mprime fwupd s-tui
   ];
 
-  powerManagement.powertop.enable = true; # autotune powertop
-  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+  powerManagement = {
+    enable = true;
+    powertop.enable = true; # autotune powertop
+    cpuFreqGovernor = lib.mkDefault "ondemand";
+  }
 
   # Select internationalisation properties.
   i18n = {
