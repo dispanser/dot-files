@@ -62,9 +62,9 @@
 
   powerManagement = {
     enable = true;
-    powertop.enable = true; # autotune powertop
-    cpuFreqGovernor = lib.mkDefault "ondemand";
-  }
+    powertop.enable = true;
+    cpuFreqGovernor = "ondemand";
+  };
 
   # Select internationalisation properties.
   i18n = {
