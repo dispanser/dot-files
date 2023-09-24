@@ -71,6 +71,18 @@
           }
         ];
       };
+      x12 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./x12.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.pi = import ./home/home.nix;
+          }
+        ];
+      };
       epiphanix = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
