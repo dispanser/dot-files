@@ -114,9 +114,9 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/f26d7e49-6d6a-4d6c-8e64-e176d382eef5"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/x12/nix-root";              fsType = "ext4"; neededForBoot = true;};
-    "/home"      = { device = "/dev/x12/home";              fsType = "ext4"; neededForBoot = true;};
+    "/boot"      = { device = "/dev/disk/by-uuid/10C8-7FDF"; fsType = "vfat"; neededForBoot = true;};
+    "/"          = { device = "/dev/x12/nix-root";           fsType = "ext4"; neededForBoot = true;};
+    "/home"      = { device = "/dev/x12/home";               fsType = "ext4"; neededForBoot = true;};
   };
 
   swapDevices = [
