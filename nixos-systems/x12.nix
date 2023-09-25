@@ -80,7 +80,7 @@
       initrd.luks = {
         fido2Support = false;
         devices = {
-          x1t3 = {
+          x12 = {
             preLVM = true;
             device = "/dev/disk/by-uuid/7abb4543-a901-4b40-bcd9-1f68b7faa249";
           };
@@ -105,7 +105,7 @@
 
   networking = {
     usePredictableInterfaceNames = false;
-    hostName        = "x1t3";
+    hostName        = "x12";
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
@@ -115,13 +115,13 @@
 
   fileSystems  = {
     "/boot"      = { device = "/dev/disk/by-uuid/f26d7e49-6d6a-4d6c-8e64-e176d382eef5"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/x1t3/nix-root";              fsType = "ext4"; neededForBoot = true;};
-    "/home"      = { device = "/dev/x1t3/home";              fsType = "ext4"; neededForBoot = true;};
+    "/"          = { device = "/dev/x12/nix-root";              fsType = "ext4"; neededForBoot = true;};
+    "/home"      = { device = "/dev/x12/home";              fsType = "ext4"; neededForBoot = true;};
   };
 
   swapDevices = [
     {
-      device = "/dev/x1t3/swap";
+      device = "/dev/x12/swap";
     }
   ];
 
