@@ -33,7 +33,7 @@
   console.useXkbConfig = true;
   # Enable the X11 windowing system.
   services.xserver = {
-    enable                 = true;
+    enable                 = false;
     enableCtrlAltBackspace = true;
     layout                 = "us";
     xkbOptions             = "caps:escape,compose:lwin-altgr,lv3:ralt_switch;terminate:ctrl_alt_bksp";

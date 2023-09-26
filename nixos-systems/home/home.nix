@@ -42,9 +42,9 @@ in {
       ./kitty.nix
       ./qutebrowser.nix
       ./ssh.nix
+      ./sway.nix
       ./starship.nix
       ./tmux.nix
-      ./xsuspender.nix
     ];
 
   services.notify-osd.enable = if pkgs.stdenv.isLinux then true else false;
