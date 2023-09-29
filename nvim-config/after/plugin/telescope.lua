@@ -61,3 +61,4 @@ n('<leader>?', builtin.live_grep, "search entire project")
 
 n('<leader>fr', builtin.oldfiles, "recently loaded files")
 n('<leader>ts', builtin.treesitter, "treesitter symbols")
+
