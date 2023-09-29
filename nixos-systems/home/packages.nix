@@ -44,7 +44,7 @@ with pkgs; let
     xorg.xmessage xdotool
     pavucontrol ponymix
     xorg.xinit
-    rofi
+    rofi-wayland
     spotify
     scrot 
     signal-desktop threema-desktop tdesktop

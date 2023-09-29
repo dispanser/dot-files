@@ -4,5 +4,5 @@
 # PROJECT=$(wmctrl -d | grep -v  '  - DG:')
 set PROJECT (wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
 
-qutebrowser --qt-arg name $PROJECT --basedir  /home/pi/projects/$PROJECT/.qute $argv
+qutebrowser --qt-arg name $PROJECT --desktop-file-name $PROJECT --basedir /home/pi/projects/$PROJECT/.qute $argv
 # firefox -P $PROJECT --class firefox_$PROJECT --profile /home/pi/projects/$PROJECT/.firefox --new-tab $argv

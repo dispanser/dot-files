@@ -28,7 +28,11 @@
           m = config.wayland.windowManager.sway.config.modifier;
         in lib.mkOptionDefault {
           "${m}+s" = "focus output left";
-          "${m}+Shift+s" = j
+          "${m}+Shift+s" = "move container to output left";
+          "${m}+bracketright" = "workspace next";
+          "${m}+bracketleft" = "workspace prev";
+          "${m}+Shift+bracketright" = "move container to workspace next";
+          "${m}+Shift+bracketleft" = "move container to workspace prev";
         };
       gaps = {
         smartBorders = "on";
@@ -52,15 +56,19 @@
             "Shift+l" = "resize grow width 10 ppt";
           };
       };
-      # bars = [
-      #   {
-      #     position = "top";
-      #     # mode = "hide";
-      #     # extraConfig = ''
-      #     #   modifier "Mod4"
-      #     # '';
-      #   }
-      # ];
+      bars = [
+        {
+          position = "top";
+          mode = "hide";
+          extraConfig = ''
+            modifier "Mod4"
+            tray_output primary
+            font "Inconsolata Nerd Font 12.00"
+            status_command ${pkgs.i3status}/bin/i3status
+            swaybar_command ${pkgs.sway}/bin/swaybar
+          '';
+        }
+      ];
     };
   };
 }

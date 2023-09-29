@@ -11,6 +11,7 @@
     ./brother.nix
     ./yubico.nix
   ];
+
   console.font = "sun12x22";
 
   services.undervolt = {
@@ -51,7 +52,7 @@
 	  systemCronJobs = [
 	      "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
 	      "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
-        "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
+	      "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
     ];
   };
 
