@@ -27,14 +27,16 @@ local function n(key, action, desc)
   vim.keymap.set('n', key, action, bufopts)
 end
 
-
+n('K', vim.lsp.buf.hover, "hover")
+n('gt', vim.lsp.buf.type_definition, "go to type definition")
+n('gs', vim.lsp.buf.signature_help, "show signature help")
+n('gd', vim.lsp.buf.definition, "go to definition (LSP)")
+n('gl', vim.diagnostic.open_float)
 n('<space>ea', vim.lsp.buf.code_action, "code actions" )
 n('<space>ef', function() vim.lsp.buf.format { async = true } end, "code format")
 n('<leader>en', vim.lsp.buf.rename, "refactor: rename")
 n('[e', vim.diagnostic.goto_prev)
 n(']e', vim.diagnostic.goto_next)
-n('gd', vim.lsp.buf.definition, "go to definition (LSP)")
---n('gl', vim.diagnostic.open_float)
 
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
