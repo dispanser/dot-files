@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+
+
+set cmd (echo $argv[2..-1] | string collect)
+
+echo nix-shell -p $argv[1] --run \"$cmd\"
+nix-shell -p $argv[1] --run  {$cmd}
