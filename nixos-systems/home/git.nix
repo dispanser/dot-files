@@ -27,7 +27,7 @@
       core = {
         # sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
       };
-      user.signingkey = "0xF38D81D949BDD26C";
+      # user.signingkey = "0xF38D81D949BDD26C";
       diff.tool = "vimdiff";
       difftool.vimdiff.path = "nvim";
       pull.rebase = true;
