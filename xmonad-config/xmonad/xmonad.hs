@@ -311,7 +311,8 @@ outerAction = sendMessage . G.ToEnclosing . SomeMessage
 
 myMainKeys :: [(( ButtonMask, KeySym ), X () )]
 myMainKeys =
-  [ ( (myModMask,               xK_a),         submap appSubmap)
+  [ ( (mod4Mask,                xK_t),         spawn myTerminal)
+  , ( (myModMask,               xK_a),         submap appSubmap)
   , ( (myModMask,               xK_z),         submap promptSubmap)
   , ( (myModMask,               xK_w),         submap windowSubmap)
   , ( (myModMask,               xK_r),         toggleWSSkipSide ["NSP", "scratch"])
