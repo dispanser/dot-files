@@ -13,6 +13,9 @@
   ];
   console.font = "sun12x22";
 
+  # override: disable on low-memory systems b/c it just freaks out all
+  # my qute tabs. OTOH, maybe that's a good thing.
+  services.earlyoom.enable = lib.mkForce false;
   services.undervolt = {
     temp = 90;
     enable = false;
