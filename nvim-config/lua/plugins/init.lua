@@ -26,6 +26,12 @@ return {
   'tpope/vim-surround',
   'tpope/vim-repeat',
   'tpope/vim-unimpaired',
+  { 'blueyed/vim-diminactive',
+    keys = {
+      { '<leader>ti', vim.cmd.DimInactiveToggle, { desc = "toggle inactive dim"} },
+    },
+    lazy = false,
+  },
 	{ 'machakann/vim-swap', lazy = false },
 	{ 'simrat39/rust-tools.nvim', lazy = true },
 	{ 'ray-x/lsp_signature.nvim', lazy = false,
