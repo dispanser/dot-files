@@ -99,10 +99,9 @@ myPromptConfig = def
 -- list of scratchpads. Maybe the biggest downside compared to the NamedScratchpad
 -- is the lack of a global scratchpad lookup place. We create top-level bindings
 -- and reference them where needed.
-journal, htop, hud, confT, obsidian :: S.ScratchApp
+journal, htop, confT, obsidian :: S.ScratchApp
 journal     = S.globalScratchTerm "journalctl -xf" centeredRect
 htop        = S.globalScratchTerm "htop" centeredRect
-hud         = S.globalTmux  "hud" upperBarRect
 confT       = S.globalTmux  "config" leftBarRect
 obsidian    = S.globalScratch "obsidian" (className =? "obsidian") centeredRect
 anki        = S.globalScratch "anki" (className =? "Anki") centeredRect
@@ -114,7 +113,7 @@ pavucontrol = S.globalScratch "pavucontrol" (className =? "Pavucontrol") smallCe
 -- hacky: we skip chromium, firefox so they don't get floated. there's a better
 -- way, but not today.
 scratches :: [S.ScratchApp]
-scratches = [ journal, htop, hud, confT, obsidian, pavucontrol, anki]
+scratches = [ journal, htop, confT, obsidian, pavucontrol, anki]
 
 myManageHook :: ManageHook
 myManageHook = composeAll (catMaybes $ S.hook <$> scratches)
@@ -128,13 +127,14 @@ myManageHook = composeAll (catMaybes $ S.hook <$> scratches)
   , title `S.startsWith` "Slack"                  --> addTagHook "m"
   , title `S.startsWith` "Signal"                 --> addTagHook "m"
   , className =?           "Slack"                --> addTagHook "m"
+  , className =?           "Onboard"              --> doRectFloat upperBarRect
   , className =?           "TelegramDesktop"      --> addTagHook "m"
   , className =?           "Franz"                --> addTagHook "m" >> doRectFloat centeredRect
   , className  =?          "Pinentry"             --> doRectFloat smallCentered
   , className =?           "Vimb"                 --> addTagHook "b"
   , className `S.startsWith` "firefox"            --> addTagHook "b"
   , appName   `S.contains` "hromium"              --> addTagHook "b"
-  , className =?           "qutebrowser"          --> addTagHook "b"             >>     doRectFloat leftBarRect
+  , className =?           "qutebrowser"          --> addTagHook "b"
   , className =?           "Emacs"                --> addTagHook "e"
   , className =?           "Gvim"                 --> addTagHook "v"
   , appName   =?           "browser-edit"         --> addTagHook "v"
@@ -319,8 +319,7 @@ myMainKeys =
   , ( (myModMask,               xK_s),         nextScreen)
   , ( (myAltMask,               xK_c),         S.triggerScratch firefox)
   , ( (myControlMask,           xK_c),         S.triggerScratch chromium)
-  , ( (myModMask,               xK_q),         S.triggerScratch hud)
-  , ( (myShiftMask,             xK_q),         S.triggerScratch confT)
+  , ( (myModMask,               xK_q),         S.triggerScratch confT)
   , ( (myModMask,               xK_f),         sendMessage $ Toggle FULL)
   , ( (myModMask,               xK_t),         workspaceTerm "term")
   , ( (myShiftMask,             xK_t),         workspaceTerm "term" >> promote)
