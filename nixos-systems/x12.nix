@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./fingerprint.nix
     ./laptop.nix
     ./desktop.nix
     ./zerotier.nix
@@ -13,9 +14,16 @@
   ];
   console.font = "sun12x22";
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    priority = 100;
+  };
+
   # override: disable on low-memory systems b/c it just freaks out all
   # my qute tabs. OTOH, maybe that's a good thing.
   services.earlyoom.enable = lib.mkForce false;
+
   services.undervolt = {
     temp = 90;
     enable = false;
@@ -125,6 +133,7 @@
   swapDevices = [
     {
       device = "/dev/x12/swap";
+      priority = 10;
     }
   ];
 
