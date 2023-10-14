@@ -37,6 +37,7 @@ in {
     imports = [
       (import ./fish.nix { pkgs = pkgs; editor = editor; })
       ./rot8.nix
+      ./lisgd.nix
       ./alacritty.nix
       ./git.nix
       ./helix.nix
