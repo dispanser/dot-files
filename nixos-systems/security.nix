@@ -20,6 +20,10 @@
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
+            command = "${prefix}/systemctl restart wpa_supplicant-wlan0.service";
+            options = [ "SETENV" "NOPASSWD" ];
+          }
+          {
             command = "${prefix}/s-tui";
             options = [ "SETENV" "NOPASSWD" ];
           }
