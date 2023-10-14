@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./fingerprint.nix
     ./keychron.nix
     ./yubico.nix
     ./desktop.nix
@@ -39,16 +40,7 @@
   services.atd.enable   = true;
   services.fwupd.enable = true;
 
-  services.fprintd.enable = true;
   security.pam.u2f.enable = true;
-
-  # probably not necessary - the default value is that of config.services.fprintd.enable
-  security.pam.services = {
-    login.fprintAuth        = true;
-    xscreensaver.fprintAuth = true;
-    xlock.fprintAuth        = true;
-    sudo.fprintAuth         = true;
-  };
 
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;

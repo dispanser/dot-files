@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./fingerprint.nix
     ./laptop.nix
     ./desktop.nix
     ./zerotier.nix
@@ -11,6 +10,7 @@
     ./adguard_dns.nix
     ./brother.nix
     ./yubico.nix
+    ./fingerprint.nix
   ];
   console.font = "sun12x22";
 
