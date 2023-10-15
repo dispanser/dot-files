@@ -12,14 +12,16 @@
     };
     Service = {
       ExecStart = "${pkgs.writeShellScript "touch.sh" ''
+        DEV=$(${pkgs.xorg.xinput}/bin/xinput list-props 'Wacom HID 525C Finger' | ${pkgs.ripgrep}/bin/rg 'Device Node' | ${pkgs.coreutils}/bin/cut -f 2 -d\")
+        echo device path: $DEV
         ${pkgs.lisgd}/bin/lisgd -v \
-        -d /dev/input/event23 \
+        -d $DEV \
         -g "3,LR,N,S,R,${xdt} key alt+j" \
         -g "3,RL,N,S,R,${xdt} key alt+k" \
         -g "1,LR,L,S,R,${xdt} key ctrl+h" \
         -g "1,RL,R,S,R,${xdt} key ctrl+l" \
-        -g "1,UD,T,S,R,light -A 10" \
-        -g "1,DU,B,S,R,light -U 10" \
+        -g "1,UD,T,S,R,${pkgs.light}/bin/light -A 10" \
+        -g "1,DU,B,S,R,${pkgs.light}/bin/light -U 10" \
         -o ${ROT}
       ''}";
     };
