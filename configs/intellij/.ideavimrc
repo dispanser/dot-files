@@ -13,6 +13,7 @@ set ignorecase
 set smartcase
 set incsearch
 set wrapscan
+set which-key
 
 set scrolloff=10 sidescrolloff=10
 
