@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+
+mkdir -p $HOME/tmp/scratches
+set scratch $HOME/tmp/scratches/(date +%F)_{$argv[1]}
+tmux paste-buffer > $scratch
+echo editing scratch file: $scratch
+nvim $file
