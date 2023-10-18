@@ -44,6 +44,19 @@ return {
         })
     end,
   },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    dependencies = {
+       -- "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons",
+    },
+    keys = {
+      { '<leader>ta', "<cmd>AerialToggle!<CR>", { desc = "toggle aerial code outline"} },
+      { '<leader>]', vim.cmd.AerialNext, { desc = "aerial next token"} },
+      { '<leader>[', vim.cmd.AerialPrev, { desc = "aerial previous token"} },
+    },
+  },
 	{
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
