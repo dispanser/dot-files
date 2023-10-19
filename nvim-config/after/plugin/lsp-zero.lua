@@ -5,13 +5,15 @@ lsp.preset('recommended')
 lsp.setup()
 
 require('lspconfig').rust_analyzer.setup({})
+require('lspconfig').metals.setup({})
 
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
   update_in_insert = false,
   underline = true,
-  severity_sort = false,
+  -- tp::TODO: check if that's better
+  severity_sort = true,
   float = true,
 })
 
@@ -19,7 +21,19 @@ local cmp = require('cmp')
 local cmp_config = lsp.defaults.cmp_config({
   window = {
     completion = cmp.config.window.bordered()
-  }
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-g>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
+      { name = 'buffer' },
+    })
 })
 
 local function n(key, action, desc)
