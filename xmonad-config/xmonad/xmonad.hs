@@ -38,6 +38,7 @@ import           XMonad.Actions.WindowGo             (raiseMaybe)
 
 import           XMonad.Hooks.EwmhDesktops           (ewmh)
 import           XMonad.Hooks.ManageHelpers          (doRectFloat)
+import           XMonad.Hooks.ManageDocks            as MD
 import           XMonad.Hooks.SetWMName              (setWMName)
 import           XMonad.Hooks.UrgencyHook            (UrgencyHook(..), focusUrgent, withUrgencyHook)
 -- import           XMonad.Hooks.RefocusLast            (refocusLastEventHook,
@@ -173,7 +174,7 @@ x, y, gapSize, fullWidth, fullHeight, left, up :: Rational
 x          = 1920
 y          = 1080
 
-gapSize    = 5
+gapSize    = 10
 fullWidth  = ( x - 2*gapSize ) / x
 fullHeight = ( y - 2*gapSize ) / y
 left = gapSize / x
@@ -216,7 +217,7 @@ workspaceMask       = myModMask
 main :: IO ()
 main = do
   ps <- projects
-  xmonad $ ewmh $ withUrgencyHook LibNotifyUrgencyHook $ dynamicProjects ps def
+  xmonad $ MD.docks $ ewmh $ withUrgencyHook LibNotifyUrgencyHook $ dynamicProjects ps def
     { borderWidth        = 1
     , modMask            = myModMask
     , terminal           = myTerminal
@@ -231,6 +232,7 @@ main = do
 
 myLayoutHook =
     noBorders
+    . MD.avoidStruts
     . windowNavigation
     -- . trackFloating
     -- . useTransientFor
