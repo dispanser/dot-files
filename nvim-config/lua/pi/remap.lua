@@ -38,8 +38,6 @@ nnoremap('<leader><Tab>', '<C-^>', "switch to alternate buffer")
 nnoremap('<leader>bc', ':close<cr>', "close buffer")
 nnoremap(']b', ':next<CR>', "next buffer")
 nnoremap('[b', ':prev<CR>', "previous buffer")
-nnoremap('<leader>bn', ':next<CR>', "next buffer")
-nnoremap('<leader>bp', ':prev<CR>', "previous buffer")
 
 inoremap('jk', '<Esc>', "enter normal mode")
 inoremap('jw', '<Esc>:w<CR>', "leave insert mode and save")
@@ -85,3 +83,17 @@ n('<leader>y', '"+y', "yank to system clipboard")
 n('<leader>P', '"*p', "put from primary clipboard")
 n('<leader>p', '"+p', "put from system clipboard")
 
+-- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+-- cnoremap <expr> %f getcmdtype() == ':' ? expand('%:t:r') : '%f'
+-- cnoremap <expr> %p getcmdtype() == ':' ? expand('%:p:.') : '%p'
+vim.keymap.set('c', '%%', vim.fn.expand("%:h"), {noremap = true})
+
+-- does not seem to work
+-- vim.keymap.set('c', '%_', function()
+--   print (vim.fn.getcmdtype())
+--   if vim.fn.getcmdtype() == ':' then
+--     return vim.fn.expand("%:h") .. '/'
+--   else
+--     return '%%'
+--   end
+-- end, {noremap = true})
