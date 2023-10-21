@@ -9,7 +9,7 @@ let home = if pkgs.stdenv.isDarwin
     id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";
     id_ecdsa_pass = "${home}/id_ecdsa";
     id_dremio_rsa = "${home}/id_dremio";
-    unison_tiny = "${home}/unison_tiny";
+    unison_tiny = "${home}/unison_tiny.pub";
     id_keys = [ id_yubi id_feitian_solo id_feitian_chain id_ecdsa_pass ];
 in {
   programs.ssh = {
