@@ -6,5 +6,6 @@ return { 'sindrets/diffview.nvim',
       { '<leader>dc', vim.cmd.DiffviewClose, { desc = "close diff view"} },
       { '<leader>df', function() vim.cmd.DiffviewFileHistory('%') end, { desc = "open file history diff view"} },
       { '<leader>dh', vim.cmd.DiffviewFileHistor, { desc = "open project history diff view"} },
-  }
+  },
+  lazy = false,
 }

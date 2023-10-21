@@ -4,7 +4,7 @@ lsp.preset('recommended')
 
 lsp.setup()
 
-require('lspconfig').rust_analyzer.setup({})
+-- require('lspconfig').rust_analyzer.setup({})
 require('lspconfig').metals.setup({})
 
 vim.diagnostic.config({
@@ -41,11 +41,11 @@ local function n(key, action, desc)
   vim.keymap.set('n', key, action, bufopts)
 end
 
-n('K', vim.lsp.buf.hover, "hover")
-n('gs', vim.lsp.buf.signature_help, "show signature help")
-n('gl', vim.diagnostic.open_float)
-n('<space>ea', vim.lsp.buf.code_action, "code actions" )
-n('<space>ef', function() vim.lsp.buf.format { async = true } end, "code format")
+n('<leader>ek', vim.lsp.buf.hover, "hover")
+n('<leader>es', vim.lsp.buf.signature_help, "show signature help")
+n('<leader>ew', vim.diagnostic.open_float)
+n('<leader>ea', vim.lsp.buf.code_action, "code actions" )
+n('<leader>ef', function() vim.lsp.buf.format { async = true } end, "code format")
 n('<leader>en', vim.lsp.buf.rename, "refactor: rename")
 n('[e', vim.diagnostic.goto_prev)
 n(']e', vim.diagnostic.goto_next)
