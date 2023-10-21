@@ -9,6 +9,7 @@ let home = if pkgs.stdenv.isDarwin
     id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";
     id_ecdsa_pass = "${home}/id_ecdsa";
     id_dremio_rsa = "${home}/id_dremio";
+    unison_tiny = "${home}/unison_tiny";
     id_keys = [ id_yubi id_feitian_solo id_feitian_chain id_ecdsa_pass ];
 in {
   programs.ssh = {
@@ -43,7 +44,7 @@ in {
         hostname = "10.1.3.10";
         user = "pi";
         port = 65423;
-        identityFile = id_keys;
+        identityFile = [ unison_tiny ] ++ id_keys;
       };
 
       "github.com" = {
