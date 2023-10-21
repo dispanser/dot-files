@@ -42,9 +42,7 @@ local function n(key, action, desc)
 end
 
 n('K', vim.lsp.buf.hover, "hover")
-n('gt', vim.lsp.buf.type_definition, "go to type definition")
 n('gs', vim.lsp.buf.signature_help, "show signature help")
-n('gd', vim.lsp.buf.definition, "go to definition (LSP)")
 n('gl', vim.diagnostic.open_float)
 n('<space>ea', vim.lsp.buf.code_action, "code actions" )
 n('<space>ef', function() vim.lsp.buf.format { async = true } end, "code format")
