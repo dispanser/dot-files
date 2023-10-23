@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+args@{ config, pkgs, lib, hasTouchScreen ? false, ... }:
 
 let editor = "nvim";
 in {
@@ -34,20 +34,28 @@ in {
     let pkgSets =  import ./packages.nix pkgs;
     in with pkgSets; desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
 
-    imports = [
-      (import ./fish.nix { pkgs = pkgs; editor = editor; })
-      ./rot8.nix
-      ./lisgd.nix
-      ./alacritty.nix
-      ./git.nix
-      ./helix.nix
-      ./kitty.nix
-      ./qutebrowser.nix
-      ./ssh.nix
-      ./starship.nix
-      ./tmux.nix
-      ./xsuspender.nix
-    ];
+  imports = [
+    (import ./fish.nix { pkgs = pkgs; editor = editor; })
+    ./alacritty.nix
+    ./git.nix
+    ./helix.nix
+    ./kitty.nix
+    ./qutebrowser.nix
+    ./ssh.nix
+    ./starship.nix
+    ./tmux.nix
+    ./xsuspender.nix
+    ./unison.nix
+    ./touch.nix
+  ];
+
+  services.touch = {
+    enable = hasTouchScreen;
+    # if builtins.hasAttr hasTouchScreen args then args.hasTouchScreen else false;
+    # lib.attrsets.attrByPath ["hasTouchScreen"] false args;
+    finger-device = "Wacom HID 525C Finger";
+    pen-device = "Wacom HID 525C Pen";
+  };
 
   services.notify-osd.enable = if pkgs.stdenv.isLinux then true else false;
 
