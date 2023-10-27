@@ -68,4 +68,4 @@ n('<leader>fr', builtin.oldfiles, "recently loaded files")
 n('<leader>ts', builtin.treesitter, "treesitter symbols")
 
 n('gd', builtin.lsp_definitions, "go to definition (telescope)")
-n('gt', builtin.lsp_definitions, "go to type definition (telescope)")
+n('gt', builtin.lsp_type_definitions, "go to type definition (telescope)")
