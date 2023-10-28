@@ -54,7 +54,7 @@ function dock() {
 }
 
 function home() {
-	xrandr --output ${EXT[0]} --auto --right-of $INT --rotate right --output $INT --auto
+	xrandr --output ${EXT[0]} --auto --above $INT --output $INT --auto
 }
 
 function ext() {
