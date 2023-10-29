@@ -26,24 +26,23 @@
          size = fontSize;
        };
        key_bindings = [
-         { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
-         { key = "F"; mods = "Alt"; chars = "\\x1bf"; }
-         { key = "D"; mods = "Alt"; chars = "\\x1bd"; }
-         { key = "C"; mods = "Alt"; chars = "\\x1bc"; }
+         # not a mistake - mapping the key multiple times triggers the action
+         # more than onc: https://github.com/alacritty/alacritty/issues/5405
+         { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
+         { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
+         { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
+         { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
 
-         { key = "Caret"; mods = "Alt"; chars = "\\x1b0"; }
-         { key = "Key0"; mods = "Alt"; chars = "\\x1b0"; }
-         { key = "Key1"; mods = "Alt"; chars = "\\x1b1"; }
-         { key = "Key2"; mods = "Alt"; chars = "\\x1b2"; }
-         { key = "Key3"; mods = "Alt"; chars = "\\x1b3"; }
-         { key = "Key4"; mods = "Alt"; chars = "\\x1b4"; }
-         { key = "Key5"; mods = "Alt"; chars = "\\x1b5"; }
-         { key = "Key6"; mods = "Alt"; chars = "\\x1b6"; }
-         { key = "Key7"; mods = "Alt"; chars = "\\x1b7"; }
-         { key = "Key8"; mods = "Alt"; chars = "\\x1b8"; }
-         { key = "Key9"; mods = "Alt"; chars = "\\x1b9"; }
-         { key = "Period"; mods = "Alt"; chars = "\\x1b."; }
-         { key = "Period"; mods = "Alt|Shift"; chars = "\\x1b>"; }
+         # 'shift' doesn't work, unfortunately
+         { key = "Equals"; mods = "Control|Alt"; action = "IncreaseFontSize"; }
+         { key = "Equals"; mods = "Control|Alt"; action = "IncreaseFontSize"; }
+
+         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+         { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
+         { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
        ];
      };
    };
