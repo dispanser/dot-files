@@ -1,4 +1,0 @@
-COMPILER="${C:-clang}"
-REL_TYPE="${R:-debug}"
-echo running preset nix-${COMPILER}-${REL_TYPE}
-time cmake --build --preset nix-${COMPILER}-${REL_TYPE}  --target vast && time sh build/${COMPILER}/${REL_TYPE}/vast/integration-Debug.sh $*
