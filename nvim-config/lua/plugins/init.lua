@@ -1,5 +1,6 @@
 -- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
+  { 'moll/vim-bbye' },
   { 'flazz/vim-colorschemes',
     -- color scheme determines highlight groups that should be loaded first
     priority = 1000,
