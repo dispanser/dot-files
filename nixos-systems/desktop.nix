@@ -83,6 +83,8 @@
     emulateWheel = true;
     enable = true;
     fakeButtons = false;
+    speed = 150;       # default: 97
+    sensitivity = 196; # default: 128
   };
 
   hardware.opengl = {
