@@ -82,6 +82,9 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              hasTouchScreen = true;
+            };
             home-manager.users.pi = import ./home/home.nix;
           }
         ];

@@ -18,6 +18,9 @@
     enable = true;
     algorithm = "zstd";
     priority = 100;
+    # I'm seeing compression rations of 8x, so this would still only occupy a
+    # small fraction of main memory
+    memoryPercent = 99;
   };
 
   # override: disable on low-memory systems b/c it just freaks out all
@@ -42,7 +45,7 @@
     };
   };
 
-  virtualisation.docker.enable = false;
+  virtualisation.docker.enable = true;
 
   services.espanso.enable = false;
   services.atd.enable   = true;
