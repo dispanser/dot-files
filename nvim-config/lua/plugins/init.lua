@@ -1,5 +1,8 @@
 -- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
+  -- https://github.com/wellle/targets.vim
+  {'wellle/targets.vim'},
+  -- keys defined in remaps because of lack of description
   { 'moll/vim-bbye' },
   { 'flazz/vim-colorschemes',
     -- color scheme determines highlight groups that should be loaded first

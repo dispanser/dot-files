@@ -5,6 +5,8 @@ vim.o.sidescrolloff = 8
 vim.o.linebreak = true
 vim.o.visualbell = on
 vim.o.updatetime = 250
+vim.o.exrc = true
+vim.o.secure = true
 
 -- wo: window-scoped
 
