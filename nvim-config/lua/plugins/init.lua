@@ -2,6 +2,11 @@
 return {
   -- https://github.com/wellle/targets.vim
   {'wellle/targets.vim'},
+  {'kwkarlwang/bufresize.nvim',
+    config = function()
+        require("bufresize").setup()
+    end,
+  },
   -- keys defined in remaps because of lack of description
   { 'moll/vim-bbye' },
   { 'flazz/vim-colorschemes',
