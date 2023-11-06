@@ -1,0 +1,6 @@
+#!/usr/bin/env fish
+
+set OTHER_DIR $argv[1]
+set FILE $argv[2]
+
+nvim -d $FILE {$OTHER_DIR}/$FILE
