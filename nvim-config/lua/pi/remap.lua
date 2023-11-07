@@ -36,8 +36,6 @@ nnoremap('<leader><Tab>', '<C-^>', "switch to alternate buffer")
 
 -- buffer mappings
 nnoremap('<leader>bd', ':close<cr>', "close buffer")
-nnoremap('<leader>bc', ':Bdelete<cr>', "close file shown in buffer")
-nnoremap('<leader>bw', ':Bwipeout<cr>', "wipe file shown in buffer")
 nnoremap(']b', ':next<CR>', "next buffer")
 nnoremap('[b', ':prev<CR>', "previous buffer")
 

@@ -1,10 +1,10 @@
 return {
   'airblade/vim-gitgutter',
   keys = {
-    {  '<leader>ga', ':GitGutterStageHunk<CR>', { desc = "git stage hunk" } },
-    {  '<leader>ga', ':GitGutterStageHunk<CR>', mode = 'v', { desc = "git stage hunk" } },
-    {  '<leader>gn', ':GitGutterNextHunk<CR>', { desc = "git goto next hunk" } },
-    {  '<leader>gp', ':GitGutterPrevHunk<CR>', { desc = "git goto previous hunk" } },
+    {  '<leader>ga', ':GitGutterStageHunk<CR>', desc = "git stage hunk" },
+    {  '<leader>ga', ':GitGutterStageHunk<CR>', mode = 'v', desc = "git stage hunk" },
+    {  '<leader>gn', ':GitGutterNextHunk<CR>', desc = "git goto next hunk" },
+    {  '<leader>gp', ':GitGutterPrevHunk<CR>', desc = "git goto previous hunk" },
   },
   init = function()
     vim.g.gitgutter_map_keys = 0

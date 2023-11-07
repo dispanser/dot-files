@@ -8,7 +8,12 @@ return {
     end,
   },
   -- keys defined in remaps because of lack of description
-  { 'moll/vim-bbye' },
+  { 'moll/vim-bbye',
+    keys = {
+        { '<leader>bc', ':Bdelete<cr>', desc = "close file shown in buffer" },
+        { '<leader>bw', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
+      },
+  },
   { 'flazz/vim-colorschemes',
     -- color scheme determines highlight groups that should be loaded first
     priority = 1000,
@@ -23,8 +28,19 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = {
-    },
+    opts = function()
+      require("which-key").register({
+          ["<leader>b"] = { name = "+buffers" },
+          ["<leader>d"] = { name = "+diff view" },
+          ["<leader>e"] = { name = "+code" },
+          ["<leader>f"] = { name = "+files" },
+          ["<leader>g"] = { name = "+git" },
+          ["<leader>l"] = { name = "+various telescopes" },
+          ["<leader>q"] = { name = "+quickfix" },
+          ["<leader>t"] = { name = "+toggles" },
+          ["<leader>w"] = { name = "+windows" },
+        })
+    end,
     priority = 900,
   },
   'machakann/vim-highlightedyank',
@@ -37,7 +53,7 @@ return {
   'tpope/vim-unimpaired',
   { 'blueyed/vim-diminactive',
     keys = {
-      { '<leader>ti', vim.cmd.DimInactiveToggle, { desc = "toggle inactive dim"} },
+      { '<leader>ti', vim.cmd.DimInactiveToggle, desc = "toggle inactive dim" },
     },
     lazy = false,
   },
@@ -61,9 +77,9 @@ return {
        "nvim-tree/nvim-web-devicons",
     },
     keys = {
-      { '<leader>ta', "<cmd>AerialToggle!<CR>", { desc = "toggle aerial code outline"} },
-      { '<leader>]', vim.cmd.AerialNext, { desc = "aerial next token"} },
-      { '<leader>[', vim.cmd.AerialPrev, { desc = "aerial previous token"} },
+      { '<leader>ta', "<cmd>AerialToggle!<CR>", desc = "toggle aerial code outline" },
+      { '<leader>]', vim.cmd.AerialNext, desc = "aerial next token" },
+      { '<leader>[', vim.cmd.AerialPrev, desc = "aerial previous token" },
     },
   },
 	{
@@ -79,7 +95,7 @@ return {
 	{ 'tpope/vim-fugitive', lazy = false },
   { 'mbbill/undotree',
     keys = {
-      { '<leader>tu', vim.cmd.UndotreeToggle, { desc = "toggle undo tree"} },
+      { '<leader>tu', vim.cmd.UndotreeToggle, desc = "toggle undo tree" },
     },
     lazy = true,
   },
@@ -114,8 +130,7 @@ return {
   },
   {
     'mfussenegger/nvim-dap',
-    dependencies = { { "nvim-lua/plenary.nvim" } },
+    dependencies = { { "nvim-lua/plenary.nvim"  } },
   },
-  
 }
 
