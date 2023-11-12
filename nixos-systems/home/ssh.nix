@@ -46,7 +46,7 @@ in {
         hostname = "10.1.3.10";
         user = "pi";
         port = 65423;
-        identityFile = [ unison_tiny ] ++ id_keys;
+        identityFile = unison_tiny;
         extraOptions = {
           IdentitiesOnly = "yes";
         };
