@@ -36,7 +36,8 @@ in {
         Description = "touch gestures via lisgd";
       };
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
       };
       Service = {
         ExecStart = "${pkgs.writeShellScript "touch.sh" ''
@@ -62,7 +63,8 @@ in {
         Description = "Automatic screen rotation";
       };
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
       };
       Service = {
         # rot8 can't rotate the pen device, it requires a different matrix / attribute
