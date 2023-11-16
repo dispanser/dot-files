@@ -89,6 +89,7 @@
       ls   = "eza --git";
       lt   = "ls -t modified";
       l    = "ls -laF";
+      ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
     functions = {
       gdt.body   = ''nvim "+DiffviewOpen $argv"'';
