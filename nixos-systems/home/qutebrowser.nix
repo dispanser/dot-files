@@ -14,7 +14,7 @@
       ad      = "http://smile.amazon.de/s/ref=nb_sb_noss?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Daps&field-keywords={}";
       aur     = "https://aur.archlinux.org/packages/?O=0&SeB=nd&K={}&outdated=&SB=n&SO=a&PP=50&do_Search=Go";
       ed      = "http://www.ebay.de/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.X%s&_nkw={}&_sacat=0";
-      ek      = "http://ebay-kleinanzeigen.de/anzeigen/s-{}/k0";
+      ek      = "http://www.kleinanzeigen.de/anzeigen/s-{}/k0";
       gg      = "https://duckduckgo.com/?q=!g {}";
       hg      = "https://hoogle.haskell.org/?hoogle={}";
       crate   = "https://crates.io/search?q={}";
