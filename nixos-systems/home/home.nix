@@ -102,7 +102,6 @@ in {
   };
 
   programs = {
-
     atuin = {
       enable = true;
       settings = { 
@@ -114,6 +113,18 @@ in {
       };
     };
     zoxide.enable = true;
+    btop = { 
+      enable = true;
+      settings = {
+        vim_keys = true;
+      };
+    };
+
+    eza = {
+      enable = true;
+      git = true;
+      icons = true;
+    };
 
     direnv = {
       enable                  = true;
