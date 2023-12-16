@@ -33,7 +33,6 @@
       };
     in {
       cdc     = "cd ~/configs";
-      cdp     = "cd $PROJECT_DIR";
       tf      = "tail -f";
       fm      = "free -m";
       dum     = "du -sm";
@@ -82,6 +81,7 @@
       t       = "${pkgs.time}/bin/time";
     } // editor_abbrevations;
     shellAliases = {
+      cdp     = "cd $PROJECT_DIR";
       restloc = "restic -r sftp:backup-zerotier:/fs/thomas_stuff/backup --password-file /home/data/backup/secret";
       restb2  = "restic -r b2:yukon-backup:/backup/yukon/home --password-file /home/data/backup/secret";
       gcm  = "git branch | rg main && git switch main || git switch master";
