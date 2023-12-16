@@ -7,6 +7,7 @@ lsp.setup()
 -- require('lspconfig').rust_analyzer.setup({})
 require('lspconfig').metals.setup({})
 require('lspconfig').jsonls.setup({})
+require('lspconfig').pyright.setup({})
 
 vim.diagnostic.config({
   virtual_text = true,
