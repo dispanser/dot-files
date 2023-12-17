@@ -7,6 +7,7 @@
   ];
 
   services.ddccontrol.enable = true;
+  services.fstrim.enable = true;
 
   nixpkgs.config.permittedInsecurePackages = [
     ## pulled in via offlineimap. Not using kerberos, so hopefully OK?
