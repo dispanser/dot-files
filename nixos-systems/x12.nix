@@ -98,28 +98,33 @@
     host.enableExtensionPack = true;
   };
 
-	  boot = {
-      initrd.luks = {
-        fido2Support = false;
-        devices = {
-          x12 = {
-            preLVM = true;
-            device = "/dev/disk/by-uuid/7abb4543-a901-4b40-bcd9-1f68b7faa249";
-          };
+  services.acpid = {
+    powerEventCommands = "${pkgs.systemd}/bin/systemctl suspend";
+    logEvents = true;
+  };
+
+  boot = {
+    initrd.luks = {
+      fido2Support = false;
+      devices = {
+        x12 = {
+          preLVM = true;
+          device = "/dev/disk/by-uuid/7abb4543-a901-4b40-bcd9-1f68b7faa249";
         };
-      }; 
-		  loader.systemd-boot.enable = true;
-		  loader.efi.canTouchEfiVariables = true;
-		  initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-		  initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-		  kernelModules                   = [ "tp_smapi" "acpi_call" ];
-		  extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
-		  extraModprobeConfig = ''
-			  options acpi ec_no_wakeup=1
-			  options thinkpad_acpi fan_control=1
-		  '';
-		  kernelPackages     = pkgs.linuxPackages_latest;
-	  };
+      };
+    }; 
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" ];
+    extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
+    extraModprobeConfig = ''
+    options acpi ec_no_wakeup=1
+    options thinkpad_acpi fan_control=1
+    '';
+    kernelPackages     = pkgs.linuxPackages_latest;
+  };
 
   powerManagement.resumeCommands = ''
     ${pkgs.systemd}/bin/systemctl restart zerotierone.service
