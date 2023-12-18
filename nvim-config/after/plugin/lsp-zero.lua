@@ -8,6 +8,7 @@ lsp.setup()
 require('lspconfig').metals.setup({})
 require('lspconfig').jsonls.setup({})
 require('lspconfig').pyright.setup({})
+require('lspconfig').marksman.setup({})
 
 vim.diagnostic.config({
   virtual_text = true,

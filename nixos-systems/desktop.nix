@@ -10,9 +10,7 @@
   services.fstrim.enable = true;
 
   nixpkgs.config.permittedInsecurePackages = [
-    ## pulled in via offlineimap. Not using kerberos, so hopefully OK?
-    "python3.10-kerberos-1.3.1"
-    "electron-13.6.9"
+    "electron-25.9.0"
   ];
  
   # required for pipewire
