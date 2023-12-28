@@ -10,6 +10,8 @@
     ./adguard_dns.nix
     ./brother.nix
     ./yubico.nix
+    ./fingerprint.nix
+    ./lowmem.nix
   ];
   console.font = "sun12x22";
 

@@ -11,17 +11,9 @@
     ./brother.nix
     ./yubico.nix
     ./fingerprint.nix
+    ./lowmem.nix
   ];
   console.font = "sun12x22";
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    priority = 100;
-    # I'm seeing compression rations of 8x, so this would still only occupy a
-    # small fraction of main memory
-    memoryPercent = 99;
-  };
 
   # On my x12 libinput.touchpad is not applied to the touchpad, but using
   # libinput.mouse is applied.
@@ -31,9 +23,6 @@
     clickMethod        = "buttonareas";
     tapping            = false;
   };
-  # override: disable on low-memory systems b/c it just freaks out all
-  # my qute tabs. OTOH, maybe that's a good thing.
-  services.earlyoom.enable = lib.mkForce false;
 
   services.undervolt = {
     temp = 90;
