@@ -2,7 +2,7 @@
 #! nix-shell -i fish -p fish wmctrl
 
 # PROJECT=$(wmctrl -d | grep -v  '  - DG:')
-set PROJECT (wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
+set PROJECT (wmctrl -d | string match -gr '\* DG.*WA: N\/A  ([^_]+)')
 
 qutebrowser --qt-arg name $PROJECT --basedir  /home/pi/projects/$PROJECT/.qute $argv
 # firefox -P $PROJECT --class firefox_$PROJECT --profile /home/pi/projects/$PROJECT/.firefox --new-tab $argv
