@@ -48,7 +48,7 @@ kitty shellCommand cn  =
 -- override both explicity, keeping the "other" one as "Alacritty".
 alacritty :: String -> String -> String
 alacritty shellCommand cn  =
-  "alacritty --class Alacritty," ++ cn ++ " -e " ++ shellCommand
+  "alacritty --class " ++ cn ++ ",Alacritty" ++ " -e " ++ shellCommand
 
 tmux :: String -> String
 tmux session = " sh -c \"tmux attach -t " ++ session ++ " || tmux new-session -s " ++ session ++ "\""
