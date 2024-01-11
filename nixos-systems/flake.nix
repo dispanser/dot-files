@@ -11,6 +11,21 @@
 
   outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
+      yukon = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./yukon.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              hasTouchScreen = true;
+            };
+            home-manager.users.pi = import ./home/home.nix;
+          }
+        ];
+      };
       x1t3 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

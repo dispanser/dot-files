@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib,... }:
 
 {
   # override: disable on low-memory systems b/c it just freaks out all
