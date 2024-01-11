@@ -3,6 +3,11 @@ args@{ config, pkgs, lib, hasTouchScreen ? false, ... }:
 let editor = "nvim";
 in {
 
+  # sourcehut is down, and nmd package cannot be downloaded from git.sr.ht/~rycee/nmd/....
+  manual.html.enable = false;
+  manual.manpages.enable = false;
+  manual.json.enable = false;
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "obsidian"
     "slack"
