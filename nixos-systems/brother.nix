@@ -13,5 +13,21 @@
     enable  = true;
     drivers = with pkgs; [ gutenprint brlaser ] ;
   };
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "Brother_3550CDW";
+        location = "Home";
+        deviceUri = "http://192.168.1.43/BINARY_P1";
+        model = "drv:///sample.drv/generic.ppd";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "Brother_3550CDW";
+  };
+
 }
 
