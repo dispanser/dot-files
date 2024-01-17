@@ -41,7 +41,7 @@ function undock() {
 function dock() {
 	case ${#EXT[@]} in
 		"1")
-			xrandr --output ${EXT[0]} --auto --right-of $INT --rotate normal --output $INT --auto
+			xrandr --output ${EXT[0]} --auto --above $INT --rotate normal --output $INT --auto
 			;;
 		"2")
 			xrandr --output ${EXT[0]} --auto --output ${EXT[1]} --auto --right-of ${EXT[0]} --output $INT --off
