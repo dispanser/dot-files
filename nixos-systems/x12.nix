@@ -1,6 +1,8 @@
 { config, lib, pkgs,... }:
 
 {
+  services.joycond.enable = true;
+
   imports = [
     ./laptop.nix
     ./desktop.nix
