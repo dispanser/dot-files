@@ -53,6 +53,8 @@ in {
           -g "1,DU,B,S,R,${pkgs.onboard}/bin/onboard -l /home/pi/src/github/dispanser/dot-files/configs/onboard/mine.onboard &" \
           -g "2,UD,T,S,R,${pkgs.light}/bin/light -A 10" \
           -g "2,DU,B,S,R,${pkgs.light}/bin/light -U 10" \
+          -g "3,UD,N,S,R,${xdt} key r" \
+          -g "3,DU,N,S,R,${xdt} key x" \
           -o ${ROT}
         ''}";
       };
