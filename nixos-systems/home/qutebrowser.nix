@@ -39,6 +39,7 @@
       gh      = "https://github.com/{}";
       red     = "https://www.google.com/search?hl=en&q=site%3Areddit.com%20{}";
       no      = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      np      = "https://search.nixos.org/packages?channel=unstable&from=0&size=500&sort=relevance&type=packages&query={}";
       sc      = "https://app.shortcut.com/tenzir/story/{}";
       glr     = "https://github.com/search?q=lang%3ARust+{}&type=code";
       gln     = "https://github.com/search?q=lang%3ANix+{}&type=code";
