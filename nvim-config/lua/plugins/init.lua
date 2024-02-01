@@ -131,5 +131,8 @@ return {
     'mfussenegger/nvim-dap',
     dependencies = { { "nvim-lua/plenary.nvim"  } },
   },
+  {
+    'dhruvasagar/vim-table-mode',
+  },
 }
 
