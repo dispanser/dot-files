@@ -103,7 +103,7 @@
 
   networking = {
     usePredictableInterfaceNames = false;
-    hostName        = "stoic";
+    hostName        = "tiny";
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
