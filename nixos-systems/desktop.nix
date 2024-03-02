@@ -34,8 +34,10 @@
   services.xserver = {
     enable                 = true;
     enableCtrlAltBackspace = true;
-    layout                 = "us";
-    xkbOptions             = "caps:escape,compose:lwin-altgr,lv3:ralt_switch;terminate:ctrl_alt_bksp";
+    xkb = {
+      layout                 = "us";
+      options             = "caps:escape,compose:lwin-altgr,lv3:ralt_switch;terminate:ctrl_alt_bksp";
+    };
     windowManager = {
       xmonad = {
         enable                 = true;
