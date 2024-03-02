@@ -74,7 +74,7 @@
       cm      = "/usr/bin/cmake";
       cat     = "bat";
       k       = "kubectl";
-      nsf     = "nix-shell --run fish";
+      nsf     = "nix-shell --run fish -p ";
       ndf     = "nix develop --command fish";
       tl      = "tmux list-sessions";
       nixq    = "nix search nixpkgs";
