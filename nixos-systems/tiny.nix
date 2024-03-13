@@ -113,7 +113,7 @@
 
   fileSystems  = {
     "/boot"      = { device = "/dev/disk/by-uuid/5658-E93A"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/sanjota/root";           fsType = "ext4"; neededForBoot = true;};
+    "/"          = { device = "/dev/sanjota/nix-root";       fsType = "ext4"; neededForBoot = true;};
     "/home"      = { device = "/dev/sanjota/home";           fsType = "ext4"; neededForBoot = true;};
   };
 
