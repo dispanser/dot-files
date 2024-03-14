@@ -32,3 +32,5 @@ vim.opt.relativenumber = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
