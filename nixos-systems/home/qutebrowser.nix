@@ -43,6 +43,7 @@
       sc      = "https://app.shortcut.com/tenzir/story/{}";
       glr     = "https://github.com/search?q=lang%3ARust+{}&type=code";
       gln     = "https://github.com/search?q=lang%3ANix+{}&type=code";
+      gll     = "https://github.com/search?q=lang%3ALua+{}&type=code";
     };
     settings = {
       zoom.default = "125%";
