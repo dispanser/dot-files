@@ -11,6 +11,7 @@
     ./laptop.nix
 	  ./brother.nix
     ./thinkfan.nix
+    ./gamepads.nix
   ];
 
   services.undervolt = {
