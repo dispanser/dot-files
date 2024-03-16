@@ -49,6 +49,7 @@ in {
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
+    ./zellij.nix
     ./xsuspender.nix
     ./unison.nix
     ./touch.nix
@@ -72,8 +73,8 @@ in {
 
   services.xidlehook = {
     enable           = if pkgs.stdenv.isLinux then true else false;
-    # detect-sleep   = true;
-    not-when-audio   = false;
+    detect-sleep   = true;
+    not-when-audio   = true;
     not-when-fullscreen = false; # TBE
     environment = {
       PATH    = "$PATH:/run/current-system/sw/bin";
