@@ -2,14 +2,14 @@
 
 let 
   home = if pkgs.stdenv.isDarwin
-    then "/Users/pi/.ssh"
+    then "/Users/thomas.peiselt/.ssh"
     else "/home/pi/.ssh";
   id_remarkable = "${home}/remarkable";
   id_yubi =  "${home}/yubikey_c.pub";
   id_feitian_solo = "${home}/id_feitian_solo_ecdsa_sk";
   id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";
   id_ecdsa_pass = "${home}/id_ecdsa";
-  id_dremio_rsa = "${home}/id_dremio";
+  cl_ed = "${home}/coralogix-github";
   unison_tiny = "${home}/unison_tiny";
   id_keys = [ id_yubi id_feitian_solo id_feitian_chain id_ecdsa_pass ];
 in {
@@ -55,18 +55,14 @@ in {
       "github.com" = {
         hostname = "github.com";
         user     = "git";
-        identityFile = id_keys;
+        identityFile = [ cl_ed ] ++ id_keys;
       };
 
       "x1t3" = {
         hostname = "10.1.3.3";
         user = "pi";
         port = 65423;
-        identityFile = id_keys ++ [ id_dremio_rsa ];
-      };
-      "gerrit.drem.io" = {
-        identityFile = [ id_feitian_chain id_feitian_solo "${home}/id_dremio" ];
-        user = "pi";
+        identityFile = id_keys;
       };
     };
   };
