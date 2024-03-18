@@ -129,10 +129,15 @@
   };
  
   services.skhd = let
+<<<<<<< HEAD
     vStepSize = "200";
     hStepSize = "150";
     # TODO: try to access the previously set values instead of re-defining, or let-bind it
     homeDir = "/Users/thomas.peiselt";
+=======
+    vStepSize = "200" ;
+    hStepSize = "150";
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
   in {
     enable = true;
     skhdConfig = ''
@@ -147,6 +152,10 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
  
+<<<<<<< HEAD
+=======
+      rcmd - t : /Users/pi/bin/darwin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - 0x2C : yabai -m window --toggle split
  
