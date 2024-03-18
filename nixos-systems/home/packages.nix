@@ -15,16 +15,13 @@ with pkgs; let
   ];
   desktopPkgs = [
     any-nix-shell
-    obsidian
     youtube-dl
     units
     feh
     entr
-    slack
     zathura
     dmenu
     mplayer
-    pinentry
     pandoc
     eza delta ripgrep neovim fzf fd
     iftop
@@ -37,6 +34,9 @@ with pkgs; let
     sloc
   ];
   linuxOnly = [
+    # these two work on darwin, but are unfree. also, slack is managed somehow else
+    slack obsidian
+    pinentry
     simple-scan
     xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
     xbindkeys
