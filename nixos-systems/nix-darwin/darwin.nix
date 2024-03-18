@@ -81,7 +81,11 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
  
+<<<<<<< HEAD
   services.karabiner-elements.enable = true;
+=======
+  services.karabiner-elements.enable = false;
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
  
   services.yabai = {
     enable = true;
@@ -89,10 +93,14 @@
       focus_follows_mouse = "autoraise";
       mouse_follows_focus = "on";
       window_placement    = "second_child";
+<<<<<<< HEAD
       # requires scripting addition and disabled system integrity protection
       window_opacity      = "on";
       active_window_opacity = 1.0;
       normal_window_opacity = 0.5;
+=======
+      window_opacity      = "off";
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
       layout              = "bsp";
       top_padding         = 10;
       bottom_padding      = 10;
@@ -100,9 +108,15 @@
       right_padding       = 10;
       window_gap          = 10;
       # a pretty orange, notable border
+<<<<<<< HEAD
       active_window_border_color = "0xFFF77400";
       normal_window_border_color = "0x7f3535FF";
       window_border_width = 8;
+=======
+      active_window_border_color = "0xFFF7744A";
+      normal_window_border_color = "0x7f353535";
+      window_border_width = 4;
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
       window_border = "on";
     };
     extraConfig = ''
@@ -122,18 +136,29 @@
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
+<<<<<<< HEAD
       yabai -m rule --add app='Alacritty' manage=off grid=4:4:1:1:2:2 border=on
       yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
       yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
       # yabai -m rule --add app='Alacritty' manage=off grid=6:6:3:0:3:5 border=off
+=======
+      yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
+      yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
+      yabai -m rule --add app='Alacritty' manage=off grid=6:6:3:0:3:5 border=off
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
     '';
   };
  
   services.skhd = let
+<<<<<<< HEAD
     vStepSize = "200";
     hStepSize = "150";
     # TODO: try to access the previously set values instead of re-defining, or let-bind it
     homeDir = "/Users/thomas.peiselt";
+=======
+    vStepSize = "200" ;
+    hStepSize = "150";
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
   in {
     enable = true;
     skhdConfig = ''
@@ -148,6 +173,10 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
  
+<<<<<<< HEAD
+=======
+      rcmd - t : /Users/pi/bin/darwin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - 0x2C : yabai -m window --toggle split
  
@@ -182,10 +211,17 @@
       lctrl + rcmd - a : yabai -m window --resize left:-${vStepSize}:0  || yabai -m window --resize right:-${vStepSize}:0
       lctrl + rcmd - d : yabai -m window --resize left:${vStepSize}:0  || yabai -m window --resize right:${vStepSize}:0
  
+<<<<<<< HEAD
       lctrl + rcmd - 0x2B : ${homeDir}/bin/darwin/,y_float.fish 1:2:0:0:1:1
       lctrl + rcmd - 0x2F : ${homeDir}/bin/darwin/,y_float.fish 1:2:1:0:1:1
       lctrl + rcmd - c : ${homeDir}/bin/darwin/,y_float.fish 4:4:1:1:2:2
       lctrl + rcmd + shift - c : ${homeDir}/bin/darwin/,y_float.fish 6:6:1:1:4:4
+=======
+      lctrl + rcmd - 0x2B : /Users/pi/bin/darwin/,y_float.fish 1:2:0:0:1:1
+      lctrl + rcmd - 0x2F : /Users/pi/bin/darwin/,y_float.fish 1:2:1:0:1:1
+      lctrl + rcmd - c : /Users/pi/bin/darwin/,y_float.fish 4:4:1:1:2:2
+      lctrl + rcmd + shift - c : /Users/pi/bin/darwin/,y_float.fish 6:6:1:1:4:4
+>>>>>>> bbec325 ([nix/darwin] Make nix-darwin + home manager work again)
  
       rcmd - f : yabai -m window --toggle zoom-fullscreen
       rcmd + shift - f : yabai -m window --toggle zoom-parent
