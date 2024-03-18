@@ -18,8 +18,8 @@ in {
     EDITOR = "${editor}";
   };
 
-  home.username = "pi";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/pi" else "/home/pi";
+  home.username = "thomas.peiselt";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/thomas.peiselt" else "/home/pi";
 
   home.stateVersion = "22.05";
 
@@ -49,7 +49,7 @@ in {
     in with pkgSets; desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
 
   imports = [
-    (import ./fish.nix { pkgs = pkgs; editor = editor; })
+    # (import ./fish.nix { pkgs = pkgs; editor = editor; })
     ./alacritty.nix
     ./git.nix
     ./helix.nix
@@ -58,9 +58,9 @@ in {
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    ./zellij.nix
-    ./xsuspender.nix
-    ./unison.nix
+    # ./zellij.nix
+    # ./xsuspender.nix
+    # ./unison.nix
     ./touch.nix
   ];
 

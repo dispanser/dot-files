@@ -21,7 +21,6 @@ with pkgs; let
     entr
     zathura
     dmenu
-    mplayer
     pandoc
     eza delta ripgrep neovim fzf fd
     iftop
@@ -36,6 +35,7 @@ with pkgs; let
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else
     slack obsidian
+    mplayer
     pinentry
     simple-scan
     xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
