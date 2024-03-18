@@ -4,17 +4,6 @@
   home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
   programs.fish = {
     enable = true;
-    plugins = [
-      {
-        name = "dir-abbr-fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "rcoedo";
-          repo = "dir-abbr-fish";
-          rev = "f5757fa5e6a5b12cdd7868dfafa598b984658469";
-          sha256 = "18kdffa8dcyclg88zbvywbmxbkwf457rkdrmh0gwnr7ng1c3fy95";
-        };
-      }
-    ];
     shellAbbrs = let
       editor_abbrevations = if editor == "hx" then {
         ed    = "nvim -d"; # helix doesn't have diff mode AFAIK
