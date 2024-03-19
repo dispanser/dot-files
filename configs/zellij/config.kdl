@@ -1,0 +1,98 @@
+// default_layout "compact"
+theme "gruvbox-dark"
+
+keybinds {
+	normal clear-defaults=true {
+		bind "Ctrl b" { SwitchToMode "tmux"; }
+
+		bind "Alt h" { MoveFocusOrTab "Left"; }
+		bind "Alt l" { MoveFocusOrTab "Right"; }
+		bind "Alt j" { MoveFocus "Down"; }
+		bind "Alt k" { MoveFocus "Up"; }
+		bind "Alt =" { Resize "Increase"; Resize "Increase"; }
+		bind "Alt -" { Resize "Decrease"; Resize "Decrease"; }
+		bind "Alt o" { ToggleFloatingPanes; }
+		bind "Alt f" { TogglePaneEmbedOrFloating; }
+
+		bind "Alt 1" { GoToTab 1; }
+		bind "Alt 2" { GoToTab 2; }
+		bind "Alt 3" { GoToTab 3; }
+		bind "Alt 4" { GoToTab 4; }
+		bind "Alt 5" { GoToTab 5; }
+		bind "Alt 6" { GoToTab 6; }
+		bind "Alt 7" { GoToTab 7; }
+		bind "Alt 8" { GoToTab 8; }
+		bind "Alt 9" { GoToTab 9; }
+	}
+
+	tmux clear-defaults=true {
+		bind "Ctrl b" { SwitchToMode "Normal"; }
+		bind "Esc" { SwitchToMode "Normal"; }
+		bind "Enter" { SwitchToMode "Normal"; }
+
+		bind "Ctrl r" { SwitchToMode "Resize"; }
+		bind "Ctrl v" { SwitchToMode "Move"; }
+		bind "Ctrl s" { SwitchToMode "Scroll"; }
+		bind "Ctrl f" { SwitchToMode "Search"; }
+		bind "Ctrl e" { SwitchToMode "EnterSearch"; }
+		bind "Alt f" { TogglePaneFrames; SwitchToMode "Normal"; }
+		// bind "Ctrl p" { ToggleMouseMode; }
+
+		// bind "Ctrl e" { WriteChars "vi ."; Write 13; SwitchToMode "Normal"; }
+		// bind "Ctrl r" { WriteChars "kubie ctx"; Write 13; SwitchToMode "Normal"; }
+
+		bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+		bind "Ctrl d" { Detach; }
+
+		// this allows multiplexing inputs to all panes of a tab
+		// bind "Ctrl s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
+
+		bind "h" { MoveFocus "Left"; }
+		bind "l" { MoveFocus "Right"; }
+		bind "j" { MoveFocus "Down"; }
+		bind "k" { MoveFocus "Up"; }
+
+		bind "." { NewPane "Down"; SwitchToMode "Normal"; }
+		bind "/" { NewPane "Right"; SwitchToMode "Normal"; }
+
+		bind "t" { NewTab; SwitchToMode "Normal"; }
+		bind "c" { Clear; SwitchToMode "Normal"; }
+		bind "x" { CloseFocus; SwitchToMode "Normal"; }
+		bind "X" { CloseTab; SwitchToMode "Normal"; }
+		bind "Ctrl x" { Quit; }
+
+		bind "e" { EditScrollback; SwitchToMode "Normal"; }
+	}
+}
+
+themes {
+	// example of how to set a theme in RGB format
+ 	gruvbox-light {
+ 		fg 60 56 54
+        bg 251 82 75
+        black 40 40 40
+        red 205 75 69
+        green 152 151 26
+        yellow 215 153 33
+        blue 69 133 136
+        magenta 177 98 134
+        cyan 104 157 106
+        white 213 196 161
+        orange 214 93 14
+ 	}
+
+ 	// example of how to set a theme in HEX format
+ 	gruvbox-dark {
+ 		fg "#D5C4A1"
+ 		bg "#282828"
+ 		black "#3C3836"
+ 		red "#CC241D"
+ 		green "#98971A"
+ 		yellow "#D79921"
+ 		blue "#3C8588"
+ 		magenta "#B16286"
+ 		cyan "#689D6A"
+ 		white "#FBF1C7"
+ 		orange "#D65D0E"
+ 	}
+}
