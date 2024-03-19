@@ -54,6 +54,8 @@ keybinds {
 
 		bind "." { NewPane "Down"; SwitchToMode "Normal"; }
 		bind "/" { NewPane "Right"; SwitchToMode "Normal"; }
+		bind "n" { GoToNextTab; SwitchToMode "Normal"; }
+		bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
 
 		bind "t" { NewTab; SwitchToMode "Normal"; }
 		bind "c" { Clear; SwitchToMode "Normal"; }

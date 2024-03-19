@@ -113,17 +113,20 @@
       set --global --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --info=inline --pointer="▶" --marker="✗" --bind "?:toggle-preview"  --bind "ctrl-a:select-all"'
       # --bind "ctrl-y:execute-silent(echo {+} | xargs tmux setb)" --bind "ctrl-e:execute(echo {+} | xargs -o nvim)"
       # note that a later incarnation of this command overwrites everything, even unmentioned
-      fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
+      # TODO: restore. fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
-        fish_add_path --move $HOME/bin
-        fish_add_path --move $HOME/darwin/bin
-        fish_add_path --move $HOME/.cargo/bin
+        echo setting up darwin env: $HOME/bin {$HOME}/bin
+        fish_add_path --move {$HOME}/bin
+        fish_add_path --move {$HOME}/go/bin
+        fish_add_path --move {$HOME}/darwin/bin
+        fish_add_path --move {$HOME}/.cargo/bin
         for p in (string split " " $NIX_PROFILES)
           fish_add_path --prepend --move $p/bin
         end
-        # /opt/homebrew/bin/brew shellenv | source
+        /opt/homebrew/bin/brew shellenv | source
       '' else ''
+        echo setting up linux env
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
   };
