@@ -1,7 +1,7 @@
 { pkgs, editor, ... }:
 
 {
-  home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
+  # home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
   programs.fish = {
     enable = true;
     shellAbbrs = let

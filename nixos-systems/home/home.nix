@@ -48,8 +48,9 @@ in {
     let pkgSets =  import ./packages.nix pkgs;
     in with pkgSets; desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
 
+  programs.fish.enable = true;
   imports = [
-    # (import ./fish.nix { pkgs = pkgs; editor = editor; })
+    (import ./fish.nix { pkgs = pkgs; editor = editor; })
     ./alacritty.nix
     ./git.nix
     ./helix.nix

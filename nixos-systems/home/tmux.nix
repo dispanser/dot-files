@@ -3,7 +3,8 @@
   programs.tmux.tmuxinator.enable = true;
   programs.tmux = {
     enable        = true;
-    prefix        = "C-Space";
+    # prefix        = "C-Space";
+    prefix        = "C-f";
     sensibleOnTop = true;
     plugins = with pkgs; [
       tmuxPlugins.sensible
@@ -13,6 +14,7 @@
       {
         plugin = tmuxPlugins.tmux-thumbs;
         extraConfig = ''
+          bind C-Space send-prefix
           set -g @thumbs-key m
           # gives shorter hints closer to the curser; evaluate
           set -g @thumbs-reverse enabled
