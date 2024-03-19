@@ -13,9 +13,23 @@
     alacritty
     tmux
     openssh
-    docker-compose
   ];
  
+  homebrew = {
+    enable = true;
+    casks = [
+      "qutebrowser"
+    ];
+    brews = [
+      "golang"
+      "openssh"
+      "rustup"
+      "podman"
+      "podman-compose"
+      "podman-tui"
+    ];
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
