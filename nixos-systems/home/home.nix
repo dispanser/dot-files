@@ -41,7 +41,7 @@ in {
 
   programs.fish.enable = true;
   imports = [
-    # (import ./fish.nix { pkgs = pkgs; editor = editor; })
+    (import ./fish.nix { pkgs = pkgs; editor = editor; })
     ./alacritty.nix
     ./git.nix
     ./helix.nix
