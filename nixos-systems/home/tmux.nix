@@ -4,7 +4,6 @@
   programs.tmux = {
     enable        = true;
     prefix        = "C-Space";
-    # prefix        = "C-f";
     sensibleOnTop = true;
     plugins = with pkgs; [
       tmuxPlugins.sensible

@@ -2,3 +2,4 @@
 
 - firefox / surfingkeys: `https://raw.githubusercontent.com/dispanser/dot-files/main/configs/surfingkeys/.config/surfingkeys.js`
 - rustup component add rust-analyzer
+curl https://raw.githubusercontent.com/dispanser/dot-files/main/configs/surfingkeys/.config/surfingkeys.js
