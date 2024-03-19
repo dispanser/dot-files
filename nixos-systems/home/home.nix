@@ -50,7 +50,7 @@ in {
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    # ./zellij.nix
+    ./zellij.nix
     # ./xsuspender.nix
     # ./unison.nix
     ./touch.nix

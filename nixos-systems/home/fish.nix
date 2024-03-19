@@ -136,9 +136,6 @@
         # under test
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
-        # revisit: probably not needed anymore, can't remember - doesn't work on MacOS apparently
-        # ulimit -n 128800
-        # ulimit -u 8000
         set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
