@@ -13,6 +13,7 @@
       };
     }
   ];
+
   programs.fish = {
     enable = true;
     shellAbbrs = let
