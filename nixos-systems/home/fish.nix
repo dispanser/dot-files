@@ -2,6 +2,17 @@
 
 {
   # home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
+  programs.fish.plugins = [
+    {
+      name = "fzf-fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "PatrickF1";
+        repo = "fzf.fish";
+        rev = "dfdf69369bd3a3c83654261f90363da2aa1db8c9";
+        sha256 = "sha256-x/q7tlMlyxZ1ow2saqjuYn05Z1lPOVc13DZ9exFDWoU=";
+      };
+    }
+  ];
   programs.fish = {
     enable = true;
     shellAbbrs = let
@@ -103,20 +114,16 @@
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR ${editor}
-      set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
       set PROJECT_DIR ~/projects/$PROJECT
-      ulimit -n 128800
-      ulimit -u 8000
       # this is picked up by vim.
       set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
       set fzf_fd_opts --hidden --exclude=.git # for fzf.fish
       set --global --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --info=inline --pointer="▶" --marker="✗" --bind "?:toggle-preview"  --bind "ctrl-a:select-all"'
       # --bind "ctrl-y:execute-silent(echo {+} | xargs tmux setb)" --bind "ctrl-e:execute(echo {+} | xargs -o nvim)"
       # note that a later incarnation of this command overwrites everything, even unmentioned
-      # TODO: restore. fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
+      fzf_configure_bindings --git_status=\e\cg --git_log=\e\cl --directory=\co --processes=\e\cp
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
-        echo setting up darwin env: $HOME/bin {$HOME}/bin
         fish_add_path --move {$HOME}/bin
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
@@ -125,8 +132,13 @@
           fish_add_path --prepend --move $p/bin
         end
         /opt/homebrew/bin/brew shellenv | source
+        # under test
+        /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
-        echo setting up linux env
+        # revisit: probably not needed anymore, can't remember - doesn't work on MacOS apparently
+        # ulimit -n 128800
+        # ulimit -u 8000
+        set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
   };
