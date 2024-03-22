@@ -67,8 +67,9 @@ api.addSearchAlias('dhl', 'dhl paket', 'https://www.dhl.de/en/privatkunden/paket
 api.addSearchAlias('no', 'nixos options', 'https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=');
 api.addSearchAlias('yt', 'youtube', 'https://www.youtube.com/results?search_query=');
 api.addSearchAlias('sd', 'scala docs', 'http://www.scala-lang.org/api/current/scala/collection/immutable/List.html?search=');
-api.addSearchAlias('glr', 'gh rust', https://github.com/search?q=lang%3ARust+{}&type=code';
-api.addSearchAlias('gln', 'gh nix', 'https://github.com/search?q=lang%3ANix+{}&type=code'; api.addSearchAlias('gll', 'gh lua', 'https://github.com/search?q=lang%3ALua+{}&type=code';
+api.addSearchAlias('glr', 'gh rust', 'https://github.com/search?q=lang%3ARust+{}&type=code');
+api.addSearchAlias('gln', 'gh nix', 'https://github.com/search?q=lang%3ANix+{}&type=code');
+api.addSearchAlias('gll', 'gh lua', 'https://github.com/search?q=lang%3ALua+{}&type=code');
 
 settings.tabsThreshold = 3;
 settings.defaultSearchEngine = 'd';
