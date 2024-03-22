@@ -58,7 +58,7 @@ api.addSearchAlias('aur', 'arch user repo', 'https://aur.archlinux.org/packages/
 api.addSearchAlias('hg', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
 api.addSearchAlias('cg', 'cppref', 'https://duckduckgo.com/?sites=cppreference.com&ia=web&q=');
 api.addSearchAlias('crate', 'crates.io', 'https://crates.io/search?q={}');
-api.addSearchAlias('rd', 'rust docs', 'https://doc.rust-lang.org/std/option/enum.Option.html?search=');
+api.addSearchAlias('rg', 'rust docs', 'https://doc.rust-lang.org/std/option/enum.Option.html?search=');
 api.addSearchAlias('hack', 'hackage', 'https://hackage.haskell.org/package/');
 api.addSearchAlias('id', 'idealo', 'https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=');
 api.addSearchAlias('leo', 'dict', 'http://dict.leo.org/ende?search=');
@@ -67,6 +67,8 @@ api.addSearchAlias('dhl', 'dhl paket', 'https://www.dhl.de/en/privatkunden/paket
 api.addSearchAlias('no', 'nixos options', 'https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=');
 api.addSearchAlias('yt', 'youtube', 'https://www.youtube.com/results?search_query=');
 api.addSearchAlias('sd', 'scala docs', 'http://www.scala-lang.org/api/current/scala/collection/immutable/List.html?search=');
+api.addSearchAlias('glr', 'gh rust', https://github.com/search?q=lang%3ARust+{}&type=code';
+api.addSearchAlias('gln', 'gh nix', 'https://github.com/search?q=lang%3ANix+{}&type=code'; api.addSearchAlias('gll', 'gh lua', 'https://github.com/search?q=lang%3ALua+{}&type=code';
 
 settings.tabsThreshold = 3;
 settings.defaultSearchEngine = 'd';
