@@ -1,7 +1,7 @@
 require('telescope').setup {
   defaults = {
     cache_picker = {
-      num_pickers = 10,
+      num_pickers = 20,
     },
     layout_config = {
       vertical = { width = 0.7 }
