@@ -6,6 +6,7 @@
     ./openssh.nix
   ];
 
+  services.clipcat.enable = true;
   services.ddccontrol.enable = true;
   services.fstrim.enable = true;
 
@@ -102,8 +103,8 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     packages = with pkgs; [
-      nerdfonts
       inconsolata
+      nerdfonts
       ubuntu_font_family
       anonymousPro
       dejavu_fonts
