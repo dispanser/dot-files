@@ -17,16 +17,20 @@
  
   homebrew = {
     enable = true;
+    onActivation.cleanup = "zap";
     casks = [
       "qutebrowser"
+      "docker"
+      "pritunl"
+      "postman"
+      "obsidian"
+      "notion"
     ];
     brews = [
+      "awscli"
       "golang"
       "openssh"
-      "rustup"
-      "podman"
-      "podman-compose"
-      "podman-tui"
+      "docker-compose"
     ];
   };
 

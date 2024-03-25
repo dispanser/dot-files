@@ -44,7 +44,7 @@
     eza delta
     restic unison
     ripgrep
-    neovim marksman
+    neovim
     dialog
     patchelf
     wget

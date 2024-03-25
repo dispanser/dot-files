@@ -28,9 +28,11 @@ with pkgs; let
   ];
   develPkgs = [
     zig
+    marksman
     watchexec
     ctags
     sloc
+    zellij
   ];
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else
