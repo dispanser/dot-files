@@ -85,7 +85,10 @@
       focus_follows_mouse = "autoraise";
       mouse_follows_focus = "on";
       window_placement    = "second_child";
-      window_opacity      = "off";
+      # requires scripting addition and disabled system integrity protection
+      window_opacity      = "on";
+      active_window_opacity = 1.0;
+      normal_window_opacity = 0.5;
       layout              = "bsp";
       top_padding         = 10;
       bottom_padding      = 10;
@@ -93,9 +96,9 @@
       right_padding       = 10;
       window_gap          = 10;
       # a pretty orange, notable border
-      active_window_border_color = "0xFFF7744A";
-      normal_window_border_color = "0x7f353535";
-      window_border_width = 4;
+      active_window_border_color = "0xFFF77400";
+      normal_window_border_color = "0x7f3535FF";
+      window_border_width = 8;
       window_border = "on";
     };
     extraConfig = ''
@@ -115,6 +118,7 @@
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
+      yabai -m rule --add app='Alacritty' manage=off grid=4:4:1:1:2:2 border=off
       yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
       yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
       # yabai -m rule --add app='Alacritty' manage=off grid=6:6:3:0:3:5 border=off
@@ -140,7 +144,7 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
  
-      rcmd - t : /Users/pi/bin/darwin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
+      rcmd - t : ${homeDir}/bin/darwin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - 0x2C : yabai -m window --toggle split
  
@@ -202,14 +206,17 @@
       # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
       rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
  
-      # rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish Slack
       rcmd + rctrl - c : ${homeDir}/bin/darwin/,y_focus.fish Calendar
       rcmd + rctrl - m : ${homeDir}/bin/darwin/,y_focus.fish Mail
-      rcmd - b : ${homeDir}/bin/darwin/,y_focus.fish "Google Chrome"
-      rcmd - i : ${homeDir}/bin/darwin/,y_focus.fish "IntelliJ IDEA"
+      rcmd - b : ${homeDir}/bin/darwin/,y_focus.fish "Firefox"
+      rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
       rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
       # TODO: slack + obsidian bindings!
+      rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish Obsidian /Applications/Obsidian.app/Contents/MacOS/Obsidian global
       rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tmux_overlay
+
+      # typing
+      fn - t : ${homeDir}/bin/darwin/,type_keys thomas.peiselt@coralogix.com
     '';
   };
 }
