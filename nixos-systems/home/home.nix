@@ -136,6 +136,10 @@ in {
         filter_mode_shell_up_key_binding = "directory";
         dialect = "uk";
         update_check = false;
+        show_preview = true;
+        max_preview_height = 4;
+        show_help = true;
+        # cwd_filter = [ "${HOME}/projects/scratch" ];
       };
     };
     zoxide.enable = true;
