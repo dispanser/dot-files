@@ -76,7 +76,7 @@
       gcm  = "git branch | rg main && git switch main || git switch master";
       tree = "eza -Tl --git";
       ls   = "eza --git";
-      lt   = "ls -t modified";
+      lt   = "ls -l --sort newest";
       l    = "ls -laF";
       ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
