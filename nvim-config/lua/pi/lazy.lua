@@ -14,7 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ' '  -- 'vim.g' sets global variables
-vim.g.maplocalleader = ','  -- 'vim.g' sets global variables
+-- used to be ',', but that clashes with flash.nvim <previous> somehow,
+-- and we also currently don't define any mapping utilizing `<LocalLeader>`
+vim.g.maplocalleader = ' '  -- 'vim.g' sets global variables
 
 require('lazy').setup('plugins')
 
@@ -22,12 +24,3 @@ vim.cmd [[
   colorscheme gruvbox
 ]]
 
-
--- to be configured separately (have their own config):
-  -- use 'svermeulen/vim-yoink'
-  --
-
--- skipped (not deemeed useful enough):
--- use 'tmux-plugins/vim-tmux'
--- use 'mfussenegger/nvim-dap'
--- use 'mfussenegger/nvim-jdtls'
