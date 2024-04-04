@@ -81,7 +81,7 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
  
-  services.karabiner-elements.enable = false;
+  services.karabiner-elements.enable = true;
  
   services.yabai = {
     enable = true;
@@ -122,7 +122,7 @@
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
-      yabai -m rule --add app='Alacritty' manage=off grid=4:4:1:1:2:2 border=off
+      yabai -m rule --add app='Alacritty' manage=off grid=4:4:1:1:2:2 border=on
       yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
       yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
       # yabai -m rule --add app='Alacritty' manage=off grid=6:6:3:0:3:5 border=off
@@ -148,7 +148,6 @@
       rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
       rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
  
-      rcmd - t : ${homeDir}/bin/darwin/,y_focus_or_create_local.fish Alacritty ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
       rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
       rcmd - 0x2C : yabai -m window --toggle split
  
@@ -213,14 +212,17 @@
       rcmd + rctrl - c : ${homeDir}/bin/darwin/,y_focus.fish Calendar
       rcmd + rctrl - m : ${homeDir}/bin/darwin/,y_focus.fish Mail
       rcmd - b : ${homeDir}/bin/darwin/,y_focus.fish "Firefox"
+      rcmd - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
+
       rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
       rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
       # TODO: slack + obsidian bindings!
       rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish Obsidian /Applications/Obsidian.app/Contents/MacOS/Obsidian global
-      rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tmux_overlay
+      rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tpx
+      rcmd - t : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty main >> /tmp/tpx
 
       # typing
-      fn - t : ${homeDir}/bin/darwin/,type_keys thomas.peiselt@coralogix.com
+      fn - t : ${pkgs.skhd}/bin/skhd -t "thomas.peiselt@coralogix.com"
     '';
   };
 }
