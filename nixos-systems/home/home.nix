@@ -118,7 +118,7 @@ in {
         dialect = "uk";
         update_check = false;
         show_preview = true;
-        max_preview_height = 4;
+        max_preview_height = 10;
         show_help = true;
         # cwd_filter = [ "${HOME}/projects/scratch" ];
       };
