@@ -98,13 +98,18 @@
     HandlePowerKey=ignore
   '';
 
+  # nix shell with fido2luks
+  # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
+  # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
+  # regular pass + new salt + touch key
   boot = {
     initrd.luks = {
-      fido2Support = false;
+      fido2Support = true;
       devices = {
         x12 = {
           preLVM = true;
           device = "/dev/disk/by-uuid/7abb4543-a901-4b40-bcd9-1f68b7faa249";
+          fido2.credential = "0d05ca72aa2dd7ebba29a6467eef6bed84fbcd94cd34da3cff7c8dbaf3ee2d6e";
         };
       };
     }; 
@@ -126,6 +131,8 @@
   '';
 
   networking = {
+
+    enableIPv6 = false;
     usePredictableInterfaceNames = false;
     hostName        = "x12";
     wireless = {
