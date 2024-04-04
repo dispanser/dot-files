@@ -32,8 +32,6 @@ https://github.com/kitagry/dotfiles/blob/4fe3af3288d40f296a782971080b7b8cb43a36d
 
 ## Improve already in use
 
-- [diffview](https://github.com/sindrets/diffview.nvim): also supports file history: 
-  - the diff looks beautiful, I want that as well :-) (green / red)
 - [telescope-lsp-handlers](https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim): use telescope for "normal" lsp-related actions, no need for telescope-specific mappings
 
 ## For Inspiration

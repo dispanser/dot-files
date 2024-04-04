@@ -24,8 +24,6 @@ end
 
 -- map the leader key
 vim.keymap.set('n', '<Space>', '', {})
-vim.g.mapleader = ' '  -- 'vim.g' sets global variables
-vim.g.maplocalleader = ','  -- 'vim.g' sets global variables
 
 -- file mappings
 nnoremap('<leader>fs', ':w<cr>', "file save")

@@ -7,11 +7,10 @@ return {
         require("bufresize").setup()
     end,
   },
-  -- keys defined in remaps because of lack of description
   { 'moll/vim-bbye',
     keys = {
         { '<leader>bc', ':Bdelete<cr>', desc = "close file shown in buffer" },
-        { '<leader>bw', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
+        { '<leader>bx', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
       },
   },
   { 'flazz/vim-colorschemes',
@@ -47,7 +46,17 @@ return {
   'christoomey/vim-tmux-navigator',
   'nvim-tree/nvim-web-devicons',
   'tpope/vim-commentary',
-  'tpope/vim-surround',
+  -- 'tpope/vim-surround',
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  },
   'tpope/vim-repeat',
   'tpope/vim-unimpaired',
   { 'blueyed/vim-diminactive',

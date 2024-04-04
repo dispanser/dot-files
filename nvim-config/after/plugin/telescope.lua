@@ -61,6 +61,10 @@ n('<leader>gt', builtin.git_branches, "git branches")
 
 n('<leader>bb', builtin.buffers, "buffer list")
 n('<leader>b/', builtin.current_buffer_fuzzy_find, "search current buffer")
+n('<leader>bw', function()
+  builtin.current_buffer_fuzzy_find { default_text = vim.fn.expand("<cword>") }
+end, "search word in buffer")
+
 n('<leader>/', builtin.current_buffer_fuzzy_find, "search current buffer")
 n('<leader>?', builtin.live_grep, "search entire project")
 
