@@ -1,3 +1,0 @@
-#!/usr/bin/env fish
-
-echo  "tell application \"System Events\" to keystroke \"$argv\"" | osascript
