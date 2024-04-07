@@ -1,20 +1,3 @@
-require('telescope').setup {
-  defaults = {
-    cache_picker = {
-      num_pickers = 20,
-    },
-    layout_config = {
-      vertical = { width = 0.7 }
-      -- other layout configuration here
-    },
-    pickers = {
-      find_files = {
-        find_command="rg,--ignore,--hidden,--files prompt_prefix=🔍"
-      }
-    },
-  },
-}
-
 local function n(key, action, desc)
   vim.keymap.set('n', key, action, { desc = desc })
 end
