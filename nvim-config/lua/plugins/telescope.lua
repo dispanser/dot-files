@@ -24,7 +24,7 @@ return {
         },
         pickers = {
           find_files = {
-            find_command="rg,--ignore,--files prompt_prefix=🔍"
+            find_command="rg,--ignore,--hidden,--files prompt_prefix=🔍"
           }
         },
       },
