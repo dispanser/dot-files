@@ -116,6 +116,21 @@
           }
         ];
       };
+      ryzera = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./ryzera.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              hasTouchScreen = true;
+            };
+            home-manager.users.pi = import ./home/home.nix;
+          }
+        ];
+      };
       epiphanix = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
