@@ -6,6 +6,9 @@ return {
   },
   config = function()
     require('neoclip').setup({
+      -- needs some special treatment, complains about missing libsqlite3.so
+      -- nix-shell with sqlite is not enough.
+      enable_persistent_history = false,
       keys = {
         -- mostly defaults, changed "paste" to get expected C-n / C-p behavior 
         telescope = {
