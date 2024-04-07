@@ -2,7 +2,7 @@
 {
   # programs.tmux.tmuxinator.enable = true;
   programs.zellij = {
-    enable = true;
+    enable = false;
     enableFishIntegration = true;
     # settings = {
     #   theme = "catppuccin-frappe";
