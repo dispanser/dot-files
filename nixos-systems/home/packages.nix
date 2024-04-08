@@ -12,6 +12,7 @@ with pkgs; let
     google-cloud-sdk
     rclone
     rsync
+    coreutils
   ];
   desktopPkgs = [
     any-nix-shell
