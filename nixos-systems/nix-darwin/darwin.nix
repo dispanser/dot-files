@@ -25,6 +25,7 @@
       "postman"
       "obsidian"
       "notion"
+      "signal"
     ];
     brews = [
       "awscli"
@@ -124,6 +125,7 @@
       yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
       yabai -m rule --add app='Alacritty' manage=off grid=4:4:1:1:2:2 border=off
       yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
+      yabai -m rule --add app='Signal' manage=off grid=6:6:1:1:4:4 border=off
       yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
     '';
   };
@@ -214,6 +216,7 @@
       rcmd - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
 
       rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
+      rcmd + shift - m : ${homeDir}/bin/darwin/,y_focus.fish "Signal"
       rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
       # TODO: slack + obsidian bindings!
       rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish Obsidian /Applications/Obsidian.app/Contents/MacOS/Obsidian global
