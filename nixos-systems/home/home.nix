@@ -33,6 +33,9 @@ in {
       recursive = true;
       enable = lib.mkIf pkgs.stdenv.isDarwin true;
     };
+    ".xbindkeysrc" = {
+      source = ../../configs/xbindkeys/rc;
+    };
   };
 
   home.packages =
@@ -68,6 +71,16 @@ in {
   # TBD - this is not perfect because it doesn't allow for actually editing these files
   xdg.configFile.nvim = {
     source = ../../nvim-config;
+    recursive = true;
+  };
+
+  xdg.configFile.xmonad = {
+    source = ../../xmonad-config/xmonad;
+    recursive = true;
+  };
+
+  xdg.configFile."xmonad/lib" = {
+    source = ../../xmonad-config/src;
     recursive = true;
   };
 

@@ -1,0 +1,87 @@
+# theme switcher
+
+"echo -n | xsel -n -i; pkill xbindkeys; xdotool click 2; xbindkeys"
+  b:2 + Release
+
+"$HOME/bin/theme.sh dark"
+  Control+Alt + d
+
+"$HOME/bin/theme.sh light"
+  Control+Alt + l
+
+# audio controls
+"ponymix increase 5"
+  XF86AudioRaiseVolume 
+"ponymix decrease 5"
+  XF86AudioLowerVolume 
+"ponymix toggle"
+  XF86AudioMute
+"ponymix --source toggle"
+  XF86AudioMicMute
+
+
+"ponymix --source toggle"
+  XF86Display
+
+# brightness controls
+"light -A 5"
+  XF86MonBrightnessUp
+"light -U 5"
+  XF86MonBrightnessDown
+
+# suspend and hibernate
+"/home/pi/bin/hibernate"
+  Mod4+h
+"systemctl suspend"
+  Mod4+s
+
+"$HOME/bin/xrandr.sh undock"
+  Mod4+i
+"$HOME/bin/xrandr.sh ext"
+  Mod4+d
+"$HOME/bin/xrandr.sh dock"
+  Mod4+b
+"/home/pi/bin/screenshot.sh"
+  Print
+
+# remapping: window+[vim movement keys] to do the right thing.
+# note the "keyup" as part of the key combination: it's to make sure that the
+# key pressed is not conflated with the key sent, see https://askubuntu.com/a/1136052
+"xdotool keyup h key --clearmodifiers Left"
+  Mod4+h
+"xdotool keyup j key --clearmodifiers Down"
+  Mod4+j
+"xdotool keyup k key --clearmodifiers Up"
+  Mod4+k
+"xdotool keyup l key --clearmodifiers Right"
+  Mod4+l
+
+# global binds: inserting strings
+"xdotool keyup e type --clearmodifiers --delay 1 @kulturguerilla.org"
+  Mod4+e
+
+"light -S 10"
+    Mod5+1
+"light  -S 20"
+    Mod5+2
+"light -S 30"
+    Mod5+3
+"light -S 40"
+    Mod5+4
+"light -S 50"
+    Mod5+5
+"light -S 60"
+    Mod5+6
+"light -S 70"
+    Mod5+7
+"light -S 80"
+    Mod5+8
+"light -S 90"
+    Mod5+9
+"light -S 100"
+    Mod5+0
+
+"setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch -option terminate:ctrl_alt_bksp"
+    Mod4+x
+"setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch -option terminate:ctrl_alt_bksp"
+    Control+Alt + x
