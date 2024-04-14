@@ -34,7 +34,13 @@ in {
       enable = lib.mkIf pkgs.stdenv.isDarwin true;
     };
     ".xbindkeysrc" = {
+      enable = lib.mkIf pkgs.stdenv.isLinux true;
       source = ../../configs/xbindkeys/rc;
+    };
+    ".unison" = {
+      enable = lib.mkIf pkgs.stdenv.isLinux true;
+      source = ../../configs/unison;
+      recursive = true;
     };
   };
 
