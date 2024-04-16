@@ -9,6 +9,9 @@ n('<leader>pf', builtin.find_files, "find project files")
 n('<leader>pF', function() builtin.find_files({ hidden = true, no_ignore_parent = true}) end, "find project files, include hidden / ignored")
 n('<leader>pg', builtin.git_files, "git project files")
 n('<leader>p/', builtin.live_grep, "search project")
+n('<leader>pt', function()
+  builtin.live_grep { default_text = 'twh;' }
+end, "search my tag in project")
 n('<leader>pW', builtin.grep_string, "search word in project")
 n('<leader>pw', function() builtin.grep_string({ word_match = '-w' }) end , "search exact word in project")
 
@@ -47,6 +50,9 @@ n('<leader>b/', builtin.current_buffer_fuzzy_find, "search current buffer")
 n('<leader>bw', function()
   builtin.current_buffer_fuzzy_find { default_text = vim.fn.expand("<cword>") }
 end, "search word in buffer")
+n('<leader>bt', function()
+  builtin.current_buffer_fuzzy_find { default_text = 'twh;' }
+end, "search my tag in buffer")
 
 n('<leader>/', builtin.current_buffer_fuzzy_find, "search current buffer")
 n('<leader>?', builtin.live_grep, "search entire project")
