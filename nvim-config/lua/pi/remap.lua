@@ -31,6 +31,7 @@ nnoremap('<leader>fq', ':wq<cr>', "file save + quit")
 nnoremap('<leader>fa', ':wall<cr>', "file save all")
 nnoremap('<leader>qq', ':wqa<cr>', "file save + quit all")
 nnoremap('<leader><Tab>', '<C-^>', "switch to alternate buffer")
+nnoremap('<leader>fmi', function() vim.o.foldmethod='indent' end, "fold method: indent");
 
 -- buffer mappings
 nnoremap('<leader>bd', ':close<cr>', "close buffer")
