@@ -80,7 +80,7 @@
     #       bind-key -n C-M-] paste
     #       bind-key -n C-M-p copy-mode \; send-keys -X search-backward "╰─" \; send-keys -l n
     #       bind-key -n C-M-r copy-mode \; send-keys -X search-backward "Compiling"
-    #       bind-key -n C-M-o copy-mode \; send-keys -X search-backward "twh\\\;"
+    #       bind-key -n C-M-o copy-mode \; send-keys -X search-backward "tyx/"
     #       bind-key -n C-M-e copy-mode \; send-keys -X search-backward "FAILED"
 
     #       bind -n M-§ select-window -t :=0
