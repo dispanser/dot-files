@@ -33,6 +33,15 @@ in {
       recursive = true;
       enable = lib.mkIf pkgs.stdenv.isDarwin true;
     };
+    ".xbindkeysrc" = {
+      enable = lib.mkIf pkgs.stdenv.isLinux true;
+      source = ../../configs/xbindkeys/rc;
+    };
+    ".unison" = {
+      enable = lib.mkIf pkgs.stdenv.isLinux true;
+      source = ../../configs/unison;
+      recursive = true;
+    };
   };
 
   home.packages =
@@ -50,9 +59,6 @@ in {
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    # ./zellij.nix
-    # ./xsuspender.nix
-    # ./unison.nix
     ./touch.nix
   ];
 
@@ -69,6 +75,16 @@ in {
   # TBD - this is not perfect because it doesn't allow for actually editing these files
   xdg.configFile.nvim = {
     source = ../../nvim-config;
+    recursive = true;
+  };
+
+  xdg.configFile.xmonad = {
+    source = ../../xmonad-config/xmonad;
+    recursive = true;
+  };
+
+  xdg.configFile."xmonad/lib" = {
+    source = ../../xmonad-config/src;
     recursive = true;
   };
 

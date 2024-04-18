@@ -103,7 +103,7 @@ return {
 	{ 'tpope/vim-fugitive', lazy = false },
   { 'mbbill/undotree',
     keys = {
-      { '<leader>tu', vim.cmd.UndotreeToggle, desc = "toggle undo tree" },
+      { '<leader>tU', vim.cmd.UndotreeToggle, desc = "toggle undo tree" },
     },
     lazy = true,
   },

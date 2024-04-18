@@ -1,0 +1,4 @@
+include common
+
+root=/home/pi
+root=/mnt/home/pi

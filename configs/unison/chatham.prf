@@ -1,0 +1,8 @@
+include common
+
+root=/home/pi
+root=ssh://chatham//home/pi
+path = wip
+path = src
+path = personal
+path = .password-store

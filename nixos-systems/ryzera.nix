@@ -104,7 +104,7 @@
   # regular pass + new salt + touch key
   boot = {
     initrd.luks = {
-      fido2Support = true;
+      fido2Support = false;
       devices = {
         ryzera = {
           preLVM = true;
