@@ -28,7 +28,6 @@ import           XMonad.Actions.FloatSnap            (Direction2D (..),
 import           XMonad.Actions.GridSelect           (bringSelected,
                                                       goToSelected)
 import           XMonad.Actions.Promote              (promote)
-import           XMonad.Actions.SinkAll              (sinkAll)
 import           XMonad.Actions.Submap               (submap)
 import           XMonad.Actions.TagWindows           (addTag, delTag,
                                                       focusUpTagged, hasTag)
@@ -263,7 +262,6 @@ myLayoutHook =
 windowSubmap :: M.Map ( ButtonMask, KeySym ) ( X () )
 windowSubmap = M.fromList
   [ ( (0, xK_s),         withFocused $ windows . W.sink)
-  , ( (shiftMask, xK_s), sinkAll)
   , ( (0, xK_f),         withFocused float)
   , ( (0, xK_l),         sendMessage NextLayout)
   , ( (shiftMask, xK_l), sendMessage $ G.ToFocused $ SomeMessage NextLayout)
