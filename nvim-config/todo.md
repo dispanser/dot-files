@@ -14,7 +14,6 @@
      - [available adapters](https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/)
      - all the stuff you'd hope for, except for a scala-specific one (doh!)
   - [nvim-treehopper](https://github.com/mfussenegger/nvim-treehopper): navigate via treesitter AST
-  - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
   - [nvim-textsubjects](https://github.com/RRethy/nvim-treesitter-textsubjects)
 - [mini.ai](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md) textobjects with continuous expansion
   - e.g., hitting a) multiple times expands the selection to more outer parens
