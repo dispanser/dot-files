@@ -65,8 +65,29 @@ return {
     },
     lazy = false,
   },
-	{ 'machakann/vim-swap', lazy = false },
-	{ 'simrat39/rust-tools.nvim', lazy = true },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter'
+    },
+    config = function()
+      require('neotest').setup {
+        -- ...,
+        adapters = {
+          -- ...,
+          require('rustaceanvim.neotest')
+        },
+      }
+    end
+  },
 	{ 'ray-x/lsp_signature.nvim', lazy = false,
     init = function()
       require "lsp_signature".setup({
@@ -136,9 +157,27 @@ return {
     end,
     dependencies = { {"nvim-tree/nvim-web-devicons"} }
   },
+
+  { "rcarriga/nvim-dap-ui", 
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+    config = function()
+      require("dapui").setup()
+    end,
+    keys = {
+      { '<leader>cu', function() require('dapui').toggle() end, desc = "[dap] toggle ui" },
+    },
+  },
+  { "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "nvim-lua/plenary.nvim"  },
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end,
+  },
   {
     'mfussenegger/nvim-dap',
-    dependencies = { { "nvim-lua/plenary.nvim"  } },
+    dependencies = {
+      { "nvim-lua/plenary.nvim"  },
+    },
   },
   {
     'dhruvasagar/vim-table-mode',
