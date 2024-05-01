@@ -33,6 +33,14 @@ nnoremap('<leader>fq', ':wq<cr>', "file save + quit")
 nnoremap('<leader>fa', ':wall<cr>', "file save all")
 nnoremap('<leader>qq', ':wqa<cr>', "file save + quit all")
 nnoremap('<leader><Tab>', '<C-^>', "switch to alternate buffer")
+nnoremap('<leader>fmi', function() vim.opt.foldmethod='indent' end, "fold method: indent");
+nnoremap('<leader>fmt', function()
+  vim.opt.foldmethod = 'expr'
+  vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
+end, "fold method: treesitter");
+nnoremap('z1', function() vim.opt.foldlevel = 1 end, 'fold level 1')
+nnoremap('z2', function() vim.opt.foldlevel = 2 end, 'fold level 2')
+nnoremap('z3', function() vim.opt.foldlevel = 3 end, 'fold level 3')
 
 -- buffer mappings
 nnoremap('<leader>bd', ':close<cr>', "close buffer")
