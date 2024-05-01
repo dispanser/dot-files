@@ -4,5 +4,4 @@ root=/home/pi
 root=ssh://tiny//home/data/sync/home/pi/
 path = projects
 path = src
-path = personal
 path = .password-store
