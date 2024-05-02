@@ -13,6 +13,7 @@
       {
         plugin = tmuxPlugins.tmux-thumbs;
         extraConfig = ''
+          bind C-Space send-prefix
           set -g @thumbs-key m
           # gives shorter hints closer to the curser; evaluate
           set -g @thumbs-reverse enabled
@@ -71,11 +72,12 @@
           bind-key -n C-M-] paste
           bind-key -n C-M-p copy-mode \; send-keys -X search-backward "╰─" \; send-keys -l n
           bind-key -n C-M-r copy-mode \; send-keys -X search-backward "Compiling"
-          bind-key -n C-M-o copy-mode \; send-keys -X search-backward "twh\\\;"
+          bind-key -n C-M-o copy-mode \; send-keys -X search-backward "tyx/"
           bind-key -n C-M-e copy-mode \; send-keys -X search-backward "FAILED"
 
           bind -n M-§ select-window -t :=0
           bind -n M-` select-window -t :=0
+          bind -n M-Tab select-window -t :=0
           bind -n M-0 select-window -t :=0
           bind -n M-1 select-window -t :=1
           bind -n M-2 select-window -t :=2

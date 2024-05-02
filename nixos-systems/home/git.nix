@@ -20,7 +20,7 @@
     };
 
     ignores = [
-      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.tp/target_cli" "/.devenv/"
+      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.devenv/" "/.tp/"
     ];
 
     extraConfig = {

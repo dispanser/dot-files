@@ -1,1 +1,1 @@
-inoremap ffp logging.info(f"twh;\n");<C-O>T;
+inoremap ffp logging.info(f"tyx/\n");<C-O>T;

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   programs.qutebrowser = {
-    enable = lib.mkIf pkgs.stdenv.isLinux true;
+    enable = true;
     enableDefaultBindings = true; # Default
     extraConfig = ''
         config.unbind('<ctrl-p>')
@@ -56,7 +56,9 @@
         session = true;
         interval = 60000;
       };
-      editor.command = [ "kitty" "--name" "browser-edit" "-e" "nvim" "{}" ];
+      editor.command = [ "${pkgs.alacritty}/bin/alacritty"] ++
+        [(if pkgs.stdenv.isDarwin then "--title" else "--name")] ++
+        [ "browser-edit" "-e" "${pkgs.neovim}/bin/nvim" "+call cursor({line}, {column})" "--" "{file}" ];
       scrolling.smooth = true;
     };
     keyBindings = {

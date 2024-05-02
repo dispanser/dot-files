@@ -1,3 +1,3 @@
 setlocal commentstring=//\ %s
 
-inoremap ffp fmt::print(stderr, "twh;\n");<C-O>T;
+inoremap ffp fmt::print(stderr, "tyx/\n");<C-O>T;

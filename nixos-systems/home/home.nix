@@ -18,8 +18,8 @@ in {
     EDITOR = "${editor}";
   };
 
-  home.username = "pi";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/pi" else "/home/pi";
+  home.username = if pkgs.stdenv.isDarwin then "thomas.peiselt" else "pi";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/thomas.peiselt" else "/home/pi";
 
   home.stateVersion = "22.05";
 
@@ -48,6 +48,7 @@ in {
     let pkgSets =  import ./packages.nix pkgs;
     in with pkgSets; desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
 
+  programs.fish.enable = true;
   imports = [
     (import ./fish.nix { pkgs = pkgs; editor = editor; })
     ./alacritty.nix
@@ -58,9 +59,9 @@ in {
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    ./zellij.nix
-    ./xsuspender.nix
-    ./unison.nix
+    # ./zellij.nix
+    # ./xsuspender.nix
+    # ./unison.nix
     ./touch.nix
   ];
 
@@ -135,6 +136,10 @@ in {
         filter_mode_shell_up_key_binding = "directory";
         dialect = "uk";
         update_check = false;
+        show_preview = true;
+        max_preview_height = 10;
+        show_help = true;
+        # cwd_filter = [ "${HOME}/projects/scratch" ];
       };
     };
     zoxide.enable = true;

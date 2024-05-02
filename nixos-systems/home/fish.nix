@@ -103,10 +103,6 @@
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR ${editor}
-      set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
-      set PROJECT_DIR ~/projects/$PROJECT
-      ulimit -n 128800
-      ulimit -u 8000
       # this is picked up by vim.
       set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
       set fzf_fd_opts --hidden --exclude=.git # for fzf.fish
@@ -116,14 +112,19 @@
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
-        fish_add_path --move $HOME/bin
-        fish_add_path --move $HOME/darwin/bin
-        fish_add_path --move $HOME/.cargo/bin
+        fish_add_path --move {$HOME}/bin
+        fish_add_path --move {$HOME}/go/bin
+        fish_add_path --move {$HOME}/darwin/bin
+        fish_add_path --move {$HOME}/.cargo/bin
         for p in (string split " " $NIX_PROFILES)
           fish_add_path --prepend --move $p/bin
         end
-        # /opt/homebrew/bin/brew shellenv | source
+        /opt/homebrew/bin/brew shellenv | source
+        # under test
+        /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
+      set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
+      set PROJECT_DIR ~/projects/$PROJECT
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
   };

@@ -25,9 +25,13 @@
          };
          size = fontSize;
        };
+       window = {
+         option_as_alt = "OnlyLeft";
+         decorations = "None";
+       };
        keyboard.bindings = [
          # not a mistake - mapping the key multiple times triggers the action
-         # more than onc: https://github.com/alacritty/alacritty/issues/5405
+         # more than once: https://github.com/alacritty/alacritty/issues/5405
          { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
          { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
          { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }

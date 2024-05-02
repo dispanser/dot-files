@@ -16,6 +16,10 @@
 #   - what about `stack-index` from window info?
 # - if it's the only window, 
 
+# TODO: try to identify windows based on their title 
+#   - seems to work for tmux inside alacritty
+#
+
 if [ $argv[3] = 'local' ];
 	echo space-local operations
 	set per_space '--space'
