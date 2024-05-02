@@ -115,7 +115,6 @@
     interactiveShellInit = ''
       fish_hybrid_key_bindings
       set -x EDITOR ${editor}
-      set PROJECT_DIR ~/projects/$PROJECT
       # this is picked up by vim.
       set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
       set fzf_fd_opts --hidden --exclude=.git # for fzf.fish
@@ -137,6 +136,7 @@
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
         set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
+        set PROJECT_DIR ~/projects/$PROJECT
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
   };
