@@ -18,7 +18,7 @@ in {
     EDITOR = "${editor}";
   };
 
-  home.username = "thomas.peiselt";
+  home.username = if pkgs.stdenv.isDarwin then "thomas.peiselt" else "pi";
   home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/thomas.peiselt" else "/home/pi";
 
   home.stateVersion = "22.05";
