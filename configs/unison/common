@@ -21,6 +21,7 @@ ignore = Name .qute/data
 ignore = Name .qute/cache
 ignore = Name *.log
 ignore = Name .direnv
+ignore = Name .devenv
 ignore = Name .qute/runtime
 ignore = Name .firefox/cache2
 ignore = Name .firefox/storage
