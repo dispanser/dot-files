@@ -1,8 +1,0 @@
-include common
-
-root=/home/pi
-root=/fs/hetzner/01/home-backup/
-path = projects
-path = src
-path = personal
-path = .password-store

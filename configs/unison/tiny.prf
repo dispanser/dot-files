@@ -1,9 +1,0 @@
-include common
-
-root=/home/pi
-root=ssh://tiny//home/pi
-path = .mail
-path = projects
-path = src
-path = personal
-path = .password-store
