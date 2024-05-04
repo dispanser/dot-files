@@ -144,7 +144,7 @@ myManageHook = composeAll (catMaybes $ S.hook <$> scratches)
   , className =?           "R_x11"                --> addTagHook "i"
   , className =?           "URxvt"                --> addTagHook "u"
   , className =?           "kitty"                --> addTagHook "u"
-  , className =?           "Alacritty"            --> addTagHook "u"
+  , appName   =?           "Alacritty"            --> addTagHook "u"
   , className =?           "Spotify"              --> doRectFloat rightBarRect
   , appName   =?           "browser-edit"         --> doRectFloat lowerRightRect
   ]
@@ -345,7 +345,6 @@ myMainKeys =
   , ( (myModMask,               xK_semicolon), S.triggerScratch S.projectBrowser')
   , ( (myShiftMask,             xK_semicolon), S.triggerScratch S.projectChromium)
   , ( (myAltMask,               xK_semicolon), S.triggerScratch S.projectFirefox)
-  , ( (myShiftMask,             xK_c),         S.triggerScratch S.projectChromium)
   , ( (myModMask,               xK_F5),        spawn "/home/pi/bin/btk.sh")
   , ( (myModMask,               xK_F7),        spawn "xmodmap /home/pi/.Xmodmap")
   , ( (myModMask,               xK_F11),       spawn "xlock -mode blank")
@@ -433,7 +432,7 @@ workspaceTerm :: String -> X ()
 workspaceTerm suffix = do
   workspace <- gets (W.currentTag . windowset)
   let localName = workspace ++ "_" ++ suffix
-  raiseMaybe (spawn $ S.tmuxTerm localName localName) (appName =? localName)
+  raiseMaybe (spawn $ S.tmuxTerm localName localName) (className =? localName)
 
 -- | Send a key to the window
 sendKeyEvent :: ButtonMask -> KeySym -> Window -> X ()

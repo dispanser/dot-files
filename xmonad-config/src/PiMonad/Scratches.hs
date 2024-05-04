@@ -68,14 +68,14 @@ globalScratchTerm shellCommand = globalScratch command query
   where
     name'   = filter (/= ' ') shellCommand
     command = term shellCommand name'
-    query   = appName =? name'
+    query   = className =? name'
 
 globalTmux :: String -> W.RationalRect -> ScratchApp
 globalTmux shellCommand = globalScratch command query
   where
     name'   = filter (/= ' ') shellCommand
     command = term (tmux shellCommand) name'
-    query   = appName =? name'
+    query   = className =? name'
 
 localTmux :: String -> W.RationalRect -> ScratchApp
 localTmux suffix rect =
@@ -83,7 +83,7 @@ localTmux suffix rect =
   in ScratchApp {
       -- e.g., term (tmux "personal_overlay") "personal_overlay"
       commandF = \pr -> term (tmux $ session pr) (session pr),
-      queryF   = \pr -> appName =? session pr,
+      queryF   = \pr -> className =? session pr,
       hook     = Nothing
      }
 
