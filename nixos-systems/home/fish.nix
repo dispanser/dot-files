@@ -25,7 +25,7 @@
         eh    = "hx --hsplit";
         ehist = "hx /home/pi/.local/share/fish/fish_history";
       } else {
-        ed    = ''nvim -d -c "colorscheme solarized8_dark_flat"''
+        ed    = ''nvim -d -c "colorscheme solarized8_dark_flat"'';
         se    = "sudo nvim";
         e     = "nvim";
         es    = "nvim -O";
