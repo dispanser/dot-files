@@ -25,7 +25,7 @@
         eh    = "hx --hsplit";
         ehist = "hx /home/pi/.local/share/fish/fish_history";
       } else {
-        ed    = "nvim -d";
+        ed    = ''nvim -d -c "colorscheme solarized8_dark_flat"'';
         se    = "sudo nvim";
         e     = "nvim";
         es    = "nvim -O";
@@ -93,9 +93,9 @@
       ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
     functions = {
-      gdt.body   = ''nvim "+DiffviewOpen $argv"'';
-      gdc.body   = ''nvim "+DiffviewOpen $argv[1]^1..$argv[1]"'';
-      gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
+      gdt.body   = ''nvim -c "colorscheme solarized8_dark_flat" "+DiffviewOpen $argv"'';
+      gdc.body   = ''nvim -c "colorscheme solarized8_dark_flat" "+DiffviewOpen $argv[1]^1..$argv[1]"'';
+      gdh.body   = ''nvim -c "colorscheme solarized8_dark_flat" "+DiffviewOpen HEAD^1"'';
       epoch.body = "date --date=@$argv[1]";
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";

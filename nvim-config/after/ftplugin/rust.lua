@@ -17,7 +17,4 @@ nnoremap("<leader>rD", function() vim.cmd.RustLsp('openDocs') end, "open docs")
 nnoremap("<leader>rmu", function() vim.cmd.RustLsp{'move_item', 'up'} end, "move item up")
 nnoremap("<leader>rmd", function() vim.cmd.RustLsp{'move_item', 'down'} end, "move item down")
 
-nnoremap(")", vim.cmd.AerialNext, "aerial next token")
-nnoremap("(", vim.cmd.AerialPrev, "aerial previous token")
-
 

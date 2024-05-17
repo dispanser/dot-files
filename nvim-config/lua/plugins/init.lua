@@ -109,6 +109,8 @@ return {
       { '<leader>ta', "<cmd>AerialToggle!<CR>", desc = "toggle aerial code outline" },
       { '<leader>]', vim.cmd.AerialNext, desc = "aerial next token" },
       { '<leader>[', vim.cmd.AerialPrev, desc = "aerial previous token" },
+      { ')', vim.cmd.AerialNext, desc = "aerial next token" },
+      { '(', vim.cmd.AerialPrev, desc = "aerial previous token" },
     },
   },
 	{
@@ -161,7 +163,18 @@ return {
   { "rcarriga/nvim-dap-ui", 
     dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     config = function()
-      require("dapui").setup()
+      require("dapui").setup({
+          layouts = { 
+            {
+              elements = {
+                { id = "stacks", size = 0.5 },
+                { id = "scopes", size = 0.5 },
+              },
+              position = "bottom",
+              size = 15,
+            },
+          },
+        })
     end,
     keys = {
       { '<leader>cu', function() require('dapui').toggle() end, desc = "[dap] toggle ui" },
