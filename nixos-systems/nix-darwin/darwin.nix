@@ -122,12 +122,6 @@
       yabai -m rule --add app='IntelliJ IDEA' title='Breakpoints' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
-      # yabai -m rule --add app='Obsidian' manage=off grid=4:4:1:1:2:2 border=off
-      # yabai -m rule --add app='Alacritty' manage=off grid=4:4:1:1:2:2 border=on
-      # yabai -m rule --add app='Slack' manage=off grid=6:6:1:1:4:4 border=off
-      # yabai -m rule --add app='Signal' manage=off grid=6:6:1:1:4:4 border=off
-      # yabai -m rule --add app='kitty' manage=off grid=6:6:3:0:3:5 border=off
-      # yabai -m rule --add app='Alacritty' manage=off grid=6:6:3:0:3:5 border=off
     '';
   };
 
