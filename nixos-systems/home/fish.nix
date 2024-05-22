@@ -1,7 +1,19 @@
 { pkgs, editor, ... }:
 
 {
-  home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
+  # home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
+  programs.fish.plugins = [
+    {
+      name = "fzf-fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "PatrickF1";
+        repo = "fzf.fish";
+        rev = "dfdf69369bd3a3c83654261f90363da2aa1db8c9";
+        sha256 = "sha256-x/q7tlMlyxZ1ow2saqjuYn05Z1lPOVc13DZ9exFDWoU=";
+      };
+    }
+  ];
+
   programs.fish = {
     enable = true;
     shellAbbrs = let
