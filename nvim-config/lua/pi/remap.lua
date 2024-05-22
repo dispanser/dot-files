@@ -62,6 +62,8 @@ nnoremap('<leader>wk', '<C-w>k', "go to  pane up")
 nnoremap('<leader>wl', '<C-w>l', "go to  pane to the right")
 nnoremap('<leader>ww', ':vertical resize ', "vertical resize window")
 nnoremap('<leader>wr', ':resize ', "horizontal resize window")
+nnoremap('<leader>wt', ':tab split<CR>', "split active window into separate tab")
+nnoremap('<leader>wf', ':tab split<CR>', "split active window into separate tab")
 
 tnoremap('<C-h>', '<C-\\><C-N><C-w>h')
 tnoremap('<C-j>', '<C-\\><C-N><C-w>j')
@@ -82,14 +84,16 @@ nnoremap('<leader>tr', ':set relativenumber!<CR>', "toggle relative line numbers
 nnoremap('<leader>tc', ':set cursorcolumn!<CR>', "toggle cursorcolumn")
 nnoremap('<leader>tw', ':set wrap!<CR>', "toggle line wrap")
 
-v('<leader>Y', '"*y', "yank to primary clipboard")
-v('<leader>y', '"+y', "yank to system clipboard")
-n('<leader>Y', '"*y', "yank to primary clipboard")
-n('<leader>y', '"+y', "yank to system clipboard")
-n('<leader>P', '"*p', "put from primary clipboard")
-n('<leader>p', '"+p', "put from system clipboard")
+v('<M-S-y>', '"*y', "yank to primary clipboard")
+v('<M-y>', '"+y', "yank to system clipboard")
+v('<M-S-p>', '"*p', "put from primary clipboard")
+v('<M-p>', '"+p', "put from system clipboard")
+n('<M-S-y>', '"*y', "yank to primary clipboard")
+n('<M-y>', '"+y', "yank to system clipboard")
+n('<M-S-p>', '"*p', "put from primary clipboard")
+n('<M-p>', '"+p', "put from system clipboard")
 
--- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 -- cnoremap <expr> %f getcmdtype() == ':' ? expand('%:t:r') : '%f'
 -- cnoremap <expr> %p getcmdtype() == ':' ? expand('%:p:.') : '%p'
 vim.keymap.set('c', '%%', vim.fn.expand("%:h"), {noremap = true})

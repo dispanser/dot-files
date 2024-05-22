@@ -45,19 +45,8 @@ require'nvim-treesitter.configs'.setup {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
-        ["aa"] = "@assignment.outer",
-        ["ai"] = "@assignment.inner",
-        ["al"] = "@assignment.lhs",
-        ["ar"] = "@assignment.rhs",
-        ["ab"] = "@block.outer",
-        ["ib"] = "@block.inner",
         ["ac"] = "@call.outer",
         ["ic"] = "@call.inner",
-        ["co"] = "@conditional.outer",
-        ["ci"] = "@conditional.inner",
-        ["os"] = "@statement.outer",
-        ["pi"] = "@parameter.inner",
-        ["pa"] = "@parameter.outer",
         -- candidates: @parameter.inner, @parameter.outer, number.inner
         -- You can optionally set descriptions to the mappings (used in the desc parameter of
         -- nvim_buf_set_keymap) which plugins like which-key display
@@ -92,17 +81,11 @@ require'nvim-treesitter.configs'.setup {
       set_jumps = false,
       goto_next_start = {
         ["]m"] = "@function.outer",
-        ["]c"] = "@call.outer",
-        ["]a"] = "@parameter.inner",
-        ["]s"] = "@statement.outer",
         ["]M"] = "@function.inner",
         ["]]"] = { query = "@class.outer", desc = "Next class start" },
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
-        ["[c"] = "@call.outer",
-        ["[a"] = "@parameter.inner",
-        ["[s"] = "@statement.outer",
         ["[M"] = "@function.inner",
         ["[["] = { query = "@class.outer", desc = "Next class start" },
       },

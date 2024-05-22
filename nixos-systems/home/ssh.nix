@@ -55,7 +55,7 @@ in {
       "github.com" = {
         hostname = "github.com";
         user     = "git";
-        identityFile = ["${home}/.ssh/coralogix-github" ] ++ id_keys;
+        identityFile = [ cl_ed ] ++ id_keys;
       };
 
       "x1t3" = {

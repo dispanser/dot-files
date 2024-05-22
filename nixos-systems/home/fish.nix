@@ -13,7 +13,7 @@
         eh    = "hx --hsplit";
         ehist = "hx /home/pi/.local/share/fish/fish_history";
       } else {
-        ed    = "nvim -d";
+        ed    = ''nvim -d -c "colorscheme solarized8_dark_flat"'';
         se    = "sudo nvim";
         e     = "nvim";
         es    = "nvim -O";
@@ -81,9 +81,9 @@
       ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
     functions = {
-      gdt.body   = ''nvim "+DiffviewOpen $argv"'';
-      gdc.body   = ''nvim "+DiffviewOpen $argv[1]^1..$argv[1]"'';
-      gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
+      gdt.body   = ''nvim -c "colorscheme solarized8_dark_flat" "+DiffviewOpen $argv"'';
+      gdc.body   = ''nvim -c "colorscheme solarized8_dark_flat" "+DiffviewOpen $argv[1]^1..$argv[1]"'';
+      gdh.body   = ''nvim -c "colorscheme solarized8_dark_flat" "+DiffviewOpen HEAD^1"'';
       epoch.body = "date --date=@$argv[1]";
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
@@ -109,7 +109,7 @@
       set --global --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --info=inline --pointer="▶" --marker="✗" --bind "?:toggle-preview"  --bind "ctrl-a:select-all"'
       # --bind "ctrl-y:execute-silent(echo {+} | xargs tmux setb)" --bind "ctrl-e:execute(echo {+} | xargs -o nvim)"
       # note that a later incarnation of this command overwrites everything, even unmentioned
-      fzf_configure_bindings --git_status=\e\cg --git_log=\e\ch --directory=\co --processes=\e\ci
+      fzf_configure_bindings --git_status=\e\cg --git_log=\e\cl --directory=\co --processes=\e\cp
       bind --mode insert \cz fg
       '' + (if pkgs.stdenv.isDarwin then ''
         fish_add_path --move {$HOME}/bin
@@ -123,8 +123,8 @@
         # under test
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
-      set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
-      set PROJECT_DIR ~/projects/$PROJECT
+        set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
+        set PROJECT_DIR ~/projects/$PROJECT
         set PATH $HOME/bin:$HOME/bin/linux:$PATH
       '');
   };
