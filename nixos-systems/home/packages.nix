@@ -31,6 +31,7 @@ with pkgs; let
   develPkgs = [
     zig
     marksman
+    nil
     watchexec
     ctags
     sloc
