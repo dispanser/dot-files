@@ -13,6 +13,7 @@ with pkgs; let
     rclone
     rsync
     coreutils
+    k9s
   ];
   desktopPkgs = [
     any-nix-shell
@@ -30,6 +31,7 @@ with pkgs; let
   develPkgs = [
     zig
     marksman
+    nil
     watchexec
     ctags
     sloc
