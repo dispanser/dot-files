@@ -14,6 +14,7 @@
     tmux
     openssh
     skhd
+    colima
   ];
 
   homebrew = {
@@ -27,6 +28,7 @@
       "obsidian"
       "notion"
       "signal"
+      "zerotier-one"
     ];
     brews = [
       "awscli"
@@ -88,7 +90,7 @@
   services.yabai = {
     enable = true;
     config = {
-      focus_follows_mouse = "autoraise";
+      focus_follows_mouse = "autofocus";
       mouse_follows_focus = "on";
       window_placement    = "second_child";
       # requires scripting addition and disabled system integrity protection
@@ -107,18 +109,21 @@
       window_border_width = 8;
       window_border = "on";
     };
+
     extraConfig = ''
-      yabai -m space 1 --label code
-      yabai -m space 2 --label term
+      yabai -m space 1 --label code --layout stack
+      yabai -m space 2 --label term --layout stack
       yabai -m space 3 --label docs
-      yabai -m space 4 --label slack
-      yabai -m space 5 --label qute
+      # first screen on laptop itself is empty so merging by unplugging the external display works
+      yabai -m space 4 --label empty --layout stack
+      yabai -m space 5 --label slack --layout stack
 
       yabai -m rule --add app='^Mail' space=mail
       # yabai -m rule --add app='^Slack' space=slack
-      yabai -m rule --add app='^zoom.us' space=zoom
+      yabai -m rule --add app='qutebrowser' space=slack
 
       yabai -m rule --add app='System Settings' manage=off
+      yabai -m rule --add title='overlay' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Breakpoints' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
@@ -134,8 +139,6 @@
     enable = true;
     skhdConfig = ''
       # remap keys for basic sanity
-      0x0A : ${pkgs.skhd}/bin/skhd -t "`"
-      shift - 0x0A : ${pkgs.skhd}/bin/skhd -t "~"
       rcmd - space : yabai -m window --focus recent
       rcmd - h : yabai -m window --focus west
       rcmd - j : yabai -m window --focus south
@@ -211,7 +214,7 @@
       rcmd + shift - s  : yabai -m window --display recent && yabai -m display --focus recent
 
       # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
-      rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+      # rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
       rcmd - b : ${homeDir}/bin/darwin/,y_focus.fish "Firefox"
       rcmd - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
@@ -223,9 +226,14 @@
       rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish Obsidian /Applications/Obsidian.app/Contents/MacOS/Obsidian global
       rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tpx
       rcmd - t : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty main >> /tmp/tpx
+      rcmd + shift - o : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope overlay
+      rcmd + shift - t : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope main
+      rcmd - return: ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope main --workspace code
 
       # typing
       fn - t : ${pkgs.skhd}/bin/skhd -t "thomas.peiselt@coralogix.com"
+      0x0A : ${pkgs.skhd}/bin/skhd -t "`"
+      shift - 0x0A : ${pkgs.skhd}/bin/skhd -t "~"
     '';
   };
 }
