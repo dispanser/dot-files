@@ -195,5 +195,11 @@ return {
   {
     'dhruvasagar/vim-table-mode',
   },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
 }
 
