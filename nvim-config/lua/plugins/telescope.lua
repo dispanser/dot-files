@@ -39,6 +39,7 @@ return {
     require('telescope').load_extension('dap')
     require("telescope").load_extension("undo")
     vim.keymap.set("n", "<leader>tu", "<cmd>Telescope undo<cr>")
+    vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
   end,
   lazy = false,
 }
