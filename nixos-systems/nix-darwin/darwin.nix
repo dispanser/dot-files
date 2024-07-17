@@ -113,7 +113,7 @@
     extraConfig = ''
       yabai -m space 1 --label code --layout stack
       yabai -m space 2 --label term --layout stack
-      yabai -m space 3 --label docs
+      yabai -m space 3 --label tooling
       # first screen on laptop itself is empty so merging by unplugging the external display works
       yabai -m space 4 --label empty --layout stack
       yabai -m space 5 --label slack --layout stack
@@ -121,6 +121,7 @@
       yabai -m rule --add app='^Mail' space=mail
       # yabai -m rule --add app='^Slack' space=slack
       yabai -m rule --add app='qutebrowser' space=slack
+      yabai -m rule --add app='Pritunl' space=tooling
 
       yabai -m rule --add app='System Settings' manage=off
       yabai -m rule --add title='overlay' manage=off
@@ -222,6 +223,7 @@
       rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
       rcmd + shift - m : ${homeDir}/bin/darwin/,y_focus.fish "Signal"
       rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
+      rcmd - v : ${homeDir}/bin/darwin/,y_focus.fish "Pritunl"
 
       rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish Obsidian /Applications/Obsidian.app/Contents/MacOS/Obsidian global
       rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tpx
