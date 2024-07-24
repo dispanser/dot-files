@@ -52,6 +52,7 @@
       sus     = "sudo systemctl suspend";
       gd      = "git diff";
       gdf     = "git diff --name-status";
+      gfa     = "git fetch --all";
       grv     = "git remote -v";
       gl      = "git pull";
       gp      = "git push";
