@@ -17,7 +17,7 @@ with pkgs; let
   ];
   desktopPkgs = [
     any-nix-shell
-    youtube-dl
+    yt-dlp
     units
     feh
     entr
