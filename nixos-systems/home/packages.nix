@@ -13,7 +13,7 @@ with pkgs; let
     rclone
     rsync
     coreutils
-    k9s
+    k9s stern
   ];
   desktopPkgs = [
     any-nix-shell
