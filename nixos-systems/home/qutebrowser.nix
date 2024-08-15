@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   programs.qutebrowser = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux && !(lib.versionOlder pkgs.stdenv.hostPlatform.darwinMinVersion "12");
     enableDefaultBindings = true; # Default
     extraConfig = ''
         config.unbind('<ctrl-p>')

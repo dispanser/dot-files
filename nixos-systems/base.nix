@@ -10,7 +10,7 @@
     enableSSHSupport   = true;
   };
 
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
 
   nix.settings = {
     auto-optimise-store = true;

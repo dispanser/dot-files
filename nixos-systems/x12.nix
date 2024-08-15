@@ -20,7 +20,7 @@
   # On my x12 libinput.touchpad is not applied to the touchpad, but using
   # libinput.mouse is applied.
   #   MatchIsTouchpad "on" in `xorg.conf` doesn't apply.
-  services.xserver.libinput.mouse = {
+  services.libinput.mouse = {
     disableWhileTyping = true;
     clickMethod        = "buttonareas";
     tapping            = false;

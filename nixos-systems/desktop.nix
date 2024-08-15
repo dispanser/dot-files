@@ -43,40 +43,42 @@
       };
     };
 
-    displayManager = {
-      sessionCommands = ''
-        ${pkgs.xbindkeys}/bin/xbindkeys
-        ${pkgs.xorg.xmodmap}/bin/xmodmap ~/.Xmodmap
-      '';
-      defaultSession = "none+xmonad";
-    };
-    libinput = {
-      enable = true;
-      touchpad = {
+    exportConfiguration = true;
+  };
+
+  services.displayManager = {
+    preStart = ''
+    ${pkgs.xbindkeys}/bin/xbindkeys
+    ${pkgs.xorg.xmodmap}/bin/xmodmap ~/.Xmodmap
+    '';
+    defaultSession = "none+xmonad";
+  };
+
+  services.libinput = {
+    enable = true;
+    touchpad = {
 # naturalScrolling   = true;
-        disableWhileTyping = true;
-        clickMethod        = "buttonareas";
-        tapping            = false;
-        scrollButton       = 3;
-        additionalOptions = ''
+      disableWhileTyping = true;
+      clickMethod        = "buttonareas";
+      tapping            = false;
+      scrollButton       = 3;
+      additionalOptions = ''
 # prevents too many unintentional clicks
-          Option "PalmDetect" "1"
+        Option "PalmDetect" "1"
 
 # "natural" vertical and horizontal scrolling
-          Option "VertTwoFingerScroll" "1"
-          Option "VertScrollDelta" "-75"
-          Option "HorizTwoFingerScroll" "1"
-          Option "HorizScrollDelta" "-75"
+        Option "VertTwoFingerScroll" "1"
+        Option "VertScrollDelta" "-75"
+        Option "HorizTwoFingerScroll" "1"
+        Option "HorizScrollDelta" "-75"
 
-          Option "MinSpeed" "1"
-          Option "MaxSpeed" "1"
+        Option "MinSpeed" "1"
+        Option "MaxSpeed" "1"
 
-          Option "AccelerationProfile" "2"
-          Option "ConstantDeceleration" "4"
-          '';
-      };
+        Option "AccelerationProfile" "2"
+        Option "ConstantDeceleration" "4"
+        '';
     };
-    exportConfiguration = true;
   };
   hardware.trackpoint = {
     emulateWheel = true;
@@ -86,9 +88,9 @@
     sensitivity = 196; # default: 128
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       libva
       libva-utils
