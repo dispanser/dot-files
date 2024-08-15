@@ -14,9 +14,6 @@
     "electron-25.9.0"
   ];
  
-  # required for pipewire
-  sound.enable = false;
-
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -91,7 +88,6 @@
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       libva
