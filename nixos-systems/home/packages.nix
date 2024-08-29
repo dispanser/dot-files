@@ -52,7 +52,7 @@ with pkgs; let
     rofi
     spotify
     scrot 
-    signal-desktop threema-desktop tdesktop
+    signal-desktop tdesktop
     nextcloud-client
     firefox
     xfontsel
