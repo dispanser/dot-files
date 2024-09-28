@@ -10,17 +10,6 @@
   services.ddccontrol.enable = true;
   services.fstrim.enable = true;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
- 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-  };
-
   environment.variables = {
     GTK_IM_MODULE = "xim";
     QT_IM_MODULE = "xim";
@@ -34,7 +23,7 @@
     enableCtrlAltBackspace = true;
     xkb = {
       layout                 = "us";
-      options             = "caps:escape,compose:lwin-altgr,lv3:ralt_switch;terminate:ctrl_alt_bksp";
+      options                = "caps:escape,compose:lwin-altgr,lv3:ralt_switch;terminate:ctrl_alt_bksp";
     };
     windowManager = {
       xmonad = {
@@ -46,18 +35,21 @@
     exportConfiguration = true;
   };
 
-  services.displayManager = {
-    preStart = ''
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.setxkbmap} setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch
     ${pkgs.xbindkeys}/bin/xbindkeys
     ${pkgs.xorg.xmodmap}/bin/xmodmap ~/.Xmodmap
-    '';
+  '';
+
+  services.displayManager = {
+    enable = true;
     defaultSession = "none+xmonad";
   };
 
   services.libinput = {
     enable = true;
     touchpad = {
-# naturalScrolling   = true;
+      naturalScrolling   = true;
       disableWhileTyping = true;
       clickMethod        = "buttonareas";
       tapping            = false;

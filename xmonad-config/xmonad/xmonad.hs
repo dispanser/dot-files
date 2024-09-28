@@ -345,6 +345,7 @@ myMainKeys =
   , ( (myModMask,               xK_semicolon), S.triggerScratch S.projectBrowser')
   , ( (myShiftMask,             xK_semicolon), S.triggerScratch S.projectChromium)
   , ( (myAltMask,               xK_semicolon), S.triggerScratch S.projectFirefox)
+  , ( (mod4Mask,                xK_x,          spawn "setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch -option terminate:ctrl_alt_bksp")
   , ( (myModMask,               xK_F5),        spawn "/home/pi/bin/btk.sh")
   , ( (myModMask,               xK_F7),        spawn "xmodmap /home/pi/.Xmodmap")
   , ( (myModMask,               xK_F11),       spawn "xlock -mode blank")
