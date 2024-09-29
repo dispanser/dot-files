@@ -60,15 +60,18 @@ in {
     ./starship.nix
     ./tmux.nix
     ./touch.nix
+    ./inputplug.nix
   ];
 
   services.touch = {
     enable = hasTouchScreen;
     # if builtins.hasAttr hasTouchScreen args then args.hasTouchScreen else false;
     # lib.attrsets.attrByPath ["hasTouchScreen"] false args;
-    finger-device = "Wacom HID 511A Finger";
-    pen-device = "Wacom HID 511A Pen";
+    finger-device = "Wacom HID 525C Finger";
+    pen-device = "Wacom HID 525C Pen";
   };
+
+  services.inputplug.enable = true;
 
   services.notify-osd.enable = if pkgs.stdenv.isLinux then true else false;
 
