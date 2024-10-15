@@ -27,16 +27,16 @@ return {
       vim.o.timeoutlen = 300
     end,
     opts = function()
-      require("which-key").register({
-          ["<leader>b"] = { name = "+buffers" },
-          ["<leader>d"] = { name = "+diff view" },
-          ["<leader>e"] = { name = "+code" },
-          ["<leader>f"] = { name = "+files" },
-          ["<leader>g"] = { name = "+git" },
-          ["<leader>l"] = { name = "+various telescopes" },
-          ["<leader>q"] = { name = "+quickfix" },
-          ["<leader>t"] = { name = "+toggles" },
-          ["<leader>w"] = { name = "+windows" },
+      require("which-key").add({
+          { "<leader>b", group = "buffers" },
+          { "<leader>d", group = "diff view" },
+          { "<leader>e", group = "code" },
+          { "<leader>f", group = "files" },
+          { "<leader>g", group = "git" },
+          { "<leader>l", group = "various telescopes" },
+          { "<leader>q", group = "quickfix" },
+          { "<leader>t", group = "toggles" },
+          { "<leader>w", group = "windows" },
         })
     end,
     priority = 900,
@@ -202,4 +202,3 @@ return {
     },
   },
 }
-
