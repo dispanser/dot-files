@@ -36,6 +36,7 @@ with pkgs; let
     ctags
     sloc
     zellij
+    hyperfine
   ];
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else

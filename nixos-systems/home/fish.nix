@@ -81,12 +81,21 @@
       tl      = "tmux list-sessions";
       nixq    = "nix search nixpkgs";
       t       = "${pkgs.time}/bin/time";
+      c4c = ''TABLE='s3://cgx-eng-env-coralogix-euprod2-data/cx/parquet/v1/team_id=4000017' REGION=eu-north-1 \
+        dpctl query \
+        --path $TABLE --region $REGION \
+        # --query-server http://api-sandbox-dataprime-query-engine.default.svc.cluster.local:8080 \
+        --start 2024-08-27:00:00:00 --end 2024-08-28:00:00:00 \
+        # --from-file ../wip/query_sampling_rum_aggregations.dql \
+        # --query "source logs "
+        # --output stats \
+        '';
     } // editor_abbrevations;
     shellAliases = {
       cdp     = "cd $PROJECT_DIR";
       restloc = "restic -r sftp:backup-zerotier:/fs/thomas_stuff/backup --password-file /home/data/backup/secret";
       restb2  = "restic -r b2:yukon-backup:/backup/yukon/home --password-file /home/data/backup/secret";
-      gcm  = "git branch | rg main && git switch main || git switch master";
+      gcm  = "git rev-parse --verify main && git switch main || git switch master";
       tree = "eza -Tl --git";
       ls   = "eza --git";
       lt   = "ls -l --sort newest";
