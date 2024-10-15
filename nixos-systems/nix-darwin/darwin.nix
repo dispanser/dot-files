@@ -29,6 +29,7 @@
       "notion"
       "signal"
       "zerotier-one"
+      "chatgpt"
     ];
     brews = [
       "awscli"
