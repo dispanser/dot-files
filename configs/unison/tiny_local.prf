@@ -1,0 +1,7 @@
+include common
+
+root=/home/pi
+root=/home/data/sync/home/pi/
+path = projects
+path = src
+path = .password-store
