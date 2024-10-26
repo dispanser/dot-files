@@ -10,6 +10,7 @@
     ./adguard_dns.nix
 	  ./brother.nix
     ./yubico.nix
+    ./mqtt.nix
   ];
 
   services.undervolt = {

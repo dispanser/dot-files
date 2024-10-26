@@ -153,7 +153,7 @@ in {
     eza = {
       enable = true;
       git = true;
-      icons = true;
+      icons = "auto";
     };
 
     direnv = {
