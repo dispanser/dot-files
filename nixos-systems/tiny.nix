@@ -8,9 +8,10 @@
     ./security.nix
     ./flakes.nix
     ./adguard_dns.nix
-	  ./brother.nix
+    ./brother.nix
     ./yubico.nix
     ./mqtt.nix
+    ./home-assistant.nix
   ];
 
   services.undervolt = {
@@ -46,10 +47,10 @@
   ];
 
   services.cron = {
-	  enable         = true;
-	  systemCronJobs = [
-	      "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
-	      "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
+    enable         = true;
+    systemCronJobs = [
+        "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
+        "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
         "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
     ];
   };
@@ -75,28 +76,28 @@
     host.enableExtensionPack = true;
   };
 
-	  boot = {
-      initrd.luks = {
-        fido2Support = false;
-        devices = {
-          sanjota = {
-            preLVM = true;
-            device = "/dev/disk/by-uuid/462786d0-1145-4540-9212-d14c8db7b341";
-          };
+  boot = {
+    initrd.luks = {
+      fido2Support = false;
+      devices = {
+        sanjota = {
+          preLVM = true;
+          device = "/dev/disk/by-uuid/462786d0-1145-4540-9212-d14c8db7b341";
         };
-      }; 
-		  loader.systemd-boot.enable = true;
-		  loader.efi.canTouchEfiVariables = true;
-		  initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-		  initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-		  kernelModules                   = [ "tp_smapi" "acpi_call" ];
-		  extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
-		  extraModprobeConfig = ''
-			  options acpi ec_no_wakeup=1
-			  options thinkpad_acpi fan_control=1
-		  '';
-		  kernelPackages     = pkgs.linuxPackages_latest;
-	  };
+      };
+    }; 
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" ];
+    extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
+    extraModprobeConfig = ''
+      options acpi ec_no_wakeup=1
+      options thinkpad_acpi fan_control=1
+    '';
+    kernelPackages     = pkgs.linuxPackages_latest;
+  };
 
   powerManagement.resumeCommands = ''
     ${pkgs.systemd}/bin/systemctl restart zerotierone.service
@@ -126,11 +127,9 @@
     autoUpgrade.enable = false;
   };
 
-	nixpkgs.config = {
+  nixpkgs.config = {
 # TODO: undo and make package-specific exceptions: the error will guide you
-		allowUnfree = true;
-	  # allowBroken = true;
-	};
-
+    allowUnfree = true;
+    # allowBroken = true;
+  };
 }
-
