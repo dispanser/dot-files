@@ -6,7 +6,7 @@
     ./openssh.nix
   ];
 
-  services.clipcat.enable = true;
+  # services.clipcat.enable = true;
   services.ddccontrol.enable = true;
   services.fstrim.enable = true;
 
