@@ -24,7 +24,7 @@ with pkgs; let
     zathura
     dmenu
     pandoc
-    eza ripgrep neovim fzf fd
+    eza delta ripgrep neovim fzf fd
     iftop
     stow
   ];
