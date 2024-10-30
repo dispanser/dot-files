@@ -21,9 +21,6 @@ return { 'sindrets/diffview.nvim',
         end, desc = "open file history diff view"
       },
       { '<leader>dH', function() activate(vim.cmd.DiffviewFileHistory) end, desc = "open project history diff view" },
-      { '<leader>dt', vim.cmd.DiffviewToggleFiles, desc = "toggle diff view file pane" },
-      { '<leader>df', vim.cmd.DiffviewFocusFiles, desc = "focus fils pane" },
-      { '<leader>df', vim.cmd.DiffviewRefresh, desc = "refresh diff view" },
   },
   lazy = false,
 }
