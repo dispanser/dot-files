@@ -12,6 +12,9 @@ n('<leader>p/', builtin.live_grep, "search project")
 n('<leader>pt', function()
   builtin.live_grep { default_text = 'tyx/' }
 end, "search my tag in project")
+n('<leader>pT', function()
+  builtin.live_grep { default_text = 'tyx/TODO' }
+end, "search my TODO in project")
 n('<leader>pW', builtin.grep_string, "search word in project")
 n('<leader>pw', function() builtin.grep_string({ word_match = '-w' }) end , "search exact word in project")
 n('<leader>pS', builtin.lsp_workspace_symbols, "workspace symbols")
