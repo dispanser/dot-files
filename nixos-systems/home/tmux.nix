@@ -13,7 +13,6 @@
       {
         plugin = tmuxPlugins.tmux-thumbs;
         extraConfig = ''
-          bind C-Space send-prefix
           set -g @thumbs-key m
           # gives shorter hints closer to the curser; evaluate
           set -g @thumbs-reverse enabled
@@ -23,8 +22,9 @@
           set -g @thumbs-contrast 1
           set -g @thumbs-osc52 0
           # set -g @thumbs-bg-color
-          bind-key -n M-C-v thumbs-pick
-          # set -g @thumbs-command 'echo -n {} | pbcopy'
+          # bind-key -n C-M-t thumbs-pick
+          
+          set -g @thumbs-command 'echo -n {} | pbcopy && tmux set-buffer -- {} && tmux display-message \"tyx/Copied {}\"'
           # set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\"'
         '';
       }
@@ -43,6 +43,7 @@
       let 
         termOption = if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color";
       in ''
+          bind C-Space send-prefix
           set-option -sa terminal-overrides ",*:Tc"
           set -g default-terminal "${termOption}"
           set-option -g set-titles on
@@ -67,7 +68,7 @@
           bind -n C-M-c clear-history # clear local pane buffer.
 
           bind-key C-Space last-window
-          bind-key -n M-C-Space last-window
+          bind-key -n C-M-Space last-window
           bind-key -n C-M-[ copy-mode
           bind-key -n C-M-] paste
           bind-key -n C-M-p copy-mode \; send-keys -X search-backward "╰─" \; send-keys -l n
