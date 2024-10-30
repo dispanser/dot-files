@@ -37,7 +37,6 @@ in {
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
       };
       Service = {
         ExecStart = "${pkgs.writeShellScript "touch.sh" ''
@@ -66,7 +65,6 @@ in {
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
       };
       Service = {
         # rot8 can't rotate the pen device, it requires a different matrix / attribute

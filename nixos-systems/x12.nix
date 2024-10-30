@@ -14,7 +14,9 @@
     ./yubico.nix
     ./fingerprint.nix
     ./lowmem.nix
+    ./cx_vpn.nix
   ];
+
   console.font = "sun12x22";
 
   # On my x12 libinput.touchpad is not applied to the touchpad, but using
