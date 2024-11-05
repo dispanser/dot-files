@@ -96,7 +96,9 @@ n('<M-p>', '"+p', "put from system clipboard")
 
 -- cnoremap <expr> %f getcmdtype() == ':' ? expand('%:t:r') : '%f'
 -- cnoremap <expr> %p getcmdtype() == ':' ? expand('%:p:.') : '%p'
-vim.keymap.set('c', '%%', vim.fn.expand("%:h"), {noremap = true})
+-- these mappings ommit the "getcmdtype()" check so they also expand in search mode
+vim.keymap.set('c', '%d', function () return vim.fn.expand '%:p:h' .. '/' end, { expr = true })
+vim.keymap.set('c', '%%', function () return vim.fn.expand '%' end, { expr = true })
 
 -- does not seem to work
 -- vim.keymap.set('c', '%_', function()
