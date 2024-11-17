@@ -20,6 +20,7 @@ n('<leader>pw', function() builtin.grep_string({ word_match = '-w' }) end , "sea
 n('<leader>pS', builtin.lsp_workspace_symbols, "workspace symbols")
 n('<leader>ps', builtin.lsp_dynamic_workspace_symbols, "dynamic workspace symbols")
 
+n('<leader>lt', builtin.colorscheme, "pick theme")
 n('<leader>lm', builtin.marks, "marks")
 n('<leader>ls', builtin.search_history, "search history")
 n('<leader>:', builtin.commands, "commands")

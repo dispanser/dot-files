@@ -21,6 +21,6 @@ vim.g.maplocalleader = ' '  -- 'vim.g' sets global variables
 require('lazy').setup('plugins')
 
 vim.cmd [[
-  colorscheme gruvbox
+  colorscheme kanagawa
 ]]
 

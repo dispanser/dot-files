@@ -2,6 +2,7 @@
 return {
   -- https://github.com/wellle/targets.vim
   {'wellle/targets.vim'},
+  {'HiPhish/rainbow-delimiters.nvim'},
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
@@ -20,11 +21,18 @@ return {
         { '<leader>bx', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
       },
   },
-  { 'flazz/vim-colorschemes',
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  { 'rebelot/kanagawa.nvim',
     -- color scheme determines highlight groups that should be loaded first
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme('gruvbox')
+      vim.cmd.colorscheme('kanagawa')
     end,
   },
   {
@@ -53,7 +61,7 @@ return {
   'christoomey/vim-tmux-navigator',
   'nvim-tree/nvim-web-devicons',
   'tpope/vim-commentary',
-  -- 'tpope/vim-surround',
+  'tpope/vim-rsi',
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
