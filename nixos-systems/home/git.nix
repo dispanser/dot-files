@@ -29,6 +29,7 @@
       };
       # user.signingkey = "0xF38D81D949BDD26C";
       diff.tool = "vimdiff";
+      diff.noprefix = true;
       difftool.vimdiff.path = "nvim";
       pull.rebase = true;
       rebase.updateRefs = true;
