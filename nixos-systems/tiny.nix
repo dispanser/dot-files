@@ -11,7 +11,7 @@
     ./brother.nix
     ./yubico.nix
     ./mqtt.nix
-    ./home-assistant.nix
+    ./smart-home.nix
   ];
 
   services.undervolt = {

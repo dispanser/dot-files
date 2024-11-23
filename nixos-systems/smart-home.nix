@@ -1,5 +1,50 @@
 { pkgs, ... }:
 {
+  services.influxdb2 = {
+    enable = true;
+  };
+  services.telegraf = {
+    enable = true;
+    extraConfig = {
+      inputs = {
+
+        mqtt_consumer = {
+          servers = ["tcp://localhost:1883"];
+          topics = [
+            "solar/+/status/+"
+            "solar/+/0/+"
+            "solar/+/1/+"
+            "solar/+/2/+"
+          ];
+
+          data_format = "value";
+          data_type = "float";
+          topic_parsing = [
+            {
+              topic = "solar/+/+/+";
+              tags = "_/serial/channel/field";
+            }
+          ];
+          username = "mqtt";
+          password = "6o81OYekOl";
+        };
+      };
+      processors.pivot = [
+        {
+          tag_key = "field";
+          value_key = "value";
+        }
+      ];
+      outputs = {
+        influxdb_v2 = {
+          urls = [ "http://127.0.0.1:8086" ];
+          token = "Tq4FAQCdtndv6ZR2WlFRZ5TX9v6TrVTUbZlYsTgEO_HGRuqHA1LE4-JwiDRIw084jyjR9GHVKYrlsXSSw5bejQ==";
+          organization = "home";
+          bucket = "main";
+        };
+      };
+    };
+  };
   services.home-assistant = {
     enable = true;
 
@@ -8,6 +53,10 @@
         "signal_messenger"
         "roborock"
         "hue"
+        "zeroconf"
+        "brother"
+        "influxdb"
+        "mobile_app"
       # "3_day_blinds", "abode", "accuweather", "acer_projector", "acmeda",
       # "acomax", "actiontec", "adax", "adguard", "ads", "advantage_air",
       # "aemet", "aep_ohio", "aep_texas", "aftership", "agent_dvr",
