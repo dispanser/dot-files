@@ -61,6 +61,7 @@ in {
     ./tmux.nix
     ./touch.nix
     ./inputplug.nix
+    ./mail.nix
   ];
 
   services.touch = {
