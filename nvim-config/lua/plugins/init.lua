@@ -10,6 +10,20 @@ return {
     ---@type render.md.UserConfig
     opts = {},
   },
+  {
+    "tadmccorkle/markdown.nvim",
+    ft = "markdown", -- or 'event = "VeryLazy"'
+    opts = {
+      on_attach = function(bufnr)
+        local map = vim.keymap.set
+        local opts = { buffer = bufnr }
+        map({ 'n', 'i' }, '<M-l><M-o>', '<Cmd>MDListItemBelow<CR>', opts)
+        map({ 'n', 'i' }, '<M-L><M-O>', '<Cmd>MDListItemAbove<CR>', opts)
+        map({'n', 'i'}, '<M-Return>', '<Cmd>MDTaskToggle<CR>', opts)
+        map('x', '<M-Return>', ':MDTaskToggle<CR>', opts)
+      end,
+    },
+  },
   {'kwkarlwang/bufresize.nvim',
     config = function()
         require("bufresize").setup()
@@ -55,6 +69,21 @@ return {
         })
     end,
     priority = 900,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
   },
   'machakann/vim-highlightedyank',
   'roxma/vim-tmux-clipboard',
@@ -210,10 +239,10 @@ return {
   {
     'dhruvasagar/vim-table-mode',
   },
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      -- options
-    },
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   opts = {
+  --     -- options
+  --   },
+  -- },
 }
