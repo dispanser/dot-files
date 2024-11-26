@@ -86,7 +86,7 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
 
-  services.karabiner-elements.enable = true;
+  # services.karabiner-elements.enable = true;
 
   services.yabai = {
     enable = true;
@@ -120,9 +120,10 @@
       yabai -m space 5 --label slack --layout stack
 
       yabai -m rule --add app='^Mail' space=mail
-      # yabai -m rule --add app='^Slack' space=slack
+      yabai -m rule --add app='^Slack' space=slack
       yabai -m rule --add app='qutebrowser' space=slack
       yabai -m rule --add app='Pritunl' space=tooling
+      yabai -m rule --add app='ChatGPT' space=slack
 
       yabai -m rule --add app='System Settings' manage=off
       yabai -m rule --add title='overlay' manage=off
@@ -222,6 +223,7 @@
       rcmd - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
 
       rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
+      rcmd - a : ${homeDir}/bin/darwin/,y_focus.fish "ChatGPT"
       rcmd + shift - m : ${homeDir}/bin/darwin/,y_focus.fish "Signal"
       rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
       rcmd - v : ${homeDir}/bin/darwin/,y_focus.fish "Pritunl"
