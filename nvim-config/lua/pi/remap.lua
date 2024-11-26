@@ -36,6 +36,8 @@ nnoremap('<leader>fmt', function()
   vim.opt.foldmethod = 'expr'
   vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
 end, "fold method: treesitter");
+nnoremap('z<Space>', function() vim.opt.foldlevel = 0 end, 'fold level 0')
+nnoremap('z0', function() vim.opt.foldlevel = 0 end, 'fold level 0')
 nnoremap('z1', function() vim.opt.foldlevel = 1 end, 'fold level 1')
 nnoremap('z2', function() vim.opt.foldlevel = 2 end, 'fold level 2')
 nnoremap('z3', function() vim.opt.foldlevel = 3 end, 'fold level 3')
