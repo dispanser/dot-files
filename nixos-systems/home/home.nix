@@ -62,6 +62,7 @@ in {
     ./touch.nix
     ./inputplug.nix
     ./mail.nix
+    ./unison.nix
   ];
 
   services.touch = {
