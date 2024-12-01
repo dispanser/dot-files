@@ -6,6 +6,12 @@
     ./openssh.nix
   ];
 
+  services.offlineimap = {
+    enable = true;
+    install = true;
+    path = with pkgs; [ pass mu ];
+  };
+
   # services.clipcat.enable = true;
   services.ddccontrol.enable = true;
   services.fstrim.enable = true;

@@ -1,6 +1,8 @@
 { config, lib, pkgs,... }:
 
 {
+
+  # yukon == x1t3_16
   imports = [
     ./laptop.nix
     ./desktop.nix
