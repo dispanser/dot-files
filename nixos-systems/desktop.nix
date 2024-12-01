@@ -100,7 +100,7 @@
     enableGhostscriptFonts = true;
     packages = with pkgs; [
       inconsolata
-      nerdfonts
+      nerd-fonts.victor-mono
       ubuntu_font_family
       anonymousPro
       dejavu_fonts
