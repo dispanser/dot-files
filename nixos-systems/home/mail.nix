@@ -19,12 +19,29 @@
       userName = "pi@kulturguerilla.org";
       realName = "Thomas Peiselt";
 
+      neomutt = {
+        enable = true;
+      };
+
       imap = {
         host = "imap.purelymail.com";
         port = 993;
         tls = {
           enable = true;
           certificatesFile = "/etc/ssl/certs/ca-certificates.crt";
+          useStartTls = true;
+        };
+      };
+
+      msmtp = {
+        enable = true;
+        extraConfig.passwordeval = "pass personal/mail/purelymail.com/pi@kulturguerilla.org/imap";
+      };
+
+      smtp = {
+        host = "smtp.purelymail.com";
+        port = 587;
+        tls = {
           useStartTls = true;
         };
       };
