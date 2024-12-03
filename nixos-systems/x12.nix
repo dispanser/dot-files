@@ -14,7 +14,7 @@
     ./yubico.nix
     ./fingerprint.nix
     ./lowmem.nix
-    ./cx_vpn.nix
+    # ./cx_vpn.nix
   ];
 
   console.font = "sun12x22";
