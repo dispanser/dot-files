@@ -15,8 +15,8 @@
     darwinConfigurations."yukon" = nix-darwin.lib.darwinSystem {
       modules = [
         ./darwin.nix
-	home-manager.darwinModules.home-manager
-	{
+        home-manager.darwinModules.home-manager
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users."thomas.peiselt" = import ../home/home.nix;

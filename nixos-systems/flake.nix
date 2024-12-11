@@ -1,6 +1,9 @@
 {
   description = "System Configurations";
 
+  # nixos-hardware.url = "github:nixos/nixos-hardware";
+  # inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
@@ -159,10 +162,10 @@
         ];
       };
     };
-#     homeConfigurations.pi = {
-#       # defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-#       pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-#       modules = [ ./home.nix ];
-#     };
+    homeConfigurations.pi = {
+      # defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      modules = [ ./home.nix ];
+    };
   };
 }
