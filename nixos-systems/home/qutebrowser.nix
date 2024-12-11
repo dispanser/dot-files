@@ -45,7 +45,8 @@
       gll     = "https://github.com/search?q=lang%3ALua+{}&type=code";
     };
     settings = {
-      zoom.default = "125%";
+      zoom.default = "150%";
+      fonts.default_size = "16pt";
       tabs = {
         background = true;
         last_close = "close";
