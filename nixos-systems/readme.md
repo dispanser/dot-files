@@ -6,7 +6,6 @@ Setup notes for adding a new system. Incomplete and wrong, as per usual.
 
 For clean disk:
 ```fish
-set NAME <your system name>
 sudo fdisk /dev/sda
 ```
 - new partition table
@@ -14,14 +13,22 @@ sudo fdisk /dev/sda
 - partition 2: type = 83
 
 ```fish
-set EFI <uuid of `/dev/sda1`>
-set LVM <uuid of `/dev/disk/by-uuid/$LVM/`>
-sudo mkfs.vfat /dev/disk/by-uuid/{$EFI}
+set NAME <your system name>
+set EFI /dev/nvme0n1p1
+set LVM /dev/nvme0n1p2
+# set EFI /dev/sda1
+# set LVM /dev/sda2
 
-sudo cryptsetup luksFormat /dev/disk/by-uuid/$LVM/
-sudo cryptsetup luksOpen {$NAME}
-sudo cryptsetup luksOpen /dev/disk/by-uuid/$LVM/ {$NAME}
-sudo vgcreate {$NAME} /dev/mapper/konsole
+# initial setup doesn't have UUIDs yet, they are part of vfat / luks setup itself
+sudo mkfs.vfat $EFI
+sudo cryptsetup luksFormat $LVM
+```
+
+```fish
+set EFI_UUID <uuid of $EFI>
+set LVM_UUID <uuid of $LVM>
+sudo cryptsetup luksOpen /dev/disk/by-uuid/$LVM_UUID {$NAME}
+sudo vgcreate {$NAME} /dev/mapper/$NAME
 
 # adapt the sizes as you see fit
 sudo lvcreate -L 128G -n nix-root  {$NAME}
@@ -45,13 +52,13 @@ nvim flake.nix $NAME.nix
 ```
 create new system file and edit
 - `$NAME` into hostname
-- `$EFI` -> `/boot` 
-- `$LVM` -> `devices.$NAME.device=/dev/disk/by-uuid/$LVM`
+- `$EFI_UUID` -> `/boot` 
+- `$LVM_UUID` -> `devices.$NAME.device=/dev/disk/by-uuid/$LVM`
 - `fileSystems` -> ` ... /dev/$NAME`
 
 ```fish
 sudo mkdir /mnt
-,nix-root-mount.sh $LVM $EFI $NAME
+,nix-root-mount.sh $LVM_UUID $EFI_UUID $NAME
 
 sudo mkdir -p /mnt/home/pi
 sudo chown pi:users /mnt/home/pi
