@@ -23,6 +23,12 @@
     tapping            = false;
   };
 
+  services.handheld-daemon = {
+    enable = true;
+    ui.enable = true;
+    user = "pi";
+  };
+
   services.undervolt = {
     temp = 90;
     enable = false;
@@ -56,13 +62,12 @@
     wireless-regdb 
   ];
 
-  services.cron = {
-	  enable         = true;
-	  systemCronJobs = [
-	      "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
-	      "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
-        "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
-    ];
+  programs.ryzen-monitor-ng.enable = true;
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.amdgpu = {
+    initrd.enable = true;
+    opencl.enable = true;
+    amdvlk.enable = true;
   };
 
   services.blueman.enable = true;
@@ -115,8 +120,11 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" ];
-    extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" ];
+    blacklistedKernelModules        = ["k10temp"];
+    extraModulePackages             = with config.boot.kernelPackages; [
+      tp_smapi acpi_call zenpower
+    ];
     extraModprobeConfig = ''
     options acpi ec_no_wakeup=1
     options thinkpad_acpi fan_control=1
