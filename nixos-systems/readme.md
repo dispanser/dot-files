@@ -46,7 +46,7 @@ sudo mkswap /dev/{$NAME}/swap
 
 ```fish
 # choose your base wisely!
-z dot/nixo
+z nixos-systems
 cp x12.nix $NAME.nix
 git add $NAME.nix
 nvim flake.nix $NAME.nix
