@@ -4,6 +4,12 @@
   # we need to watch this, but it sounds useful
   services.earlyoom.enable         = true;
 
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idModel}=="ThinkPad_Compact_USB_Keyboard_with_TrackPoint", TEST=="power/control", ATTR{power/control}="on"
+    '';
+  };
   programs.ssh.startAgent = false;
   programs.gnupg.agent = {
     enable             = true;

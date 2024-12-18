@@ -6,7 +6,7 @@ Setup notes for adding a new system. Incomplete and wrong, as per usual.
 
 For clean disk:
 ```fish
-NAME=<your system name>
+set NAME <your system name>
 sudo fdisk /dev/sda
 ```
 - new partition table
@@ -14,8 +14,8 @@ sudo fdisk /dev/sda
 - partition 2: type = 83
 
 ```fish
-EFI=<uuid of `/dev/sda1`>
-LVM=<uuid of `/dev/disk/by-uuid/$LVM/`>
+set EFI <uuid of `/dev/sda1`>
+set LVM <uuid of `/dev/disk/by-uuid/$LVM/`>
 sudo mkfs.vfat /dev/disk/by-uuid/{$EFI}
 
 sudo cryptsetup luksFormat /dev/disk/by-uuid/$LVM/
