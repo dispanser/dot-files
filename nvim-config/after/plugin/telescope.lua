@@ -4,7 +4,7 @@ end
 
 local builtin = require('telescope.builtin')
 
--- I'm not sure; find_files uses gitignore, so why would I need it_files? It's supposed to be faster, and the binding is not blocking anthing right now, so ...
+-- I'm not sure; find_files uses gitignore, so why would I need git_files? It's supposed to be faster, and the binding is not blocking anthing right now, so ...
 n('<leader>pf', builtin.find_files, "find project files")
 -- n('<leader>pF', function() builtin.find_files({ hidden = true, no_ignore_parent = true}) end, "find project files, include hidden / ignored")
 -- n('<leader>pg', builtin.git_files, "git project files")

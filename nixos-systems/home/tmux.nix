@@ -70,13 +70,13 @@
           bind-key C-Space last-window
           bind-key -n C-M-Space last-window
           bind-key -n C-M-[ copy-mode
+          bind-key -n C-M-c copy-mode
           bind-key -n C-M-] paste
           bind-key -n C-M-p copy-mode \; send-keys -X search-backward "╰─" \; send-keys -l n
           bind-key -n C-M-r copy-mode \; send-keys -X search-backward "Compiling"
           bind-key -n C-M-o copy-mode \; send-keys -X search-backward "tyx/"
           bind-key -n C-M-e copy-mode \; send-keys -X search-backward "FAILED"
           bind-key -n C-M-x copy-mode \; send-keys -X search-again
-          bind-key -n C-M-/ copy-mode \; command-prompt -p "(search up)" "send -X search-backward \"%%%\""
           bind-key -n C-M-s copy-mode \; command-prompt -p "(search up)" "send -X search-backward \"%%%\""
 
           bind -n M-§ select-window -t :=0

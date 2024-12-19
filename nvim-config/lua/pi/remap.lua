@@ -29,6 +29,10 @@ vim.keymap.set('n', '<Space>', '', {})
 nnoremap('<leader>fs', ':w<cr>', "file save")
 nnoremap('<leader>fq', ':wq<cr>', "file save + quit")
 nnoremap('<leader>fa', ':wall<cr>', "file save all")
+nnoremap('<leader>fts', ':set ft=sh<CR>')
+nnoremap('<leader>ftj', ':set ft=json<CR>')
+nnoremap('<leader>ftm', ':set ft=markdown<CR>')
+
 nnoremap('<leader>qq', ':wqa<cr>', "file save + quit all")
 nnoremap('<leader><Tab>', '<C-^>', "switch to alternate buffer")
 nnoremap('<leader>fmi', function() vim.opt.foldmethod='indent' end, "fold method: indent");

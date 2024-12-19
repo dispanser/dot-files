@@ -17,8 +17,8 @@ return {
       on_attach = function(bufnr)
         local map = vim.keymap.set
         local opts = { buffer = bufnr }
-        map({ 'n', 'i' }, '<M-l><M-o>', '<Cmd>MDListItemBelow<CR>', opts)
-        map({ 'n', 'i' }, '<M-L><M-O>', '<Cmd>MDListItemAbove<CR>', opts)
+        map({'n', 'i'}, '<M-l><M-o>', '<Cmd>MDListItemBelow<CR>', opts)
+        map({'n', 'i'}, '<M-L><M-O>', '<Cmd>MDListItemAbove<CR>', opts)
         map({'n', 'i'}, '<M-Return>', '<Cmd>MDTaskToggle<CR>', opts)
         map('x', '<M-Return>', ':MDTaskToggle<CR>', opts)
       end,
@@ -238,6 +238,9 @@ return {
   },
   {
     'dhruvasagar/vim-table-mode',
+    keys = {
+        { '<leader>t=', ':TableModeRealign<cr>', desc = "re-align table" },
+      },
   },
   -- {
   --   "j-hui/fidget.nvim",
