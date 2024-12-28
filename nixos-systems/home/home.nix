@@ -168,13 +168,14 @@ in {
       defaultOptions = [
         ''--cycle''
         ''--layout=reverse''
-        ''-border''
+        ''--border''
         ''--height=90%''
         ''--preview-window=wrap''
         ''--info=inline''
         ''--pointer="▶"''
         ''--marker="✗"''
         ''--bind "?:toggle-preview"''
+        ''--bind "ctrl-a:select-all"''
       ];
     };
 

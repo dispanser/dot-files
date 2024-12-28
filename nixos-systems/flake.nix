@@ -161,6 +161,21 @@
           }
         ];
       };
+      voyager = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./voyager.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              hasTouchScreen = true;
+            };
+            home-manager.users.pi = import ./home/home.nix;
+          }
+        ];
+      };
     };
     homeConfigurations.pi = {
       # defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;

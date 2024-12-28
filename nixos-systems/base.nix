@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 
 {
+  nix.settings.trusted-users = [ "@wheel" ];
   # we need to watch this, but it sounds useful
   services.earlyoom.enable         = true;
 

@@ -24,7 +24,7 @@
           # set -g @thumbs-bg-color
           # bind-key -n C-M-t thumbs-pick
           
-          set -g @thumbs-command 'echo -n {} | pbcopy && tmux set-buffer -- {} && tmux display-message \"tyx/Copied {}\"'
+          set -g @thumbs-command 'tmux set-buffer -- {} && echo -n {} | pbcopy && tmux display-message \"tyx/Copied {}\"'
           # set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\"'
         '';
       }

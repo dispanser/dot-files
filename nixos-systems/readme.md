@@ -45,6 +45,7 @@ sudo mkswap /dev/{$NAME}/swap
 ```
 
 ```fish
+# choose your base wisely!
 z dot/nixo
 cp x12.nix $NAME.nix
 git add $NAME.nix
@@ -61,8 +62,11 @@ sudo mkdir /mnt
 ,nix-root-mount.sh $LVM_UUID $EFI_UUID $NAME
 
 sudo mkdir -p /mnt/home/pi
+sudo mkdir -p /mnt/home/data/tmp/screenshots
+sudo chmod 1777 /mnt/home/data
 sudo chown pi:users /mnt/home/pi
 mkdir -p /mnt/home/pi/projects/
+mkdir -p /mnt/home/pi/.password-store
 
 rsync -aH --info=progress2 --stats (git root) /mnt/home/pi/src/github/dispanser/ --delete
 
