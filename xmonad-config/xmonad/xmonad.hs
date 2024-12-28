@@ -119,13 +119,13 @@ myManageHook :: ManageHook
 myManageHook = composeAll (catMaybes $ S.hook <$> scratches)
   <+> composeAll
   [ title     =?           "xmessage"             --> doRectFloat centeredRect
-  , appName   `S.endsWith`   "_overlay"           --> doRectFloat rightBarRect
-  , appName   `S.endsWith`   "_scratch"           --> doRectFloat centeredRect
-  , appName   `S.endsWith`   "_org"               --> doRectFloat centeredRect
+  , className `S.endsWith` "_overlay"           --> doRectFloat rightBarRect
+  , appName   `S.endsWith` "_scratch"           --> doRectFloat centeredRect
+  , appName   `S.endsWith` "_org"               --> doRectFloat centeredRect
   -- title: WM_NAME / _NET_WM_NAME
   , title      =?          "Slack Call Minipanel" --> doRectFloat (W.RationalRect (17/20) (9/10) (fullWidth / 5) (2*fullHeight / 18))
-  , title `S.startsWith` "Slack"                  --> addTagHook "m"
-  , title `S.startsWith` "Signal"                 --> addTagHook "m"
+  , title `S.startsWith`   "Slack"                  --> addTagHook "m"
+  , title `S.startsWith`   "Signal"                 --> addTagHook "m"
   , className =?           "Slack"                --> addTagHook "m"
   , className =?           "Onboard"              --> doRectFloat upperBarRect
   , className =?           "TelegramDesktop"      --> addTagHook "m"
