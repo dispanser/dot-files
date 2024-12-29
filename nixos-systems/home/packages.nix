@@ -41,7 +41,7 @@ with pkgs; let
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else
     slack obsidian
-    mplayer
+    vlc
     pinentry
     simple-scan
     xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
