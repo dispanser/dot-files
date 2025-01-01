@@ -31,6 +31,10 @@
             command = "${prefix}/powertop";
             options = [ "SETENV" "NOPASSWD" ];
           }
+          {
+            command = "${prefix}/bluetoothctl";
+            options = [ "SETENV" "NOPASSWD" ];
+          }
         ];
       }
     ];
