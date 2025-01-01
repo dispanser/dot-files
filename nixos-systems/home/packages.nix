@@ -37,6 +37,7 @@ with pkgs; let
     sloc
     zellij
     hyperfine
+    lua-language-server
   ];
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else
