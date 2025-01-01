@@ -1,8 +1,20 @@
-args@{ config, pkgs, lib, hasTouchScreen ? false, ... }:
+{ pkgs, lib, hasTouchScreen ? false, ... }:
 
 let editor = "nvim";
 in {
 
+  sops = {
+    # `nix-shell --run fish -p  ssh-to-age age`
+    # generate via `ssh-to-age -private-key -i  ~/.ssh/unison_tiny > ~/.config/sops/age/keys.txt`
+    # TBC: have a different key for every single host (based on its unique tiny key) 
+    # - right now, `.sops.yaml` uses host names to identif those
+    age.keyFile = "/home/pi/.config/sops/age/keys.txt";
+
+    # It's also possible to use a ssh key, but only when it has no password:
+    #age.sshKeyPaths = [ "/home/user/path-to-ssh-key" ];
+    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
   # sourcehut is down, and nmd package cannot be downloaded from git.sr.ht/~rycee/nmd/....
   manual.html.enable = false;
   manual.manpages.enable = false;

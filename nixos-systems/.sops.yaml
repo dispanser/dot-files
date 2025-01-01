@@ -1,0 +1,10 @@
+keys:
+  - &voyager age1fdsy6zxlwy75ygl08vjrg06gudrx2l97meaj4wwqe590x8240drq0t7tdq
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+        - *voyager
+
+
+

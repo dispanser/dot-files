@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 {
+  sops = {
+    secrets."imap/kgo/pass" = { };
+    secrets."imap/dispanser.de/pass" = { };
+  };
   programs.offlineimap = {
     enable = true;
     pythonFile = ''
@@ -7,6 +11,8 @@
 
       def get_pass(account):
           return check_output("pass " + account, shell=True).rstrip()
+      def get_secret(secret):
+          return check_output("cat " + secret, shell=True).rstrip()
     '';
   };
 
@@ -19,9 +25,9 @@
       userName = "pi@kulturguerilla.org";
       realName = "Thomas Peiselt";
 
-      neomutt = {
-        enable = true;
-      };
+      passwordCommand = "cat ${config.sops.secrets."imap/kgo/pass".path}";
+      mu.enable = true;
+      neomutt.enable = true;
 
       imap = {
         host = "imap.purelymail.com";
@@ -35,7 +41,7 @@
 
       msmtp = {
         enable = true;
-        extraConfig.passwordeval = "pass personal/mail/purelymail.com/pi@kulturguerilla.org/imap";
+        extraConfig.passwordeval = "cat ${config.sops.secrets."imap/kgo/pass".path}";
       };
 
       smtp = {
@@ -52,10 +58,10 @@
         extraConfig = {
           account = {
             quick = 10;
-            autorefresh = 1;
+            autorefresh = 10;
           };
           remote = {
-            remotepasseval = ''get_pass("personal/mail/purelymail.com/pi@kulturguerilla.org/imap")'';
+            remotepasseval = ''get_secret("${config.sops.secrets."imap/kgo/pass".path}")'';
             maxconnections = 5;
             remoteport = 993;
             keepalive = 90;
@@ -81,16 +87,32 @@
         };
       };
 
+      msmtp = {
+        enable = true;
+        # extraConfig.passwordeval = "pass personal/mail/purelymail.com/pi@kulturguerilla.org/imap";
+        extraConfig.passwordeval = "cat ${config.sops.secrets."imap/dispanser.de/pass".path}";
+      };
+
+      smtp = {
+        host = "smtp.purelymail.com";
+        port = 587;
+        tls = {
+          useStartTls = true;
+        };
+      };
+
+
       offlineimap = {
         enable = true;
-        postSyncHookCommand = ''${pkgs.bash}/bin/bash -c "MAILDIR=~/.mail/kgo ${pkgs.mu}/bin/mu index"'';
+        postSyncHookCommand = ''${pkgs.bash}/bin/bash -c "MAILDIR=~/.mail/dispanser.de ${pkgs.mu}/bin/mu index"'';
         extraConfig = {
           account = {
             quick = 10;
-            autorefresh = 1;
+            autorefresh = 60;
           };
           remote = {
-            remotepasseval = ''get_pass("personal/mail/purelymail.com/inbox.purelymail.com/me@dispanser.de")'';
+            # remotepasseval = ''get_pass("personal/mail/purelymail.com/inbox.purelymail.com/me@dispanser.de")'';
+            remotepasseval = ''get_secret("${config.sops.secrets."imap/dispanser.de/pass".path}")'';
             maxconnections = 5;
             remoteport = 993;
             keepalive = 90;

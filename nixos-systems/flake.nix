@@ -10,9 +10,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       yukon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -148,31 +152,43 @@
       };
       konsole = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        # specialArgs = {inherit inputs outputs;};
         modules = [
           ./konsole.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                hasTouchScreen = true;
+              };
+              users.pi = import ./home/home.nix;
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sop
+              ];
             };
-            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
       voyager = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./voyager.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                hasTouchScreen = true;
+              };
+              users.pi = import ./home/home.nix;
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
             };
-            home-manager.users.pi = import ./home/home.nix;
           }
         ];
       };
