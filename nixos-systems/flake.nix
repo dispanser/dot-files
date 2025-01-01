@@ -17,7 +17,20 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
+    nixosConfigurations = let
+      home_manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = {
+          hasTouchScreen = true;
+        };
+        users.pi = import ./home/home.nix;
+        sharedModules = [
+          inputs.sops-nix.homeManagerModules.sops
+        ];
+      };
+    in 
+    {
       yukon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -112,14 +125,8 @@
         system = "x86_64-linux";
         modules = [
           ./x12.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = true;
-            };
-            home-manager.users.pi = import ./home/home.nix;
+          home-manager.nixosModules.home-manager {
+            home-manager = home_manager;
           }
         ];
       };
@@ -157,17 +164,7 @@
           ./konsole.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                hasTouchScreen = true;
-              };
-              users.pi = import ./home/home.nix;
-              sharedModules = [
-                inputs.sops-nix.homeManagerModules.sop
-              ];
-            };
+            home-manager = home_manager;
           }
         ];
       };
@@ -176,19 +173,8 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./voyager.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                hasTouchScreen = true;
-              };
-              users.pi = import ./home/home.nix;
-              sharedModules = [
-                inputs.sops-nix.homeManagerModules.sops
-              ];
-            };
+          home-manager.nixosModules.home-manager {
+            home-maanger = home_manager;
           }
         ];
       };
