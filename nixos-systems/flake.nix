@@ -174,7 +174,7 @@
         modules = [
           ./voyager.nix
           home-manager.nixosModules.home-manager {
-            home-maanger = home_manager;
+            home-manager = home_manager;
           }
         ];
       };
