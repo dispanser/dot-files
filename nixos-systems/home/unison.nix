@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   services.unison =
@@ -34,7 +34,7 @@
             ".password-store"
           ];
   in {
-    enable = true;
+    enable = lib.mkIf pkgs.stdenv.isLinux true;
     pairs = {
       tiny_sync = {
         roots = [
