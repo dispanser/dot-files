@@ -228,7 +228,7 @@
       rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
       rcmd - v : ${homeDir}/bin/darwin/,y_focus.fish "Pritunl"
 
-      rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish Obsidian /Applications/Obsidian.app/Contents/MacOS/Obsidian global
+      rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish  /Applications/ChatGPT.app/Contents/MacOS/ChatGPT global
       rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tpx
       rcmd - t : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty main >> /tmp/tpx
       rcmd + shift - o : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope overlay

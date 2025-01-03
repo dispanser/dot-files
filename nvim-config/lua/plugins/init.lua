@@ -1,6 +1,9 @@
 -- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
   -- https://github.com/wellle/targets.vim
+  {
+    'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'
+  },
   {'wellle/targets.vim'},
   {'HiPhish/rainbow-delimiters.nvim'},
   {
