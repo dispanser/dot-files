@@ -7,8 +7,12 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nix-darwin, home-manager, nixpkgs }:
+  outputs = { self, nix-darwin, home-manager, ...}@inputs:
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#yukon
@@ -17,12 +21,15 @@
         ./darwin.nix
         home-manager.darwinModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users."thomas.peiselt" = import ../home/home.nix;
 
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users."thomas.peiselt" = import ../home/home.nix;
+            sharedModules = [
+              inputs.sops-nix.homeManagerModules.sops
+            ];
+          };
         }
       ];
     };
