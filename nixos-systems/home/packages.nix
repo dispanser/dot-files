@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 with pkgs; let 
 #  neovim = pkgs.neovim.override {
@@ -9,7 +9,6 @@ with pkgs; let
     goku
     pass # on linux, pass is installed system-wide because it can be used outside of my home context
     mc
-    google-cloud-sdk
     rclone
     rsync
     coreutils
@@ -52,9 +51,8 @@ with pkgs; let
     pavucontrol ponymix
     xorg.xinit
     rofi
-    spotify
     scrot 
-    signal-desktop tdesktop
+    signal-desktop
     nextcloud-client
     firefox
     xfontsel
