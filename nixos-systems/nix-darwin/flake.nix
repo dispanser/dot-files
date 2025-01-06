@@ -1,5 +1,9 @@
 {
-  description = "Example Darwin system flake";
+  # this flake could easily be merged into ../flake.nix by merging inputs and
+  # outputs, quite literally. We're currently using a separate flake so we can
+  # `nix flake update` independently
+
+  description = "My darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
