@@ -1,5 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
+  xdg.mimeApps.defaultApplications = {
+    # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop?
+    "text/html" = [ "browser.desktop" ];
+  };
+
+  xdg.desktopEntries.browser = {
+    type = "Application";
+    exec = "/home/pi/bin/browser.sh %u";
+    name = "qute-project";
+    comment = "Project-specific browser";
+  };
+
   programs.qutebrowser = {
     enable = pkgs.stdenv.isLinux; # || (lib.versionOlder pkgs.stdenv.hostPlatform.darwinMinVersion "12");
     enableDefaultBindings = true; # Default
