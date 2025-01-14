@@ -1,9 +1,6 @@
 {
   description = "System Configurations";
 
-  # nixos-hardware.url = "github:nixos/nixos-hardware";
-  # inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
@@ -31,18 +28,14 @@
       };
     in 
     {
+      # X1-T3 16GB
       yukon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./yukon.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = true;
-            };
-            home-manager.users.pi = import ./home/home.nix;
+            home-manager = home_manager;
           }
         ];
       };
