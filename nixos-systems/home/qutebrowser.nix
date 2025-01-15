@@ -19,7 +19,6 @@
         config.unbind('<ctrl-p>')
         config.unbind('<ctrl-n>')
         config.unbind('d')
-        config.unbind('d')
         '';
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?q={}";

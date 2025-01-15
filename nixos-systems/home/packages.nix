@@ -15,6 +15,7 @@ with pkgs; let
     k9s stern
   ];
   desktopPkgs = [
+    hueadm
     any-nix-shell
     yt-dlp
     units

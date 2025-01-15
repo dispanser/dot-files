@@ -73,6 +73,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+lspconfig.protols.setup({})
 lspconfig.metals.setup({})
 lspconfig.jsonls.setup({})
 lspconfig.pyright.setup({})
