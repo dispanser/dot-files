@@ -16,6 +16,8 @@
     # ./cx_vpn.nix
   ];
 
+  programs.steam.enable = true;
+
   console.font = "sun12x22";
 
   services.libinput.mouse = {

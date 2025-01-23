@@ -28,6 +28,7 @@ with pkgs; let
     stow
   ];
   develPkgs = [
+    aider
     zig
     marksman
     nil
