@@ -30,6 +30,9 @@ with pkgs; let
   ];
   develPkgs = [
     aider
+    docker
+    docker-credential-helpers
+    kubectl
     zig
     marksman
     nil
@@ -39,6 +42,7 @@ with pkgs; let
     zellij
     hyperfine
     lua-language-server
+    vscode-langservers-extracted
   ];
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else
