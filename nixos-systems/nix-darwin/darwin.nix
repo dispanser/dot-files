@@ -22,7 +22,6 @@
     onActivation.cleanup = "zap";
     casks = [
       "qutebrowser"
-      "docker"
       "pritunl"
       "postman"
       "obsidian"
@@ -35,7 +34,7 @@
       "awscli"
       "golang"
       "openssh"
-      "docker-compose"
+      "llama.cpp"
     ];
   };
 
