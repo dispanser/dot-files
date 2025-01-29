@@ -7,9 +7,9 @@ else
 end
 
 if test $light -eq 0
-	nix-shell -p hueadm --run "hueadm light Arbeitszimmer off"
+	hueadm light Arbeitszimmer off
 else 
-	nix-shell -p hueadm --run "hueadm light Arbeitszimmer \=$light"
+	hueadm light Arbeitszimmer \=$light
 end
 
-nix-shell -p hueadm --run 'hueadm group Bedroom off'
+hueadm group Bedroom off
