@@ -1,4 +1,4 @@
-{ pkgs, editor, ... }:
+{ config, pkgs, editor, ... }:
 
 {
   # home.packages = with pkgs.fishPlugins; [ fzf-fish done ];
@@ -13,6 +13,10 @@
       };
     }
   ];
+
+  sops = {
+    secrets."anthrophic_api_key" = { };
+  };
 
   programs.fish = {
     enable = true;
@@ -127,7 +131,7 @@
       });
     interactiveShellInit = ''
       fish_hybrid_key_bindings
-      set -x EDITOR ${editor}
+      set -gx EDITOR ${editor}
       # this is picked up by vim.
       set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
       set fzf_fd_opts --hidden --exclude=.git # for fzf.fish
@@ -136,6 +140,7 @@
       # note that a later incarnation of this command overwrites everything, even unmentioned
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\cl --directory=\co --processes=\e\cp
       bind --mode insert \cz fg
+      set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
       '' + (if pkgs.stdenv.isDarwin then ''
         fish_add_path --move {$HOME}/bin
         fish_add_path --move {$HOME}/go/bin

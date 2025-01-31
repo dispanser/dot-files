@@ -14,6 +14,7 @@
     ./yubico.nix
     ./lowmem.nix
     # ./cx_vpn.nix
+    ./llm.nix
   ];
 
   programs.steam.enable = true;
@@ -58,11 +59,6 @@
   security.pam.u2f.enable = true;
 
   nixpkgs.config.rocmSupport = true;
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-rocm;
-    # rocmOverrideGfx = "11.0.0";
-  };
 
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;

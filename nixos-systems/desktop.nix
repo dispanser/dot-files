@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ 
@@ -92,6 +92,7 @@
     extraPackages = with pkgs; [
       libva
       libva-utils
+      amdvlk
     ];
   };
 

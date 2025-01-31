@@ -1,4 +1,4 @@
-{ pkgs, lib, hasTouchScreen ? false, ... }:
+{ config, pkgs, lib, hasTouchScreen ? false, ... }:
 
 let editor = "nvim";
 in {
@@ -15,6 +15,7 @@ in {
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
   };
+
   # sourcehut is down, and nmd package cannot be downloaded from git.sr.ht/~rycee/nmd/....
   manual.html.enable = false;
   manual.manpages.enable = false;
@@ -25,8 +26,8 @@ in {
     "slack"
   ];
 
-  systemd.user.sessionVariables = {
-  # home.sessionVariables = {
+  # systemd.user.sessionVariables = {
+  home.sessionVariables = {
     EDITOR = "${editor}";
   };
 
@@ -62,7 +63,7 @@ in {
 
   programs.fish.enable = true;
   imports = [
-    (import ./fish.nix { pkgs = pkgs; editor = editor; })
+    (import ./fish.nix { pkgs = pkgs; editor = editor; config = config; })
     ./alacritty.nix
     ./git.nix
     ./helix.nix
