@@ -3,8 +3,7 @@
 {
   programs.kitty = {
     enable = true;
-    # theme  = "Solarized Dark Higher Contrast";
-    theme  = "Solarized Dark - Patched";
+    # theme  = "Solarized Dark - Patched";
     settings = {
       allow_remote_control = true;
       cursor_shape = "underline";
