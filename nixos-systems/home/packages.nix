@@ -27,6 +27,7 @@ with pkgs; let
     eza delta ripgrep neovim fzf fd
     iftop
     stow
+    libnotify
   ];
   develPkgs = [
     aider-chat
