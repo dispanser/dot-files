@@ -48,8 +48,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
     s('n', '<leader>ek', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
     s('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', o(event.buf, '[lsp] go to definition'))
-    s('n', 'gt', '<cmd>lua vim.lsp.buf.declaration()<cr>', o(event.buf, '[lsp]: go to declaration'))
-    s('n', 'gT', '<cmd>lua vim.lsp.buf.type_definition()<cr>', o(event.buf, '[lsp]: go to implementation'))
+    s('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', o(event.buf, '[lsp]: go to declaration'))
+    s('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', o(event.buf, '[lsp]: go to implementation'))
 
     s('n', '<leader>em', '<cmd>lua vim.lsp.buf.implementation()<cr>', o(event.buf, '[lsp]: go to implementation'))
     s('n', '<leader>es', '<cmd>lua vim.lsp.buf.signature_help()<cr>', o(event.buf, '[lsp]: show signature'))
@@ -69,7 +69,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', '<leader>eP', builtin.diagnostics, o(event.buf, "all project diagnostics"))
     s('n', '<leader>bP', function() builtin.diagnostics({ bufnr = 0 }) end, o(event.buf, "all buffer diagnostic"))
     s('n', '<leader>pS', builtin.lsp_workspace_symbols, o(event.buf, "workspace symbols"))
-    s('n', '<leader>ps', builtin.lsp_dynamic_workspace_symbols, o(event.buf, "dynamic workspace symbols"))
+    s('n', '<leader>ps',
+      function()
+        builtin.lsp_dynamic_workspace_symbols({
+            symbol_type_width = 10,
+            fname_width = 50,
+          })
+      end,
+      o(event.buf, "dynamic workspace symbols"))
   end,
 })
 

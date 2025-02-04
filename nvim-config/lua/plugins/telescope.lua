@@ -10,6 +10,12 @@ return {
     require("telescope").setup({
       -- the rest of your telescope config goes here
       defaults = {
+        path_display = {
+          shorten = {
+            len = 4,
+            exclude = {1, -1},
+          },
+        },
         cache_picker = {
           num_pickers = 20,
         },
@@ -19,8 +25,15 @@ return {
           flex = {
             flip_columns = 150,
             vertical = { width = 0.9 },
+            horizontal = {
+              height = 0.95,
+              width = 0.95,
+            },
           },
-          -- other layout configuration here
+          horizontal = {
+            height = 0.95,
+            width = 0.95,
+          },
         },
         pickers = {
           find_files = {

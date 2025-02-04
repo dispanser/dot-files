@@ -29,6 +29,7 @@
       "signal"
       "zerotier-one"
       "chatgpt"
+      "stats"
     ];
     brews = [
       "awscli"
