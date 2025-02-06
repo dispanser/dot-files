@@ -4,7 +4,11 @@
   users.users."thomas.peiselt" = {
     home = "/Users/thomas.peiselt";
     name = "thomas.peiselt";
+    shell = pkgs.fish;
+    uid = 502;
   };
+
+  users.knownUsers = [ "thomas.peiselt" ];
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
