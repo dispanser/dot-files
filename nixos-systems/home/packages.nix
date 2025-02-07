@@ -29,7 +29,7 @@ with pkgs; let
     stow
   ];
   develPkgs = [
-    aider
+    aider-chat
     docker
     docker-credential-helpers
     kubectl
