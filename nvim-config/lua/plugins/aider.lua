@@ -33,6 +33,7 @@ return {
         "--pretty",
         "--no-stream",
         "--cache-prompts",
+        "--watch",
       },
 
       -- Theme colors (automatically uses Catppuccin flavor if available)
