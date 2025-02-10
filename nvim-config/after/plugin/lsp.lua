@@ -47,11 +47,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     s('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
     s('n', '<leader>ek', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
-    s('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', o(event.buf, '[lsp] go to definition'))
+    s('n', 'gd', builtin.lsp_definitions, o(event.buf, '[lsp] go to definition'))
     s('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', o(event.buf, '[lsp]: go to declaration'))
-    s('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', o(event.buf, '[lsp]: go to implementation'))
+    s('n', 'gt', builtin.lsp_type_definitions, o(event.buf, '[lsp]: go to type definition'))
 
-    s('n', '<leader>em', '<cmd>lua vim.lsp.buf.implementation()<cr>', o(event.buf, '[lsp]: go to implementation'))
+    s('n', '<leader>em', builtin.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
     s('n', '<leader>es', '<cmd>lua vim.lsp.buf.signature_help()<cr>', o(event.buf, '[lsp]: show signature'))
     s('n', '<leader>en', '<cmd>lua vim.lsp.buf.rename()<cr>', o(event.buf, '[lsp]: rename'))
     s({'n', 'x'}, '<leader>ef', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', o(event.buf, '[lsp]: format'))
