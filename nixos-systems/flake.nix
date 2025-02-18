@@ -90,12 +90,7 @@
           ./tiny.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = false;
-            };
-            home-manager.users.pi = import ./home/home.nix;
+            home-manager = home_manager;
           }
         ];
       };
