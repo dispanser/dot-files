@@ -9,6 +9,7 @@
     enable = true;
     extraRules = ''
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idModel}=="ThinkPad_Compact_USB_Keyboard_with_TrackPoint", TEST=="power/control", ATTR{power/control}="on"
+      KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
     '';
   };
   programs.ssh.startAgent = false;
@@ -102,7 +103,7 @@
       initialPassword = "wait,what?";
       description     = "Thomas Peiselt";
       group           = "pi";
-      extraGroups     = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" "docker" "vboxusers" "adbusers" "input" ];
+      extraGroups     = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" "docker" "vboxusers" "adbusers" "input" "uinput" ];
       shell           = pkgs.fish;
     };
   };
