@@ -78,7 +78,6 @@ following steps can be done while system is building, which takes a while:
 
 ```fish
 # this may not be the best way to sync things... far too much data
-# rsync -aH --info=progress2 --stats ~/projects/ /mnt/home/pi/projects/
 
 # top priority is to get access to tiny for unison, and github for config repos
 mkdir /mnt/home/pi/.ssh/; 
@@ -87,11 +86,14 @@ cp \
 	/home/pi/.ssh/id_feitian_solo_ecdsa_sk \
 	/home/pi/.ssh/id_feitian_chain_ecdsa_sk \
 	/home/pi/.ssh/id_ecdsa /mnt/home/pi/.ssh/
+
+rsync -aH --info=progress2 --stats ~/.gnupg /mnt/home/pi/ --delete
 # also copy `.pub` over, `ssh-copy-id` didn't work for whatever reason
 ssh-keygen -t ed25519 -C "tiny@{$NAME}" -f /mnt/home/pi/.ssh/unison-tiny
 
+cp /etc/wpa_supplicant.conf /mnt/etc/
 # finally, unmount
-,umount-mnt.sh {$NAME}
+,umount-mnt.sh $NAME
 ```
 
 We're done. Boot, and find out all the things we forgot. Add them here, because we want to do better next time
