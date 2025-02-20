@@ -5,6 +5,7 @@
   # we need to watch this, but it sounds useful
   services.earlyoom.enable         = true;
 
+  hardware.uinput.enable = true;
   services.udev = {
     enable = true;
     extraRules = ''

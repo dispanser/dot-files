@@ -15,6 +15,7 @@ with pkgs; let
     k9s stern
   ];
   desktopPkgs = [
+    touchscreen-gestures
     hueadm
     any-nix-shell
     yt-dlp

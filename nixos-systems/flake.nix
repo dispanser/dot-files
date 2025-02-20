@@ -11,10 +11,14 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tsg = {
+      url = "path:/home/pi/src/github/dispanser/touchscreen-gestures";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = let
+  outputs = { self, nixpkgs, home-manager, tsg, ... }@inputs: 
+  let
       home_manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -26,8 +30,11 @@
           inputs.sops-nix.homeManagerModules.sops
         ];
       };
-    in 
-    {
+  in {
+    overlays.default = final: prev: {
+      touchscreen-gestures = tsg.packages.${prev.system}.default;
+    };
+    nixosConfigurations = {
       # X1-T3 16GB
       yukon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -119,9 +126,13 @@
         ];
       };
       x12 = nixpkgs.lib.nixosSystem {
+        # inherit pkgs;
         system = "x86_64-linux";
         modules = [
           ./x12.nix
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ self.overlays.default ];
+          })
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }

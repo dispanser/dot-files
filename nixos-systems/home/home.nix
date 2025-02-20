@@ -78,13 +78,7 @@ in {
     ./unison.nix
   ];
 
-  services.touch = {
-    enable = hasTouchScreen;
-    # if builtins.hasAttr hasTouchScreen args then args.hasTouchScreen else false;
-    # lib.attrsets.attrByPath ["hasTouchScreen"] false args;
-    finger-device = "Wacom HID 525C Finger";
-    pen-device = "Wacom HID 525C Pen";
-  };
+  services.touch.enable = hasTouchScreen;
 
   services.inputplug.enable = true;
 
