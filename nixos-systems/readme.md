@@ -49,7 +49,7 @@ sudo mkswap /dev/{$NAME}/swap
 z nixos-systems
 cp x12.nix $NAME.nix
 git add $NAME.nix
-nvim flake.nix $NAME.nix
+nvim -O flake.nix $NAME.nix
 ```
 create new system file and edit
 - `$NAME` into hostname
@@ -88,8 +88,9 @@ cp \
 	/home/pi/.ssh/id_ecdsa /mnt/home/pi/.ssh/
 
 rsync -aH --info=progress2 --stats ~/.gnupg /mnt/home/pi/ --delete
-# also copy `.pub` over, `ssh-copy-id` didn't work for whatever reason
-ssh-keygen -t ed25519 -C "tiny@{$NAME}" -f /mnt/home/pi/.ssh/unison-tiny
+
+# also copy `.pub` over to tiny, `ssh-copy-id` didn't work for whatever reason
+ssh-keygen -t ed25519 -C "tiny@$NAME" -f /mnt/home/pi/.ssh/unison_tiny
 
 cp /etc/wpa_supplicant.conf /mnt/etc/
 # finally, unmount
