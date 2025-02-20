@@ -16,6 +16,7 @@
 
   sops = {
     secrets."anthrophic_api_key" = { };
+    secrets."mistral_api_key" = { };
   };
 
   programs.fish = {
@@ -141,6 +142,7 @@
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\cl --directory=\co --processes=\e\cp
       bind --mode insert \cz fg
       set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
+      set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
       '' + (if pkgs.stdenv.isDarwin then ''
         fish_add_path --move {$HOME}/bin
         fish_add_path --move {$HOME}/go/bin
