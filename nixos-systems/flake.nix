@@ -112,7 +112,7 @@
       oxide = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./x12.nix
+          ./oxide.nix
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }
