@@ -95,6 +95,7 @@
   # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
   # regular pass + new salt + touch key
   boot = {
+    kernelParams = [ "video=eDP-1:panel_orientation=left_side_up" ];
     initrd.luks = {
       fido2Support = false;
       devices = {
@@ -109,7 +110,7 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" ];
+    kernelModules                   = [ "coretemp" "tp_smapi" "acpi_call" ];
     extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
     extraModprobeConfig = ''
     options acpi ec_no_wakeup=1
