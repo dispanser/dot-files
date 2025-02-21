@@ -76,6 +76,7 @@ in {
     ./inputplug.nix
     ./mail.nix
     ./unison.nix
+    ./hue.nix
   ];
 
   services.touch.enable = hasTouchScreen;

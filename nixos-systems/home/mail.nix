@@ -89,7 +89,6 @@
 
       msmtp = {
         enable = true;
-        # extraConfig.passwordeval = "pass personal/mail/purelymail.com/pi@kulturguerilla.org/imap";
         extraConfig.passwordeval = "cat ${config.sops.secrets."imap/dispanser.de/pass".path}";
       };
 
