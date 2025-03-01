@@ -27,6 +27,7 @@
       "Name .devenv"
       "Name _internal.abi3.so"
       "Name __pycache__"
+      "Name src/github/NixOS"
     ];
     paths = [
       "projects"
