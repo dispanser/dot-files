@@ -143,9 +143,9 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/3C1B-16EF"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/oxide/nix-root";           fsType = "ext4"; neededForBoot = true;};
-    "/home"      = { device = "/dev/oxide/home";               fsType = "ext4"; neededForBoot = true;};
+    "/boot"      = { device = "/dev/disk/by-uuid/AF30-7A0C"; fsType = "vfat"; neededForBoot = true;};
+    "/"          = { device = "/dev/oxide/nix-root";         fsType = "ext4"; neededForBoot = true;};
+    "/home"      = { device = "/dev/oxide/home";             fsType = "ext4"; neededForBoot = true;};
   };
 
   swapDevices = [
