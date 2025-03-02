@@ -61,15 +61,6 @@
     wireless-regdb 
   ];
 
-  services.cron = {
-	  enable         = true;
-	  systemCronJobs = [
-	      "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
-	      "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
-        "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
-    ];
-  };
-
   services.blueman.enable = true;
 
   hardware.bluetooth = {
@@ -107,7 +98,7 @@
   # regular pass + new salt + touch key
   boot = {
     initrd.luks = {
-      fido2Support = true;
+      fido2Support = false;
       devices = {
         x12 = {
           preLVM = true;

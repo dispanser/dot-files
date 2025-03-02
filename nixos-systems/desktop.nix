@@ -42,7 +42,7 @@
   };
 
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.onboard}/bin/onboard -l /home/pi/src/github/dispanser/dot-files/configs/onboard/mine.onboard
+    # ${pkgs.onboard}/bin/onboard -l /home/pi/src/github/dispanser/dot-files/configs/onboard/mine.onboard
     ${pkgs.xorg.setxkbmap}/bin/setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch
     ${pkgs.xbindkeys}/bin/xbindkeys
     ${pkgs.xorg.xmodmap}/bin/xmodmap ~/.Xmodmap
