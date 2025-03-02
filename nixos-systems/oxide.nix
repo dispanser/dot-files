@@ -1,7 +1,14 @@
 { config, lib, pkgs,... }:
 
 {
+  # hardware.sensor.iio.bmi260.enable = true;
   services.joycond.enable = true;
+
+  services.handheld-daemon = {
+    enable = true;
+    ui.enable = true;
+    user = "pi";
+  };
 
   imports = [
     ./laptop.nix
