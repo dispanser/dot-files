@@ -170,6 +170,9 @@
         # specialArgs = {inherit inputs outputs;};
         modules = [
           ./konsole.nix
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ self.overlays.default ];
+          })
           home-manager.nixosModules.home-manager
           {
             home-manager = home_manager;
