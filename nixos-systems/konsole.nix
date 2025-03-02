@@ -29,24 +29,6 @@
     user = "pi";
   };
 
-  services.undervolt = {
-    temp = 90;
-    enable = false;
-    useTimer = true;
-    uncoreOffset = -50;
-    gpuOffset = -45;
-    coreOffset = -75;
-    analogioOffset = -50;
-    p1 = {
-      limit = 65;
-      window = 300;
-    };
-    p2 = {
-      limit = 90;
-      window = 224;
-    };
-  };
-
   virtualisation.docker.enable = true;
 
   services.espanso.enable = false;
@@ -149,7 +131,7 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/0E16-FB1A"; fsType = "vfat"; neededForBoot = true;};
+    "/boot"      = { device = "/dev/disk/by-uuid/823C-633A"; fsType = "vfat"; neededForBoot = true;};
     "/"          = { device = "/dev/konsole/nix-root";       fsType = "ext4"; neededForBoot = true;};
     "/home"      = { device = "/dev/konsole/home";           fsType = "ext4"; neededForBoot = true;};
   };
