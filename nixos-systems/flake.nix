@@ -180,6 +180,9 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./voyager.nix
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ self.overlays.default ];
+          })
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }

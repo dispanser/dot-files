@@ -14,7 +14,7 @@
     ./yubico.nix
     ./fingerprint.nix
     ./lowmem.nix
-    ./cx_vpn.nix
+    # ./cx_vpn.nix
   ];
 
   console.font = "sun12x22";
@@ -26,24 +26,6 @@
     disableWhileTyping = true;
     clickMethod        = "buttonareas";
     tapping            = false;
-  };
-
-  services.undervolt = {
-    temp = 90;
-    enable = false;
-    useTimer = true;
-    uncoreOffset = -50;
-    gpuOffset = -45;
-    coreOffset = -75;
-    analogioOffset = -50;
-    p1 = {
-      limit = 65;
-      window = 300;
-    };
-    p2 = {
-      limit = 90;
-      window = 224;
-    };
   };
 
   virtualisation.docker.enable = true;
@@ -60,15 +42,6 @@
   hardware.firmware = with pkgs; [ 
     wireless-regdb 
   ];
-
-  services.cron = {
-	  enable         = true;
-	  systemCronJobs = [
-	      "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
-	      "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
-        "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
-    ];
-  };
 
   services.blueman.enable = true;
 
@@ -103,12 +76,10 @@
   # regular pass + new salt + touch key
   boot = {
     initrd.luks = {
-      fido2Support = true;
       devices = {
-        x12 = {
+        voyager = {
           preLVM = true;
-          device = "/dev/disk/by-uuid/7abb4543-a901-4b40-bcd9-1f68b7faa249";
-          fido2.credential = "0d05ca72aa2dd7ebba29a6467eef6bed84fbcd94cd34da3cff7c8dbaf3ee2d6e";
+          device = "/dev/disk/by-uuid/46d184c8-2989-4790-a5e0-f6f870fe1ff3";
         };
       };
     }; 
@@ -133,7 +104,7 @@
 
     enableIPv6 = false;
     usePredictableInterfaceNames = false;
-    hostName        = "x12";
+    hostName        = "voyager";
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
@@ -142,14 +113,14 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/10C8-7FDF"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/x12/nix-root";           fsType = "ext4"; neededForBoot = true;};
-    "/home"      = { device = "/dev/x12/home";               fsType = "ext4"; neededForBoot = true;};
+    "/boot"      = { device = "/dev/disk/by-uuid/875A-3CD5"; fsType = "vfat"; neededForBoot = true;};
+    "/"          = { device = "/dev/voyager/nix-root";           fsType = "ext4"; neededForBoot = true;};
+    "/home"      = { device = "/dev/voyager/home";               fsType = "ext4"; neededForBoot = true;};
   };
 
   swapDevices = [
     {
-      device = "/dev/x12/swap";
+      device = "/dev/voyager/swap";
       priority = 10;
     }
   ];
