@@ -25,6 +25,7 @@
     enable = true;
     onActivation.cleanup = "zap";
     casks = [
+      "bluesnooze"
       "qutebrowser"
       "pritunl"
       "postman"
