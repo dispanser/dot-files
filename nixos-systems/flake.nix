@@ -15,9 +15,11 @@
       url = "path:/home/pi/src/github/dispanser/touchscreen-gestures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    cryolitia-nur.url = "github:Cryolitia/nur-packages/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, tsg, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, tsg, nixos-hardware, cryolitia-nur, ... }@inputs: 
   let
       home_manager = {
         useGlobalPkgs = true;
@@ -126,6 +128,9 @@
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }
+          cryolitia-nur.nixosModules.bmi260
+          # currently doesn't compile. 
+          # nixos-hardware.nixosModules.gpd-win-max-2-2023
         ];
       };
       x12 = nixpkgs.lib.nixosSystem {

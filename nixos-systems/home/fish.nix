@@ -143,11 +143,11 @@
       bind --mode insert \cz fg
       set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
       set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
+      fish_add_path --move {$HOME}/.cargo/bin
+      fish_add_path --move {$HOME}/bin
       '' + (if pkgs.stdenv.isDarwin then ''
-        fish_add_path --move {$HOME}/bin
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
-        fish_add_path --move {$HOME}/.cargo/bin
         for p in (string split " " $NIX_PROFILES)
           fish_add_path --prepend --move $p/bin
         end
@@ -157,7 +157,7 @@
       '' else ''
         set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
         set PROJECT_DIR ~/projects/$PROJECT
-        set PATH $HOME/bin:$HOME/bin/linux:$PATH
+        fish_add_path {$HOME}/bin/linux
       '');
   };
 }

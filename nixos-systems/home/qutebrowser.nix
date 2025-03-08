@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   xdg.mimeApps.defaultApplications = {
-    # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop?
+    # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop"?
     "text/html" = [ "browser.desktop" ];
   };
 
