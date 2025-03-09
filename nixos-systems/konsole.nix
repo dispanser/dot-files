@@ -59,10 +59,6 @@
     package         = pkgs.bluez;
   };
 
-  hardware.pulseaudio = {
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
-  };
-
   security.rtkit.enable = true;
 
   hardware.cpu.intel.updateMicrocode = true;

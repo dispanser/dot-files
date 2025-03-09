@@ -6,6 +6,10 @@
     ./openssh.nix
   ];
 
+  services.pulseaudio = {
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
+  };
+
   services.offlineimap = {
     enable = true;
     install = true;
