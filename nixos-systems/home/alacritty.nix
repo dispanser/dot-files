@@ -34,17 +34,18 @@
          # more than once: https://github.com/alacritty/alacritty/issues/5405
          { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
          { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
-         { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
-         { key = "Equals"; mods = "Control"; action = "IncreaseFontSize"; }
 
          # 'shift' doesn't work, unfortunately
          { key = "Equals"; mods = "Control|Alt"; action = "IncreaseFontSize"; }
          { key = "Equals"; mods = "Control|Alt"; action = "IncreaseFontSize"; }
+         { key = "Equals"; mods = "Control|Alt"; action = "IncreaseFontSize"; }
+         { key = "Equals"; mods = "Control|Alt"; action = "IncreaseFontSize"; }
 
          { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
          { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
-         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
-         { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+
+         { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
+         { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
          { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
          { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
        ];
