@@ -1,5 +1,30 @@
 {
   "nodes": {
+    "cryolitia-nur": {
+      "inputs": {
+        "gpd-fan-driver": "gpd-fan-driver",
+        "gpd-linuxcontrols": "gpd-linuxcontrols",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pgp-sig2dot": "pgp-sig2dot",
+        "rust-overlay": "rust-overlay_2"
+      },
+      "locked": {
+        "lastModified": 1741634934,
+        "narHash": "sha256-Wj00D1vxv1rUilUMvyNtLJ/gItEKDPBi1LqNiCZRckY=",
+        "owner": "Cryolitia",
+        "repo": "nur-packages",
+        "rev": "f070deb98c9089d5e1100f88a740ffee0930af55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Cryolitia",
+        "ref": "master",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -18,6 +43,46 @@
         "type": "github"
       }
     },
+    "gpd-fan-driver": {
+      "inputs": {
+        "nixpkgs": [
+          "cryolitia-nur",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739823311,
+        "narHash": "sha256-LoApLDia/dGZhKftm9H1k0xppw5CVuK2OMIYAC5QW38=",
+        "owner": "Cryolitia",
+        "repo": "gpd-fan-driver",
+        "rev": "24c55332d4f2ee86abe88e4892802bfb7e36b793",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Cryolitia",
+        "repo": "gpd-fan-driver",
+        "type": "github"
+      }
+    },
+    "gpd-linuxcontrols": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1720926613,
+        "narHash": "sha256-k2fYcrHLDxkgi/R/hpkdXrzUJy54gBaakW+hSwPkFq8=",
+        "owner": "Cryolitia",
+        "repo": "GPD-LinuxControls",
+        "rev": "03776f22389dd1e257f1bc3d61f2e1e304f42ede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Cryolitia",
+        "repo": "GPD-LinuxControls",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -25,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740845322,
-        "narHash": "sha256-AXEgFj3C0YJhu9k1OhbRhiA6FnDr81dQZ65U3DhaWpw=",
+        "lastModified": 1741635347,
+        "narHash": "sha256-2aYfV44h18alHXopyfL4D9GsnpE5XlSVkp4MGe586VU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "fcac3d6d88302a5e64f6cb8014ac785e08874c8d",
+        "rev": "7fb8678716c158642ac42f9ff7a18c0800fea551",
         "type": "github"
       },
       "original": {
@@ -40,7 +105,7 @@
     },
     "naersk": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1736429655,
@@ -56,13 +121,45 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1741325094,
+        "narHash": "sha256-RUAdT8dZ6k/486vnu3tiNRrNW6+Q8uSD2Mq7gTX4jlo=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "b48cc4dab0f9711af296fc367b6108cf7b8ccb16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1740695751,
-        "narHash": "sha256-D+R+kFxy1KsheiIzkkx/6L63wEHBYX21OIwlFV8JvDs=",
+        "lastModified": 1720781449,
+        "narHash": "sha256-po3TZO9kcZwzvkyMJKb0WCzzDtiHWD34XeRaX1lWXp0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6313551cd05425cd5b3e63fe47dbc324eabb15e4",
+        "rev": "8b5a3d5a1d951344d683b442c0739010b80039db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1741513245,
+        "narHash": "sha256-7rTAMNTY1xoBwz0h7ZMtEcd8LELk9R5TzBPoHuhNSCk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e3e32b642a31e6714ec1b712de8c91a3352ce7e1",
         "type": "github"
       },
       "original": {
@@ -71,7 +168,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 0,
         "narHash": "sha256-xvTo0Aw0+veek7hvEVLzErmJyQkEcRk6PSR4zsRQFEc=",
@@ -83,12 +180,82 @@
         "type": "indirect"
       }
     },
+    "pgp-sig2dot": {
+      "inputs": {
+        "nixpkgs": [
+          "cryolitia-nur",
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "cryolitia-nur",
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1736307122,
+        "narHash": "sha256-psWXR5S2EgpjzVA5Vj5AYyAri9L3h6cZIgBjrl3Y4qo=",
+        "owner": "Cryolitia",
+        "repo": "pgp-sig2dot",
+        "rev": "972cb85e01c37a911f0d6dae27b6509d3a1f9222",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Cryolitia",
+        "repo": "pgp-sig2dot",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "cryolitia-nur": "cryolitia-nur",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs_2",
         "sops-nix": "sops-nix",
         "tsg": "tsg"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "cryolitia-nur",
+          "gpd-linuxcontrols",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1720923816,
+        "narHash": "sha256-GrDL1nFYZrB/+Ah1hNoaNFfduB1agpfqL9QyEl12UOU=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "fb8c8be0313f0e6385b3d70151a04ea1d71e4b68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "cryolitia-nur",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741314698,
+        "narHash": "sha256-6Yp0CTwAY/jq/F81Sa8NM0Zi1EwxAdASO6y4A5neGuc=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "4e9af61c1a631886cdc7e13032af4fc9e75bb76b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -98,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739262228,
-        "narHash": "sha256-7JAGezJ0Dn5qIyA2+T4Dt/xQgAbhCglh6lzCekTVMeU=",
+        "lastModified": 1741644481,
+        "narHash": "sha256-E0RrMykMtEv15V3QhpsFutgoSKhL1JBhidn+iZajOyg=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "07af005bb7d60c7f118d9d9f5530485da5d1e975",
+        "rev": "e653d71e82575a43fe9d228def8eddb73887b866",
         "type": "github"
       },
       "original": {
@@ -135,8 +302,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1740841940,
-        "narHash": "sha256-wvdN+RHq1Xs9cFJoGbwEYhtFx5kNqHLpkFWGYxLs1sI=",
+        "lastModified": 1741367034,
+        "narHash": "sha256-0oo4BqgzdovF0xrHRJu8wBC5hp3KpbVPyD+AZdtX8G0=",
         "path": "/home/pi/src/github/dispanser/touchscreen-gestures",
         "type": "path"
       },

@@ -12,7 +12,7 @@ with pkgs; let
     rclone
     rsync
     coreutils
-    k9s stern
+    docker-credential-helpers
   ];
   desktopPkgs = [
     touchscreen-gestures
@@ -33,7 +33,6 @@ with pkgs; let
   develPkgs = [
     aider-chat
     docker
-    docker-credential-helpers
     kubectl
     zig
     marksman
@@ -45,6 +44,7 @@ with pkgs; let
     hyperfine
     lua-language-server
     vscode-langservers-extracted
+    k9s stern teleport
   ];
   linuxOnly = [
     # these two work on darwin, but are unfree. also, slack is managed somehow else

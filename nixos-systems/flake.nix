@@ -15,8 +15,14 @@
       url = "path:/home/pi/src/github/dispanser/touchscreen-gestures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    cryolitia-nur.url = "github:Cryolitia/nur-packages/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    cryolitia-nur = {
+      url = "github:Cryolitia/nur-packages/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, tsg, nixos-hardware, cryolitia-nur, ... }@inputs: 
