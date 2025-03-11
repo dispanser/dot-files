@@ -122,6 +122,7 @@
       rcd.body   = "tmux rename-window (basename (git root 2>/dev/null && echo (git root) || echo (pwd)))";
       k9d.body   = "kubectl config get-contexts -o name | fzf | xargs k9s -c deploy $argv --context";
       k9p.body   = "kubectl config get-contexts -o name | fzf | xargs k9s -c pods $argv --context";
+      k9c.body   = "kubectl config get-contexts -o name | fzf | xargs kubectl config use-context";
     } // (if pkgs.stdenv.isLinux then {
         rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
         rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
