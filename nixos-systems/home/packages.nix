@@ -13,6 +13,7 @@ with pkgs; let
     rsync
     coreutils
     docker-credential-helpers
+    restic unison
   ];
   desktopPkgs = [
     touchscreen-gestures

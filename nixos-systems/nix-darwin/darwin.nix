@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  nix.enable = true;
   users.users."thomas.peiselt" = {
     home = "/Users/thomas.peiselt";
     name = "thomas.peiselt";
@@ -44,10 +45,6 @@
     ];
   };
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
-
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
@@ -89,7 +86,7 @@
     mineffect = "scale";
   };
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # services.karabiner-elements.enable = true;
 
@@ -136,6 +133,26 @@
       yabai -m rule --add app='IntelliJ IDEA' title='Settings' manage=off
       yabai -m rule --add app='IntelliJ IDEA' title='Evaluate' manage=off
     '';
+  };
+# /nix/store/cs65zlcmqzhhy0khkm15b56li1cq022n-unison-2.53.7/bin/unison -auto=true -batch=true -ignore=Name *.o -ignore=Name *.hi -ignore=Name xmonad-x86_64-linux -ignore=Name *.class -ignore=Name *.jar -ignore=Name .password-store/.git -ignore=Name personal/diary/.git -ignore=Name src/github/dispanser/dot-files -ignore=Name src/github/dispanser/partition-index/.git -ignore=Name target -ignore=Name build -ignore=Name debug -ignore=Name .gradle -ignore=Name .cache -ignore=Name .chromium -ignore=Name .stack-work -ignore=Name .qute/cache -ignore=Name .qute/data -ignore=Name .qute/runtime -ignore=Name *.log -ignore=Name .direnv -ignore=Name .devenv -ignore=Name _internal.abi3.so -ignore=Name __pycache__ -log=false -path=projects -path=src -path=.password-store -prefer=newer -repeat=watch -sshcmd=/nix/store/d47m463xavp70bgzm8qk90fb2a7w79b4-openssh-9.9p1/bin/ssh -ui=text /home/pi/ ssh://tiny//home/data/sync/home/pi/
+  launchd.daemons.unison = {
+    script = ''
+      ${pkgs.unison}/bin/unison \
+        /Users/thomas.peiselt/src/github/coralogix/ \
+        ssh://tiny//home/data/sync/home/pi/projects/coralogix/src \
+        -repeat watch -auto -batch \
+        -ignore="Name target" -ignore="Name .tp/targets" -ignore="Name build" -ignore="Name debug"
+      '';
+    environment = {
+    };
+    path = with pkgs; [ openssh unison-fsmonitor ];
+    serviceConfig = {
+      KeepAlive = true;
+      RunAtLoad = true;
+      StandardOutPath = "/tmp/unison.log";
+      StandardErrorPath = "/tmp/unison-error.log";
+      UserName = "thomas.peiselt";
+    };
   };
 
   services.skhd = let
