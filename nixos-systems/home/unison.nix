@@ -1,6 +1,11 @@
 { lib, pkgs, ... }:
 
-{
+let
+  ssh_script = "${pkgs.writeShellScript "ssh_unison.sh" ''
+    exec 2> /tmp/unison.err.log
+    exec ${pkgs.openssh}/bin/ssh "$@"
+  ''}";
+in {
   services.unison =
     let ignores = [
       "Name *.o"
@@ -48,7 +53,7 @@
           batch = "true";
           log = "false";
           repeat = "watch";
-          sshcmd = "${pkgs.openssh}/bin/ssh";
+          sshcmd = "${ssh_script}";
           ui = "text";
           ignore = ignores;
           path = paths;
