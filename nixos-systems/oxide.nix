@@ -20,6 +20,7 @@
     ./brother.nix
     ./yubico.nix
     ./fingerprint.nix
+    ./cx_vpn.nix
   ];
 
   console.font = "sun12x22";

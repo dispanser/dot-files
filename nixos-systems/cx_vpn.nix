@@ -3,9 +3,9 @@
 {
   programs.openvpn3.enable = true;
   services.openvpn.servers = {
-    staging  = { 
-      config = "config /home/pi/projects/coralogix/vpn/staging.opvn";
-      extraArgs = [];
+    stg  = { 
+      config = "config /home/pi/projects/coralogix/vpn/stg1.opvn";
+      autoStart = false;
     };
   };
 }
