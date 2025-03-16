@@ -114,8 +114,8 @@
 
   fileSystems  = {
     "/boot"      = { device = "/dev/disk/by-uuid/875A-3CD5"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/voyager/nix-root";           fsType = "ext4"; neededForBoot = true;};
-    "/home"      = { device = "/dev/voyager/home";               fsType = "ext4"; neededForBoot = true;};
+    "/"          = { device = "/dev/voyager/nix-root";       fsType = "ext4"; neededForBoot = true;};
+    "/home"      = { device = "/dev/voyager/home";           fsType = "ext4"; neededForBoot = true;};
   };
 
   swapDevices = [
