@@ -45,6 +45,9 @@
         modules = [
           ./yukon.nix
           home-manager.nixosModules.home-manager
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ self.overlays.default ];
+          })
           {
             home-manager = home_manager;
           }
