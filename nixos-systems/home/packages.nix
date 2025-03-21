@@ -16,7 +16,6 @@ with pkgs; let
     restic unison
   ];
   desktopPkgs = [
-    touchscreen-gestures
     hueadm
     any-nix-shell
     yt-dlp
@@ -48,6 +47,7 @@ with pkgs; let
     k9s stern teleport
   ];
   linuxOnly = [
+    touchscreen-gestures
     # these two work on darwin, but are unfree. also, slack is managed somehow else
     slack obsidian
     vlc
