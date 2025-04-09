@@ -72,6 +72,7 @@ with pkgs; let
     ungoogled-chromium
     qutebrowser
     iotop
+    onboard
   ];
 in {
   desktopPkgs = desktopPkgs;
