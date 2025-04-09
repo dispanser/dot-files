@@ -157,3 +157,11 @@ end
 vim.keymap.set('n', '<leader>oy', function() open_file_for(-1) end, { noremap = true, silent = true, desc = "is yesterday" })
 vim.keymap.set('n', '<leader>ot', function() open_file_for(1) end, { noremap = true, silent = true, desc = "tomorrow" })
 vim.keymap.set('n', '<leader>od', function() open_file_for(0) end, { noremap = true, silent = true, desc = "today" })
+
+vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+   if vim.snippet.active({ direction = 1 }) then
+     return '<cmd>lua vim.snippet.jump(1)<cr>'
+   else
+     return '<Tab>'
+   end
+ end, { expr = true })

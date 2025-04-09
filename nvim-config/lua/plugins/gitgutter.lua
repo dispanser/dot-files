@@ -10,5 +10,5 @@ return {
     vim.g.gitgutter_map_keys = 0
     vim.g.gitgutter_preview_win_floating = 1
   end,
-  lazy = true,
+  lazy = false,
 }
