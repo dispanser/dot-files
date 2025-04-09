@@ -7,6 +7,10 @@
       config = "config /home/pi/projects/coralogix/vpn/stg1.opvn";
       autoStart = false;
     };
+    production  = {
+      config = "config /home/pi/projects/coralogix/vpn/production.ovpn";
+      autoStart = false;
+    };
   };
 }
 
