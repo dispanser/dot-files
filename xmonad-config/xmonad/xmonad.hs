@@ -287,10 +287,7 @@ appSubmap = M.fromList
 -- submaps for various prompt-based actions
 promptSubmap :: M.Map ( ButtonMask, KeySym ) ( X () )
 promptSubmap = M.fromList
-  [ ( (0, xK_c), spawn "/home/pi/bin/browser-dmenu chromium")
-  , ( (0, xK_f), spawn "/home/pi/bin/browser-dmenu firefox")
-  , ( (0, xK_q), spawn "/home/pi/bin/browser-dmenu qutebrowser")
-  , ( (0, xK_d), spawn "rofi -show run -theme solarized_alternate")
+  [ ( (0, xK_d), spawn "rofi -show run -theme solarized_alternate")
   , ( (0, xK_g), goToSelected def)
   , ( (0, xK_b), bringSelected def)
   , ( (0, xK_p), XP.passTypePrompt myPromptConfig)
