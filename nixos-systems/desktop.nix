@@ -4,6 +4,7 @@
   imports = [ 
     ./base.nix 
     ./openssh.nix
+    ./vial.nix
   ];
 
   services.pulseaudio = {
