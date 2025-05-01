@@ -30,6 +30,13 @@
   } S-]
 )
 
+
+(defcfg
+  linux-dev-names-include (
+    "Darfon Thinkpad X12 Detachable Gen 1 Folio case -1"
+  )
+)
+
 #|
 (defalias
   ;; toggle layer aliases
