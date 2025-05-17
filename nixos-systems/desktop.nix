@@ -5,6 +5,7 @@
     ./base.nix 
     ./openssh.nix
     ./vial.nix
+    ./keyboard.nix
   ];
 
   services.pulseaudio = {

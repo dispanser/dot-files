@@ -91,7 +91,7 @@
   # see https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
   # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
   # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
-  # regular pass + new salt + touch key
+  # regulan pass + new salt + touch key
   boot = {
     initrd.luks = {
       fido2Support = false;
@@ -107,7 +107,7 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" "uinput" ];
     extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
     extraModprobeConfig = ''
     options acpi ec_no_wakeup=1
