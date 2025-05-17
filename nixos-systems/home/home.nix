@@ -55,6 +55,10 @@ in {
       source = ../../configs/unison;
       recursive = true;
     };
+    ".psqlrc" = {
+      enable = true;
+      source = ../../configs/psql/.psqlrc;
+    };
     ".cargo/config.toml".text = ''
     [target.x86_64-unknown-linux-gnu]
     linker = "${pkgs.clang}/bin/clang"
