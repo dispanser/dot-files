@@ -29,6 +29,7 @@ with pkgs; let
     iftop
     stow
     libnotify
+    kanata
   ];
   develPkgs = [
     aider-chat

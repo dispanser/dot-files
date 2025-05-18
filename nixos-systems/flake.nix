@@ -26,9 +26,6 @@
       home_manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = {
-          hasTouchScreen = true;
-        };
         users.pi = import ./home/home.nix;
         sharedModules = [
           inputs.sops-nix.homeManagerModules.sops
@@ -61,9 +58,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = true;
-            };
             home-manager.users.pi = import ./home/home.nix;
           }
         ];
@@ -76,9 +70,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = false;
-            };
             home-manager.users.pi = import ./home/home.nix;
           }
         ];
@@ -91,9 +82,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = false;
-            };
             home-manager.users.pi = import ./home/home.nix;
           }
         ];
@@ -119,9 +107,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = false;
-            };
             home-manager.users.pi = (import ./home/home.nix);
           }
         ];
@@ -160,9 +145,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              hasTouchScreen = true;
-            };
             home-manager.users.pi = import ./home/home.nix;
           }
         ];
