@@ -5,6 +5,7 @@
   sequence-input-mode hidden-delay-type
   linux-dev-names-include (
     "Darfon Thinkpad X12 Detachable Gen 1 Folio case -1"
+    "Chicony ThinkPad X1 Tablet Thin Keyboard Gen 3"
   )
 )
 
