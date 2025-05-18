@@ -1,6 +1,8 @@
-{ config, pkgs, lib, hasTouchScreen ? false, ... }:
+{ config, pkgs, lib, hasTouchScreen ? false, osConfig,  ... }:
 
-let editor = "nvim";
+let 
+  editor = "nvim";
+  isServer = osConfig.networking.hostName == "tiny";
 in {
 
   sops = {
@@ -89,7 +91,7 @@ in {
     ./unison.nix
   ];
 
-  services.touch.enable = hasTouchScreen;
+  services.touch.enable = !isServer;
 
   services.inputplug.enable = true;
 
@@ -112,7 +114,7 @@ in {
   };
 
   services.xidlehook = {
-    enable           = if pkgs.stdenv.isLinux then true else false;
+    enable           = !isServer;
     detect-sleep   = true;
     not-when-audio   = true;
     not-when-fullscreen = false; # TBE

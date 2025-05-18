@@ -32,7 +32,16 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      hosts = [
+        "unix:///var/run/docker.sock"
+        # "tcp://10.1.3.0:2375"
+        # "tcp://0.0.0.0:2375"
+      ];
+    };
+  };
 
   services.espanso.enable = true;
   services.atd.enable   = true;
@@ -106,7 +115,15 @@
       enable = true;
       interfaces = [ "wlan0" ];
     };
-    firewall.enable = false;
+    firewall = {
+      enable = false;
+      # attempt to block docker outside of VPN but this doesn't work
+      extraInputRules = ''
+        ip saddr 10.1.3.0/24 tcp dport 2375 accept
+        tcp dport 2375 drop
+        tcp dport 65423 accept # Keep SSH open
+      '';
+    };
   };
 
   fileSystems  = {

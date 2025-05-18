@@ -102,6 +102,9 @@
         system = "x86_64-linux";
         modules = [
           ./tiny.nix
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ self.overlays.default ];
+          })
           home-manager.nixosModules.home-manager
           {
             home-manager = home_manager;
