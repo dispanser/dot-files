@@ -5,7 +5,7 @@
     "text/html" = [ "browser.desktop" ];
   };
 
-  xdg.desktopEntries.browser = {
+  xdg.desktopEntries.browser = lib.mkIf pkgs.stdenv.isLinux {
     type = "Application";
     exec = "/home/pi/bin/browser.sh %u";
     name = "qute-project";

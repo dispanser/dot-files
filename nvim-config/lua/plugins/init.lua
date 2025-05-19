@@ -1,6 +1,11 @@
 -- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
   {
+    "cordx56/rustowl",
+    dependencies = { "neovim/nvim-lspconfig" },
+    lazy = false,
+  },
+  {
     'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'
   },
   {'wellle/targets.vim'},

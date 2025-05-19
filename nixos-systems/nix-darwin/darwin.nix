@@ -71,7 +71,7 @@
 
   system.keyboard = {
     enableKeyMapping = true;
-    swapLeftCommandAndLeftAlt = true;
+    # swapLeftCommandAndLeftAlt = true;
     remapCapsLockToEscape = true;
     # TODO: does not work for the ThinkPad Keyboard II - no tilde at all
     nonUS.remapTilde = false;
@@ -140,12 +140,13 @@
         /Users/thomas.peiselt/src/github/coralogix/ \
         ssh://tiny//home/data/sync/home/pi/projects/coralogix/src \
         -repeat watch -auto -batch \
-        -ignore="Name target" -ignore="Name .tp/targets" -ignore="Name build" -ignore= -ignore="Name perf.data*"
+        -ignore="Name target" -ignore="Name .tp/targets" -ignore="Name build" -ignore="Name perf.data*" -ignore="Name debug"
       '';
     environment = {
     };
     path = with pkgs; [ openssh unison-fsmonitor ];
     serviceConfig = {
+      Disabled = true;
       KeepAlive = true;
       RunAtLoad = true;
       StandardOutPath = "/tmp/unison.log";
@@ -163,98 +164,98 @@
     enable = true;
     skhdConfig = ''
       # remap keys for basic sanity
-      rcmd - space : yabai -m window --focus recent
-      rcmd - h : yabai -m window --focus west
-      rcmd - j : yabai -m window --focus south
-      rcmd - k : yabai -m window --focus north
-      rcmd - l : yabai -m window --focus east
-      rcmd - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
-      rcmd - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+      ralt - space : yabai -m window --focus recent
+      ralt - h : yabai -m window --focus west
+      ralt - j : yabai -m window --focus south
+      ralt - k : yabai -m window --focus north
+      ralt - l : yabai -m window --focus east
+      ralt - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+      ralt - 0x2F : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-      rcmd - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
-      rcmd + shift - c : yabai -m window --toggle float --grid 6:6:1:1:4:4
+      ralt - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
+      ralt + shift - c : yabai -m window --toggle float --grid 6:6:1:1:4:4
 
-      ctrl + rcmd - z : ${homeDir}/bin/darwin/,y_float.fish 1:2:0:0:1:1
-      ctrl + rcmd - x : ${homeDir}/bin/darwin/,y_float.fish 1:2:1:0:1:1
-      ctrl + rcmd - f : ${homeDir}/bin/darwin/,y_float.fish 24:24:1:1:22:22
-      ctrl + rcmd - c : ${homeDir}/bin/darwin/,y_float.fish 4:4:1:1:2:2
-      ctrl + rcmd + shift - c : ${homeDir}/bin/darwin/,y_float.fish 6:6:1:1:4:4
+      ctrl + ralt - z : ${homeDir}/bin/darwin/,y_float.fish 1:2:0:0:1:1
+      ctrl + ralt - x : ${homeDir}/bin/darwin/,y_float.fish 1:2:1:0:1:1
+      ctrl + ralt - f : ${homeDir}/bin/darwin/,y_float.fish 24:24:1:1:22:22
+      ctrl + ralt - c : ${homeDir}/bin/darwin/,y_float.fish 4:4:1:1:2:2
+      ctrl + ralt + shift - c : ${homeDir}/bin/darwin/,y_float.fish 6:6:1:1:4:4
 
-      # for unknown reasons, the bindings below with alt + rcmd don't work. other ones do, though!
-      alt + rcmd - 0x2B : ${homeDir}/bin/darwin/,y_float.fish 1:2:0:0:1:1
-      alt + rcmd - 0x2F : ${homeDir}/bin/darwin/,y_float.fish 1:2:1:0:1:1
-      alt + rcmd - f : ${homeDir}/bin/darwin/,y_float.fish 24:24:1:1:22:22
-      alt + rcmd - c : ${homeDir}/bin/darwin/,y_float.fish 4:4:1:1:2:2
-      alt + rcmd + shift - c : ${homeDir}/bin/darwin/,y_float.fish 6:6:1:1:4:4
-      rcmd - 0x2C : yabai -m window --toggle split
+      # for unknown reasons, the bindings below with alt + ralt don't work. other ones do, though!
+      lalt + ralt - 0x2B : ${homeDir}/bin/darwin/,y_float.fish 1:2:0:0:1:1
+      lalt + ralt - 0x2F : ${homeDir}/bin/darwin/,y_float.fish 1:2:1:0:1:1
+      lalt + ralt - f : ${homeDir}/bin/darwin/,y_float.fish 24:24:1:1:22:22
+      lalt + ralt - c : ${homeDir}/bin/darwin/,y_float.fish 4:4:1:1:2:2
+      lalt + ralt + shift - c : ${homeDir}/bin/darwin/,y_float.fish 6:6:1:1:4:4
+      ralt - 0x2C : yabai -m window --toggle split
 
       # swap window
-      shift + rcmd - x : yabai -m window --swap recent
-      shift + rcmd - h : yabai -m window --swap west
-      shift + rcmd - j : yabai -m window --swap south
-      shift + rcmd - k : yabai -m window --swap north
-      shift + rcmd - l : yabai -m window --swap east
+      shift + ralt - x : yabai -m window --swap recent
+      shift + ralt - h : yabai -m window --swap west
+      shift + ralt - j : yabai -m window --swap south
+      shift + ralt - k : yabai -m window --swap north
+      shift + ralt - l : yabai -m window --swap east
 
       # move window
-      shift + ctrl + rcmd - h : yabai -m window --warp west
-      shift + ctrl + rcmd - j : yabai -m window --warp south
-      shift + ctrl + rcmd - k : yabai -m window --warp north
-      shift + ctrl + rcmd - l : yabai -m window --warp east
+      shift + ctrl + ralt - h : yabai -m window --warp west
+      shift + ctrl + ralt - j : yabai -m window --warp south
+      shift + ctrl + ralt - k : yabai -m window --warp north
+      shift + ctrl + ralt - l : yabai -m window --warp east
 
       # stack window
-      ctrl + rcmd - h : yabai -m window --stack west
-      ctrl + rcmd - j : yabai -m window --stack south
-      ctrl + rcmd - k : yabai -m window --stack north
-      ctrl + rcmd - l : yabai -m window --stack east
+      ctrl + ralt - h : yabai -m window --stack west
+      ctrl + ralt - j : yabai -m window --stack south
+      ctrl + ralt - k : yabai -m window --stack north
+      ctrl + ralt - l : yabai -m window --stack east
 
       # resize split(s)
-      alt + rcmd - l : yabai -m window --resize right:${vStepSize}:0  || yabai -m window --resize left:${vStepSize}:0
-      alt + rcmd - h : yabai -m window --resize right:-${vStepSize}:0  || yabai -m window --resize left:-${vStepSize}:0
-      alt + rcmd - j : yabai -m window --resize bottom:0:${vStepSize}  || yabai -m window --resize top:0:${vStepSize}
-      alt + rcmd - k : yabai -m window --resize bottom:0:-${vStepSize}  || yabai -m window --resize top:0:-${vStepSize}
+      lalt + ralt - l : yabai -m window --resize right:${vStepSize}:0  || yabai -m window --resize left:${vStepSize}:0
+      lalt + ralt - h : yabai -m window --resize right:-${vStepSize}:0  || yabai -m window --resize left:-${vStepSize}:0
+      lalt + ralt - j : yabai -m window --resize bottom:0:${vStepSize}  || yabai -m window --resize top:0:${vStepSize}
+      lalt + ralt - k : yabai -m window --resize bottom:0:-${vStepSize}  || yabai -m window --resize top:0:-${vStepSize}
 
-      alt + rcmd - w : yabai -m window --resize top:0:-${vStepSize}  || yabai -m window --resize bottom:0:-${vStepSize}
-      alt + rcmd - s : yabai -m window --resize top:0:${vStepSize}  || yabai -m window --resize bottom:0:${vStepSize}
-      alt + rcmd - a : yabai -m window --resize left:-${vStepSize}:0  || yabai -m window --resize right:-${vStepSize}:0
-      alt + rcmd - d : yabai -m window --resize left:${vStepSize}:0  || yabai -m window --resize right:${vStepSize}:0
+      lalt + ralt - w : yabai -m window --resize top:0:-${vStepSize}  || yabai -m window --resize bottom:0:-${vStepSize}
+      lalt + ralt - s : yabai -m window --resize top:0:${vStepSize}  || yabai -m window --resize bottom:0:${vStepSize}
+      lalt + ralt - a : yabai -m window --resize left:-${vStepSize}:0  || yabai -m window --resize right:-${vStepSize}:0
+      lalt + ralt - d : yabai -m window --resize left:${vStepSize}:0  || yabai -m window --resize right:${vStepSize}:0
 
-      rcmd - f : yabai -m window --toggle zoom-fullscreen
-      rcmd + shift - f : yabai -m window --toggle zoom-parent
+      ralt - f : yabai -m window --toggle zoom-fullscreen
+      ralt + shift - f : yabai -m window --toggle zoom-parent
 
       # switch display monitor
-      rcmd + shift - r  : yabai -m window --space recent
-      rcmd + shift - 1  : yabai -m window --space 1
-      rcmd + shift - 2  : yabai -m window --space 2
-      rcmd + shift - 3  : yabai -m window --space 3
-      rcmd + shift - 4  : yabai -m window --space 4
-      rcmd + shift - 5  : yabai -m window --space 5
-      rcmd + shift - 6  : yabai -m window --space 6
-      rcmd + shift - 0x21  : yabai -m window --space prev
-      rcmd + shift - 0x1E  : yabai -m window --space next
+      ralt + shift - r  : yabai -m window --space recent
+      ralt + shift - 1  : yabai -m window --space 1
+      ralt + shift - 2  : yabai -m window --space 2
+      ralt + shift - 3  : yabai -m window --space 3
+      ralt + shift - 4  : yabai -m window --space 4
+      ralt + shift - 5  : yabai -m window --space 5
+      ralt + shift - 6  : yabai -m window --space 6
+      ralt + shift - 0x21  : yabai -m window --space prev
+      ralt + shift - 0x1E  : yabai -m window --space next
 
       # display stuff
-      rcmd - s  : yabai -m display --focus next || yabai -m display --focus prev
+      ralt - s  : yabai -m display --focus next || yabai -m display --focus prev
       fn - s  : pmset sleepnow
-      rcmd + shift - s  : yabai -m window --display recent && yabai -m display --focus recent
+      ralt + shift - s  : yabai -m window --display recent && yabai -m display --focus recent
 
-      # rcmd - r  : yabai -m space --focus recent # not without scripting additions :-(
-      # rcmd + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+      # ralt - r  : yabai -m space --focus recent # not without scripting additions :-(
+      # ralt + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
-      rcmd - b : ${homeDir}/bin/darwin/,y_focus.fish "Firefox"
-      rcmd - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
+      ralt - b : ${homeDir}/bin/darwin/,y_focus.fish "Firefox"
+      ralt - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
 
-      rcmd - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
-      rcmd - a : ${homeDir}/bin/darwin/,y_focus.fish "ChatGPT"
-      rcmd + shift - m : ${homeDir}/bin/darwin/,y_focus.fish "Signal"
-      rcmd - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
-      rcmd - v : ${homeDir}/bin/darwin/,y_focus.fish "Pritunl"
+      ralt - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
+      ralt - a : ${homeDir}/bin/darwin/,y_focus.fish "ChatGPT"
+      ralt + shift - m : ${homeDir}/bin/darwin/,y_focus.fish "Signal"
+      ralt - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
+      ralt - v : ${homeDir}/bin/darwin/,y_focus.fish "Pritunl"
 
-      rcmd - g : ${homeDir}/bin/darwin/,y_overlay.fish  /Applications/ChatGPT.app/Contents/MacOS/ChatGPT global
-      rcmd - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tpx
-      rcmd - t : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty main >> /tmp/tpx
-      rcmd + shift - o : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope overlay
-      rcmd + shift - t : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope main
-      rcmd - return: ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope main --workspace code
+      ralt - g : ${homeDir}/bin/darwin/,y_overlay.fish  /Applications/ChatGPT.app/Contents/MacOS/ChatGPT global
+      ralt - o : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty overlay >> /tmp/tpx
+      ralt - t : ${homeDir}/bin/darwin/,y_tmux_term.fish ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty main >> /tmp/tpx
+      ralt + shift - o : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope overlay
+      ralt + shift - t : ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope main
+      ralt - return: ${homeDir}/src/github/dispanser/yabars/.devenv/state/cargo-install/bin/yabars tmux-term --scope main --workspace code
 
       # typing
       fn - t : ${pkgs.skhd}/bin/skhd -t "thomas.peiselt@coralogix.com"
