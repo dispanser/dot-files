@@ -44,6 +44,7 @@ with pkgs; let
     hyperfine
     lua-language-server
     vscode-langservers-extracted
+    samply
     k9s stern teleport
   ];
   linuxOnly = [
