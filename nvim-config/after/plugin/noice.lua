@@ -26,6 +26,9 @@ require("noice").setup({
   },
 })
 
+require("notify").setup({
+  top_down = false
+})
 
 vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
   if not require("noice.lsp").scroll(8) then

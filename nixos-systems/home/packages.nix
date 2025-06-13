@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 with pkgs; let 
-#  neovim = pkgs.neovim.override {
-#    extraPythonPackages = pythonPkgs: [ pythonPkgs.sexpdata pythonPkgs.websocket_client ];
-#  };
   darwinOnly = [
     openssh # override the ancient default install (TODO: could be homebrew'ed)
     goku

@@ -42,6 +42,7 @@
       "golang"
       "openssh"
       "llama.cpp"
+      "kanata"
     ];
   };
 

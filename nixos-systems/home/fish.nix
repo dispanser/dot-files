@@ -113,6 +113,7 @@
       gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
       epoch.body = "date --date=@$argv[1]";
       epochns.body = "date --date=@(echo $argv[1] / 1000000000| bc)";
+      depoch     = ''date -d "$argv[1]" +%s'';
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
       rlft.body  = "tmux setb (readlink -f $argv | tr -d '\n')";
