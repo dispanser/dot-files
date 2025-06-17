@@ -30,7 +30,7 @@
   XF86MonBrightnessDown
 
 # suspend and hibernate
-"/home/pi/bin/hibernate"
+"systemctl hibernate"
   Mod4+h
 "systemctl suspend"
   Mod4+s
