@@ -99,13 +99,12 @@
   # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
   # regular pass + new salt + touch key
   boot = {
-    kernelParams = [ "video=eDP-1:panel_orientation=left_side_up" ];
     initrd.luks = {
       fido2Support = false;
       devices = {
         oxide = {
           preLVM = true;
-          device = "/dev/disk/by-uuid/97166be6-abf5-46fb-942d-468b2158f086";
+          device = "/dev/disk/by-uuid/c2aa7dd3-7c1c-4082-b8c0-be0bb5f5e358";
           fido2.credential = "0d05ca72aa2dd7ebba29a6467eef6bed84fbcd94cd34da3cff7c8dbaf3ee2d6e";
         };
       };
@@ -114,7 +113,7 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules                   = [ "coretemp" "tp_smapi" "acpi_call" ];
+    kernelModules                   = [ "coretemp" "tp_smapi" "acpi_call" "uinput" ];
     extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
     extraModprobeConfig = ''
     options acpi ec_no_wakeup=1
@@ -140,7 +139,7 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/AF30-7A0C"; fsType = "vfat"; neededForBoot = true;};
+    "/boot"      = { device = "/dev/disk/by-uuid/EAAF-91D7"; fsType = "vfat"; neededForBoot = true;};
     "/"          = { device = "/dev/oxide/nix-root";         fsType = "ext4"; neededForBoot = true;};
     "/home"      = { device = "/dev/oxide/home";             fsType = "ext4"; neededForBoot = true;};
   };
@@ -156,7 +155,7 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system = {
-    stateVersion       = "22.05";
+    stateVersion       = "25.05";
     autoUpgrade.enable = false;
   };
 

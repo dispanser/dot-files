@@ -62,11 +62,13 @@ sudo mkdir /mnt
 ,nix-root-mount.sh $LVM_UUID $EFI_UUID $NAME
 
 sudo mkdir -p /mnt/home/pi
-sudo mkdir -p /mnt/home/data/tmp/screenshots
+sudo mkdir -p /mnt/home/data
 sudo chmod 1777 /mnt/home/data
 sudo chown pi:users /mnt/home/pi
 mkdir -p /mnt/home/pi/projects/
 mkdir -p /mnt/home/pi/.password-store
+mkdir -p /mnt/home/pi/src/github/dispanser/
+mkdir -p /mnt/home/data/tmp/screenshots
 
 rsync -aH --info=progress2 --stats (git root) /mnt/home/pi/src/github/dispanser/ --delete
 
