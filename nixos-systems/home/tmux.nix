@@ -69,6 +69,7 @@
 
           bind-key C-Space last-window
           bind-key -n C-M-Space last-window
+          bind-key -n C-M-h popup
           bind-key -n C-M-[ copy-mode
           bind-key -n C-M-c copy-mode
           bind-key -n C-M-] paste
