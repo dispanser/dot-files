@@ -298,8 +298,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1746180170,
-        "narHash": "sha256-Jowkuifdc+1exN3zcViOQEwvQvAGlY2zlI+5Zvcd10o=",
+        "lastModified": 1747582943,
+        "narHash": "sha256-nlqkktKHUMQ2MqJohyqNxiYXbQfcmLh/TXcajSogAAY=",
         "path": "/home/pi/src/github/dispanser/touchscreen-gestures",
         "type": "path"
       },
