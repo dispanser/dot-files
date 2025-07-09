@@ -4,7 +4,6 @@
 # NOTICE THE USERNAME: otherwise, registering for root
 # running as non-root doesn't work either (separate problem)
 # sudo fprintd-enroll -f right-index-finger pi
-# sudo fprintd-enroll -f right-index-finger pi
 # sudo fprintd-enroll -f left-index-finger pi
 # sudo fprintd-enroll -f right-thumb pi
 {
