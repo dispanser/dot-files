@@ -10,7 +10,8 @@
     enable = true;
     extraRules = ''
       ACTION=="add", SUBSYSTEM=="input", ATTR{power/control}="on"
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{idModel}=="ThinkPad_Compact_USB_Keyboard_with_TrackPoint", TEST=="power/control", ATTR{power/control}="on" KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idModel}=="ThinkPad_Compact_USB_Keyboard_with_TrackPoint", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{serial}=="*vial:f64c2b3c*", TEST=="power/control", ATTR{power/control}="on" KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
     '';
   };
   programs.ssh.startAgent = false;
