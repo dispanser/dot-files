@@ -105,7 +105,7 @@
       initialPassword = "wait,what?";
       description     = "Thomas Peiselt";
       group           = "pi";
-      extraGroups     = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" "docker" "vboxusers" "adbusers" "input" "uinput" ];
+      extraGroups     = [ "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal" "docker" "vboxusers" "adbusers" "input" "uinput" "kvm" ];
       shell           = pkgs.fish;
     };
   };

@@ -5,7 +5,7 @@
   services.joycond.enable = true;
 
   services.handheld-daemon = {
-    enable = true;
+    enable = false;
     ui.enable = true;
     user = "pi";
   };
