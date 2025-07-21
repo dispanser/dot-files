@@ -44,6 +44,7 @@ with pkgs; let
     vscode-langservers-extracted
     samply
     k9s stern teleport
+    markdown-oxide
   ];
   linuxOnly = [
     touchscreen-gestures

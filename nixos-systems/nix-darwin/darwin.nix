@@ -9,6 +9,7 @@
     uid = 502;
   };
 
+  system.primaryUser = "thomas.peiselt";
   users.knownUsers = [ "thomas.peiselt" ];
 
   # List packages installed in system profile. To search by name, run:
@@ -158,7 +159,6 @@
 
   services.skhd = let
     vStepSize = "120";
-    hStepSize = "80";
     # TODO: try to access the previously set values instead of re-defining, or let-bind it
     homeDir = "/Users/thomas.peiselt";
   in {

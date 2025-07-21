@@ -114,8 +114,8 @@ in {
   };
 
   services.xidlehook = {
-    enable           = !isServer;
-    detect-sleep   = true;
+    enable           = !isServer && pkgs.stdenv.isLinux;
+    detect-sleep     = true;
     not-when-audio   = true;
     not-when-fullscreen = false; # TBE
     environment = {

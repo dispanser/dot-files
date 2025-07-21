@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.helix = {
@@ -37,7 +37,7 @@
       keys.insert = {
         # not ideal: there is no timeout, but instead the pop-up appears.
         # if you just keep writing, it's immediately resolved.
-        # maybe: use a rarely used character as the prefix key, lose home rowjjjjjj.
+        # maybe: use a rarely used character as the prefix key, lose home row
         j.k = "normal_mode";
         j.w = [ ":w" "normal_mode" ];
         j.q = ":wq";
