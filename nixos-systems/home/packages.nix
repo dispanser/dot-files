@@ -43,7 +43,7 @@ with pkgs; let
     lua-language-server
     vscode-langservers-extracted
     samply
-    k9s stern teleport
+    k9s stern
     markdown-oxide
   ];
   linuxOnly = [

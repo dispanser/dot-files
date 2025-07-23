@@ -37,6 +37,7 @@
       "zerotier-one"
       "chatgpt"
       "stats"
+      "teleport"
     ];
     brews = [
       "awscli"
