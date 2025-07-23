@@ -1,6 +1,23 @@
 -- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
   {
+    "juacker/git-link.nvim",
+    keys = {
+      {
+        "<leader>gu",
+        function() require("git-link.main").copy_line_url() end,
+        desc = "Copy code link to clipboard",
+        mode = { "n", "x" }
+      },
+      {
+        "<leader>go",
+        function() require("git-link.main").open_line_url() end,
+        desc = "Open code link in browser",
+        mode = { "n", "x" }
+      },
+    },
+  },
+  {
     "cordx56/rustowl",
     dependencies = { "neovim/nvim-lspconfig" },
     lazy = false,
@@ -8,8 +25,8 @@ return {
   {
     'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'
   },
-  {'wellle/targets.vim'},
-  {'HiPhish/rainbow-delimiters.nvim'},
+  { 'wellle/targets.vim' },
+  { 'HiPhish/rainbow-delimiters.nvim' },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
@@ -24,32 +41,35 @@ return {
       on_attach = function(bufnr)
         local map = vim.keymap.set
         local opts = { buffer = bufnr }
-        map({'n', 'i'}, '<M-l><M-o>', '<Cmd>MDListItemBelow<CR>', opts)
-        map({'n', 'i'}, '<M-L><M-O>', '<Cmd>MDListItemAbove<CR>', opts)
-        map({'n', 'i'}, '<M-Return>', '<Cmd>MDTaskToggle<CR>', opts)
+        map({ 'n', 'i' }, '<M-l><M-o>', '<Cmd>MDListItemBelow<CR>', opts)
+        map({ 'n', 'i' }, '<M-L><M-O>', '<Cmd>MDListItemAbove<CR>', opts)
+        map({ 'n', 'i' }, '<M-Return>', '<Cmd>MDTaskToggle<CR>', opts)
         map('x', '<M-Return>', ':MDTaskToggle<CR>', opts)
       end,
     },
   },
-  {'kwkarlwang/bufresize.nvim',
+  {
+    'kwkarlwang/bufresize.nvim',
     config = function()
-        require("bufresize").setup()
+      require("bufresize").setup()
     end,
   },
-  { 'moll/vim-bbye',
+  {
+    'moll/vim-bbye',
     keys = {
-        { '<leader>bc', ':Bdelete<cr>', desc = "close file shown in buffer" },
-        { '<leader>bx', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
-      },
+      { '<leader>bc', ':Bdelete<cr>',  desc = "close file shown in buffer" },
+      { '<leader>bx', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
+    },
   },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
   {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {},
   },
-  { 'rebelot/kanagawa.nvim',
+  {
+    'rebelot/kanagawa.nvim',
     -- color scheme determines highlight groups that should be loaded first
     priority = 1000,
     config = function()
@@ -64,16 +84,16 @@ return {
     end,
     opts = function()
       require("which-key").add({
-          { "<leader>b", group = "buffers" },
-          { "<leader>d", group = "diff view" },
-          { "<leader>e", group = "code" },
-          { "<leader>f", group = "files" },
-          { "<leader>g", group = "git" },
-          { "<leader>l", group = "various telescopes" },
-          { "<leader>q", group = "quickfix" },
-          { "<leader>t", group = "toggles" },
-          { "<leader>w", group = "windows" },
-        })
+        { "<leader>b", group = "buffers" },
+        { "<leader>d", group = "diff view" },
+        { "<leader>e", group = "code" },
+        { "<leader>f", group = "files" },
+        { "<leader>g", group = "git" },
+        { "<leader>l", group = "various telescopes" },
+        { "<leader>q", group = "quickfix" },
+        { "<leader>t", group = "toggles" },
+        { "<leader>w", group = "windows" },
+      })
     end,
     priority = 900,
   },
@@ -103,14 +123,15 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
   },
   'tpope/vim-repeat',
   'tpope/vim-unimpaired',
-  { 'blueyed/vim-diminactive',
+  {
+    'blueyed/vim-diminactive',
     keys = {
       { '<leader>ti', vim.cmd.DimInactiveToggle, desc = "toggle inactive dim" },
     },
@@ -119,7 +140,7 @@ return {
   {
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
-    lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
   },
   {
     'nvim-neotest/neotest',
@@ -143,29 +164,30 @@ return {
     'stevearc/aerial.nvim',
     opts = {},
     dependencies = {
-       -- "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons",
+      -- "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
     },
     keys = {
       { '<leader>ta', "<cmd>AerialToggle!<CR>", desc = "toggle aerial code outline" },
-      { '<leader>]', vim.cmd.AerialNext, desc = "aerial next token" },
-      { '<leader>[', vim.cmd.AerialPrev, desc = "aerial previous token" },
-      { ')', vim.cmd.AerialNext, desc = "aerial next token" },
-      { '(', vim.cmd.AerialPrev, desc = "aerial previous token" },
+      { '<leader>]',  vim.cmd.AerialNext,       desc = "aerial next token" },
+      { '<leader>[',  vim.cmd.AerialPrev,       desc = "aerial previous token" },
+      { ')',          vim.cmd.AerialNext,       desc = "aerial next token" },
+      { '(',          vim.cmd.AerialPrev,       desc = "aerial previous token" },
     },
   },
-	{
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
     init = function()
       require('lualine').setup()
     end,
   },
-	{ 'stevearc/dressing.nvim', lazy = false },
-	{ 'tveskag/nvim-blame-line', lazy = false},
-	{ 'sheerun/vim-polyglot', lazy = false },
-	{ 'tpope/vim-fugitive', lazy = false },
-  { 'mbbill/undotree',
+  { 'stevearc/dressing.nvim',  lazy = false },
+  { 'tveskag/nvim-blame-line', lazy = false },
+  { 'sheerun/vim-polyglot',    lazy = false },
+  { 'tpope/vim-fugitive',      lazy = false },
+  {
+    'mbbill/undotree',
     keys = {
       { '<leader>tU', vim.cmd.UndotreeToggle, desc = "toggle undo tree" },
     },
@@ -189,7 +211,7 @@ return {
   },
   {
     "chrisgrieser/nvim-various-textobjs",
-    config = function () 
+    config = function()
       require("various-textobjs").setup({ useDefaultKeymaps = true })
     end,
   },
@@ -198,31 +220,33 @@ return {
     config = function()
       require("lspsaga").setup({})
     end,
-    dependencies = { {"nvim-tree/nvim-web-devicons"} }
+    dependencies = { { "nvim-tree/nvim-web-devicons" } }
   },
 
-  { "rcarriga/nvim-dap-ui", 
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       require("dapui").setup({
-          layouts = { 
-            {
-              elements = {
-                { id = "stacks", size = 0.5 },
-                { id = "scopes", size = 0.5 },
-              },
-              position = "bottom",
-              size = 15,
+        layouts = {
+          {
+            elements = {
+              { id = "stacks", size = 0.5 },
+              { id = "scopes", size = 0.5 },
             },
+            position = "bottom",
+            size = 15,
           },
-        })
+        },
+      })
     end,
     keys = {
       { '<leader>cu', function() require('dapui').toggle() end, desc = "[dap] toggle ui" },
     },
   },
-  { "theHamsta/nvim-dap-virtual-text",
-    dependencies = { "nvim-lua/plenary.nvim"  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("nvim-dap-virtual-text").setup()
     end,
@@ -230,14 +254,14 @@ return {
   {
     'mfussenegger/nvim-dap',
     dependencies = {
-      { "nvim-lua/plenary.nvim"  },
+      { "nvim-lua/plenary.nvim" },
     },
   },
   {
     'dhruvasagar/vim-table-mode',
     keys = {
-        { '<leader>t=', ':TableModeRealign<cr>', desc = "re-align table" },
-      },
+      { '<leader>t=', ':TableModeRealign<cr>', desc = "re-align table" },
+    },
   },
   -- {
   --   "j-hui/fidget.nvim",
