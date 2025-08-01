@@ -45,6 +45,7 @@ with pkgs; let
     samply
     k9s stern
     markdown-oxide
+    bc
   ];
   linuxOnly = [
     touchscreen-gestures
