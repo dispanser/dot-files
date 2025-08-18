@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hasTouchScreen ? false, osConfig,  ... }:
+{ config, pkgs, lib, osConfig,  ... }:
 
 let 
   editor = "nvim";
@@ -6,8 +6,9 @@ let
 in {
 
   sops = {
-    # `nix-shell --run fish -p  ssh-to-age age`
+    # `nix-shell --run fish -p ssh-to-age age`
     # generate via `ssh-to-age -private-key -i  ~/.ssh/unison_tiny > ~/.config/sops/age/keys.txt`
+    # `scp  ~/.config/sops/age/keys.txt tiny:.config/sops/age/keys.txt`
     # TBC: have a different key for every single host (based on its unique tiny key) 
     # - right now, `.sops.yaml` uses host names to identif those
     age.keyFile = "/home/pi/.config/sops/age/keys.txt";
