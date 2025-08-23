@@ -139,7 +139,8 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/EAAF-91D7"; fsType = "vfat"; neededForBoot = true;};
+    # original boot partition including windows, which becaome too small: /dev/disk/by-uuid/EAAF-91D7
+    "/boot"      = { device = "/dev/disk/by-uuid/3B4C-5ABE"; fsType = "vfat"; neededForBoot = true;};
     "/"          = { device = "/dev/oxide/nix-root";         fsType = "ext4"; neededForBoot = true;};
     "/home"      = { device = "/dev/oxide/home";             fsType = "ext4"; neededForBoot = true;};
   };
