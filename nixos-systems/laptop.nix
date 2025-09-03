@@ -4,6 +4,10 @@
 {
   programs.light.enable = true;
 
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+  };
+
 	services.tlp = {
 		enable      = true;
 		settings = {

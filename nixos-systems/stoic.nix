@@ -92,10 +92,6 @@
     logEvents = true;
   };
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
   boot = {
     initrd.luks = {
       fido2Support = false;

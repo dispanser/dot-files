@@ -74,10 +74,6 @@
     logEvents = true;
   };
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
   # nix shell with fido2luks
   # see https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
   # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"

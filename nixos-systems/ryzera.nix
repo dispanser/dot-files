@@ -90,10 +90,6 @@
     logEvents = true;
   };
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
   # nix shell with fido2luks
   # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
   # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
