@@ -113,6 +113,7 @@
       gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
       epoch.body = "date --date=@$argv[1] --iso-8601=seconds -u";
       epochns.body = "date --date=@(echo $Rrgv[1] / 1000000000| bc) --iso-8601=seconds -u";
+      ",rh"      = ''echo (echo $argv[1] / 3600 * 3600| bc)'';
       depoch     = ''date -d "$argv[1]" +%s'';
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
