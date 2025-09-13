@@ -12,6 +12,7 @@
     ./yubico.nix
     ./mqtt.nix
     ./smart-home.nix
+    ./unifi.nix
   ];
 
   services.undervolt = {
