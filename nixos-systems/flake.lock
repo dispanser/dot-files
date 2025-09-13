@@ -12,11 +12,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1754622812,
-        "narHash": "sha256-EALy7Al4uZqX57yCnefdsUx2ot3oRg0jRjYk2ZoxzJE=",
+        "lastModified": 1757645431,
+        "narHash": "sha256-iNOYLS4CSzn2oUHu0srbhJQWdeVYkDi4KCuZ543ACAw=",
         "owner": "Cryolitia",
         "repo": "nur-packages",
-        "rev": "0363de563935733aa8428191d0133e04ea330dc7",
+        "rev": "571fe2215f50f8dfe4b3c90cbb0acc3a60666499",
         "type": "github"
       },
       "original": {
@@ -52,11 +52,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753883075,
-        "narHash": "sha256-/ySPj7m+KSd59wyf6WFtGKYCcripCNffhVWwY3wbQhw=",
+        "lastModified": 1757298153,
+        "narHash": "sha256-6zTCua02kNSNwEcEAT2suxtI0m7h332GMnhEdo8kkzs=",
         "owner": "Cryolitia",
         "repo": "gpd-fan-driver",
-        "rev": "3e0eba4049ef85eddf82efdeb9fbb0f88d6d77b4",
+        "rev": "a086836ddf529db21ed147f6ede36f745ea6eede",
         "type": "github"
       },
       "original": {
@@ -91,11 +91,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754613544,
-        "narHash": "sha256-ueR1mGX4I4DWfDRRxxMphbKDNisDeMPMusN72VV1+cc=",
+        "lastModified": 1757784838,
+        "narHash": "sha256-6aHo1++bAFdW1z+0tfuxM9EmxHvon90mHo8/+izXMcY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cc2fa2331aebf9661d22bb507d362b39852ac73f",
+        "rev": "6e28513cf2ee9a985c339fcef24d44f43d23456b",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1754498491,
-        "narHash": "sha256-erbiH2agUTD0Z30xcVSFcDHzkRvkRXOQ3lb887bcVrs=",
+        "lastModified": 1757487488,
+        "narHash": "sha256-zwE/e7CuPJUWKdvvTCB7iunV4E/+G0lKfv4kk/5Izdg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c2ae88e026f9525daf89587f3cbee584b92b6134",
+        "rev": "ab0f3607a6c7486ea22229b92ed2d355f1482ee0",
         "type": "github"
       },
       "original": {
@@ -267,11 +267,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754621349,
-        "narHash": "sha256-JkXUS/nBHyUqVTuL4EDCvUWauTHV78EYfk+WqiTAMQ4=",
+        "lastModified": 1757644300,
+        "narHash": "sha256-bVIDYz31bCdZId441sqgkImnA7aYr2UQzQlyl+O2DWc=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "c448ab42002ac39d3337da10420c414fccfb1088",
+        "rev": "591c5ae84f066bdfc9797b217df392d58eafd088",
         "type": "github"
       },
       "original": {
@@ -287,11 +287,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754328224,
-        "narHash": "sha256-glPK8DF329/dXtosV7YSzRlF4n35WDjaVwdOMEoEXHA=",
+        "lastModified": 1757503115,
+        "narHash": "sha256-S9F6bHUBh+CFEUalv/qxNImRapCxvSnOzWBUZgK1zDU=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "49021900e69812ba7ddb9e40f9170218a7eca9f4",
+        "rev": "0bf793823386187dff101ee2a9d4ed26de8bbf8c",
         "type": "github"
       },
       "original": {
@@ -324,7 +324,7 @@
         ]
       },
       "locked": {
-        "lastModified": 1746180171,
+        "lastModified": 1757529244,
         "narHash": "sha256-V2BEJj+rfOcxPSG1cHeTpxqvLaurGVO2goowXKdV2uA=",
         "path": "/home/pi/src/github/dispanser/touchscreen-gestures",
         "type": "path"
