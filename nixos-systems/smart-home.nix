@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.influxdb2 = {
     enable = true;
@@ -51,7 +51,7 @@
       extraComponents = [
         "mqtt"
         "signal_messenger"
-        "roborock"
+        # "roborock"
         "hue"
         "zeroconf"
         "brother"
