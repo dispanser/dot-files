@@ -15,8 +15,9 @@
   ];
 
   sops = {
-    secrets."anthrophic_api_key" = { };
-    secrets."mistral_api_key" = { };
+    secrets.anthrophic_api_key = { };
+    secrets.mistral_api_key = { };
+    secrets.openrouter_api_key = { };
   };
 
   programs.fish = {
@@ -151,8 +152,10 @@
       bind --mode insert \cz fg
       set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
       set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
-      fish_add_path --move {$HOME}/.cargo/bin
-      fish_add_path --move {$HOME}/bin
+      set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
+      set -gx LLM_USER_PATH "$HOME/projects/personal/llm"
+      fish_add_path --move $HOME/.cargo/bin
+      fish_add_path --move $HOME/bin
       '' + (if pkgs.stdenv.isDarwin then ''
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
