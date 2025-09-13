@@ -15,10 +15,12 @@ let
 in {
   programs.ssh = {
     enable = true;
-    compression = true;
-    forwardAgent = true;
-    controlMaster = "yes";
     matchBlocks = {
+      "*" = {
+        compression = true;
+        forwardAgent = true;
+        controlMaster = "yes";
+      };
 
       # remarkable - ebook reader with ssh
       "rm" = {

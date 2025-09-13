@@ -89,7 +89,7 @@ in {
     ./touch.nix
     ./inputplug.nix
     ./mail.nix
-    ./unison.nix
+    (import ./unison.nix { inherit lib pkgs isServer; })
   ];
 
   services.touch.enable = !isServer;

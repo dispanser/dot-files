@@ -1,11 +1,6 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, isServer, ... }:
 
-let
-  ssh_script = "${pkgs.writeShellScript "ssh_unison.sh" ''
-    exec 2> /tmp/unison.err.log
-    exec ${pkgs.openssh}/bin/ssh "$@"
-  ''}";
-in {
+{
   services.unison =
     let ignores = [
       "Name *.o"
@@ -33,6 +28,7 @@ in {
       "Name _internal.abi3.so"
       "Name __pycache__"
       "Name src/github/NixOS"
+      "Name .local"
     ];
     paths = [
       "projects"
@@ -45,18 +41,20 @@ in {
       tiny_sync = {
         roots = [
           "/home/pi/"
-          "ssh://tiny//home/data/sync/home/pi/"
+          (if isServer then 
+            "/home/data/sync/home/pi/"
+          else
+            "ssh://tiny//home/data/sync/home/pi/")
         ];
         commandOptions = {
+          ignore = ignores;
+          path = paths;
           prefer = "newer";
           auto = "true";
           batch = "true";
           log = "false";
           repeat = "watch";
-          sshcmd = "${ssh_script}";
           ui = "text";
-          ignore = ignores;
-          path = paths;
         };
       };
     };
