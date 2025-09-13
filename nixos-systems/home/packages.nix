@@ -30,6 +30,7 @@ with pkgs; let
   ];
   develPkgs = [
     aider-chat
+    llm
     docker
     kubectl
     zig
