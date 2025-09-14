@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   nix.settings.trusted-users = [ "@wheel" ];

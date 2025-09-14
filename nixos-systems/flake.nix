@@ -31,10 +31,9 @@
           inputs.sops-nix.homeManagerModules.sops
         ];
       };
+      overlays = (import ./overlays { inherit tsg; } );
   in {
-    overlays.default = final: prev: {
-      touchscreen-gestures = tsg.packages.${prev.system}.default;
-    };
+    overlays.default = overlays;
     nixosConfigurations = {
       # X1-T3 16GB
       yukon = nixpkgs.lib.nixosSystem {
@@ -42,12 +41,10 @@
         modules = [
           ./yukon.nix
           home-manager.nixosModules.home-manager
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.default ];
-          })
           {
             home-manager = home_manager;
           }
+
         ];
       };
       x1t3 = nixpkgs.lib.nixosSystem {
@@ -90,9 +87,7 @@
         system = "x86_64-linux";
         modules = [
           ./tiny.nix
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.default ];
-          })
+          overlays
           home-manager.nixosModules.home-manager
           {
             home-manager = home_manager;
@@ -115,9 +110,7 @@
         system = "x86_64-linux";
         modules = [
           ./oxide.nix
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.default ];
-          })
+          overlays
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }
@@ -129,9 +122,7 @@
         system = "x86_64-linux";
         modules = [
           ./x12.nix
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.default ];
-          })
+          overlays
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }
@@ -166,9 +157,7 @@
         # specialArgs = {inherit inputs outputs;};
         modules = [
           ./konsole.nix
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.default ];
-          })
+          overlays
           home-manager.nixosModules.home-manager
           {
             home-manager = home_manager;
@@ -180,9 +169,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./voyager.nix
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.default ];
-          })
+          overlays
           home-manager.nixosModules.home-manager {
             home-manager = home_manager;
           }
