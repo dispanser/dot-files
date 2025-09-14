@@ -139,12 +139,5 @@
     stateVersion       = "22.05";
     autoUpgrade.enable = false;
   };
-
-	nixpkgs.config = {
-# TODO: undo and make package-specific exceptions: the error will guide you
-		allowUnfree = true;
-	  # allowBroken = true;
-	};
-
 }
 
