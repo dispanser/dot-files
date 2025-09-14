@@ -1,15 +1,22 @@
-{ config, pkgs, lib, osConfig,  ... }:
+{
+  config,
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 
-let 
+let
   editor = "nvim";
   isServer = osConfig.networking.hostName == "tiny";
-in {
+in
+{
 
   sops = {
     # `nix-shell --run fish -p ssh-to-age age`
     # generate via `ssh-to-age -private-key -i  ~/.ssh/unison_tiny > ~/.config/sops/age/keys.txt`
     # `scp  ~/.config/sops/age/keys.txt tiny:.config/sops/age/keys.txt`
-    # TBC: have a different key for every single host (based on its unique tiny key) 
+    # TBC: have a different key for every single host (based on its unique tiny key)
     # - right now, `.sops.yaml` uses host names to identif those
     age.keyFile = "/home/pi/.config/sops/age/keys.txt";
 
@@ -19,15 +26,17 @@ in {
     defaultSopsFormat = "yaml";
   };
 
-  # sourcehut is down, and nmd package cannot be downloaded from git.sr.ht/~rycee/nmd/....
-  manual.html.enable = false;
-  manual.manpages.enable = false;
-  manual.json.enable = false;
+  # toggle to false when sourcehut is down, as downloadeding from git.sr.ht/~rycee/nmd fails
+  manual.html.enable = true;
+  manual.manpages.enable = true;
+  manual.json.enable = true;
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "obsidian"
-    "slack"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "obsidian"
+      "slack"
+    ];
 
   # systemd.user.sessionVariables = {
   home.sessionVariables = {
@@ -63,21 +72,28 @@ in {
       source = ../../configs/psql/.psqlrc;
     };
     ".cargo/config.toml".text = ''
-    [target.x86_64-unknown-linux-gnu]
-    linker = "${pkgs.clang}/bin/clang"
-    rustflags = [
-      "-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"
-    ]
+      [target.x86_64-unknown-linux-gnu]
+      linker = "${pkgs.clang}/bin/clang"
+      rustflags = [
+        "-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"
+      ]
     '';
   };
 
   home.packages =
-    let pkgSets =  import ./packages.nix pkgs;
-    in with pkgSets; desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
+    let
+      pkgSets = import ./packages.nix pkgs;
+    in
+    with pkgSets;
+    desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
 
   programs.fish.enable = true;
   imports = [
-    (import ./fish.nix { pkgs = pkgs; editor = editor; config = config; })
+    (import ./fish.nix {
+      pkgs = pkgs;
+      editor = editor;
+      config = config;
+    })
     ./alacritty.nix
     ./git.nix
     ./helix.nix
@@ -115,12 +131,12 @@ in {
   };
 
   services.xidlehook = {
-    enable           = !isServer && pkgs.stdenv.isLinux;
-    detect-sleep     = true;
-    not-when-audio   = true;
+    enable = !isServer && pkgs.stdenv.isLinux;
+    detect-sleep = true;
+    not-when-audio = true;
     not-when-fullscreen = false; # TBE
     environment = {
-      PATH    = "$PATH:/run/current-system/sw/bin";
+      PATH = "$PATH:/run/current-system/sw/bin";
       # DISPLAY = ''"$(xrandr | awk '/ connected/{print $1}')"'';
     };
     timers = [
@@ -153,7 +169,7 @@ in {
   programs = {
     atuin = {
       enable = true;
-      settings = { 
+      settings = {
         style = "full";
         search_mode = "fuzzy";
         filter_mode_shell_up_key_binding = "directory";
@@ -166,7 +182,7 @@ in {
       };
     };
     zoxide.enable = true;
-    btop = { 
+    btop = {
       enable = true;
       settings = {
         vim_keys = true;
@@ -180,8 +196,8 @@ in {
     };
 
     direnv = {
-      enable                  = true;
-      nix-direnv.enable       = true;
+      enable = true;
+      nix-direnv.enable = true;
     };
 
     fzf = {
@@ -207,11 +223,11 @@ in {
       };
     };
 
-    htop.enable         = true;
-    bottom.enable       = true;
-    dircolors.enable    = true;
+    htop.enable = true;
+    bottom.enable = true;
+    dircolors.enable = true;
     home-manager.enable = true;
-    jq.enable           = true; # TODO: doesn't exist ?
+    jq.enable = true; # TODO: doesn't exist ?
   };
 
 }

@@ -28,6 +28,12 @@
     keep-derivations    = true;
   };
 
+  # execute shebangs that assume hardcoded shell paths
+  services.envfs.enable = true;
+
+  # run unpatched binaries on nixos
+  programs.nix-ld.enable = true;
+
   services.journald.extraConfig = ''
     SystemMaxUse=100M
     MaxFileSec=7day
