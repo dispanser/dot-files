@@ -35,6 +35,7 @@ with pkgs; let
     kubectl
     zig
     marksman
+    markdown-oxide
     nil
     watchexec
     ctags
