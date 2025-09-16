@@ -19,7 +19,7 @@ return {
     "folke/snacks.nvim",
     "nvim-telescope/telescope.nvim",
     --- The below dependencies are optional
-    -- "catppuccin/nvim",
+    "catppuccin/nvim",
     "nvim-tree/nvim-tree.lua",
   },
   config = true,

@@ -87,11 +87,11 @@
       tl      = "tmux list-sessions";
       nixq    = "nix search nixpkgs";
       t       = "${pkgs.time}/bin/time";
-      c4c = ''TABLE='s3://cgx-eng-env-coralogix-euprod2-data/cx/parquet/v1/team_id=4000017' REGION=eu-north-1 \
+      c4c = ''TABLE='s3://cgx-eng-env-coralogix-euprod2-data/cx/parquet/v1/team_id=4000017' \
         dpctl query \
-        --path $TABLE --region $REGION \
+        --path $TABLE \
         # --query-server http://api-sandbox-dataprime-query-engine.default.svc.cluster.local:8080 \
-        --start 2024-08-27:00:00:00 --end 2024-08-28:00:00:00 \
+        --start 2025-09-10:00:00:00 --end 2025-09-12:00:00:00 \
         # --from-file ../wip/query_sampling_rum_aggregations.dql \
         # --query "source logs "
         # --output stats \
@@ -114,7 +114,7 @@
       gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
       epoch.body = "date --date=@$argv[1] --iso-8601=seconds -u";
       epochns.body = "date --date=@(echo $Rrgv[1] / 1000000000| bc) --iso-8601=seconds -u";
-      ",rh"      = ''echo (echo $argv[1] / 3600 * 3600| bc)'';
+      ",rh"      = ''echo (echo "$argv[1] / 3600 * 3600" | bc)'';
       depoch     = ''date -d "$argv[1]" +%s'';
       vw.body    = "nvim (which $argv)";
       rlfw.body  = "readlink -f (which $argv)";
@@ -159,6 +159,7 @@
       '' + (if pkgs.stdenv.isDarwin then ''
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
+        fish_add_path --move {$HOME}/src/github/coralogix/scripts
         for p in (string split " " $NIX_PROFILES)
           fish_add_path --prepend --move $p/bin
         end
