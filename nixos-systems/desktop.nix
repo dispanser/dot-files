@@ -99,7 +99,7 @@
     extraPackages = with pkgs; [
       libva
       libva-utils
-      amdvlk
+      # amdvlk
     ];
   };
 
