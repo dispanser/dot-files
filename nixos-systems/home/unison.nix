@@ -1,4 +1,4 @@
-{ lib, pkgs, isServer, ... }:
+{ lib, pkgs, ... }:
 
 {
   services.unison =
@@ -35,6 +35,10 @@
       "src"
       ".password-store"
     ];
+    ssh_script = "${pkgs.writeShellScript "ssh_unison.sh" ''
+      exec 2> /tmp/unison.err.log
+      exec ${pkgs.openssh}/bin/ssh "$@"
+    ''}";
   in {
     enable = lib.mkIf pkgs.stdenv.isLinux true;
     pairs = {
@@ -54,6 +58,7 @@
           batch = "true";
           log = "false";
           repeat = "watch";
+          sshcmd = "${ssh_script}";
           ui = "text";
         };
       };

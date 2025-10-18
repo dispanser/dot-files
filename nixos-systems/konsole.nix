@@ -47,9 +47,10 @@
   programs.ryzen-monitor-ng.enable = true;
   hardware.cpu.amd.updateMicrocode = true;
   hardware.amdgpu = {
+    overdrive.enable = true;
+    # overdrive.ppfeaturemask # check docs at some point in future
     initrd.enable = true;
     opencl.enable = true;
-    amdvlk.enable = true;
   };
 
   services.blueman.enable = true;

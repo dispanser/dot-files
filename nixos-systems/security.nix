@@ -28,6 +28,10 @@
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
+            command = "${prefix}/btop";
+            options = [ "SETENV" "NOPASSWD" ];
+          }
+          {
             command = "${prefix}/powertop";
             options = [ "SETENV" "NOPASSWD" ];
           }
