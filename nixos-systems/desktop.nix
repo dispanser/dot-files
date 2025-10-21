@@ -100,7 +100,6 @@
       rocmPackages.clr.icd
       libva
       libva-utils
-      # amdvlk
     ];
   };
 

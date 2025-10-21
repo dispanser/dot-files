@@ -15,6 +15,7 @@
     # ./cx_vpn.nix
   ];
 
+  environment.systemPackages = with pkgs; [ radeontop lact ryzenadj ];
   console.font = "sun12x22";
 
   services.libinput.mouse = {
@@ -45,11 +46,19 @@
   ];
 
   programs.ryzen-monitor-ng.enable = true;
+
+  services.lact.enable = true;
   hardware.cpu.amd.updateMicrocode = true;
-  hardware.amdgpu = {
-    initrd.enable = true;
-    opencl.enable = true;
-    amdvlk.enable = true;
+  hardware = {
+    amdgpu = {
+      overdrive.enable = true;
+      # overdrive.ppfeaturemask # check docs at some point in future
+      initrd.enable = true;
+      opencl.enable = true;
+    };
+    graphics.extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
 
   services.blueman.enable = true;
@@ -74,6 +83,9 @@
     logEvents = true;
   };
 
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
   # nix shell with fido2luks
   # see https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
   # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
@@ -92,17 +104,24 @@
     }; 
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" ];
+    initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
+    initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu" ];
     blacklistedKernelModules        = ["k10temp"];
     extraModulePackages             = with config.boot.kernelPackages; [
       tp_smapi acpi_call zenpower
     ];
     extraModprobeConfig = ''
-    options acpi ec_no_wakeup=1
-    options thinkpad_acpi fan_control=1
+      options acpi ec_no_wakeup=1
+      options thinkpad_acpi fan_control=1
     '';
+    kernelParams = [ 
+      "amdgpu.gttsize=108000"
+      "amdttm.pages_limit=27648000" 
+      "amdttm.pagpage_pool_size=27648000"
+      "ttm.pages_limit=27648000" 
+      "ttm.pagpage_pool_size=27648000"
+    ];
     kernelPackages     = pkgs.linuxPackages_latest;
   };
 
@@ -111,12 +130,15 @@
   '';
 
   networking = {
-
+    interfaces.eth0.wakeOnLan = {
+      enable = true;
+      policy = [ "magic" ];
+    };
     enableIPv6 = false;
     usePredictableInterfaceNames = false;
-    hostName        = "konsole";
+    hostName        = "kite";
     wireless = {
-      enable = true;
+      enable = false;
       interfaces = [ "wlan0" ];
     };
     firewall.enable = false;
