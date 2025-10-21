@@ -51,7 +51,6 @@ with pkgs; let
   ];
   linuxOnly = [
     touchscreen-gestures
-    # these two work on darwin, but are unfree. also, slack is managed somehow else
     perf
     slack obsidian
     vlc

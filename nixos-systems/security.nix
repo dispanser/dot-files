@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   nix.settings.allowed-users = [ "@wheel" ];
@@ -11,6 +11,7 @@
     # Absolute paths are required. Used to be ${pkgs.s-tui}, but that doesn't
     # match the actual path, comprised of just symlinks from a central place.
     let prefix = "/run/current-system/sw/bin";
+        home_prefix = "/etc/profiles/per-user/pi/bin/";
     in [
       {
         groups = [ "wheel" ];
@@ -28,7 +29,7 @@
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
-            command = "${prefix}/btop";
+            command = "${home_prefix}/btop";
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
