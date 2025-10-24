@@ -34,6 +34,8 @@ return {
         "--no-stream",
         "--cache-prompts",
         "--watch",
+        "--openai-api-base", "http://10.1.3.4:3333",
+        "--openapi-api-key",
       },
 
       -- Theme colors (automatically uses Catppuccin flavor if available)
