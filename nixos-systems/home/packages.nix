@@ -29,6 +29,7 @@ with pkgs; let
     kanata
   ];
   develPkgs = [
+    dig
     aider-chat
     llm
     docker
@@ -48,6 +49,7 @@ with pkgs; let
     k9s stern
     markdown-oxide
     bc
+    teleport
   ];
   linuxOnly = [
     touchscreen-gestures

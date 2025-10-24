@@ -6,7 +6,7 @@
   networking.networkmanager.dns = "none";
   services.resolved.enable = false;
 
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy = {
     enable = true;
     settings = {
       ipv6_servers = true;
@@ -20,7 +20,7 @@
         cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
         minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
       };
-
+      cache = true;
       server_names = [ "adguard-dns-doh" ];
     };
   };
