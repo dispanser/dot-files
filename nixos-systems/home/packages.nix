@@ -67,7 +67,7 @@ with pkgs; let
     rofi
     scrot 
     signal-desktop
-    nextcloud-client
+    # nextcloud-client
     firefox
     xfontsel
     xlsfonts

@@ -30,13 +30,13 @@ vim.diagnostic.config({
   },
 })
 
-sign({name = 'DiagnosticSignError', text = '✘'})
-sign({name = 'DiagnosticSignWarn', text = '▲'})
-sign({name = 'DiagnosticSignHint', text = '⚑'})
-sign({name = 'DiagnosticSignInfo', text = ''})
+sign({ name = 'DiagnosticSignError', text = '✘' })
+sign({ name = 'DiagnosticSignWarn', text = '▲' })
+sign({ name = 'DiagnosticSignHint', text = '⚑' })
+sign({ name = 'DiagnosticSignInfo', text = '' })
 
 local function o(buf, desc)
-  return { noremap=true, silent=true, buffer=buf, desc = desc }
+  return { noremap = true, silent = true, buffer = buf, desc = desc }
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', '<leader>em', builtin.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
     s('n', '<leader>es', '<cmd>lua vim.lsp.buf.signature_help()<cr>', o(event.buf, '[lsp]: show signature'))
     s('n', '<leader>en', '<cmd>lua vim.lsp.buf.rename()<cr>', o(event.buf, '[lsp]: rename'))
-    s({'n', 'x'}, '<leader>ef', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', o(event.buf, '[lsp]: format'))
+    s({ 'n', 'x' }, '<leader>ef', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', o(event.buf, '[lsp]: format'))
     s('n', '<leader>ea', '<cmd>lua vim.lsp.buf.code_action()<cr>', o(event.buf, '[lsp]: code action'))
 
     s('n', '[e', vim.diagnostic.goto_prev, o(event.buf, "next code problem"))
@@ -64,59 +64,76 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', '<leader>ei', builtin.lsp_incoming_calls, o(event.buf, "incoming calls"))
     s('n', '<leader>eo', builtin.lsp_outgoing_calls, o(event.buf, "outgoing calls"))
     s('n', '<leader>bs', builtin.lsp_document_symbols, o(event.buf, "buffer symbols"))
-    s('n', '<leader>ep', function() builtin.diagnostics({ severity_limit = 3}) end, o(event.buf, "project diagnostics"))
-    s('n', '<leader>bp', function() builtin.diagnostics({ severity_limit = 3, bufnr = 0}) end, o(event.buf, "buffer diagnostics"))
+    s('n', '<leader>ep', function() builtin.diagnostics({ severity_limit = 3 }) end, o(event.buf, "project diagnostics"))
+    s('n', '<leader>bp', function() builtin.diagnostics({ severity_limit = 3, bufnr = 0 }) end,
+      o(event.buf, "buffer diagnostics"))
     s('n', '<leader>eP', builtin.diagnostics, o(event.buf, "all project diagnostics"))
     s('n', '<leader>bP', function() builtin.diagnostics({ bufnr = 0 }) end, o(event.buf, "all buffer diagnostic"))
     s('n', '<leader>pS', builtin.lsp_workspace_symbols, o(event.buf, "workspace symbols"))
     s('n', '<leader>ps',
       function()
         builtin.lsp_dynamic_workspace_symbols({
-            symbol_type_width = 10,
-            fname_width = 50,
-          })
+          symbol_type_width = 10,
+          fname_width = 50,
+        })
       end,
       o(event.buf, "dynamic workspace symbols"))
   end,
 })
 
-lspconfig.protols.setup({})
-lspconfig.metals.setup({})
-lspconfig.jsonls.setup({})
-lspconfig.pyright.setup({})
-lspconfig.marksman.setup({})
-lspconfig.nil_ls.setup({})
-lspconfig.clangd.setup({})
-lspconfig.lua_ls.setup({
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = {'vim'}
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true)
-        }
+vim.lsp.config['protols'] = {}
+vim.lsp.config['jsonls'] = {}
+vim.lsp.config['pyright'] = {}
+vim.lsp.config['marksman'] = {}
+vim.lsp.config['nil_ls'] = {}
+vim.lsp.config['clangd'] = {}
+vim.lsp.config['lua_ls'] = {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true)
       }
-    },
-  })
+    }
+  },
+}
+vim.lsp.config['rust-analyzer'] =  {
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    root_markers = { 'Cargo.toml' }
+}
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig").markdown_oxide.setup({
-    -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
-    -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
-    capabilities = vim.tbl_deep_extend(
-        'force',
-        capabilities,
-        {
-            workspace = {
-                didChangeWatchedFiles = {
-                    dynamicRegistration = true,
-                },
-            },
-        }
-    ),
-    on_attach = on_attach -- configure your on attach config
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+vim.lsp.config['markdown_oxide'] = {
+  -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+  -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+  capabilities = vim.tbl_deep_extend(
+    'force',
+    cmp_capabilities,
+    {
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      },
+    }
+  ),
+}
+
+vim.lsp.enable({
+  "protols",
+  "jsonls",
+  "pyright",
+  "marksman",
+  "markdown_oxide",
+  "rust-analyzer",
+  "nix_ls",
+  "clangd",
+  "lua_ls",
 })
+
 local cmp = require('cmp')
 
 cmp.setup({
@@ -136,13 +153,13 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-      ['<C-u>'] = cmp.mapping.scroll_docs(-8),
-      ['<C-d>'] = cmp.mapping.scroll_docs(8),
-      ['<C-g>'] = cmp.mapping.abort(),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-8),
+    ['<C-d>'] = cmp.mapping.scroll_docs(8),
+    ['<C-g>'] = cmp.mapping.abort(),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
 })
 
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

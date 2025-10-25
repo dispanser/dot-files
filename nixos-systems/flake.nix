@@ -147,11 +147,11 @@
           }
         ];
       };
-      konsole = nixpkgs.lib.nixosSystem {
+      kite = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # specialArgs = {inherit inputs outputs;};
         modules = [
-          ./konsole.nix
+          ./kite.nix
           overlays
           home-manager.nixosModules.home-manager
           {
