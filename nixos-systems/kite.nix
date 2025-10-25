@@ -125,11 +125,17 @@
     kernelPackages     = pkgs.linuxPackages_latest;
   };
 
-  powerManagement.resumeCommands = ''
-    ${pkgs.systemd}/bin/systemctl restart zerotierone.service
-  '';
+  powerManagement = {
+    resumeCommands = ''
+      ${pkgs.systemd}/bin/systemctl restart zerotierone.service
+    '';
+    powerDownCommands = ''
+      ${pkgs.ethtool}/bin/ethtool -s eth0 wol g > /tmp/ethtool_up
+    '';
+  };
 
   networking = {
+    # doesnt seem to work - maybe only first boot? Using ethtool directly in powerManagement.powerDownCommands.
     interfaces.eth0.wakeOnLan = {
       enable = true;
     };
