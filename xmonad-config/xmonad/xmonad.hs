@@ -119,7 +119,7 @@ myManageHook :: ManageHook
 myManageHook = composeAll (catMaybes $ S.hook <$> scratches)
   <+> composeAll
   [ title     =?           "xmessage"             --> doRectFloat centeredRect
-  , className `S.endsWith` "_overlay"           --> doRectFloat rightBarRect
+  , appName   `S.endsWith` "_overlay"           --> doRectFloat rightBarRect
   , appName   `S.endsWith` "_scratch"           --> doRectFloat centeredRect
   , appName   `S.endsWith` "_org"               --> doRectFloat centeredRect
   -- title: WM_NAME / _NET_WM_NAME

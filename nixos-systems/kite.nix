@@ -132,7 +132,6 @@
   networking = {
     interfaces.eth0.wakeOnLan = {
       enable = true;
-      policy = [ "magic" ];
     };
     enableIPv6 = false;
     usePredictableInterfaceNames = false;
