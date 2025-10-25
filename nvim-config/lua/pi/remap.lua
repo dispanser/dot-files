@@ -146,7 +146,7 @@ end
 -- Function to open a file named with the current date
 local function open_file_for(offset)
     local date = os.date("%Y-%m-%d", os.time() + (offset * 24 * 60 * 60)) -- Calculate the offset date
-    local filepath = vim.fn.expand("~/.tp/notes/daily/" .. date .. ".md") -- Adjust path as needed
+    local filepath = vim.fn.expand("daily/" .. date .. ".md") -- Adjust path as needed
     if not file_exists(filepath) then
         create_file_with_template(filepath, date)
     end
