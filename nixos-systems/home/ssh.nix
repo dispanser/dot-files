@@ -15,12 +15,13 @@ let
 in {
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = false;
+    extraConfig = ''
+      ControlMaster auto
+    '';
     matchBlocks = {
       "*" = {
         compression = true;
         forwardAgent = true;
-        controlMaster = "yes";
       };
 
       # remarkable - ebook reader with ssh

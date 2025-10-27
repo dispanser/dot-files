@@ -18,11 +18,6 @@ return {
     },
   },
   {
-    "cordx56/rustowl",
-    dependencies = { "neovim/nvim-lspconfig" },
-    lazy = false,
-  },
-  {
     'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'
   },
   { 'wellle/targets.vim' },
@@ -125,7 +120,6 @@ return {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
       })
     end
   },
