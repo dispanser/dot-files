@@ -33,6 +33,7 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
+    ft = { "markdown", "codecompanion" }
   },
   {
     "tadmccorkle/markdown.nvim",
