@@ -29,6 +29,7 @@ with pkgs; let
     kanata
   ];
   develPkgs = [
+    devenv
     dig
     aider-chat
     llm

@@ -134,6 +134,11 @@
     '';
   };
 
+  # under test: this should re-apply the rule to disable auto-suspend for my keyboard(s)
+  powerManagement.powertop.postStart = ''
+    ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=17ef -a idProduct=6047
+  '';
+
   networking = {
     # doesnt seem to work - maybe only first boot? Using ethtool directly in powerManagement.powerDownCommands.
     interfaces.eth0.wakeOnLan = {
