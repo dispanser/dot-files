@@ -99,11 +99,6 @@ vim.lsp.config['lua_ls'] = {
     }
   },
 }
-vim.lsp.config['rust-analyzer'] =  {
-    cmd = { 'rust-analyzer' },
-    filetypes = { 'rust' },
-    root_markers = { 'Cargo.toml' }
-}
 
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 vim.lsp.config['markdown_oxide'] = {
@@ -128,7 +123,6 @@ vim.lsp.enable({
   "pyright",
   "marksman",
   "markdown_oxide",
-  "rust-analyzer",
   "nix_ls",
   "clangd",
   "lua_ls",
