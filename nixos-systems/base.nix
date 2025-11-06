@@ -57,7 +57,7 @@
     bluez bluez-tools
     powerstat
     nvme-cli
-    eza delta
+    eza
     restic unison
     ripgrep
     neovim

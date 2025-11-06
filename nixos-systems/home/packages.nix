@@ -22,7 +22,7 @@ with pkgs; let
     zathura
     dmenu
     pandoc
-    eza delta ripgrep neovim fzf fd
+    eza ripgrep neovim fzf fd
     iftop
     stow
     libnotify

@@ -24,28 +24,6 @@ in {
         forwardAgent = true;
       };
 
-      # remarkable - ebook reader with ssh
-      "rm" = {
-        hostname     = "192.168.1.31";
-        user         = "root";
-        identityFile = id_remarkable;
-        extraOptions = {
-          "HostkeyAlgorithms" = "+ssh-rsa";
-          "PubkeyAcceptedAlgorithms" = "+ssh-rsa";
-        };
-      };
-
-      # remarkable direct: usb-c connection with `sudo dhcpcd ...`
-      "rmd" = {
-        hostname = "10.11.99.1";
-        user = "root";
-        identityFile = id_remarkable;
-        extraOptions = {
-          "HostkeyAlgorithms" = "+ssh-rsa";
-          "PubkeyAcceptedAlgorithms" = "+ssh-rsa";
-        };
-      };
-
       "tiny" = {
         hostname = "10.1.3.10";
         user = "pi";

@@ -5,25 +5,22 @@
 
   programs.git = {
     enable    = true;
-    userName  = "Thomas Peiselt";
-    userEmail = "pi@kulturguerilla.org";
 
-    aliases = {
-      dt          = "difftool";
-      mt          = "mergetool";
-      lsum        = "log -n 1 --pretty=format:'%s'";
-      lmsg        = "log -n 1 --pretty=format:'%s%n%n%b'";
-      sdt         = "!f(){ if [ -z $1 ]; then c='HEAD'; else c=$1; fi; git difftool -y $c~..$c; }; f";
-      root        = "rev-parse --show-toplevel";
-      pr-base-sha = "!gh api repos/:owner/:repo/pulls | jq -re --arg head $(git rev-parse HEAD) '.[] | select(.head.sha == $head).base.sha'";
-      pr-rebase   = "!git rebase $(git merge-base $(git pr-base-sha) HEAD)";
-    };
-
-    ignores = [
-      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.tp/targets" "/.devenv/" "/.tp/"
-    ];
-
-    extraConfig = {
+    settings = {
+      user = {
+        name  = "Thomas Peiselt";
+        email = "pi@kulturguerilla.org";
+      };
+      aliases = {
+        dt          = "difftool";
+        mt          = "mergetool";
+        lsum        = "log -n 1 --pretty=format:'%s'";
+        lmsg        = "log -n 1 --pretty=format:'%s%n%n%b'";
+        sdt         = "!f(){ if [ -z $1 ]; then c='HEAD'; else c=$1; fi; git difftool -y $c~..$c; }; f";
+        root        = "rev-parse --show-toplevel";
+        pr-base-sha = "!gh api repos/:owner/:repo/pulls | jq -re --arg head $(git rev-parse HEAD) '.[] | select(.head.sha == $head).base.sha'";
+        pr-rebase   = "!git rebase $(git merge-base $(git pr-base-sha) HEAD)";
+      };
       core = {
         # sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
       };
@@ -36,19 +33,9 @@
       push.default = "current";
     };
 
-    delta = {
-      enable                 = true;
-      options = {
-        features               = "side-by-side line-numbers decorations";
-        whitespace-error-style = "22 reverse";
-
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-style              = "bold yellow ul";
-          file-decoration-style   = "none";
-        };
-      };
-    };
+    ignores = [
+      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.tp/targets" "/.devenv/" "/.tp/"
+    ];
 
     includes = [
       {
@@ -59,6 +46,19 @@
         condition = "hasconfig:remote.*.url:git@github.com:tenzir/*";
       }
     ];
+  };
+  programs.delta = {
+    enable                 = true;
+    options = {
+      features               = "side-by-side line-numbers decorations";
+      whitespace-error-style = "22 reverse";
+
+      decorations = {
+        commit-decoration-style = "bold yellow box ul";
+        file-style              = "bold yellow ul";
+        file-decoration-style   = "none";
+      };
+    };
   };
 }
 
