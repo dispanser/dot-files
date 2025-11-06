@@ -30,6 +30,7 @@ with pkgs; let
   ];
   develPkgs = [
     devenv
+    nodejs # for copilot
     dig
     aider-chat
     llm
