@@ -5,14 +5,19 @@ return {
     -- { "nvim-lua/plenary.nvim", branch = "master" },
     "nvim-lua/plenary.nvim",
   },
+  keys = {
+    { "<leader>cn", '<cmd>CodeCompanionChat<cr>', desc = "new CC", mode = { "n", "v" } },
+    { "<leader>cc", '<cmd>CodeCompanionChat Toggle<cr>', desc = "toggle CC", mode = { "n", "v" } },
+    { "<leader>cs", '<cmd>CodeCompanionChat Add<cr>', desc = "add to CC", mode = { "n", "v" } },
+  },
   opts = {
     strategies = {
-      chat = {
-        adapter = "llamacpp",
-      },
-      inline = {
-        adapter = "llamacpp",
-      },
+      -- chat = {
+      --   adapter = "llamacpp",
+      -- },
+      -- inline = {
+      --   adapter = "llamacpp",
+      -- },
     },
     adapters = {
       http = {
@@ -42,11 +47,11 @@ return {
         --   }
       -- },
       -- codecompanion_history = {
-        --   enabled = true, -- defaults to true
-        --   opts = {
-          --     history_file = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
-          --     max_history = 10, -- maximum number of chats to keep
-        --   }
+      --     enabled = true,
+      --     opts = {
+      --         history_file = "/Users/thomas.peiselt/codecompanion_chats.json",
+      --         max_history = 30,
+      --     }
       -- }
     }
   }

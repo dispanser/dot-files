@@ -1,6 +1,17 @@
 -- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
   {
+    "zbirenbaum/copilot.lua",
+    requires = {
+      "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+    },
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+  {
     "juacker/git-link.nvim",
     keys = {
       {
@@ -80,12 +91,17 @@ return {
     end,
     opts = function()
       require("which-key").add({
+        { "<leader>a", group = "aider" },
         { "<leader>b", group = "buffers" },
+        { "<leader>c", group = "code companion" },
+        { "<leader>D", group = "debug" },
         { "<leader>d", group = "diff view" },
         { "<leader>e", group = "code" },
         { "<leader>f", group = "files" },
         { "<leader>g", group = "git" },
         { "<leader>l", group = "various telescopes" },
+        { "<leader>o", group = "navigate notes" },
+        { "<leader>p", group = "project" },
         { "<leader>q", group = "quickfix" },
         { "<leader>t", group = "toggles" },
         { "<leader>w", group = "windows" },
@@ -236,14 +252,14 @@ return {
       })
     end,
     keys = {
-      { '<leader>cu', function() require('dapui').toggle() end, desc = "[dap] toggle ui" },
+      { '<leader>Du', function() require('dapui').toggle() end, desc = "[dap] toggle ui" },
     },
   },
   {
     "theHamsta/nvim-dap-virtual-text",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("nvim-dap-virtual-text").setup()
+      require("nvim-dap-virtual-text").setup({})
     end,
   },
   {
@@ -258,10 +274,4 @@ return {
       { '<leader>t=', ':TableModeRealign<cr>', desc = "re-align table" },
     },
   },
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   opts = {
-  --     -- options
-  --   },
-  -- },
 }

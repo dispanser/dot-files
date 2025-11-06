@@ -1,5 +1,5 @@
 local dap = require('dap')
-
+local dapui = require('dapui')
 -- see https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb) for setup
 -- macos: need to download vscode extensions into absolute path configured below (could try nixos...)
 dap.adapters.codelldb = {
@@ -19,7 +19,7 @@ dap.configurations.rust = {
     type = "codelldb",
     request = "launch",
     program = function()
-         return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/.tp/targets/all/debug/', 'file')
+         return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/.tp/target/debug/', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
@@ -35,42 +35,69 @@ dap.configurations.rust = {
   },
 }
 
-local function nnoremap (key, action, desc)
-  vim.keymap.set('n', key, action, { noremap = true, desc = desc })
-end
-
-local function vnoremap (key, action, desc)
-  vim.keymap.set('v', key, action, { noremap = true, desc = desc })
-end
-
 vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
 vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
 
-nnoremap('<leader>cc', function() require'dap'.toggle_breakpoint() end, "[dap] toggle breakpoint")
-nnoremap('<leader>cb', function() 
-  require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) 
-end, "[dap] set breakpoint condition")
-nnoremap('<leader>cl', function() require'dap'.repl.run_last() end, "[dap] open repl")
-nnoremap('<leader>cr', function() require'dap'.continue() end, "[dap] continue")
-nnoremap('<leader>cR', function() require'dap'.reverse_continue() end, "[dap] reverse continue")
-nnoremap('<leader>co', function() require'dap'.step_over() end, "[dap] step over")
-nnoremap('<M-Space>', function() require'dap'.step_over() end, "[dap] step over")
-nnoremap('<leader>ci', function() require'dap'.step_into() end, "[dap] step into")
-nnoremap('<M-CR>', function() require'dap'.step_into() end, "[dap] step into")
-nnoremap('<leader>cO', function() require'dap'.step_out() end, "[dap] step out")
-nnoremap('<M-BS>', function() require'dap'.step_out() end, "[dap] step out")
-nnoremap('<leader>cd', function() require'dap'.disconnect() end, "[dap] disconnect")
-nnoremap('<leader>cx', function() require'dap'.terminate() end, "[dap] terminate")
-nnoremap('<leader>ck', function() require('dapui').eval() end, "[dap] hover")
-nnoremap('<leader>ce', function() 
-  require('dapui').eval(vim.fn.input('evaluate: '))
-end, "[dap] eval expression")
-nnoremap('<leader>ch', function() require('dap.ui.widgets').hover() end, "[dap] hover")
-nnoremap('<leader>cs', function()
-  local widgets=require('dap.ui.widgets')
-  widgets.centered_float(widgets.scopes) 
-end, "[dap] scopes")
-nnoremap('<leader>cf', function() require('dapui').float_element() end, "[dap] float")
-nnoremap('<leader>cS', function() require('dap.ui.variables').scopes() end, "[dap] variable scopes")
+local dap_keymaps = {
+  { '<leader>Dc', function() dap.toggle_breakpoint() end, "[dap] toggle breakpoint" },
+  { '<leader>Db', function()
+      dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    end, "[dap] set breakpoint condition" },
+  { '<leader>Dl', function() dap.repl.run_last() end, "[dap] open repl" },
+  { '<leader>Dr', function() dap.continue() end, "[dap] continue" },
+  { '<leader>DR', function() dap.reverse_continue() end, "[dap] reverse continue" },
+  { '<leader>Do', function() dap.step_over() end, "[dap] step over" },
+  { '<M-Space>', function() dap.step_over() end, "[dap] step over" },
+  { '<leader>Di', function() dap.step_into() end, "[dap] step into" },
+  { '<M-CR>', function() dap.step_into() end, "[dap] step into" },
+  { '<leader>DO', function() dap.step_out() end, "[dap] step out" },
+  { '<M-BS>', function() dap.step_out() end, "[dap] step out" },
+  { '<leader>Dd', function() dap.disconnect() end, "[dap] disconnect" },
+  { '<leader>Dx', function() dap.terminate() end, "[dap] terminate" },
+  { '<leader>Dk', function() dapui.eval() end, "[dap] hover" },
+  { '<leader>De', function()
+      dapui.eval(vim.fn.input('evaluate: '))
+    end, "[dap] eval expression" },
+  { '<leader>Dh', function() require('dap.ui.widgets').hover() end, "[dap] hover" },
+  { '<leader>Ds', function()
+      local widgets=require('dap.ui.widgets')
+      widgets.centered_float(widgets.scopes)
+    end, "[dap] scopes" },
+  { '<leader>Df', function() dapui.float_element() end, "[dap] float" },
+  { '<leader>DS', function() require('dap.ui.variables').scopes() end, "[dap] variable scopes" },
+}
 
--- nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+-- Set buffer-local keymaps for dap actions
+local function set_dap_buf_keymaps(bufnr)
+  for _, map in ipairs(dap_keymaps) do
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', map[1], '', {
+      noremap = true,
+      callback = map[2],
+      desc = map[3],
+      silent = true,
+    })
+  end
+end
+
+-- Remove buffer-local keymaps for dap actions
+local function remove_dap_buf_keymaps(bufnr)
+  for _, map in ipairs(dap_keymaps) do
+    vim.api.nvim_buf_del_keymap(bufnr, 'n', map[1])
+  end
+end
+
+-- Attach keymaps when dap session starts
+dap.listeners.after.event_initialized['dap_keymaps'] = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  set_dap_buf_keymaps(bufnr)
+end
+
+-- Remove keymaps when dap session ends
+dap.listeners.after.event_terminated['dap_keymaps'] = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  remove_dap_buf_keymaps(bufnr)
+end
+dap.listeners.after.event_exited['dap_keymaps'] = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  remove_dap_buf_keymaps(bufnr)
+end
