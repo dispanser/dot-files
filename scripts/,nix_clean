@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# filepath: ~/nix-cleanup.sh
+
+# Usage: ./nix-cleanup.sh [AGE]
+# AGE: How old generations must be to delete (default: 7d)
+
+AGE="${1:-7d}"
+
+echo "Cleaning up generations older than $AGE..."
+
+# Remove old system generations
+sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$AGE"
+
+# Remove old home-manager generations
+nix profile wipe-history --profile ~/.local/state/nix/profiles/home-manager --older-than "$AGE"
+
+# Garbage collect unused packages
+nix store gc
+
+echo "Cleanup complete."
