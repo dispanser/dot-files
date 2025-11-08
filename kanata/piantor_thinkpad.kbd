@@ -20,8 +20,8 @@
 )
 
 (deflayer main
-  esc  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  tab a    s    d    f    g    h    j    (macro sldr 10 k) (macro sldr 10 l)    ;    '    ret
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  esc  a    s    d    f    g    h    j    (macro sldr 10 k) (macro sldr 10 l)    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet lalt           spc            ralt @num rctl
 )
