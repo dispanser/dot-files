@@ -109,7 +109,6 @@
     packages = with pkgs; [
       inconsolata
       nerd-fonts.victor-mono
-      ubuntu_font_family
       anonymousPro
       dejavu_fonts
       liberation_ttf

@@ -24,8 +24,6 @@
       "ctrl+shift+kp_subtract" = "no_op";
     };
     font = {
-      # doesn't seem to work - font size is accepted, but changing the font
-      # itself is not change
       name = "VictorMono Nerd Font";
       package = pkgs.nerd-fonts.victor-mono;
       size = 20;

@@ -58,7 +58,7 @@ with pkgs; let
     perf
     slack obsidian
     vlc
-    pinentry
+    pinentry-all
     simple-scan
     xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
     xbindkeys
