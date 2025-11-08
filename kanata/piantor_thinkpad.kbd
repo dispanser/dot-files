@@ -20,7 +20,7 @@
 )
 
 ;; @f
-(defalias escnr (tap-hold 200 200 f
+(defalias escnr (tap-hold 200 200 esc
   (layer-while-held numbers)))
 
 (deflayer main
