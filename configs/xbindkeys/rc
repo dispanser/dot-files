@@ -81,7 +81,5 @@
 "light -S 100"
     Mod5+0
 
-# "setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch -option terminate:ctrl_alt_bksp"
-#     Mod4+x
-"setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch -option terminate:ctrl_alt_bksp"
+"setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch"
     Control+Alt + x

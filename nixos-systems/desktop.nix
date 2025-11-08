@@ -35,7 +35,7 @@
     enableCtrlAltBackspace = true;
     xkb = {
       layout                 = "us";
-      options                = "caps:escape,compose:lwin-altgr,lv3:ralt_switch;terminate:ctrl_alt_bksp";
+      options                = "caps:escape,compose:lwin-altgr,lv3:ralt_switch";
     };
     windowManager = {
       xmonad = {
