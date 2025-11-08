@@ -24,12 +24,6 @@
     tapping            = false;
   };
 
-  services.handheld-daemon = {
-    enable = true;
-    ui.enable = true;
-    user = "pi";
-  };
-
   virtualisation.docker.enable = true;
 
   services.espanso.enable = false;
