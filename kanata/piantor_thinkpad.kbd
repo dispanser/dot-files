@@ -15,15 +15,19 @@
   ;; grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt prnt rctl
+  lsft IntlBackslash z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
 )
+
+;; @f
+(defalias escnr (tap-hold 200 200 f
+  (layer-while-held numbers)))
 
 (deflayer main
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  esc  a    s    d    f    g    h    j    (macro sldr 10 k) (macro sldr 10 l)    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt @num rctl
+  @escnr  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft grv z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
 )
 
 ;; from https://github.com/jtroo/kanata/discussions/499#discussioncomment-6513739
@@ -36,8 +40,8 @@
 (deflayer numbers
   grv  q    3    2    1    +    y    S-9    S-0    [    ]    [    ]    \
   tab  7    6    5    4    -    left down up   rght \    '    ret
-  lsft z    0    9    8    =    S-[  S-]    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmeta rctl
+  lsft grv z    0    9    8    =    S-[  S-]    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
 )
 
 (defalias
@@ -48,5 +52,3 @@
   { S-[
   } S-]
 )
-
-
