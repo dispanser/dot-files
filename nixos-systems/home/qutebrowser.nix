@@ -55,7 +55,10 @@
       gln     = "https://github.com/search?q=lang%3ANix+{}&type=code";
       gll     = "https://github.com/search?q=lang%3ALua+{}&type=code";
     };
+
     settings = {
+      content.headers.accept_language = 'en-US,de,en;q=0.9'
+      session.lazy_restore = true;
       zoom.default = "150%";
       fonts.default_size = "16pt";
       tabs = {
