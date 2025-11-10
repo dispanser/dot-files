@@ -12,12 +12,12 @@ return {
   },
   opts = {
     strategies = {
-      -- chat = {
-      --   adapter = "llamacpp",
-      -- },
-      -- inline = {
-      --   adapter = "llamacpp",
-      -- },
+      chat = {
+        adapter = "llamacpp",
+      },
+      inline = {
+        adapter = "llamacpp",
+      },
     },
     adapters = {
       http = {

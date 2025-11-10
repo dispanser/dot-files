@@ -57,7 +57,7 @@
     };
 
     settings = {
-      content.headers.accept_language = 'en-US,de,en;q=0.9'
+      content.headers.accept_language = "en-US,de,en;q=0.9";
       session.lazy_restore = true;
       zoom.default = "150%";
       fonts.default_size = "16pt";

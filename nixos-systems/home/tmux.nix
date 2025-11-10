@@ -5,6 +5,10 @@
     enable        = true;
     prefix        = "C-Space";
     sensibleOnTop = true;
+
+    # under test
+    focusEvents = true;
+
     plugins = with pkgs; [
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
@@ -37,8 +41,8 @@
         extraConfig = "set -g @open-O 'https://www.duckduckgo.com/?q='";
       }
     ];
-      # TODO: test what happens on logout (true: default)
-      secureSocket = true;
+      secureSocket = false;
+      mouse = true;
       extraConfig = 
       let 
         # termOption = if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color";
