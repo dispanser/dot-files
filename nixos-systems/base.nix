@@ -14,7 +14,7 @@
       ACTION=="add", SUBSYSTEM=="usb", ATTR{serial}=="*vial:f64c2b3c*", TEST=="power/control", ATTR{power/control}="on" KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
     '';
   };
-  programs.ssh.startAgent = false;
+  # programs.ssh.startAgent = false;
   programs.gnupg.agent = {
     enable             = true;
     enableSSHSupport   = true;

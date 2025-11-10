@@ -4,7 +4,6 @@ let
   home = if pkgs.stdenv.isDarwin
     then "/Users/thomas.peiselt/.ssh"
     else "/home/pi/.ssh";
-  id_remarkable = "${home}/remarkable";
   id_yubi =  "${home}/yubikey_c.pub";
   id_feitian_solo = "${home}/id_feitian_solo_ecdsa_sk";
   id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";

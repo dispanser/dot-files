@@ -123,7 +123,7 @@ vim.lsp.enable({
   "pyright",
   "marksman",
   "markdown_oxide",
-  "nix_ls",
+  "nil_ls",
   "clangd",
   "lua_ls",
 })
