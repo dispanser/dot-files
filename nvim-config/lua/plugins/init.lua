@@ -2,14 +2,19 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    enabled = true,
     requires = {
       "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
     },
     cmd = "Copilot",
+    build = ":Copilot auth",
     event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
+    opts = {
+      logger = {
+        file_log_level = vim.log.levels.INFO,
+        print_log_level = vim.log.levels.DEBUG,
+      },
+    },
   },
   {
     "juacker/git-link.nvim",

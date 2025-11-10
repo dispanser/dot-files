@@ -136,6 +136,8 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'vsnip' },
     { name = 'buffer' },
+    { name = 'path' },
+    { name = 'tmux' },
   },
   window = {
     completion = cmp.config.window.bordered(),
