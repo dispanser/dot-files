@@ -11,7 +11,7 @@
         name  = "Thomas Peiselt";
         email = "pi@kulturguerilla.org";
       };
-      aliases = {
+      alias = {
         dt          = "difftool";
         mt          = "mergetool";
         lsum        = "log -n 1 --pretty=format:'%s'";
@@ -34,17 +34,7 @@
     };
 
     ignores = [
-      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.tp/targets" "/.devenv/" "/.tp/"
-    ];
-
-    includes = [
-      {
-        contents = {
-          commit.gpgsign = true;
-        };
-
-        condition = "hasconfig:remote.*.url:git@github.com:tenzir/*";
-      }
+      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.devenv/" "/.tp/"
     ];
   };
   programs.delta = {
