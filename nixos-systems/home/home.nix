@@ -107,6 +107,7 @@ in
     ./touch.nix
     ./inputplug.nix
     ./mail.nix
+    (import ./backup.nix { inherit isServer config; })
     (import ./unison.nix { inherit lib pkgs isServer; })
   ];
 

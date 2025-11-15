@@ -34,6 +34,7 @@
       "projects"
       "src"
       ".password-store"
+      ".mail"
     ];
     ssh_script = "${pkgs.writeShellScript "ssh_unison.sh" ''
       exec 2> /tmp/unison.err.log

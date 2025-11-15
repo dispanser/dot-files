@@ -7,9 +7,7 @@ let
   };
 in
 {
-  sops = {
-    secrets.hue_api_key = { };
-  };
+  sops.secrets.hue_api_key = { };
   home.file.".hueadm.json" = {
     text = ''
       ${pkgs.lib.strings.toJSON myJsonData}

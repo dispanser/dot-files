@@ -154,6 +154,7 @@
       set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
       set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
       set -gx OPENROUTER_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
+
       set -gx LLM_USER_PATH "$HOME/projects/personal/llm"
       fish_add_path --move $HOME/.cargo/bin
       fish_add_path --move $HOME/bin
