@@ -9,11 +9,8 @@ vim.o.exrc = true
 vim.o.secure = true
 
 -- wo: window-scoped
-
 -- g: "global", plugins only + leader keys (see remap)
-
 -- bo: buffer-scoped options
-
 -- opt: "global, window and buffer" ?? not sure 
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
@@ -25,7 +22,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.signcolumn = 'yes:1'
 vim.opt.laststatus = 3
-vim.opt.syntax = 'enable'
+vim.opt.syntax = 'on'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.number = true

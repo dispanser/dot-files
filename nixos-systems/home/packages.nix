@@ -33,6 +33,7 @@ with pkgs; let
     nodejs # for copilot
     dig
     aider-chat
+    devenv
     llm
     docker
     kubectl
