@@ -7,7 +7,7 @@ self: super: {
           ps.llm-openrouter
         ])
       );
-      llm = super.runCommandNoCCLocal "llm" { } ''
+      llm = super.runCommandLocal "llm" { } ''
         mkdir -p $out/bin
         ln -s ${pyWithPackages}/bin/llm $out/bin/llm
       '';

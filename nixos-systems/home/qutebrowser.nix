@@ -12,6 +12,17 @@
     comment = "Project-specific browser";
   };
 
+  xdg.configFile."qutebrowser/add-nextcloud-bookmarks.ini" = {
+    text = ''
+      [nextcloud]
+      HOST=https://nc.kulturguerilla.org
+      USER=pi-zgyab
+      ;PASSWORD=lamepassword
+      ;DESCRIPTION=None
+      TAGS=inbox
+    '';
+  };
+
   programs.qutebrowser = {
     enable = true;
     enableDefaultBindings = true; # Default
@@ -19,7 +30,8 @@
         config.unbind('<ctrl-p>')
         config.unbind('<ctrl-n>')
         config.unbind('d')
-        '';
+        config.unbind('b')
+      '';
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?q={}";
       ad      = "http://smile.amazon.de/s/ref=nb_sb_noss?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Daps&field-keywords={}";
@@ -78,10 +90,12 @@
     };
     keyBindings = {
       normal = {
-        "sp" = "cmd-set-text :open -t https://getpocket.com/edit?url={url}&tags=";
-        "sr" = "cmd-set-text :open -t https://getpocket.com/edit?url={url}&tags=remarkable";
-        "yr" = "hint links run cmd-set-text :open -t https://getpocket.com/edit?url={hint-url}&tags=remarkable";
         "ps" = "spawn --userscript qute-pass";
+        "pr" = "spawn --userscript readability";
+        "pb" = "open -t https://nc.kulturguerilla.org/apps/bookmarks/";
+        "pf" = "spawn open -na Firefox --args {url}";
+        "ba" = "spawn --userscript add-nextcloud-bookmarks";
+        "yb" = "hint links userscript add-nextcloud-bookmarks";
         "J" = "scroll-page 0 0.7";
         "K" = "scroll-page 0 -0.7";
         "<Ctrl-Space>" = "tab-focus last";
@@ -139,6 +153,7 @@
       gn = "https://github.com/notifications";
       gp = "https://github.com/pulls";
       gr = "https://github.com/pulls/review-requested";
+      ba = "https://nc.kulturguerilla.org/apps/bookmarks/";
     };
   };
 }
