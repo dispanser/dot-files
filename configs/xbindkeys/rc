@@ -32,7 +32,7 @@
 # suspend and hibernate
 "systemctl hibernate"
   Mod4+h
-"systemctl suspend"
+"[ $(hostname) = "tiny" ] && xset dpms force off || systemctl suspend"
   Mod4+s
 
 "$HOME/bin/xrandr.sh undock"
