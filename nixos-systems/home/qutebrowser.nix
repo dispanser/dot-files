@@ -146,9 +146,20 @@
         "<Ctrl-u>" = "fake-key <Shift-Home><Delete>";
         "<Ctrl-k>" = "fake-key <Shift-End><Delete>";
         "<Ctrl-i>" = "edit-text";
+        # '<ctrl-a>': 'fake-key <cmd-left>',
+        # '<ctrl-e>': 'fake-key <cmd-right>',
+        # '<alt-f>': 'fake-key <Alt-Right>',
+        # '<alt-b>': 'fake-key <Alt-Left>',
+        # '<ctrl-d>': 'fake-key <Delete>',
+        # '<alt-d>': 'fake-key <Alt-Delete>',
+        # '<ctrl-u>': 'fake-key <cmd-shift-left> ;; fake-key <backspace>',
+        # '<ctrl-k>': 'fake-key <cmd-shift-right> ;; fake-key <backspace>',
+        # '<ctrl-w>': 'fake-key <alt-backspace>',
+        # '<ctrl-y>': 'insert-text',
+        # '<ctrl-shift-e>': 'edit-text'
       };
-
     };
+
     quickmarks = {
       gn = "https://github.com/notifications";
       gp = "https://github.com/pulls";
