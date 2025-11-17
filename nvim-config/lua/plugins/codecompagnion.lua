@@ -4,6 +4,18 @@ return {
     -- todo: might need master here - https://github.com/olimorris/codecompanion.nvim/issues/377
     -- { "nvim-lua/plenary.nvim", branch = "master" },
     "nvim-lua/plenary.nvim",
+    {
+      "ravitemer/mcphub.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      build = "bundled_build.lua",  -- Bundles `mcp-hub` binary along with the neovim plugin
+      config = function()
+        require("mcphub").setup({
+            use_bundled_binary = true,  -- Use local `mcp-hub` binary
+          })
+      end,
+    }
   },
   keys = {
     { "<leader>cn", '<cmd>CodeCompanionChat<cr>', desc = "new CC", mode = { "n", "v" } },
@@ -38,14 +50,14 @@ return {
       },
     },
     extensions = {
-      -- mcphub = {
-        --   callback = "mcphub.extensions.codecompanion",
-        --   opts = {
-          --     make_vars = true,
-          --     make_slash_commands = true,
-          --     show_result_in_chat = true
-        --   }
-      -- },
+      mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+              make_vars = true,
+              make_slash_commands = true,
+              show_result_in_chat = true
+          }
+      },
       -- codecompanion_history = {
       --     enabled = true,
       --     opts = {
