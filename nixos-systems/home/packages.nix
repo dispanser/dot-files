@@ -57,7 +57,7 @@ with pkgs; let
   linuxOnly = [
     touchscreen-gestures
     perf
-    slack obsidian
+    slack
     vlc
     pinentry-all
     simple-scan

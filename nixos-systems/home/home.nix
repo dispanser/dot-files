@@ -34,7 +34,6 @@ in
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "obsidian"
       "slack"
     ];
 
@@ -224,7 +223,7 @@ in
       config = {
         theme = "Solarized (dark)";
       };
-    };
+ };
 
     htop.enable = true;
     bottom.enable = true;

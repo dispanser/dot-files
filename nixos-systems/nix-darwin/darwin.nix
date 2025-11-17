@@ -31,7 +31,6 @@
       "qutebrowser"
       "pritunl"
       "postman"
-      "obsidian"
       "notion"
       "signal"
       "zerotier-one"
