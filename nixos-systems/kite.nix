@@ -52,6 +52,8 @@
     };
     graphics.extraPackages = with pkgs; [
       rocmPackages.clr.icd
+      rocmPackages.rocminfo
+      rocmPackages.amdsmi
     ];
   };
 
@@ -64,8 +66,6 @@
 
   security.rtkit.enable = true;
 
-  hardware.cpu.intel.updateMicrocode = true;
-
   virtualisation.virtualbox = {
     host.enable = false;
     # Enable the Oracle Extension Pack.
@@ -77,9 +77,9 @@
     logEvents = true;
   };
 
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  # ];
   # nix shell with fido2luks
   # see https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
   # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
