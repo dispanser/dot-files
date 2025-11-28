@@ -29,6 +29,7 @@ with pkgs; let
     kanata
   ];
   develPkgs = [
+    tabiew
     devenv
     nodejs # for copilot
     dig
