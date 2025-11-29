@@ -3,6 +3,7 @@ return {
   dependencies = {
     -- todo: might need master here - https://github.com/olimorris/codecompanion.nvim/issues/377
     -- { "nvim-lua/plenary.nvim", branch = "master" },
+    "ravitemer/codecompanion-history.nvim",
     "nvim-lua/plenary.nvim",
     {
       "ravitemer/mcphub.nvim",
@@ -58,13 +59,13 @@ return {
               show_result_in_chat = true
           }
       },
-      -- codecompanion_history = {
-      --     enabled = true,
-      --     opts = {
-      --         history_file = "/Users/thomas.peiselt/codecompanion_chats.json",
-      --         max_history = 30,
-      --     }
-      -- }
+      codecompanion_history = {
+          enabled = true,
+          opts = {
+              history_file = vim.fn.expand('~/codecompanion_chats.json'),
+              max_history = 30,
+          }
+      }
     }
   }
 }
