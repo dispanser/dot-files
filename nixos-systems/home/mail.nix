@@ -9,8 +9,6 @@
     pythonFile = ''
       from subprocess import check_output
 
-      def get_pass(account):
-          return check_output("pass " + account, shell=True).rstrip()
       def get_secret(secret):
           return check_output("cat " + secret, shell=True).rstrip()
     '';
@@ -22,7 +20,7 @@
     accounts.kgo = {
       primary = true;
       address = "pi@kulturguerilla.org";
-      userName = "pi@kulturguerilla.org";
+      userName = "thomas.peiselt@mailbox.org";
       realName = "Thomas Peiselt";
 
       passwordCommand = "cat ${config.sops.secrets."imap/kgo/pass".path}";
@@ -30,7 +28,7 @@
       neomutt.enable = true;
 
       imap = {
-        host = "imap.purelymail.com";
+        host = "imap.mailbox.org";
         port = 993;
         tls = {
           enable = true;
@@ -45,7 +43,7 @@
       };
 
       smtp = {
-        host = "smtp.purelymail.com";
+        host = "smtp.mailbox.org";
         port = 587;
         tls = {
           useStartTls = true;
@@ -74,11 +72,11 @@
     accounts."dispanser.de" = {
       primary = false;
       address = "me@dispanser.de";
-      userName = "me@dispanser.de";
+      userName = "thomas.peiselt@mailbox.org";
       realName = "Thomas Peiselt";
 
       imap = {
-        host = "imap.purelymail.com";
+        host = "imap.mailbox.org";
         port = 993;
         tls = {
           enable = true;
@@ -93,7 +91,7 @@
       };
 
       smtp = {
-        host = "smtp.purelymail.com";
+        host = "smtp.mailbox.org";
         port = 587;
         tls = {
           useStartTls = true;
@@ -102,7 +100,7 @@
 
 
       offlineimap = {
-        enable = true;
+        enable = false;
         postSyncHookCommand = ''${pkgs.bash}/bin/bash -c "MAILDIR=~/.mail/dispanser.de ${pkgs.mu}/bin/mu index"'';
         extraConfig = {
           account = {
@@ -110,7 +108,6 @@
             autorefresh = 60;
           };
           remote = {
-            # remotepasseval = ''get_pass("personal/mail/purelymail.com/inbox.purelymail.com/me@dispanser.de")'';
             remotepasseval = ''get_secret("${config.sops.secrets."imap/dispanser.de/pass".path}")'';
             maxconnections = 5;
             remoteport = 993;

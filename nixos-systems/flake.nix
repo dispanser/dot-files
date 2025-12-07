@@ -40,7 +40,6 @@
           {
             home-manager = home_manager;
           }
-
         ];
       };
       x1t3 = nixpkgs.lib.nixosSystem {
@@ -59,11 +58,10 @@
         system = "x86_64-linux";
         modules = [
           ./chatham.nix
+          overlays
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home/home.nix;
+            home-manager = home_manager;
           }
         ];
       };
