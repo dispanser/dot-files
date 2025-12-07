@@ -53,7 +53,7 @@
     graphics.extraPackages = with pkgs; [
       rocmPackages.clr.icd
       rocmPackages.rocminfo
-      rocmPackages.amdsmi
+      rocmPackages.rocm-smi
     ];
   };
 
@@ -120,9 +120,9 @@
   };
 
   powerManagement = {
-    resumeCommands = ''
-      ${pkgs.systemd}/bin/systemctl restart zerotierone.service
-    '';
+    # resumeCommands = ''
+    #   ${pkgs.systemd}/bin/systemctl restart zerotierone.service
+    # '';
     powerDownCommands = ''
       ${pkgs.ethtool}/bin/ethtool -s eth0 wol g > /tmp/ethtool_up
     '';
