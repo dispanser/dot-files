@@ -1,9 +1,9 @@
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
-    -- todo: might need master here - https://github.com/olimorris/codecompanion.nvim/issues/377
-    -- { "nvim-lua/plenary.nvim", branch = "master" },
     "ravitemer/codecompanion-history.nvim",
+    -- { "nvim-lua/plenary.nvim", branch = "master" },
+    -- todo: might need master here - https://github.com/olimorris/codecompanion.nvim/issues/377
     "nvim-lua/plenary.nvim",
     {
       "ravitemer/mcphub.nvim",

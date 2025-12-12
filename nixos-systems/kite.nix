@@ -12,10 +12,11 @@
     ./adguard_dns.nix
     ./brother.nix
     ./yubico.nix
+    ./llm.nix
     # ./cx_vpn.nix
   ];
 
-  environment.systemPackages = with pkgs; [ radeontop lact ryzenadj ];
+  environment.systemPackages = with pkgs; [ ryzenadj ];
   console.font = "sun12x22";
 
   services.libinput.mouse = {
