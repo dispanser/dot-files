@@ -105,10 +105,11 @@ in
     ./tmux.nix
     ./touch.nix
     ./inputplug.nix
-    ./mail.nix
-    (import ./backup.nix { inherit isServer config; })
     (import ./unison.nix { inherit lib pkgs isServer; })
-  ];
+  ] ++ (if isServer then [
+    ./mail.nix
+    ./backup.nix
+  ] else []);
 
   services.touch.enable = !isServer;
 

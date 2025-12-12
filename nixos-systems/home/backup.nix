@@ -1,10 +1,10 @@
-{ config, isServer, ... }:
+{ config, ... }:
 {
   sops.secrets.restic_backup_key = { };
   sops.secrets.backblaze_env_file = { };
 
   services.restic = {
-    enable = isServer;
+    enable = true;
     backups.remotebackup = {
       environmentFile = "${config.sops.secrets.backblaze_env_file.path}";
       passwordFile = "${config.sops.secrets.restic_backup_key.path}";
