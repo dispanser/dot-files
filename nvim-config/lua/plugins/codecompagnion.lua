@@ -39,18 +39,18 @@ return {
         },
       },
       http = {
-        opts = {
-          show_defaults = false,
-        },
-        copilot = function()
-          return require('codecompanion.adapters').extend('copilot', {
-            schema = {
-              model = {
-                default = 'claude-4.5-sonnet',
-              },
-            },
-          })
-        end,
+        -- opts = {
+        --   show_defaults = false,
+        -- },
+        -- copilot = function()
+        --   return require('codecompanion.adapters').extend('copilot', {
+        --     schema = {
+        --       model = {
+        --         default = 'claude-4.5-sonnet',
+        --       },
+        --     },
+        --   })
+        -- end,
         -- https://codecompanion.olimorris.dev/configuration/adapters
         openrouter = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
