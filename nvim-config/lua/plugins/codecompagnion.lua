@@ -96,7 +96,7 @@ return {
           show_result_in_chat = true
         }
       },
-      codecompanion_history = {
+      history = {
         enabled = true,
         opts = {
           history_file = vim.fn.expand('~/codecompanion_chats.json'),
