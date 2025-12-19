@@ -145,7 +145,7 @@ in
     # TODO: xrandr brightness changes don't actually work because this script can't access :X
     timers = [
       {
-        delay = 270;
+        delay = 540;
         command = "${pkgs.brightnessctl}/bin/brightnessctl --save set 50%- >> /tmp/xih";
         canceller = "${pkgs.brightnessctl}/bin/brightnessctl --restore >> /tmp/xih";
       }
