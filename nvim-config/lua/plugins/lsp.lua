@@ -6,6 +6,11 @@ return {
     },
   },
   {
+    "chrisgrieser/nvim-lsp-endhints",
+    event = "LspAttach",
+    opts = {}, -- required, even if empty
+    },
+  {
     'hrsh7th/nvim-cmp',
     dependencies = {
       { 'L3MON4D3/LuaSnip' },
@@ -20,4 +25,20 @@ return {
   { 'saadparwaiz1/cmp_luasnip' },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/cmp-nvim-lua' },
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter'
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require('rustaceanvim.neotest')
+        },
+      }
+    end
+  },
 }

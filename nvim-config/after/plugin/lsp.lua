@@ -57,8 +57,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s({ 'n', 'x' }, '<leader>ef', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', o(event.buf, '[lsp]: format'))
     s('n', '<leader>ea', '<cmd>lua vim.lsp.buf.code_action()<cr>', o(event.buf, '[lsp]: code action'))
 
-    s('n', '[e', vim.diagnostic.goto_prev, o(event.buf, "next code problem"))
-    s('n', ']e', vim.diagnostic.goto_next, o(event.buf, "prev code problem"))
+    s('n', '[e', function() vim.diagnostic.jump({ count = -1}) end, o(event.buf, "next code problem"))
+    s('n', ']e', function() vim.diagnostic.jump({ count = 1}) end, o(event.buf, "prev code problem"))
 
     s('n', '<leader>er', builtin.lsp_references, o(event.buf, "references for word under cursoer"))
     s('n', '<leader>ei', builtin.lsp_incoming_calls, o(event.buf, "incoming calls"))
@@ -116,6 +116,9 @@ vim.lsp.config['markdown_oxide'] = {
     }
   ),
 }
+
+vim.lsp.inlay_hint.enable()
+require("lsp-endhints").setup {}
 
 vim.lsp.enable({
   "protols",
