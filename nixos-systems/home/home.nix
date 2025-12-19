@@ -139,24 +139,20 @@ in
     not-when-audio = true;
     not-when-fullscreen = false; # TBE
     environment = {
-      PATH = "$PATH:/run/current-system/sw/bin";
-      # DISPLAY = ''"$(xrandr | awk '/ connected/{print $1}')"'';
+      DISPLAY = ":0";
+      XAUTHORITY = "/home/${config.home.username}/.Xauthority";
     };
+    # TODO: xrandr brightness changes don't actually work because this script can't access :X
     timers = [
       {
-        delay = 240;
-        command = "xrandr --output $DISPLAY --brightness .5 >> /tmp/xih";
-        canceller = "xrandr --output $DISPLAY --brightness 1 >> /tmp/xih";
-      }
-      {
         delay = 270;
-        command = "xrandr --output $DISPLAY --brightness .3 >> /tmp/xih";
-        canceller = "xrandr --output $DISPLAY --brightness 1 >> /tmp/xih";
+        command = "${pkgs.brightnessctl}/bin/brightnessctl --save set 50%- >> /tmp/xih";
+        canceller = "${pkgs.brightnessctl}/bin/brightnessctl --restore >> /tmp/xih";
       }
       {
-        delay = 300;
-        command = "systemctl suspend >> /tmp/xih";
-        canceller = "xrandr --output $DISPLAY --brightness 1 >> /tmp/xih";
+        delay = 600;
+        command = "${pkgs.systemd}/bin/systemctl suspend >> /tmp/xih";
+        canceller = "${pkgs.brightnessctl}/bin/brightnessctl --restore >> /tmp/xih";
       }
     ];
   };
