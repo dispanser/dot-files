@@ -64,7 +64,8 @@ api.addSearchAlias('id', 'idealo', 'https://www.idealo.de/preisvergleich/MainSea
 api.addSearchAlias('leo', 'dict', 'http://dict.leo.org/ende?search=');
 // api.addSearchAlias('dhl', 'dhl paket', 'https://nolp.dhl.de/nextt-online-public/set_identcodes.do?lang=en&rfn=&extendedSearch=true&idc=');
 api.addSearchAlias('dhl', 'dhl paket', 'https://www.dhl.de/en/privatkunden/pakete-empfangen/verfolgen.html?piececode=');
-api.addSearchAlias('no', 'nixos options', 'https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=');
+api.addSearchAlias('no', 'nixos options', 'https://search.nixos.org/options?channel=unstable&from=0&size=500&sort=relevance&type=packages&query=');
+api.addSearchAlias('np', 'nixos packages', 'https://search.nixos.org/packages?channel=unstable&from=0&size=500&sort=relevance&type=packages&query=');
 api.addSearchAlias('yt', 'youtube', 'https://www.youtube.com/results?search_query=');
 api.addSearchAlias('sd', 'scala docs', 'http://www.scala-lang.org/api/current/scala/collection/immutable/List.html?search=');
 api.addSearchAlias('glr', 'gh rust', 'https://github.com/search?q=lang%3ARust+{0}&type=code');
