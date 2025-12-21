@@ -99,8 +99,6 @@
     } // editor_abbrevations;
     shellAliases = {
       cdp     = "cd $PROJECT_DIR";
-      restloc = "restic -r sftp:backup-zerotier:/fs/thomas_stuff/backup --password-file /home/data/backup/secret";
-      restb2  = "restic -r b2:yukon-backup:/backup/yukon/home --password-file /home/data/backup/secret";
       gcm  = "git rev-parse --verify main && git switch main || git switch master";
       tree = "eza -Tl --git";
       ls   = "eza --git";

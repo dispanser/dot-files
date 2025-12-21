@@ -59,16 +59,6 @@
     wireless-regdb 
   ];
 
-  services.cron = {
-    # no backup from a backup system :)
-	  enable         = false;
-	  systemCronJobs = [
-	      "17 10,21 * * * pi /home/pi/bin/backup-home.sh local"
-	      "17 12 * * * pi /home/pi/bin/backup-home.sh backblaze"
-        "17 11,18 * * * pi /home/pi/bin/backup-home.sh nextcloud"
-    ];
-  };
-
   services.blueman.enable = true;
 
   hardware.bluetooth = {
