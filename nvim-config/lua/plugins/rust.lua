@@ -10,10 +10,12 @@ return {
         ['rust-analyzer'] = {
           cargo = {
             -- allFeatures = true,
-            targetDir = ".tp/rust-analyzer",
+            targetDir = ".tp/targets/rust-analyzer",
           },
-          -- checkOnSave = { enable = false, },
-          -- diagnostics = { enable = false, },
+          check = {
+            command = 'clippy',
+            extraArgs = {},
+          },
           files = {
             excludeDirs = {
               '.git', 'bin', '.venv', 'venv', 'target'
