@@ -7,6 +7,7 @@
     enable    = true;
 
     settings = {
+      worktree.relativePaths = true;
       user = {
         name  = "Thomas Peiselt";
         email = "pi@kulturguerilla.org";
