@@ -67,6 +67,7 @@ return {
                   ["z-ai/glm-4.6"] = {},
                   ["mistralai/devstral-2512"] = {},
                   ["minimax/minimax-m2"] = {},
+                  ["minimax/minimax-m2.1"] = {},
                   ["deepseek/deepseek-v3.2"] = {},
                   ["moonshotai/kimi-k2"] = {},
                   ["qwen/qwen3-235b-a22b"] = {},
