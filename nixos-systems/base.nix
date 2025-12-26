@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   nix.settings.trusted-users = [ "@wheel" ];
@@ -123,4 +123,9 @@
   boot.tmp.cleanOnBoot = true;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "slack"
+    ];
 }

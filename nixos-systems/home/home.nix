@@ -31,13 +31,6 @@ in
   manual.manpages.enable = true;
   manual.json.enable = true;
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "slack"
-    ];
-
-  # systemd.user.sessionVariables = {
   home.sessionVariables = {
     EDITOR = "${editor}";
   };

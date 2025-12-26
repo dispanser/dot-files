@@ -5,7 +5,7 @@
     (import ./llm.nix)
 
     (final: prev: {
-      touchscreen-gestures = tsg.packages.${prev.system}.default;
+      touchscreen-gestures = tsg.packages.${prev.stdenv.hostPlatform.system}.default;
     })
 
     # # Overlay 1: Use `self` and `super` to express
