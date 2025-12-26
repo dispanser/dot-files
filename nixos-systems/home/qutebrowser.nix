@@ -1,4 +1,16 @@
 { lib, pkgs, ... }:
+let
+  browser = (
+    pkgs.writeShellApplication {
+      name = "browser.sh"; # this will be the name of the binary
+      runtimeInputs = with pkgs; [ wmctrl qutebrowser ];
+      text = ''
+        PROJECT=$(wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
+        qutebrowser --qt-arg name "$PROJECT" --basedir  "/home/pi/projects/$PROJECT/.qute" "$@"
+      '';
+    }
+  );
+in
 {
   xdg.mimeApps.defaultApplications = {
     # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop"?
@@ -7,10 +19,13 @@
 
   xdg.desktopEntries.browser = lib.mkIf pkgs.stdenv.isLinux {
     type = "Application";
-    exec = "/home/pi/bin/browser.sh %u";
+    exec = "browser.sh %u";
     name = "qute-project";
     comment = "Project-specific browser";
+    mimeType = [ "text/html" "text/xml" ];
   };
+
+  home.packages = [ browser ];
 
   xdg.configFile."qutebrowser/add-nextcloud-bookmarks.ini" = {
     text = ''
@@ -27,45 +42,45 @@
     enable = true;
     enableDefaultBindings = true; # Default
     extraConfig = ''
-        config.unbind('<ctrl-p>')
-        config.unbind('<ctrl-n>')
-        config.unbind('d')
-        config.unbind('b')
-      '';
+      config.unbind('<ctrl-p>')
+      config.unbind('<ctrl-n>')
+      config.unbind('d')
+      config.unbind('b')
+    '';
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?q={}";
-      ad      = "http://smile.amazon.de/s/ref=nb_sb_noss?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Daps&field-keywords={}";
-      aur     = "https://aur.archlinux.org/packages/?O=0&SeB=nd&K={}&outdated=&SB=n&SO=a&PP=50&do_Search=Go";
-      ed      = "http://www.ebay.de/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.X%s&_nkw={}&_sacat=0";
-      ek      = "http://www.kleinanzeigen.de/anzeigen/s-{}/k0";
-      gg      = "https://duckduckgo.com/?q=!g {}";
-      hg      = "https://hoogle.haskell.org/?hoogle={}";
-      crate   = "https://crates.io/search?q={}";
-      rg      = "https://doc.rust-lang.org/std/option/enum.Option.html?search={}";
-      hack    = "https://hackage.haskell.org/package/{}";
-      hs      = "https://hackage.haskell.org/packages/search?terms={}";
-      id      = "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q={}";
-      hp      = "http://www.heise.de/preisvergleich/?fs={}&in=&x=0&y=0";
-      leo     = "http://dict.leo.org/ende?search={}";
-      lef     = "https://dict.leo.org/franz%C3%B6sisch-deutsch/{}";
-      cd      = "https://dictionary.cambridge.org/dictionary/english/{}";
-      map     = "https://www.openstreetmap.org/search?query={}";
-      gmap    = "https://www.google.de/maps/search/{}";
-      mvn     = "http://search.maven.org/#search%7Cga%7C1%7C{}";
-      osm     = "https://www.openstreetmap.org/search?query={}";
-      sg      = "http://www.scala-lang.org/api/current/scala/collection/immutable/List.html?search={}";
-      cg      = "https://duckduckgo.com/?sites=cppreference.com&ia=web&q={}";
-      wd      = "http://de.wikipedia.org/w/index.php?search={}";
-      we      = "http://en.wikipedia.org/w/index.php?search={}";
-      yt      = "https://www.youtube.com/results?search_query={}";
-      dhl     = "https://nolp.dhl.de/nextt-online-public/set_identcodes.do?lang=en&idc={}&rfn=&extendedSearch=true";
-      gh      = "https://github.com/{}";
-      red     = "https://www.google.com/search?hl=en&q=site%3Areddit.com%20{}";
-      no      = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-      np      = "https://search.nixos.org/packages?channel=unstable&from=0&size=500&sort=relevance&type=packages&query={}";
-      glr     = "https://github.com/search?q=lang%3ARust+{}&type=code";
-      gln     = "https://github.com/search?q=lang%3ANix+{}&type=code";
-      gll     = "https://github.com/search?q=lang%3ALua+{}&type=code";
+      ad = "http://smile.amazon.de/s/ref=nb_sb_noss?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Daps&field-keywords={}";
+      aur = "https://aur.archlinux.org/packages/?O=0&SeB=nd&K={}&outdated=&SB=n&SO=a&PP=50&do_Search=Go";
+      ed = "http://www.ebay.de/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.X%s&_nkw={}&_sacat=0";
+      ek = "http://www.kleinanzeigen.de/anzeigen/s-{}/k0";
+      gg = "https://duckduckgo.com/?q=!g {}";
+      hg = "https://hoogle.haskell.org/?hoogle={}";
+      crate = "https://crates.io/search?q={}";
+      rg = "https://doc.rust-lang.org/std/option/enum.Option.html?search={}";
+      hack = "https://hackage.haskell.org/package/{}";
+      hs = "https://hackage.haskell.org/packages/search?terms={}";
+      id = "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q={}";
+      hp = "http://www.heise.de/preisvergleich/?fs={}&in=&x=0&y=0";
+      leo = "http://dict.leo.org/ende?search={}";
+      lef = "https://dict.leo.org/franz%C3%B6sisch-deutsch/{}";
+      cd = "https://dictionary.cambridge.org/dictionary/english/{}";
+      map = "https://www.openstreetmap.org/search?query={}";
+      gmap = "https://www.google.de/maps/search/{}";
+      mvn = "http://search.maven.org/#search%7Cga%7C1%7C{}";
+      osm = "https://www.openstreetmap.org/search?query={}";
+      sg = "http://www.scala-lang.org/api/current/scala/collection/immutable/List.html?search={}";
+      cg = "https://duckduckgo.com/?sites=cppreference.com&ia=web&q={}";
+      wd = "http://de.wikipedia.org/w/index.php?search={}";
+      we = "http://en.wikipedia.org/w/index.php?search={}";
+      yt = "https://www.youtube.com/results?search_query={}";
+      dhl = "https://nolp.dhl.de/nextt-online-public/set_identcodes.do?lang=en&idc={}&rfn=&extendedSearch=true";
+      gh = "https://github.com/{}";
+      red = "https://www.google.com/search?hl=en&q=site%3Areddit.com%20{}";
+      no = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      np = "https://search.nixos.org/packages?channel=unstable&from=0&size=500&sort=relevance&type=packages&query={}";
+      glr = "https://github.com/search?q=lang%3ARust+{}&type=code";
+      gln = "https://github.com/search?q=lang%3ANix+{}&type=code";
+      gll = "https://github.com/search?q=lang%3ALua+{}&type=code";
     };
 
     settings = {
@@ -83,9 +98,18 @@
         session = true;
         interval = 60000;
       };
-      editor.command = [ "${pkgs.alacritty}/bin/alacritty"] ++
-        [(if pkgs.stdenv.isDarwin then "--title" else "--name")] ++
-        [ "browser-edit" "-e" "${pkgs.neovim}/bin/nvim" "+call cursor({line}, {column})" "--" "{file}" ];
+      editor.command = [
+        "${pkgs.alacritty}/bin/alacritty"
+      ]
+      ++ [ (if pkgs.stdenv.isDarwin then "--title" else "--name") ]
+      ++ [
+        "browser-edit"
+        "-e"
+        "${pkgs.neovim}/bin/nvim"
+        "+call cursor({line}, {column})"
+        "--"
+        "{file}"
+      ];
       scrolling.smooth = true;
     };
     keyBindings = {
