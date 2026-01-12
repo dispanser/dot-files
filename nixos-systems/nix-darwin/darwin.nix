@@ -84,10 +84,19 @@
 
   system.keyboard = {
     enableKeyMapping = true;
-    # swapLeftCommandAndLeftAlt = true;
+    swapLeftCommandAndLeftAlt = true;
+    # apparently this also swaps side
+    userKeyMapping = [
+      {
+        HIDKeyboardModifierMappingSrc = 30064771302;
+        HIDKeyboardModifierMappingDst = 30064771303;
+      }
+      {
+        HIDKeyboardModifierMappingSrc = 30064771303;
+        HIDKeyboardModifierMappingDst = 30064771302;
+      }
+    ];
     remapCapsLockToEscape = true;
-    # TODO: does not work for the ThinkPad Keyboard II - no tilde at all
-    nonUS.remapTilde = false;
   };
 
   system.defaults.dock = {
