@@ -54,6 +54,8 @@ with pkgs; let
     markdown-oxide
     bc
     teleport
+    mistral-vibe
+    uv
   ];
   linuxOnly = [
     touchscreen-gestures

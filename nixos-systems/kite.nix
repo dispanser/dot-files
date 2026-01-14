@@ -117,11 +117,15 @@
       options thinkpad_acpi fan_control=1
     '';
     kernelParams = [ 
-      "amdgpu.gttsize=108000"
-      "amdttm.pages_limit=27648000" 
-      "amdttm.pagpage_pool_size=27648000"
-      "ttm.pages_limit=27648000" 
-      "ttm.pagpage_pool_size=27648000"
+      "amdgpu.gttsize=122800"
+      # "ttm.pages_limit=27648000" 
+      "ttm.pages_limit=31457280" # 120 gb
+      "amd_iommu=off" 
+      "amdgpu.vm_fragment_size=9" # actual fragment size is 4KB * 2^X 8 -> 1MB, 9 -> 2MB
+      # number of 4k-pages that can be used for GPU memory
+      # pre-allocates memory - not available to CPU. I wonder what that does to my CPU-driven workflow
+      "ttm.page_pool_size=25165824" # 96 gb
+      # "ttm.page_pool_size=27648000"
     ];
     kernelPackages     = pkgs.linuxPackages_latest;
   };

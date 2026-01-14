@@ -23,6 +23,9 @@
           {
             command = "${prefix}/systemctl restart wpa_supplicant-wlan0.service";
             options = [ "SETENV" "NOPASSWD" ];
+          }{
+            command = "${prefix}/systemctl restart kanata-piantor.service";
+            options = [ "SETENV" "NOPASSWD" ];
           }
           {
             command = "${prefix}/s-tui";
@@ -34,6 +37,10 @@
           }
           {
             command = "${prefix}/powertop";
+            options = [ "SETENV" "NOPASSWD" ];
+          }
+          {
+            command = "${prefix}/nvtop";
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
