@@ -31,17 +31,6 @@
   in {
     overlays.default = overlays;
     nixosConfigurations = {
-      # X1-T3 16GB
-      yukon = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./yukon.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = home_manager;
-          }
-        ];
-      };
       x1t3 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -54,6 +43,7 @@
           }
         ];
       };
+      # Tragbar
       chatham = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -65,18 +55,7 @@
           }
         ];
       };
-      stoic = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./stoic.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home/home.nix;
-          }
-        ];
-      };
+      # Desk Mini
       tiny = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -88,18 +67,7 @@
           }
         ];
       };
-      epiphany = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./epiphany.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.pi = (import ./home/home.nix);
-          }
-        ];
-      };
+      # X12 Gen 2
       oxide = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -121,30 +89,7 @@
           }
         ];
       };
-      ryzera = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./ryzera.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home/home.nix;
-          }
-        ];
-      };
-      epiphanix = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./epiphanix.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.pi = import ./home/home.nix;
-          }
-        ];
-      };
+      # Big Boy
       kite = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # specialArgs = {inherit inputs outputs;};
@@ -157,6 +102,7 @@
           }
         ];
       };
+      # Legion Go
       voyager = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
