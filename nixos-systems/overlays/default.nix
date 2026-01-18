@@ -8,34 +8,32 @@
       touchscreen-gestures = tsg.packages.${prev.stdenv.hostPlatform.system}.default;
     })
 
-    # # Overlay 1: Use `self` and `super` to express
-    # # the inheritance relationship
-    # (self: super: {
-    #   google-chrome = super.google-chrome.override {
-    #     commandLineArgs =
-    #       "--proxy-server='https=127.0.0.1:3128;http=127.0.0.1:3128'";
-    #   };
-    # })
-
-    # # Overlay 2: Use `final` and `prev` to express
-    # # the relationship between the new and the old
-    # (final: prev: {
-    #   steam = prev.steam.override {
-    #     extraPkgs = pkgs: with pkgs; [
-    #       keyutils
-    #       libkrb5
-    #       libpng
-    #       libpulseaudio
-    #       libvorbis
-    #       stdenv.cc.cc.lib
-    #       xorg.libXcursor
-    #       xorg.libXi
-    #       xorg.libXinerama
-    #       xorg.libXScrnSaver
-    #     ];
-    #     extraProfile = "export GDK_SCALE=2";
-    #   };
-    # })
-
+    (final: prev: {
+      llamalol = (prev.llama-cpp.override {
+        cudaSupport = false;
+        rocmGpuTargets = [ "gfx1201" ];
+        rocmSupport = true;
+        rpcSupport = true;
+      }).overrideAttrs (old: {
+        cmakeFlags = old.cmakeFlags ++ [
+          (prev.lib.cmakeBool "GGML_CPU_ALL_VARIANTS" true)
+          (prev.lib.cmakeBool "GGML_BACKEND_DL" true)
+          (prev.lib.cmakeBool "GGML_HIP_UMA" true)
+          (prev.lib.cmakeBool "GGML_HIP_GRAPHS" true)
+        ];
+        version = "7770";
+        src = prev.fetchFromGitHub {
+          owner = "ggml-org";
+          repo = "llama.cpp";
+          tag = "b7770";
+          hash = "sha256-SRz8uLjXtjpHhekqrksUc7oUuz6cYdWfvcdHxWNEgbs=";
+          leaveDotGit = true;
+          postFetch = ''
+            git -C "$out" rev-parse --short HEAD > $out/COMMIT
+            find "$out" -name .git -print0 | xargs -0 rm -rf
+          '';
+        };
+      });
+    })
   ];
 }
