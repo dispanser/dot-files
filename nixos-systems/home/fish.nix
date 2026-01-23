@@ -69,6 +69,7 @@
       gba     = "git branch -a";
       gcip    = "git commit --interactive --patch";
       gaip    = "git add --interactive --patch";
+      gapp    = "git apply -p0";
       grip    = "git restore --patch";
       gvl     = "git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat";
       # gdt     = "git difftool --no-prompt";
