@@ -10,9 +10,6 @@
   - do not put the deleted / changed stuff (cc, dw, ...) into a register
   - while this sounds useful, it changes my current mental model
 - treesitter extensions:
-  - [nvim-dap](https://github.com/mfussenegger/nvim-dap): debug (extension of LSP?)
-     - [available adapters](https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/)
-     - all the stuff you'd hope for, except for a scala-specific one (doh!)
   - [nvim-treehopper](https://github.com/mfussenegger/nvim-treehopper): navigate via treesitter AST
   - [nvim-textsubjects](https://github.com/RRethy/nvim-treesitter-textsubjects)
 - [mini.ai](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md) textobjects with continuous expansion
