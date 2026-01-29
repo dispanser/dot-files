@@ -144,7 +144,9 @@ in
       }
       {
         delay = 600;
-        command = "${pkgs.systemd}/bin/systemctl suspend >> /tmp/xih";
+        # hack: re-activate the screen briefly before suspend, otherwise kite can no longer see EDID
+        # from LG display and falls back to VGA (or worse, requires a hard reset)
+        command = "${pkgs.xset}/bin/xset dpms force on; ${pkgs.systemd}/bin/systemctl suspend >> /tmp/xih";
         canceller = "${pkgs.brightnessctl}/bin/brightnessctl --restore >> /tmp/xih";
       }
     ];
@@ -213,13 +215,13 @@ in
       config = {
         theme = "Solarized (dark)";
       };
- };
+    };
 
     htop.enable = true;
     bottom.enable = true;
     dircolors.enable = true;
     home-manager.enable = true;
-    jq.enable = true; # TODO: doesn't exist ?
+    jq.enable = true;
   };
 
 }
