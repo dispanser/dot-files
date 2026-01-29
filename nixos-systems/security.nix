@@ -40,11 +40,15 @@
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
+            command = "${prefix}/bluetoothctl";
+            options = [ "SETENV" "NOPASSWD" ];
+          }
+          {
             command = "${prefix}/nvtop";
             options = [ "SETENV" "NOPASSWD" ];
           }
           {
-            command = "${prefix}/bluetoothctl";
+            command = "${prefix}/nvidia-smi *";
             options = [ "SETENV" "NOPASSWD" ];
           }
         ];
