@@ -6,16 +6,11 @@ in
 {
   environment.systemPackages = with pkgs; [
     rocmPackages.rocminfo
-    nvtopPackages.amd
+    nvtopPackages.full
     radeontop
     lact
     llama-swap
   ];
-
-  services.ollama = {
-    enable = false;
-    package = pkgs.ollama-rocm;
-  };
 
   services.llama-cpp = {
     enable = false;

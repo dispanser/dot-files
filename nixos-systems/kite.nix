@@ -16,7 +16,17 @@
     # ./cx_vpn.nix
   ];
 
-  environment.systemPackages = with pkgs; [ ryzenadj llama-cpp ];
+  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
+  environment.systemPackages = with pkgs; [
+    ryzenadj
+    llama-cpp
+    mlc
+    # reference the package defined below
+    config.hardware.nvidia.package
+    cudaPackages.cudatoolkit cudaPackages.cudatoolkit.lib cudaPackages.cudnn
+  ];
+
   console.font = "sun12x22";
 
   services.libinput.mouse = {
@@ -36,26 +46,36 @@
   hardware.enableRedistributableFirmware = true;
   hardware.sensor.iio.enable = true;
 
-  hardware.firmware = with pkgs; [ 
-    wireless-regdb 
+  hardware.firmware = with pkgs; [
+    wireless-regdb
   ];
 
   programs.ryzen-monitor-ng.enable = true;
 
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+
   services.lact.enable = true;
   hardware.cpu.amd.updateMicrocode = true;
   hardware = {
+    nvidia = {
+      nvidiaPersistenced = true;
+      nvidiaSettings = true;
+      powerManagement.enable = true;
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      open = true;
+    };
     amdgpu = {
       overdrive.enable = true;
       # overdrive.ppfeaturemask # check docs at some point in future
       initrd.enable = true;
       opencl.enable = true;
     };
-    graphics.extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      rocmPackages.rocminfo
-      rocmPackages.rocm-smi
-    ];
+    # graphics.extraPackages = with pkgs; [
+    #   rocmPackages.clr.icd
+    #   rocmPackages.rocminfo
+    #   rocmPackages.rocm-smi
+    # ];
   };
 
   programs.steam = {
@@ -102,12 +122,13 @@
           # fido2.credential = "0d05ca72aa2dd7ebba29a6467eef6bed84fbcd94cd34da3cff7c8dbaf3ee2d6e";
         };
       };
-    }; 
+    };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu" ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu"  "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
     blacklistedKernelModules        = ["k10temp"];
     extraModulePackages             = with config.boot.kernelPackages; [
       tp_smapi acpi_call zenpower
@@ -116,10 +137,10 @@
       options acpi ec_no_wakeup=1
       options thinkpad_acpi fan_control=1
     '';
-    kernelParams = [ 
+    kernelParams = [
       "amdgpu.gttsize=122800"
       "ttm.pages_limit=31457280" # 120 gb
-      "amd_iommu=off" 
+      "amd_iommu=off"
       "amdgpu.vm_fragment_size=9" # actual fragment size is 4KB * 2^X 8 -> 1MB, 9 -> 2MB
       # number of 4k-pages that can be used for GPU memory
       # pre-allocates memory - not available to CPU. I wonder what that does to my CPU-driven workflow
@@ -170,6 +191,10 @@
     }
   ];
 
+  nix.settings = {
+    substituters = [ "https://cache.nixos-cuda.org" ];
+    trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
+  };
   nix.settings.max-jobs                     = lib.mkDefault 8;
 
   # The NixOS release to be compatible with for stateful data such as databases.

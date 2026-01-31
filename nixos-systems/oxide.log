@@ -1,0 +1,24 @@
+# Log: X12 Gen 2 / 32GB
+# 2025-06-17
+
+set NAME oxide
+set EFI /dev/nvme0n1p1
+set LVM /dev/nvme0n1p5
+
+set EFI_UUID EAAF-91D7
+set LVM_UUID c2aa7dd3-7c1c-4082-b8c0-be0bb5f5e358
+
+sudo cryptsetup luksFormat $LVM
+
+
+sudo cryptsetup luksOpen /dev/disk/by-uuid/$LVM_UUID {$NAME}
+sudo vgcreate {$NAME} /dev/mapper/$NAME
+
+sudo lvcreate -L 192G -n nix-root  {$NAME}
+sudo lvcreate -L 32G -n swap {$NAME}
+sudo lvcreate -l 100%FREE  -n home {$NAME}
+
+sudo mkfs.ext4 -L nix-root /dev/{$NAME}/nix-root
+sudo mkfs.ext4 -L home /dev/{$NAME}/home
+
+sudo mkswap /dev/{$NAME}/swap
