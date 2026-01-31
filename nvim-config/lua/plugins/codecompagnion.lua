@@ -64,12 +64,11 @@ return {
               model = {
                 default = "mistralai/devstral-2512",
                 choices = {
-                  ["z-ai/glm-4.6"] = {},
+                  ["z-ai/glm-4.7"] = {},
                   ["mistralai/devstral-2512"] = {},
-                  ["minimax/minimax-m2"] = {},
                   ["minimax/minimax-m2.1"] = {},
                   ["deepseek/deepseek-v3.2"] = {},
-                  ["moonshotai/kimi-k2"] = {},
+                  ["moonshotai/kimi-k2.5"] = {},
                   ["qwen/qwen3-235b-a22b"] = {},
                 },
               },
