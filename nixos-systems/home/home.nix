@@ -9,6 +9,7 @@
 let
   editor = "nvim";
   isServer = osConfig.networking.hostName == "tiny";
+  isKite = osConfig.networking.hostName == "kite";
 in
 {
 
@@ -127,7 +128,7 @@ in
   };
 
   services.xidlehook = {
-    enable = !isServer && pkgs.stdenv.isLinux;
+    enable = !isServer && !isKite && pkgs.stdenv.isLinux;
     detect-sleep = true;
     not-when-audio = true;
     not-when-fullscreen = false; # TBE
