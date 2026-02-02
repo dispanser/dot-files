@@ -7,7 +7,12 @@
     ./vial.nix
     ./keyboard.nix
   ];
-
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "16384";
+  }];
   services.pulseaudio = {
     extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
