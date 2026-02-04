@@ -24,6 +24,7 @@
     mlc
     # reference the package defined below
     config.hardware.nvidia.package
+    # config.hardware.nvidia.package.bin  # includes nvidia-persistenced, nvidia-smi
     cudaPackages.cudatoolkit cudaPackages.cudatoolkit.lib cudaPackages.cudnn
   ];
 
@@ -127,11 +128,13 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu"  "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu" "nvidia" "nvidia_uvm" ];
 
-    blacklistedKernelModules        = ["k10temp"];
+    blacklistedKernelModules        = [ "k10temp" ]; # "nvidia_drm" "nvidia_modeset" "nvidia";
     extraModulePackages             = with config.boot.kernelPackages; [
       tp_smapi acpi_call zenpower
+      # config.hardware.nvidia.package
+      # nvidia_x11
     ];
     extraModprobeConfig = ''
       options acpi ec_no_wakeup=1
