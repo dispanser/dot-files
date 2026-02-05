@@ -26,6 +26,7 @@
     config.hardware.nvidia.package
     # config.hardware.nvidia.package.bin  # includes nvidia-persistenced, nvidia-smi
     cudaPackages.cudatoolkit cudaPackages.cudatoolkit.lib cudaPackages.cudnn
+    kmscon
   ];
 
   console.font = "sun12x22";
@@ -54,6 +55,20 @@
   programs.ryzen-monitor-ng.enable = true;
 
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+
+  services.kmscon = {
+    enable = true;
+    useXkbConfig = true;
+    hwRender = true;
+    fonts = [
+      {
+        name = "VictorMono Nerd Font";
+        package = pkgs.nerd-fonts.victor-mono;
+      }
+    ];
+
+    extraOptions = "--term xterm-256color";
+  };
 
   services.lact.enable = true;
   hardware.cpu.amd.updateMicrocode = true;
