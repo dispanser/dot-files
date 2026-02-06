@@ -123,9 +123,9 @@
       vgf.body   = "${editor} (git ls-files | fzf)";
       vgr.body   = "${editor} (git ls-files (git root) | fzf)";
       rcd.body   = "tmux rename-window (basename (git root 2>/dev/null && echo (git root) || echo (pwd)))";
-      k9d.body   = "kubectl config get-contexts -o name | fzf | xargs k9s -c deploy $argv --context";
-      k9p.body   = "kubectl config get-contexts -o name | fzf | xargs k9s -c pods $argv --context";
-      k9c.body   = "kubectl config get-contexts -o name | fzf | xargs kubectl config use-context";
+      k9d.body   = ''kubectl config get-contexts -o name | fzf --query "$argv[1]" -1 | xargs k9s -c deploy --context'';
+      k9p.body   = ''kubectl config get-contexts -o name | fzf --query "$argv[1]" -1 | xargs k9s -c pods --context'';
+      k9c.body   = ''kubectl config get-contexts -o name | fzf --query "$argv[1]" -1 | xargs kubectl config use-context'';
       unidle     = ''
         systemctl --user stop xidlehook.service
         sleep $argv;

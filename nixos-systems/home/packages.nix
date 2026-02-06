@@ -29,6 +29,7 @@ with pkgs; let
     kanata
   ];
   develPkgs = [
+    claude-code
     tabiew
     devenv
     nodejs # for copilot
