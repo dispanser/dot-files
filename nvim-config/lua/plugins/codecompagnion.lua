@@ -96,7 +96,7 @@ return {
             },
             env = {
               -- url = "http://10.1.3.4:3333",
-              url = "http://192.168.1.159:3333",
+              url = "http://10.1.3.4:3333",
               api_key = "n/a",
               -- chat_url = "/v1/chat/completions",
             },
