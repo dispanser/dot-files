@@ -7,6 +7,7 @@ vim.o.visualbell = true
 vim.o.updatetime = 250
 vim.o.exrc = true
 vim.o.secure = true
+vim.o.wrap = false
 
 -- wo: window-scoped
 -- g: "global", plugins only + leader keys (see remap)
