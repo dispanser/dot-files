@@ -9,6 +9,10 @@
     uid = 502;
   };
 
+  imports = [
+    ./kanata.nix
+  ];
+
   system.primaryUser = "thomas.peiselt";
   users.knownUsers = [ "thomas.peiselt" ];
 
@@ -42,8 +46,6 @@
       "awscli"
       "golang"
       "openssh"
-      "llama.cpp"
-      "kanata"
       "vcluster"
     ];
   };

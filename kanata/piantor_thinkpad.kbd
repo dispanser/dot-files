@@ -9,6 +9,7 @@
     "Chicony ThinkPad X1 Tablet Thin Keyboard Gen 3"
     "Lenovo ThinkPad Compact USB Keyboard with TrackPoint"
   )
+  process-unmapped-keys yes
 )
 
 (defsrc
