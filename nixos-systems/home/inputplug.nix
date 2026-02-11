@@ -10,7 +10,7 @@ let
     case $1_$3 in
       XIDeviceEnabled_XISlaveKeyboard*)
       ${pkgs.coreutils}/bin/echo detected keyboard connect, fixing keymap
-      ${pkgs.xorg.setxkbmap}/bin/setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch
+      ${pkgs.setxkbmap}/bin/setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch
       ;;
     esac
   ''}";

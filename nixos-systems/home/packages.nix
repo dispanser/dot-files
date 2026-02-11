@@ -65,12 +65,12 @@ with pkgs; let
     vlc
     pinentry-all
     simple-scan
-    xorg.xmodmap xorg.xev xorg.xbacklight xlockmore xorg.libxcb
+    xmodmap xev xbacklight xlockmore libxcb
     xbindkeys
     xclip xsel
-    xorg.xmessage xdotool
+    xmessage xdotool
     pavucontrol ponymix
-    xorg.xinit
+    xinit
     rofi
     scrot 
     signal-desktop
