@@ -55,11 +55,6 @@ in
       enable = lib.mkIf pkgs.stdenv.isLinux true;
       source = ../../configs/xbindkeys/rc;
     };
-    ".unison" = {
-      enable = lib.mkIf pkgs.stdenv.isLinux true;
-      source = ../../configs/unison;
-      recursive = true;
-    };
     ".psqlrc" = {
       enable = true;
       source = ../../configs/psql/.psqlrc;
