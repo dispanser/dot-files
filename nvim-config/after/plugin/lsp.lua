@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', o(event.buf, '[lsp]: go to declaration'))
     s('n', 'gt', builtin.lsp_type_definitions, o(event.buf, '[lsp]: go to type definition'))
 
-    s('n', '<leader>em', builtin.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
+    s('n', '<leader>em', Snacks.picker.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
     s('n', '<leader>es', '<cmd>lua vim.lsp.buf.signature_help()<cr>', o(event.buf, '[lsp]: show signature'))
     s('n', '<leader>en', '<cmd>lua vim.lsp.buf.rename()<cr>', o(event.buf, '[lsp]: rename'))
     s({ 'n', 'x' }, '<leader>ef', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', o(event.buf, '[lsp]: format'))
@@ -60,23 +60,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', '[e', function() vim.diagnostic.jump({ count = -1}) end, o(event.buf, "next code problem"))
     s('n', ']e', function() vim.diagnostic.jump({ count = 1}) end, o(event.buf, "prev code problem"))
 
-    s('n', '<leader>er', builtin.lsp_references, o(event.buf, "references for word under cursoer"))
-    s('n', '<leader>ei', builtin.lsp_incoming_calls, o(event.buf, "incoming calls"))
-    s('n', '<leader>eo', builtin.lsp_outgoing_calls, o(event.buf, "outgoing calls"))
-    s('n', '<leader>bs', builtin.lsp_document_symbols, o(event.buf, "buffer symbols"))
-    s('n', '<leader>ep', function() builtin.diagnostics({ severity_limit = 3 }) end, o(event.buf, "project diagnostics"))
-    s('n', '<leader>bp', function() builtin.diagnostics({ severity_limit = 3, bufnr = 0 }) end,
-      o(event.buf, "buffer diagnostics"))
-    s('n', '<leader>eP', builtin.diagnostics, o(event.buf, "all project diagnostics"))
-    s('n', '<leader>bP', function() builtin.diagnostics({ bufnr = 0 }) end, o(event.buf, "all buffer diagnostic"))
-    s('n', '<leader>pS', builtin.lsp_workspace_symbols, o(event.buf, "workspace symbols"))
-    s('n', '<leader>ps',
-      function()
-        builtin.lsp_dynamic_workspace_symbols({
-          symbol_type_width = 10,
-          fname_width = 50,
-        })
-      end,
+    s('n', '<leader>er', Snacks.picker.lsp_references, o(event.buf, "references for word under cursoer"))
+    s('n', '<leader>ei', Snacks.picker.lsp_incoming_calls, o(event.buf, "incoming calls"))
+    s('n', '<leader>eo', Snacks.picker.lsp_outgoing_calls, o(event.buf, "outgoing calls"))
+    s('n', '<leader>bs', Snacks.picker.lsp_symbols, o(event.buf, "buffer symbols"))
+    s('n', '<leader>ep', Snacks.picker.diagnostics, o(event.buf, "project diagnostics"))
+    s('n', '<leader>bp', Snacks.picker.diagnostics_buffer, o(event.buf, "project diagnostics"))
+    s('n', '<leader>et', Snacks.picker.lsp_type_definitions, o(event.buf, "all project diagnostics"))
+    -- I'm not sure what the difference is to lsp_dynamic_workspace_symbols.
+    s('n', '<leader>ps', Snacks.picker.lsp_workspace_symbols,
+      -- function()
+      --   builtin.lsp_dynamic_workspace_symbols({
+      --     symbol_type_width = 10,
+      --     fname_width = 50,
+      --   })
+      -- end,
       o(event.buf, "dynamic workspace symbols"))
   end,
 })

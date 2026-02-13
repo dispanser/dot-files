@@ -4,7 +4,7 @@
 
 - git commit browser [gv](https://github.com/junegunn/gv.vim)
   - technically that was installed previously, but I can't remember using it
-- [vim-swap](machakann/vim-swap): text objects and swap function arguments
+- [vim-swap](https://github.com/machakann/vim-swap): text objects and swap function arguments
   - this was already enabled, but never actively used
 - [vim-cutlass](https://github.com/svermeulen/vim-cutlass)
   - do not put the deleted / changed stuff (cc, dw, ...) into a register

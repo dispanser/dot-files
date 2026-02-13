@@ -16,23 +16,8 @@ return {
       },
     },
   },
-  {
-    "juacker/git-link.nvim",
-    keys = {
-      {
-        "<leader>gu",
-        function() require("git-link.main").copy_line_url() end,
-        desc = "Copy code link to clipboard",
-        mode = { "n", "x" }
-      },
-      {
-        "<leader>go",
-        function() require("git-link.main").open_line_url() end,
-        desc = "Open code link in browser",
-        mode = { "n", "x" }
-      },
-    },
-  },
+  -- git-link.nvim: replaced by Snacks.gitbrowse
+  -- { "juacker/git-link.nvim" },
   {
     'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'
   },
@@ -64,27 +49,19 @@ return {
       require("bufresize").setup()
     end,
   },
-  {
-    'moll/vim-bbye',
-    keys = {
-      { '<leader>bc', ':Bdelete<cr>',  desc = "close file shown in buffer" },
-      { '<leader>bx', ':Bwipeout<cr>', desc = "wipe file shown in buffer" },
-    },
-  },
+  -- vim-bbye: replaced by Snacks.bufdelete
+  -- { 'moll/vim-bbye' },
   { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+  {
+    'rebelot/kanagawa.nvim',
+    -- color scheme determines highlight groups that should be loaded first
+    priority = 1000,
+  },
   {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {},
-  },
-  {
-    'rebelot/kanagawa.nvim',
-    -- color scheme determines highlight groups that should be loaded first
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme('kanagawa')
-    end,
   },
   {
     "folke/which-key.nvim",
@@ -112,22 +89,10 @@ return {
     end,
     priority = 900,
   },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  },
-  'machakann/vim-highlightedyank',
+  -- noice.nvim + nvim-notify: replaced by Snacks.notifier + Snacks.input
+  -- { "folke/noice.nvim" },
+  -- vim-highlightedyank: built-in on Neovim 0.11+ (vim.hl.on_yank)
+  -- 'machakann/vim-highlightedyank',
   'roxma/vim-tmux-clipboard',
   'christoomey/vim-tmux-navigator',
   'nvim-tree/nvim-web-devicons',
@@ -144,13 +109,8 @@ return {
   },
   'tpope/vim-repeat',
   'tpope/vim-unimpaired',
-  {
-    'blueyed/vim-diminactive',
-    keys = {
-      { '<leader>ti', vim.cmd.DimInactiveToggle, desc = "toggle inactive dim" },
-    },
-    lazy = false,
-  },
+  -- vim-diminactive: replaced by Snacks.dim
+  -- { 'blueyed/vim-diminactive' },
   {
     'stevearc/aerial.nvim',
     opts = {},
@@ -170,35 +130,23 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
     init = function()
-      require('lualine').setup()
+      require('lualine').setup {
+        options = {
+          -- ... your lualine config
+          theme = 'tokyonight'
+          -- ... your lualine config
+        }
+      }
     end,
   },
-  { 'stevearc/dressing.nvim',  lazy = false },
   { 'tveskag/nvim-blame-line', lazy = false },
   { 'sheerun/vim-polyglot',    lazy = false },
   { 'tpope/vim-fugitive',      lazy = false },
   {
-    'mbbill/undotree',
-    keys = {
-      { '<leader>tU', vim.cmd.UndotreeToggle, desc = "toggle undo tree" },
-    },
-    lazy = true,
-  },
-  { 'RRethy/vim-illuminate' },
-  -- {
-  --   'nvim-treesitter/nvim-treesitter',
-  --   build = function()
-  --     local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-  --     ts_update()
-  --   end,
-  -- },
-  {
     'andymass/vim-matchup',
     init = function()
-      -- may set any options here
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
-    lazy = true,
   },
   {
     "chrisgrieser/nvim-various-textobjs",

@@ -35,3 +35,11 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.opt.foldenable = false;
+
+-- Highlight on yank (built-in, replaces vim-highlightedyank)
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank({ timeout = 400 })
+  end,
+})
