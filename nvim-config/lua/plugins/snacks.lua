@@ -7,7 +7,10 @@ return {
     bigfile = { enabled = true },
     bufdelete = { enabled = true },
     dim = { enabled = true },
-    explorer = { enabled = true },
+    explorer = {
+      enabled = true,
+      replace_netrw = true,
+    },
     gitbrowse = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
@@ -26,7 +29,7 @@ return {
     words = { enabled = true },
   },
   keys = {
-    { "<leader>tr", function() Snacks.explorer.reveal() end,                    desc = "reveal current file" },
+    { "<leader>te", function() Snacks.explorer.reveal() end,                    desc = "reveal current file" },
 
     ---------------------------------------------------------------------------
     -- Picker: files

@@ -22,6 +22,7 @@
     ryzenadj
     llama-cpp
     mlc
+    tilth
     # reference the package defined below
     config.hardware.nvidia.package
     # config.hardware.nvidia.package.bin  # includes nvidia-persistenced, nvidia-smi

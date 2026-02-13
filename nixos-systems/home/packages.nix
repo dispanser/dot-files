@@ -29,6 +29,7 @@ with pkgs; let
     kanata
   ];
   develPkgs = [
+    tuicr
     claude-code
     tabiew
     devenv
