@@ -38,7 +38,7 @@ return {
     { "<leader>pT", function() Snacks.picker.grep({ search = "tyx/TODO" }) end, desc = "search my TODO in project" },
     { "<leader>pW", function() Snacks.picker.grep_word() end,                   desc = "search word in project",       mode = { "n", "x" } },
     { "<leader>pw", function() Snacks.picker.grep_word() end,                   desc = "search exact word in project", mode = { "n", "x" } },
-    { "<leader>pw", function() Snacks.picker.projects() end,                    desc = "recent projects",              mode = { "n", "x" } },
+    { "<leader>pp", function() Snacks.picker.projects() end,                    desc = "recent projects",              mode = { "n", "x" } },
     { "<leader>fr", function() Snacks.picker.recent() end,                      desc = "recently loaded files" },
 
     ---------------------------------------------------------------------------
