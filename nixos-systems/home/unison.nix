@@ -13,6 +13,7 @@
       "Name src/github/dispanser/dot-files"
       "Name src/github/dispanser/partition-index/.git"
       "Name target"
+      "Name targets"
       "Name build"
       "Name debug"
       "Name .gradle"
