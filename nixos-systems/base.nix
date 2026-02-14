@@ -41,6 +41,8 @@
 
   environment.systemPackages = with pkgs; [
     file
+    iw
+    wirelesstools
     lsof
     sysfsutils # for systool
     bridge-utils

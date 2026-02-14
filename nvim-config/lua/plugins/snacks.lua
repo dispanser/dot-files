@@ -37,6 +37,7 @@ return {
     { "<leader>pf", function() Snacks.picker.files() end,                       desc = "find project files" },
     { "<leader>pg", function() Snacks.picker.git_files() end,                   desc = "git files" },
     { "<leader>p/", function() Snacks.picker.grep() end,                        desc = "search project" },
+    { "<leader>/",        function() Snacks.picker.grep() end,                                   desc = "search entire project" },
     { "<leader>pt", function() Snacks.picker.grep({ search = "tyx/" }) end,     desc = "search my tag in project" },
     { "<leader>pT", function() Snacks.picker.grep({ search = "tyx/TODO" }) end, desc = "search my TODO in project" },
     { "<leader>pW", function() Snacks.picker.grep_word() end,                   desc = "search word in project",       mode = { "n", "x" } },
@@ -65,7 +66,6 @@ return {
       end,
       desc = "search my tag in buffer"
     },
-    { "<leader>/",        function() Snacks.picker.grep() end,                                   desc = "search entire project" },
 
     ---------------------------------------------------------------------------
     -- Picker: various lists
@@ -119,11 +119,6 @@ return {
     ---------------------------------------------------------------------------
     { "<leader>gu",       function() Snacks.gitbrowse({ notify = false, clipboard = true }) end, desc = "Copy code link to clipboard", mode = { "n", "x" } },
     { "<leader>go",       function() Snacks.gitbrowse() end,                                     desc = "Open code link in browser",   mode = { "n", "x" } },
-
-    ---------------------------------------------------------------------------
-    -- Lazygit
-    ---------------------------------------------------------------------------
-    { "<leader>gg",       function() Snacks.lazygit() end,                                       desc = "lazygit" },
 
     ---------------------------------------------------------------------------
     -- Buffer delete (replaces vim-bbye)

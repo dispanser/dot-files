@@ -123,13 +123,14 @@
   '';
 
   networking = {
-
     enableIPv6 = false;
     usePredictableInterfaceNames = false;
     hostName        = "oxide";
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
+      userControlled = true;
+      allowAuxiliaryImperativeNetworks = true;
     };
     firewall.enable = false;
   };

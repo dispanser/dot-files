@@ -58,6 +58,7 @@ with pkgs; let
     teleport
     mistral-vibe
     uv
+    lazygit
   ];
   linuxOnly = [
     touchscreen-gestures
