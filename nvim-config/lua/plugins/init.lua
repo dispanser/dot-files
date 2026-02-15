@@ -89,10 +89,21 @@ return {
     end,
     priority = 900,
   },
-  -- noice.nvim + nvim-notify: replaced by Snacks.notifier + Snacks.input
-  -- { "folke/noice.nvim" },
-  -- vim-highlightedyank: built-in on Neovim 0.11+ (vim.hl.on_yank)
-  -- 'machakann/vim-highlightedyank',
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      -- "rcarriga/nvim-notify",
+    }
+  },
   'roxma/vim-tmux-clipboard',
   'christoomey/vim-tmux-navigator',
   'nvim-tree/nvim-web-devicons',
