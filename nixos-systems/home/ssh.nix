@@ -22,6 +22,9 @@ in {
       "*" = {
         compression = true;
         forwardAgent = true;
+        extraOptions = {
+          IdentitiesOnly = "yes";
+        };
       };
 
       "tiny" = {
@@ -29,9 +32,6 @@ in {
         user = "pi";
         port = 65423;
         identityFile = unison_tiny;
-        extraOptions = {
-          IdentitiesOnly = "yes";
-        };
       };
 
       "github.com" = {
