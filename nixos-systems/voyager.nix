@@ -129,6 +129,7 @@
     {
       device = "/dev/voyager/swap";
       priority = 10;
+      options = [ "discard" ];
     }
   ];
 

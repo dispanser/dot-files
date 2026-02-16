@@ -207,6 +207,7 @@
     {
       device = "/dev/konsole/swap";
       priority = 10;
+      options = [ "discard" ];
     }
   ];
 

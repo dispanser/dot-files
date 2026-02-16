@@ -111,6 +111,7 @@
   swapDevices = [
     {
       device = "/dev/x1t3/swap";
+      options = [ "discard" ];
     }
   ];
 

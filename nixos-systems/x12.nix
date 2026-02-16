@@ -138,6 +138,7 @@
     {
       device = "/dev/x12/swap";
       priority = 10;
+      options = [ "discard" ];
     }
   ];
 

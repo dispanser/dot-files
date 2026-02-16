@@ -146,6 +146,7 @@
     {
       device = "/dev/oxide/swap";
       priority = 10;
+      options = [ "discard" ];
     }
   ];
 
