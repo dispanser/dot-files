@@ -82,13 +82,13 @@
         ];
         # npmDepsHash = prev.lib.fakeHash;
         npmDepsHash = "sha256-bbv0e3HZmqpFwKELiEFBgoMr72jKbsX20eceH4XjfBA=";
-        version = "7983";
+        version = "8089";
         src = prev.fetchFromGitHub {
           owner = "ggml-org";
           repo = "llama.cpp";
-          # tag = "b7983";
-          rev = "854b09f0d7825dd9b8ca542a7f63c2374d66121a";
-          hash = "sha256-v5etW3YcyCP8IjEO2pUNdqIx3uYSczWGSePVW7+gWjc=";
+          tag = "b8089";
+          # rev = "854b09f0d7825dd9b8ca542a7f63c2374d66121a";
+          hash = "sha256-9gELhI5K4ZmeFg2jf9on5d77TpYsf+3a9u2mIo22FGo=";
           leaveDotGit = true;
           postFetch = ''
             git -C "$out" rev-parse --short HEAD > $out/COMMIT
