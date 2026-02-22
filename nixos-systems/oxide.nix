@@ -1,7 +1,7 @@
 { config, lib, pkgs,... }:
 
 {
-  environment.systemPackages = with pkgs; [ wlr-randr ];
+  environment.systemPackages = with pkgs; [ wlr-randr xwayland-satellite ];
 
   # hardware.sensor.iio.bmi260.enable = true;
   services.joycond.enable = true;
