@@ -32,11 +32,15 @@
     QT_IM_MODULE = "xim";
   };
 
+  programs.niri = {
+    enable = true;
+  };
+
   # also re-use xkb config for console keyboards (tbd)
   console.useXkbConfig = true;
   # Enable the X11 windowing system.
   services.xserver = {
-    enable                 = true;
+    enable                 = false;
     enableCtrlAltBackspace = true;
     xkb = {
       layout                 = "us";
@@ -61,7 +65,8 @@
 
   services.displayManager = {
     enable = true;
-    defaultSession = "none+xmonad";
+    defaultSession = "none+niri";
+    # lemurs.enable = true;
   };
 
   services.libinput = {

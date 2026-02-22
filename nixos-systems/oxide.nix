@@ -1,6 +1,8 @@
 { config, lib, pkgs,... }:
 
 {
+  environment.systemPackages = with pkgs; [ wlr-randr ];
+
   # hardware.sensor.iio.bmi260.enable = true;
   services.joycond.enable = true;
 

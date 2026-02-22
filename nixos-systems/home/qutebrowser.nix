@@ -3,9 +3,25 @@ let
   browser = (
     pkgs.writeShellApplication {
       name = "browser.sh"; # this will be the name of the binary
-      runtimeInputs = with pkgs; [ wmctrl qutebrowser ];
+      runtimeInputs = with pkgs; [ wmctrl qutebrowser niri ];
       text = ''
-        PROJECT=$(wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
+        PROJECT=""
+
+        if [ -n "''${DISPLAY:-}" ]; then
+          PROJECT=$(wmctrl -d 2>/dev/null || echo "" | grep '\*' | cut -b 33- | cut -f 1 -d_)
+        fi
+
+        if [ -z "$PROJECT" ]; then
+          PROJECT=$(niri msg workspaces 2>/dev/null | rg '\*' | cut -f 2 -d\")
+        fi
+
+        if [ -z "$PROJECT" ]; then
+            echo "Error: Project not set. Exiting."
+            exit 1
+        else
+            echo "detected project: $PROJECT"
+        fi
+
         qutebrowser --qt-arg name "$PROJECT" --basedir  "/home/pi/projects/$PROJECT/.qute" "$@"
       '';
     }
