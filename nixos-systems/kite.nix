@@ -58,7 +58,7 @@
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   services.kmscon = {
-    enable = true;
+    enable = false;
     useXkbConfig = true;
     hwRender = true;
     fonts = [

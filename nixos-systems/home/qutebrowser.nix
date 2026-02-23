@@ -5,24 +5,13 @@ let
       name = "browser.sh"; # this will be the name of the binary
       runtimeInputs = with pkgs; [ wmctrl qutebrowser niri ];
       text = ''
-        PROJECT=""
-
-        if [ -n "''${DISPLAY:-}" ]; then
-          PROJECT=$(wmctrl -d 2>/dev/null || echo "" | grep '\*' | cut -b 33- | cut -f 1 -d_)
-        fi
-
-        if [ -z "$PROJECT" ]; then
-          PROJECT=$(niri msg workspaces 2>/dev/null | rg '\*' | cut -f 2 -d\")
-        fi
-
-        if [ -z "$PROJECT" ]; then
-            echo "Error: Project not set. Exiting."
-            exit 1
+        if [ $# -eq 0 ]; then
+          echo "$(date -Iseconds) starting browser without url" >> /tmp/browser.log
+          /home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru browser >> /tmp/browser.log
         else
-            echo "detected project: $PROJECT"
+          echo "$(date -Iseconds) starting browser with url: $1" >> /tmp/browser.log
+          /home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru browser --url "$1" >> /tmp/browser.log
         fi
-
-        qutebrowser --qt-arg name "$PROJECT" --basedir  "/home/pi/projects/$PROJECT/.qute" "$@"
       '';
     }
   );

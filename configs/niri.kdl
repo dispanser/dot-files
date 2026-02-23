@@ -9,6 +9,8 @@ workspace "stash" { }
 
 environment {
     SESSION_TYPE "niri"
+    XDG_SESSION_TYPE "wayland"
+    NIXOS_OZONE_WL "1"
 }
 
 window-rule {
@@ -302,7 +304,7 @@ hotkey-overlay {
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
@@ -354,9 +356,14 @@ window-rule {
 }
 
 binds {
-    Mod+Semicolon hotkey-overlay-title="Activate browser" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru --verbose browser"; }
-    Mod+O hotkey-overlay-title="Activate project overlay" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru --verbose tmux-term --role overlay"; }
-    Mod+T hotkey-overlay-title="Activate project terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru --verbose tmux-term --role main"; }
+    Mod+Semicolon hotkey-overlay-title="project browser" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru  browser"; }
+
+    // All my terminals
+    Mod+O hotkey-overlay-title="project overlay" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role overlay"; }
+    Mod+T hotkey-overlay-title="project terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role main"; }
+    Mod+Q hotkey-overlay-title="system terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru global-tmux --role system"; }
+    Mod+M hotkey-overlay-title="slack" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru spawn-or-focus --app-id slack slack"; }
+
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
     // like wev.

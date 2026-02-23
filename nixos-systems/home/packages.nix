@@ -27,6 +27,7 @@ with pkgs; let
     stow
     libnotify
     kanata
+    wlr-randr xwayland-satellite fuzzel
   ];
   develPkgs = [
     tuicr
