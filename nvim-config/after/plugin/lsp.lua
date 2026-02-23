@@ -82,9 +82,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.lsp.config['protols'] = {}
 vim.lsp.config['jsonls'] = {}
 vim.lsp.config['pyright'] = {}
-vim.lsp.config['marksman'] = {}
 vim.lsp.config['nil_ls'] = {}
 vim.lsp.config['clangd'] = {}
+vim.lsp.config['hls'] = {}
 vim.lsp.config['lua_ls'] = {
   settings = {
     Lua = {
@@ -122,11 +122,11 @@ vim.lsp.enable({
   "protols",
   "jsonls",
   "pyright",
-  "marksman",
   "markdown_oxide",
   "nil_ls",
   "clangd",
   "lua_ls",
+  "hls",
 })
 
 local cmp = require('cmp')

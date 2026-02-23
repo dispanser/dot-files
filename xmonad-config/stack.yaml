@@ -1,4 +1,4 @@
-resolver: lts-18.25
+resolver: lts-24.31
 packages:
 - '.'
 
@@ -11,7 +11,3 @@ flags: {}
 extra-package-dbs: []
 
 # allow-newer: true
-nix:
-    enable: true
-    # pure: false
-    packages: [ libX11, libXrandr, libXext, pkgconfig, libXft libXScrnSaver libXinerama ]
