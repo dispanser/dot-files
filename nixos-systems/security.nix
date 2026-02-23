@@ -3,6 +3,8 @@
 {
   nix.settings.allowed-users = [ "@wheel" ];
 
+  security.polkit.enable = true;
+
   security.sudo = {
     execWheelOnly = true;
     wheelNeedsPassword = true;
