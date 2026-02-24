@@ -81,14 +81,14 @@
           # (prev.lib.cmakeBool "GGML_HIP_GRAPHS" true)
         ];
         # npmDepsHash = prev.lib.fakeHash;
-        npmDepsHash = "sha256-bbv0e3HZmqpFwKELiEFBgoMr72jKbsX20eceH4XjfBA=";
-        version = "8089";
+        npmDepsHash = "sha256-FKjoZTKm0ddoVdpxzYrRUmTiuafEfbKc4UD2fz2fb8A=";
+        version = "8133";
         src = prev.fetchFromGitHub {
           owner = "ggml-org";
           repo = "llama.cpp";
-          tag = "b8089";
+          tag = "b8133";
           # rev = "854b09f0d7825dd9b8ca542a7f63c2374d66121a";
-          hash = "sha256-9gELhI5K4ZmeFg2jf9on5d77TpYsf+3a9u2mIo22FGo=";
+          hash = "sha256-6xtl+czJ1rCs3T5SKcdEMbUotXse7Z+SsQyXeYJ44Ow=";
           leaveDotGit = true;
           postFetch = ''
             git -C "$out" rev-parse --short HEAD > $out/COMMIT
