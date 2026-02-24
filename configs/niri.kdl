@@ -87,7 +87,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="50%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -363,6 +363,28 @@ binds {
     Mod+T hotkey-overlay-title="project terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role main"; }
     Mod+Q hotkey-overlay-title="system terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru global-tmux --role system"; }
     Mod+M hotkey-overlay-title="slack" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru spawn-or-focus --app-id slack slack"; }
+    Mod+Space hotkey-overlay-title="previous window" { focus-window-previous; }
+
+    Mod+Backslash repeat=false { toggle-overview; }
+    Mod+Shift+Q repeat=false { close-window; }
+
+    Super+Alt+H allow-when-locked=true hotkey-overlay-title="hibernate" { spawn-sh "systemctl hibernate"; }
+    Mod+X hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+
+    // navigate
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+    Mod+H     { focus-column-left; }
+    Mod+L     { focus-column-right; }
+    Mod+Shift+H { focus-column-first; }
+    Mod+Shift+L  { focus-column-last; }
+
+    Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
+    Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+    Mod+Ctrl+H     { move-column-left; }
+    Mod+Ctrl+L     { move-column-right; }
+    Mod+Ctrl+Shift+H { move-column-to-first; }
+    Mod+Ctrl+Shift+L  { move-column-to-last; }
 
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -380,7 +402,6 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Shift+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -409,39 +430,6 @@ binds {
     // but you need to manually put each argument in separate "" quotes.
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
-
-    // Open/close the Overview: a zoomed-out view of workspaces and windows.
-    // You can also move the mouse into the top-left hot corner,
-    // or do a four-finger swipe up on a touchpad.
-    Mod+Space repeat=false { toggle-overview; }
-
-    Mod+Shift+Q repeat=false { close-window; }
-
-    Mod+Left  { focus-column-left; }
-    Mod+Down  { focus-window-down; }
-    Mod+Up    { focus-window-up; }
-    Mod+Right { focus-column-right; }
-    Mod+H     { focus-column-left; }
-    Mod+L     { focus-column-right; }
-
-    Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Down  { move-window-down; }
-    Mod+Ctrl+Up    { move-window-up; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+H     { move-column-left; }
-    Mod+Ctrl+L     { move-column-right; }
-
-    // Alternative commands that move across workspaces when reaching
-    // the first or last window in a column.
-    Mod+J     { focus-window-or-workspace-down; }
-    Mod+K     { focus-window-or-workspace-up; }
-    Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-
-    Mod+Shift+H { focus-column-first; }
-    Mod+Shift+L  { focus-column-last; }
-    Mod+Ctrl+Shift+H { move-column-to-first; }
-    Mod+Ctrl+Shift+L  { move-column-to-last; }
 
     Mod+Shift+Left  { focus-monitor-left; }
     Mod+Shift+Down  { focus-monitor-down; }

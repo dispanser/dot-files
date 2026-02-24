@@ -13,6 +13,7 @@ return {
             cargo = {
               -- allFeatures = true,
               targetDir = ".tp/targets/rust-analyzer",
+              features = "all",
             },
             check = {
               command = 'clippy',
