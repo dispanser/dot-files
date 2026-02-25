@@ -6,6 +6,7 @@
 workspace "coralogix" { }
 workspace "personal" { }
 workspace "stash" { }
+workspace "scratch" { }
 
 environment {
     SESSION_TYPE "niri"
@@ -19,7 +20,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^.*overlay$"#
+    match app-id=r#"^.*/overlay$"#
     open-floating true
 }
 
@@ -131,8 +132,12 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
-    // Set gaps around windows in logical pixels.
     gaps 16
+
+    tab-indicator {
+        hide-when-single-tab true
+    }
+
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -264,7 +269,7 @@ layout {
         spread 5
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=5
+        offset x=5 y=5
 
         // You can also change the shadow color and opacity.
         color "#0007"
@@ -296,7 +301,7 @@ spawn-at-startup "waybar"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -322,21 +327,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
-}
-
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    slowdown 0.5
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -362,8 +353,8 @@ binds {
     Mod+O hotkey-overlay-title="project overlay" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role overlay"; }
     Mod+T hotkey-overlay-title="project terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role main"; }
     Mod+Q hotkey-overlay-title="system terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru global-tmux --role system"; }
-    Mod+M hotkey-overlay-title="slack" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru spawn-or-focus --app-id slack slack"; }
-    Mod+Space hotkey-overlay-title="previous window" { focus-window-previous; }
+    Mod+M hotkey-overlay-title="slack" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru spawn-or-focus --app-id Slack slack"; }
+    Mod+Space hotkey-overlay-title="previous window" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru focus-window-previous"; }
 
     Mod+Backslash repeat=false { toggle-overview; }
     Mod+Shift+Q repeat=false { close-window; }
@@ -404,11 +395,6 @@ binds {
     Mod+Shift+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
-    // For example, this is a standard bind to toggle the screen reader (orca).
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
-
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
@@ -435,43 +421,16 @@ binds {
     Mod+Shift+Down  { focus-monitor-down; }
     Mod+Shift+Up    { focus-monitor-up; }
     Mod+Shift+Right { focus-monitor-right; }
-    // Mod+Shift+H     { focus-monitor-left; }
-    // Mod+Shift+J     { focus-monitor-down; }
-    // Mod+Shift+K     { focus-monitor-up; }
-    // Mod+Shift+L     { focus-monitor-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-    // ...
-
-    // And you can also move a whole workspace to another monitor:
-    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    // ...
-
-    Mod+Page_Down      { focus-workspace-down; }
-    Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
-    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-    Mod+Ctrl+U         { move-column-to-workspace-down; }
-    Mod+Ctrl+I         { move-column-to-workspace-up; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
 
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
 
