@@ -31,6 +31,7 @@ with pkgs; let
   ];
   develPkgs = [
     tuicr
+    tilth
     claude-code
     tabiew
     devenv
