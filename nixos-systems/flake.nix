@@ -15,9 +15,13 @@
       url = "path:/home/pi/src/github/dispanser/touchscreen-gestures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, tsg, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, tsg, noctalia, ... }@inputs: 
   let
       home_manager = {
         useGlobalPkgs = true;
@@ -96,6 +100,7 @@
         modules = [
           ./kite.nix
           overlays
+          noctalia.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager = home_manager;

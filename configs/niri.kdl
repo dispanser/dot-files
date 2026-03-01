@@ -17,11 +17,23 @@ environment {
 window-rule {
     match app-id="Slack"
     open-on-workspace "coralogix"
+    open-floating true
 }
 
 window-rule {
     match app-id=r#"^.*/overlay$"#
     open-floating true
+    default-column-width { proportion 0.45; }
+    default-window-height { proportion 0.4; }
+    default-floating-position x=16 y=8 relative-to="top-right"
+}
+
+window-rule {
+    match app-id="system"
+    open-floating true
+    default-column-width { proportion 0.49; }
+    default-window-height { proportion 0.98; }
+    default-floating-position x=16 y=8 relative-to="top-right"
 }
 
 // Input device configuration.
@@ -360,7 +372,7 @@ binds {
     Mod+Shift+Q repeat=false { close-window; }
 
     Super+Alt+H allow-when-locked=true hotkey-overlay-title="hibernate" { spawn-sh "systemctl hibernate"; }
-    Mod+X hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+X hotkey-overlay-title="Run an Application: fuzzel" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 
     // navigate
     Mod+J     { focus-window-or-workspace-down; }
