@@ -369,6 +369,9 @@ binds {
     Mod+Space hotkey-overlay-title="previous window" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru focus-window-previous"; }
 
     Mod+Backslash repeat=false { toggle-overview; }
+    Mod+S { focus-monitor-previous; }
+    Mod+Shift+S { move-workspace-to-monitor-previous; }
+
     Mod+Shift+Q repeat=false { close-window; }
 
     Super+Alt+H allow-when-locked=true hotkey-overlay-title="hibernate" { spawn-sh "systemctl hibernate"; }
