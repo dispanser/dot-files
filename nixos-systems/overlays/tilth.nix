@@ -1,13 +1,13 @@
 final: prev: {
   tilth = prev.rustPlatform.buildRustPackage rec {
     pname = "tilth";
-    version = "0.2.1";
+    version = "0.4.3";
 
     src = prev.fetchFromGitHub {
       owner = "jahala";
       repo = "tilth";
-      rev = "af63490";
-      hash = "sha256-+/XMWRzAJt0wOEW1L4R8vIeSiUHJXNRKUAM2e4O1amo=";
+      tag = "v0.4.3";
+      hash = "sha256-uvc8nrJw0DyITUtTnPjQu7z43Hc9ExOV4mJ+wJ1hA6Y=";
     };
 
     cargoLock.lockFile = "${src}/Cargo.lock";
