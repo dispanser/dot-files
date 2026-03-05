@@ -93,18 +93,6 @@
 
   system.keyboard = {
     enableKeyMapping = true;
-    swapLeftCommandAndLeftAlt = true;
-    # apparently this also swaps side
-    userKeyMapping = [
-      {
-        HIDKeyboardModifierMappingSrc = 30064771302;
-        HIDKeyboardModifierMappingDst = 30064771303;
-      }
-      {
-        HIDKeyboardModifierMappingSrc = 30064771303;
-        HIDKeyboardModifierMappingDst = 30064771302;
-      }
-    ];
     remapCapsLockToEscape = true;
   };
 

@@ -27,7 +27,6 @@ with pkgs; let
     stow
     libnotify
     kanata
-    wlr-randr xwayland-satellite fuzzel
   ];
   develPkgs = [
     tuicr
@@ -88,6 +87,7 @@ with pkgs; let
     qutebrowser
     iotop
     onboard
+    wlr-randr xwayland-satellite fuzzel
   ];
 in {
   desktopPkgs = desktopPkgs;
