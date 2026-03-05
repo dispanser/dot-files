@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "slack"
+    ];
   nix.enable = true;
   users.users."thomas.peiselt" = {
     home = "/Users/thomas.peiselt";
@@ -40,7 +46,6 @@
       "notion"
       "signal"
       "zerotier-one"
-      "chatgpt"
       "stats"
       "teleport"
     ];
