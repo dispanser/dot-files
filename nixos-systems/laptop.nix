@@ -2,8 +2,6 @@
 { config, pkgs, ... }:
 
 {
-  programs.light.enable = true;
-
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
   };

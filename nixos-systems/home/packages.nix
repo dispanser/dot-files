@@ -57,11 +57,11 @@ with pkgs; let
     markdown-oxide
     bc
     teleport
-    mistral-vibe
     uv
     lazygit
   ];
   linuxOnly = [
+    brightnessctl
     touchscreen-gestures
     perf
     slack
