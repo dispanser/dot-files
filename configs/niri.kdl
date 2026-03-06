@@ -8,6 +8,11 @@ workspace "personal" { }
 workspace "stash" { }
 workspace "scratch" { }
 
+output "LG Electronics LG SDQHD 205NTZN1S101" {
+    scale 1.0
+    transform "270"
+}
+
 environment {
     SESSION_TYPE "niri"
     XDG_SESSION_TYPE "wayland"
