@@ -2,7 +2,7 @@
 
 {
   programs.alacritty = 
-   let fontSize = if pkgs.stdenv.isLinux then 8.0 else 15.0;
+   let fontSize = 15.0; # if pkgs.stdenv.isLinux then 15.0 else 15.0;
    in {
      enable = true;
      settings = {

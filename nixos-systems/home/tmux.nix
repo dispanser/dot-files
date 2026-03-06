@@ -9,13 +9,20 @@
     # under test
     focusEvents = true;
 
-    plugins = with pkgs; [
-      tmuxPlugins.sensible
-      tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.extrakto
-      tmuxPlugins.jump
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      vim-tmux-navigator
+      extrakto
+      jump
+      resurrect
       {
-        plugin = tmuxPlugins.tmux-thumbs;
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+        '';
+      }
+      {
+        plugin = tmux-thumbs;
         extraConfig = ''
           set -g @thumbs-key m
           # gives shorter hints closer to the curser; evaluate
@@ -33,11 +40,11 @@
         '';
       }
       {
-        plugin = tmuxPlugins.tmux-colors-solarized;
+        plugin = tmux-colors-solarized;
         extraConfig = "set -g @colors-solarized 'dark'";
       }
       {
-        plugin = tmuxPlugins.open;
+        plugin = open;
         extraConfig = "set -g @open-O 'https://www.duckduckgo.com/?q='";
       }
     ];
