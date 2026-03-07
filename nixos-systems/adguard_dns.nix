@@ -1,4 +1,9 @@
 { pkgs, ... }:
+let
+  cloakingRules = pkgs.writeText "cloaking-rules.txt" ''
+    localhost  127.0.0.1
+  '';
+in
 {
   networking.nameservers = [ "127.0.0.1" "::1" ];
   networking.resolvconf.enable = pkgs.lib.mkForce false;
@@ -22,6 +27,7 @@
       };
       cache = true;
       server_names = [ "adguard-dns-doh" ];
+      cloaking_rules = "${cloakingRules}";
     };
   };
 }

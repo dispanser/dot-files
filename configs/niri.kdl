@@ -8,6 +8,15 @@ workspace "personal" { }
 workspace "stash" { }
 workspace "scratch" { }
 
+recent-windows {
+    // Pre-select the "Output" scope when switching windows.
+    binds {
+        Mod+Tab         { next-window     scope="output"; }
+        Mod+Shift+Tab   { previous-window scope="output"; }
+        Mod+grave       { next-window     scope="output" filter="app-id"; }
+        Mod+Shift+grave { previous-window scope="output" filter="app-id"; }
+    }
+}
 output "LG Electronics LG SDQHD 205NTZN1S101" {
     scale 1.0
     transform "270"

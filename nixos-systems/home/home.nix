@@ -34,6 +34,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "${editor}";
+    VISUAL = "${editor}";
   };
 
   home.username = if pkgs.stdenv.isDarwin then "thomas.peiselt" else "pi";
