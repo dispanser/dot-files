@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.gh.enable = true;
@@ -22,6 +22,7 @@
         pr-base-sha = "!gh api repos/:owner/:repo/pulls | jq -re --arg head $(git rev-parse HEAD) '.[] | select(.head.sha == $head).base.sha'";
         pr-rebase   = "!git rebase $(git merge-base $(git pr-base-sha) HEAD)";
       };
+      commit.gpgsign = true;
       core = {
         # sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
       };
