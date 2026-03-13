@@ -6,8 +6,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "jahala";
       repo = "tilth";
-      tag = "v0.4.3";
-      hash = "sha256-uvc8nrJw0DyITUtTnPjQu7z43Hc9ExOV4mJ+wJ1hA6Y=";
+      tag = "v0.5.1";
+      hash = "sha256-XtnHWx6kTlqm0AYz/LcAjkI54Vkh79Ddm0+8As5Ufds=";
     };
 
     cargoLock.lockFile = "${src}/Cargo.lock";
