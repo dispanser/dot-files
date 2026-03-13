@@ -6,7 +6,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     rocmPackages.rocminfo
-    nvtopPackages.full
+    nvtopPackages.nvidia
     radeontop
     lact
     llama-swap

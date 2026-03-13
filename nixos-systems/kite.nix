@@ -18,7 +18,7 @@
     # ./cx_vpn.nix
   ];
 
-  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = true;
   nixpkgs.config.nvidia.acceptLicense = true;
   environment.systemPackages = with pkgs; [
     ryzenadj
@@ -158,6 +158,7 @@
       options thinkpad_acpi fan_control=1
     '';
     kernelParams = [
+      "mem_sleep_default=deep"
       "amdgpu.gttsize=122800"
       "ttm.pages_limit=31457280" # 120 gb
       "amd_iommu=off"
@@ -165,6 +166,15 @@
       # number of 4k-pages that can be used for GPU memory
       # pre-allocates memory - not available to CPU. I wonder what that does to my CPU-driven workflow
       "ttm.page_pool_size=25165824" # 96 gb
+
+      "nvidia_drm.modeset=1"
+      "nvidia_drm.fbdev=0"
+      "nvidia.NVreg_S0ixPowerManagementVideoMemoryThreshold=1024"
+      "nvidia.NVreg_DynamicPowerManagement=0x02"
+      "nvidia.NVreg_EnableS0ixPowerManagement=1"
+      "nvidia.NVreg_DynamicPowerManagementVideoMemoryThreshold=1024"
+      # try this out: a separate chip that handles parts of power management etc, disabled via:
+      "nvidia.NVreg_EnableGpuFirmware=0"
     ];
     kernelPackages     = pkgs.linuxPackages_latest;
   };
@@ -216,6 +226,7 @@
     substituters = [ "https://cache.nixos-cuda.org" ];
     trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
   };
+
   nix.settings.max-jobs                     = lib.mkDefault 8;
 
   # The NixOS release to be compatible with for stateful data such as databases.

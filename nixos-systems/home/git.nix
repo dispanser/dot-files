@@ -6,6 +6,17 @@
   programs.git = {
     enable    = true;
 
+    includes = [
+      {
+        condition = "gitdir:~/src/github/coralogix";
+        contents.user.email = "thomas.peiselt@coralogix.com";
+      }
+      {
+        condition = "gitdir:~/projects/coralogix";
+        contents.user.email = "thomas.peiselt@coralogix.com";
+      }
+    ];
+
     settings = {
       worktree.relativePaths = true;
       user = {
