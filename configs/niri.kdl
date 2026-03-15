@@ -22,6 +22,12 @@ output "LG Electronics LG SDQHD 205NTZN1S101" {
     transform "270"
 }
 
+// x12::oxide - unfortunately addressing by name doesn't work
+// output "Chimei Innolux Corporation - 0x1249 - eDP-1" {
+output "eDP-1" {
+    scale 1.0
+}
+
 environment {
     SESSION_TYPE "niri"
     XDG_SESSION_TYPE "wayland"

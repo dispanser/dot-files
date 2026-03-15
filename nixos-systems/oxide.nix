@@ -3,6 +3,8 @@
 {
   services.joycond.enable = true;
 
+  services.noctalia-shell.enable = true;
+
   services.handheld-daemon = {
     enable = false;
     ui.enable = true;
