@@ -24,11 +24,10 @@
     ryzenadj
     llama-cpp
     mlc
-    # reference the package defined below
+    # references the package defined below
     config.hardware.nvidia.package
-    # config.hardware.nvidia.package.bin  # includes nvidia-persistenced, nvidia-smi
     cudaPackages.cudatoolkit cudaPackages.cudatoolkit.lib cudaPackages.cudnn
-    kmscon
+    # kmscon
   ];
 
   console.font = "sun12x22";
@@ -89,6 +88,14 @@
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       open = true;
+      prime = {
+        nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:15:0:0";
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+      };
     };
     amdgpu = {
       overdrive.enable = true;
@@ -154,7 +161,7 @@
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
     kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu" "nvidia" "nvidia_uvm" ];
 
-    blacklistedKernelModules        = [ "k10temp" ]; # "nvidia_drm" "nvidia_modeset" "nvidia";
+    blacklistedKernelModules        = [ "k10temp" ];
     extraModulePackages             = with config.boot.kernelPackages; [
       tp_smapi acpi_call zenpower
       # config.hardware.nvidia.package
