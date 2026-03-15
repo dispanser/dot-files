@@ -37,7 +37,10 @@
       core = {
         # sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
       };
-      # user.signingkey = "0xF38D81D949BDD26C";
+      # Default signing key: YubiKey (0x2DAC058D2C07F848)
+      # To use old key when YubiKey unavailable:
+      #   git -c user.signingkey=0xF38D81D949BDD26C commit -m "message"
+      user.signingkey = "0x2DAC058D2C07F848";
       diff.tool = "vimdiff";
       diff.noprefix = true;
       difftool.vimdiff.path = "nvim";
