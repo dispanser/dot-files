@@ -38,8 +38,15 @@
     clickMethod        = "buttonareas";
     tapping            = false;
   };
-
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings.data-root = "/mnt/your-big-drive/docker";
+    autoPrune = {
+      enable = true;
+      dates = "daily";
+      flags = [ "--all" ];
+    };
+  };
 
   services.espanso.enable = false;
   services.atd.enable   = true;
