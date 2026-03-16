@@ -30,6 +30,7 @@ with pkgs; let
     vial
   ];
   develPkgs = [
+    rtk
     tuicr
     tilth
     claude-code
