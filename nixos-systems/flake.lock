@@ -61,27 +61,6 @@
         "type": "github"
       }
     },
-    "home-manager_2": {
-      "inputs": {
-        "nixpkgs": [
-          "tsg",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773422513,
-        "narHash": "sha256-MPjR48roW7CUMU6lu0+qQGqj92Kuh3paIulMWFZy+NQ=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "ef12a9a2b0f77c8fa3dda1e7e494fca668909056",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "fenix": "fenix",
@@ -241,21 +220,23 @@
     "tsg": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "home-manager": "home-manager_2",
         "naersk": "naersk",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1773581552,
-        "narHash": "sha256-XVHLF+p+NU0gKDe5vMsPzXxm9dIHT0Urd97iohfc4d0=",
-        "path": "/home/pi/src/github/dispanser/touchscreen-gestures",
-        "type": "path"
+        "lastModified": 1774377285,
+        "narHash": "sha256-xmMQly7VCjFdUz4sfjjfQdQ2S7r0ZvSTy1dnqm9kW6c=",
+        "owner": "dispanser",
+        "repo": "touchscreen-gestures",
+        "rev": "969fd217efc25a7406569b21107b9f400ac18d89",
+        "type": "github"
       },
       "original": {
-        "path": "/home/pi/src/github/dispanser/touchscreen-gestures",
-        "type": "path"
+        "owner": "dispanser",
+        "repo": "touchscreen-gestures",
+        "type": "github"
       }
     }
   },

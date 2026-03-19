@@ -89,7 +89,7 @@ with pkgs; let
     qutebrowser
     iotop
     onboard
-    wlr-randr xwayland-satellite fuzzel
+    wlr-randr xwayland-satellite fuzzel wtype wl-clipboard-rs
   ];
 in {
   desktopPkgs = desktopPkgs;
