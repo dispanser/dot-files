@@ -35,7 +35,6 @@
 
   virtualisation.docker.enable = false;
 
-  services.espanso.enable = false;
   services.atd.enable   = true;
   services.fwupd.enable = true;
   security.pam.u2f.enable = true;

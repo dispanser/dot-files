@@ -1,6 +1,9 @@
 { config, lib, pkgs,... }:
 
 {
+
+  services.noctalia-shell.enable = true;
+
   imports = [
     ./laptop.nix
     ./desktop.nix
@@ -44,7 +47,6 @@
     };
   };
 
-  services.espanso.enable = true;
   services.atd.enable   = true;
   services.fwupd.enable = true;
   security.pam.u2f.enable = true;

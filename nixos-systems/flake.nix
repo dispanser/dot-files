@@ -65,6 +65,7 @@
         modules = [
           ./tiny.nix
           overlays
+          noctalia.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager = home_manager;
