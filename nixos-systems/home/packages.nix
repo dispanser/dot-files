@@ -27,6 +27,7 @@ with pkgs; let
     stow
     libnotify
     kanata
+    vial
   ];
   develPkgs = [
     tuicr

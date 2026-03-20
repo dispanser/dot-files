@@ -3,13 +3,14 @@
   services.influxdb2 = {
     enable = true;
   };
+
   services.telegraf = {
     enable = true;
     extraConfig = {
       inputs = {
 
         mqtt_consumer = {
-          servers = ["tcp://localhost:1883"];
+          servers = [ "tcp://localhost:1883" ];
           topics = [
             "solar/+/status/+"
             "solar/+/0/+"
@@ -45,18 +46,18 @@
       };
     };
   };
+
   services.home-assistant = {
     enable = true;
-
-      extraComponents = [
-        "mqtt"
-        "signal_messenger"
-        # "roborock"
-        "hue"
-        "zeroconf"
-        "brother"
-        "influxdb"
-        "mobile_app"
+    extraComponents = [
+      "mqtt"
+      "signal_messenger"
+      "roborock"
+      "hue"
+      "zeroconf"
+      "brother"
+      "influxdb"
+      "mobile_app"
       # "3_day_blinds", "abode", "accuweather", "acer_projector", "acmeda",
       # "acomax", "actiontec", "adax", "adguard", "ads", "advantage_air",
       # "aemet", "aep_ohio", "aep_texas", "aftership", "agent_dvr",
@@ -315,10 +316,13 @@
       # "zabbix", "zamg", "zengge", "zeroconf", "zerproc", "zestimate",
       # "zeversolar", "zha", "zhong_hong", "ziggo_mediabox_xl", "zodiac",
       #p "zondergas", "zone", "zoneminder", "zwave_js", "zwave_me"
-      ];
+    ];
     config = {
       http = {
-        server_host = [ "192.168.1.10" "10.1.3.10" ];
+        server_host = [
+          "192.168.1.10"
+          "10.1.3.10"
+        ];
         server_port = 8123;
         # base_url = "https://${hostname}";
         # use_x_forwarded_for = true;
@@ -332,7 +336,6 @@
         temperature_unit = "C";
         time_zone = "Europe/Berlin";
       };
-
 
       # frontend = { };
       # history = { };
@@ -357,14 +360,13 @@
       # ];
     };
 
-    extraPackages = python3Packages:
-      with python3Packages; [
+    extraPackages =
+      python3Packages: with python3Packages; [
         pyturbojpeg
         numpy
         psycopg2
         gtts
         zlib-ng
       ];
-
   };
 }

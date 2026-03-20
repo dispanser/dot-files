@@ -99,6 +99,7 @@ in
   ] ++ (if isServer then [
     ./mail.nix
     ./backup.nix
+    ./nextcloud.nix
   ] else []);
 
   services.touch.enable = !isServer;
