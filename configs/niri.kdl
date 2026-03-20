@@ -373,14 +373,16 @@ window-rule {
 }
 
 binds {
-    Mod+Semicolon hotkey-overlay-title="project browser" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru  browser"; }
+    Mod+Semicolon hotkey-overlay-title="project browser" { spawn-sh "nuru  browser"; }
 
     // All my terminals
-    Mod+O hotkey-overlay-title="project overlay" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role overlay"; }
-    Mod+T hotkey-overlay-title="project terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru tmux-term --role main"; }
-    Mod+Q hotkey-overlay-title="system terminal" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru global-tmux --role system"; }
-    Mod+M hotkey-overlay-title="slack" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru spawn-or-focus --app-id Slack slack"; }
-    Mod+Space hotkey-overlay-title="previous window" { spawn-sh "/home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru focus-window-previous"; }
+    Mod+O hotkey-overlay-title="project overlay" { spawn-sh "nuru tmux-term --role overlay"; }
+    Mod+T hotkey-overlay-title="project terminal" { spawn-sh "nuru tmux-term --role main"; }
+    Mod+Q hotkey-overlay-title="system terminal" { spawn-sh "nuru global-tmux --role system"; }
+    Mod+M hotkey-overlay-title="slack" { spawn-sh "nuru spawn-or-focus --app-id Slack slack"; }
+    Super+T { spawn-sh "alacritty || kitty"; } // escape hatch to get a terminal regardless
+
+    Mod+Space hotkey-overlay-title="previous window" { spawn-sh "nuru focus-window-previous"; }
 
     Mod+Backslash repeat=false { toggle-overview; }
     Mod+S { focus-monitor-previous; }
