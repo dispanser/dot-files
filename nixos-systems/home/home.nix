@@ -93,7 +93,7 @@ in
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    ./touch.nix
+    (import ./touch.nix { inherit config lib pkgs osConfig; })
     ./inputplug.nix
     (import ./unison.nix { inherit lib pkgs isServer; })
   ] ++ (if isServer then [
@@ -102,7 +102,6 @@ in
     ./nextcloud.nix
   ] else []);
 
-  services.touch.enable = !isServer;
 
   services.inputplug.enable = true;
 

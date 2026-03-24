@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tsg = {
-      url = "path:/home/pi/src/github/dispanser/touchscreen-gestures";
+      url = "github:dispanser/touchscreen-gestures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
@@ -29,6 +29,7 @@
         users.pi = import ./home/home.nix;
         sharedModules = [
           inputs.sops-nix.homeManagerModules.sops
+          inputs.tsg.homeManagerModules.default
         ];
       };
       overlays = (import ./overlays { inherit tsg; } );

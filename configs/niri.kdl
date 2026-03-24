@@ -397,6 +397,7 @@ binds {
     Mod+Shift+Q repeat=false { close-window; }
 
     Super+Alt+H allow-when-locked=true hotkey-overlay-title="hibernate" { spawn-sh "systemctl hibernate"; }
+    Super+Alt+S allow-when-locked=true hotkey-overlay-title="suspend" { spawn-sh "systemctl suspend"; }
     Mod+X hotkey-overlay-title="Run an Application: fuzzel" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 
     // navigate

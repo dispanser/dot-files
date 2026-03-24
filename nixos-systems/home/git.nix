@@ -34,6 +34,7 @@
         pr-rebase   = "!git rebase $(git merge-base $(git pr-base-sha) HEAD)";
       };
       commit.gpgsign = true;
+      signing.format = "openpgp";
       core = {
         # sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
       };
