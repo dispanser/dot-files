@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
 cd $HOME/.password-store
-set selection (fd --type file | cut -f1 -d. | fuzzel --dmenu)
+set selection (fd --type file | sed 's/\.[^.]*$//'| fuzzel --dmenu --width 80)
 set pass (pass show $selection | head -n1)
 wtype $pass

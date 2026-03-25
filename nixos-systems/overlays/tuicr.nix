@@ -1,13 +1,13 @@
 final: prev: {
   tuicr = prev.rustPlatform.buildRustPackage rec {
     pname = "tuicr";
-    version = "0.8.0";
+    version = "0.9.0";
 
     src = prev.fetchFromGitHub {
       owner = "agavra";
       repo = "tuicr";
-      rev = "v0.8.0";
-      hash = "sha256-ZZEX8JD+kiqpNsPOgrksbNrh5w8B63s8ebJplftdqhQ=";
+      rev = "v0.9.0";
+      hash = "sha256-AYZqjaJGDyQGKE5bw/dMILEheovuyyTLXWz0A+wbFGA=";
     };
 
     cargoLock.lockFile = "${src}/Cargo.lock";
