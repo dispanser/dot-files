@@ -18,6 +18,7 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
