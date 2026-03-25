@@ -2,7 +2,7 @@
 
 let
   isServer = osConfig.networking.hostName == "tiny";
-isKite = osConfig.networking.hostName == "kite";
+  isKite = osConfig.networking.hostName == "kite";
 in
 {
   programs.touchscreen-gestures = lib.mkIf (!isServer && !isKite) {
