@@ -1,0 +1,4 @@
+# LG DualUp: 
+# contrast: ddccontrol dev:/dev/i2c-11 -r 0x12 -w 80                                                                     │
+# brightness: ddccontrol dev:/dev/i2c-11 -r 0x10 -w 80
+

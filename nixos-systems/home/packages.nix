@@ -28,6 +28,8 @@ with pkgs; let
     libnotify
     kanata
     vial
+    sox
+    voxtype-vulkan
   ];
   develPkgs = [
     rtk

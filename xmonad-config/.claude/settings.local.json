@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__tilth__tilth_map",
+      "WebFetch(domain:devenv.sh)",
+      "mcp__tilth__tilth_read",
+      "Bash(devenv shell:*)",
+      "WebFetch(domain:www.stackage.org)",
+      "Bash(curl:*)",
+      "mcp__tilth__tilth_edit"
+    ]
+  }
+}

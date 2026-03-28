@@ -1,0 +1,13 @@
+# Voxtype configuration template
+# See: https://github.com/peteonrails/voxtype
+#
+# This file is a reference/template. The actual configuration is defined
+# inline in nixos-systems/home/home.nix via programs.voxtype.settings
+
+[hotkey]
+key = "SUPER"
+modifiers = []
+
+[whisper]
+model = "base"
+language = ["en", "de", "fr"]

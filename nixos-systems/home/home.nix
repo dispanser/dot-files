@@ -96,6 +96,7 @@ in
     (import ./touch.nix { inherit config lib pkgs osConfig; })
     ./inputplug.nix
     (import ./unison.nix { inherit lib pkgs isServer; })
+    ./voxtype.nix
   ] ++ (if isServer then [
     ./mail.nix
     ./backup.nix
@@ -219,6 +220,12 @@ in
     dircolors.enable = true;
     home-manager.enable = true;
     jq.enable = true;
+  };
+
+  programs.voxtype = {
+    enable = true;
+    configFile = ../../configs/voxtype.toml;
+    package = pkgs.voxtype-vulkan;
   };
 
 }

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ps:*)",
+      "Bash(pmap:*)",
+      "Bash(systemctl --user list-units --type=service --state=running:*)",
+      "Bash(slabtop:*)",
+      "Bash(nvidia-smi:*)",
+      "Bash(smem:*)",
+      "Bash(sudo slabtop:*)"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+healthCheckTimeout: 60 
+macros:
+  q8-kv: --cache-type-k q8_0 --cache-type-v q8_0
+  server: /nix/store/0apkkc31fx9bvihnpb2a79wa53j603cl-llama-server --port ${PORT}
+    --host 0.0.0.0 --jinja --no-webui
+  moe: -b 4096 -ub 4096 - -n-cpu-moe 999
+models:
+  devstral2:
+    cmd: '${server} --model /home/data/models/huggingface/mistral/mistralai_Devstral-Small-2-24B-Instruct-2512-IQ4_XS.gguf
+      -ngl 99 ${q8-kv} --ctx-size 45056'
+    env:
+    - HIP_VISIBLE_DEVICES=0
+  gpt-oss-120b:
+    cmd: '${server} --model /home/data/models/huggingface/openai/gpt-oss-120b-F16.gguf
+      -ngl 999 ${q8-kv} --ctx-size 0 ${moe}
+    env:
+    - HIP_VISIBLE_DEVICES=0
+  gpt-oss-20b:
+    cmd: '${server} --model /home/data/models/huggingface/openai/gpt-oss-20b-F16.gguf
+      -ngl 999 ${q8-kv} --ctx-size 0'
+    env:
+    - HIP_VISIBLE_DEVICES=0
+  minimax-m2:
+    cmd: '${server} --model /home/data/models/huggingface/MiniMaxAI/MiniMax-M2-IQ4_XS-00001-of-00003.gguf
+      -ngl 999 ${q8-kv} --ctx-size 81920 ${moe}
+    env:
+    - HIP_VISIBLE_DEVICES=0
