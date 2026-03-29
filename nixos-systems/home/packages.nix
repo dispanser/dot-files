@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, llm-agents, ... }:
 
 with pkgs; let 
   darwinOnly = [
@@ -32,10 +32,6 @@ with pkgs; let
     voxtype-vulkan
   ];
   develPkgs = [
-    rtk
-    tuicr
-    tilth
-    claude-code
     tabiew
     devenv
     nodejs # for copilot
@@ -63,7 +59,7 @@ with pkgs; let
     teleport
     uv
     lazygit
-  ];
+  ] ++ (with llm-agents; [ tuicr tilth rtk claude-code pi ]);
   linuxOnly = [
     brightnessctl
     touchscreen-gestures

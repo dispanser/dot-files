@@ -3,6 +3,7 @@
   pkgs,
   lib,
   osConfig,
+  llm-agents,
   ...
 }:
 
@@ -73,10 +74,10 @@ in
 
   home.packages =
     let
-      pkgSets = import ./packages.nix pkgs;
+      pkgSets = import ./packages.nix { inherit pkgs llm-agents; };
     in
     with pkgSets;
-    desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly);
+    desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly); 
 
   programs.fish.enable = true;
   imports = [
