@@ -133,8 +133,8 @@
         systemctl --user start xidlehook.service
       '';
     } // (if pkgs.stdenv.isLinux then {
-        rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection clipboard";
-        rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | xclip -in -selection primary";
+        rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | wl-copy";
+        rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | wl-copy --primary";
       } else {
         rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | pbcopy";
         # same command as the distinction between primary and secondary does not exist on MacOS
@@ -159,10 +159,10 @@
       set -gx LLM_USER_PATH "$HOME/projects/personal/llm"
       fish_add_path --move $HOME/.cargo/bin
       fish_add_path --move $HOME/bin
+      fish_add_path --move {$HOME}/projects/coralogix/src/scripts
       '' + (if pkgs.stdenv.isDarwin then ''
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
-        fish_add_path --move {$HOME}/src/github/coralogix/scripts
         for p in (string split " " $NIX_PROFILES)
           fish_add_path --prepend --move $p/bin
         end
