@@ -204,24 +204,26 @@ on_recording_stop = false
 # Show notification with transcribed text after transcription completes
 on_transcription = true
 
-# [text]
+[text]
 # Text processing options (word replacements, spoken punctuation)
 #
 # Enable spoken punctuation conversion (e.g., say "period" to get ".")
-# spoken_punctuation = false
-#
+spoken_punctuation = true
+smart_auto_submit = true
+shift_enter_newlines = true  # Line breaks as Shift+Enter
+
 # Custom word replacements (case-insensitive)
 # replacements = { "vox type" = "voxtype" }
 
-# [vad]
+[vad]
 # Voice Activity Detection - filters silence-only recordings
 # Prevents Whisper hallucinations on silent audio
 #
-# enabled = false      # Enable VAD (off by default)
-# threshold = 0.5      # 0.0 = sensitive, 1.0 = aggressive
-# min_speech_duration_ms = 100  # Minimum speech required
+enabled = true      # Enable VAD (off by default)
+threshold = 0.5      # 0.0 = sensitive, 1.0 = aggressive
+min_speech_duration_ms = 100  # Minimum speech required
 
-# [status]
+[status]
 # Status display icons for Waybar/tray integrations
 #
 # Icon theme (or path to custom theme file):
@@ -237,13 +239,13 @@ on_transcription = true
 #     - "dots"      - Geometric shapes (◯ ⬤ ◔ ◌)
 #     - "arrows"    - Media player style (▶ ● ↻ ■)
 #     - "text"      - Plain text ([MIC] [REC] [...] [OFF])
-# icon_theme = "emoji"
+icon_theme = "emoji"
 #
 # Per-state icon overrides (optional, takes precedence over theme)
-# [status.icons]
-# idle = "🎙️"
-# recording = "🎤"
-# transcribing = "⏳"
+[status.icons]
+idle = "🎙️"
+recording = "🎤"
+transcribing = "⏳"
 # stopped = ""
 
 # [profiles]
