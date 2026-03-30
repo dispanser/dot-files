@@ -9,7 +9,7 @@ vim.o.exrc = true
 vim.o.secure = true
 vim.o.wrap = false
 vim.o.breakindent = true
-vim.o.breakindentopt = 'shift:2,min:20,sbr,list:-1'
+vim.o.breakindentopt = 'shift:4,min:20,sbr,list:-1'
 vim.o.showbreak = '↪ '
 
 -- wo: window-scoped
