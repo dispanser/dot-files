@@ -379,11 +379,14 @@ window-rule {
 }
 
 binds {
+    // lazy keyboard mode
+    Super+E { spawn-sh "wtype @kulturguerilla.org"; }
     Mod+Semicolon hotkey-overlay-title="project browser" { spawn-sh "nuru  browser"; }
 
     // All my terminals
     Mod+O hotkey-overlay-title="project overlay" { spawn-sh "nuru tmux-term --role overlay"; }
     Mod+T hotkey-overlay-title="project terminal" { spawn-sh "nuru tmux-term --role main"; }
+    Mod+A hotkey-overlay-title="agent terminal" { spawn-sh "nuru tmux-term --role agent"; }
     Mod+Q hotkey-overlay-title="system terminal" { spawn-sh "nuru global-tmux --role system"; }
     Mod+M hotkey-overlay-title="slack" { spawn-sh "nuru spawn-or-focus --app-id Slack slack"; }
     Super+T { spawn-sh "alacritty || kitty"; } // escape hatch to get a terminal regardless
