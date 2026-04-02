@@ -15,7 +15,7 @@
     ./brother.nix
     ./yubico.nix
     ./llm.nix
-    # ./cx_vpn.nix
+    ./cx_vpn.nix
   ];
 
   nixpkgs.config.cudaSupport = true;
