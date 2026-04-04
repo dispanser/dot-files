@@ -36,7 +36,6 @@ with pkgs; let
     devenv
     nodejs # for copilot
     dig
-    aider-chat
     devenv
     llm
     docker

@@ -112,9 +112,14 @@
     kernelModules                   = [ "coretemp" "tp_smapi" "acpi_call" "uinput" ];
     extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
     extraModprobeConfig = ''
-    options acpi ec_no_wakeup=1
-    options thinkpad_acpi fan_control=1
+      options acpi ec_no_wakeup=1
+      options thinkpad_acpi fan_control=1
+      options usbcore autosuspend=-1
     '';
+      
+    kernelParams = [ "zswap.enabled=1" "zswap.compressor=lz4" "zswap.shrinker_enabled=1" ];
+
+     # whether to shrink the pool proactively on high memory pressure
     kernelPackages     = pkgs.linuxPackages_latest;
   };
 

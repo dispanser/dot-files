@@ -60,7 +60,7 @@
           set -ga terminal-overrides ",alacritty:Tc"
           set -g default-terminal "${termOption}"
           set -g extended-keys on
-          set -g extended-keysformat csi-u
+          set -g extended-keys-format csi-u
           set-option -g set-titles on
           set-option -g set-titles-string "#S"
           set-option -g status on
