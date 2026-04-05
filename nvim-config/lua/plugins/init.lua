@@ -1,5 +1,5 @@
--- TODO: lazy = false indicates that I _want_ true, but setup needs to change
 return {
+  { "carderne/pi-nvim" },
   {
     "zbirenbaum/copilot.lua",
     enabled = true,
@@ -71,7 +71,7 @@ return {
     end,
     opts = function()
       require("which-key").add({
-        { "<leader>a", group = "aider" },
+        { "<leader>a", group = "agent" },
         { "<leader>b", group = "buffers" },
         { "<leader>c", group = "code companion" },
         { "<leader>D", group = "debug" },
