@@ -1,16 +1,6 @@
 { config, lib, pkgs,... }:
 
 {
-  services.joycond.enable = true;
-
-  services.noctalia-shell.enable = true;
-
-  services.handheld-daemon = {
-    enable = false;
-    ui.enable = true;
-    user = "pi";
-  };
-
   imports = [
     ./laptop.nix
     ./desktop.nix
@@ -23,6 +13,16 @@
     ./fingerprint.nix
     ./cx_vpn.nix
   ];
+
+  services.joycond.enable = true;
+  services.noctalia-shell.enable = true;
+  programs.voxtype.enable = true;
+
+  services.handheld-daemon = {
+    enable = false;
+    ui.enable = true;
+    user = "pi";
+  };
 
   console.font = "sun12x22";
 
