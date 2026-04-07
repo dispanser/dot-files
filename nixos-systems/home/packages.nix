@@ -58,6 +58,7 @@ with pkgs; let
     teleport
     uv
     lazygit
+    tree-sitter
   ] ++ (with llm-agents; [ tuicr tilth rtk claude-code pi ]);
   linuxOnly = [
     brightnessctl

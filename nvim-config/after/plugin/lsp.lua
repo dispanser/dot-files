@@ -10,17 +10,9 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
   require('cmp_nvim_lsp').default_capabilities()
 )
 
-local sign = function(opts)
-  vim.fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = ''
-  })
-end
-
+local sev = vim.diagnostic.severity
 vim.diagnostic.config({
   virtual_text = false,
-  signs = true,
   update_in_insert = false,
   underline = true,
   severity_sort = true,
@@ -28,12 +20,16 @@ vim.diagnostic.config({
     border = 'rounded',
     source = true,
   },
-})
 
-sign({ name = 'DiagnosticSignError', text = '✘' })
-sign({ name = 'DiagnosticSignWarn', text = '▲' })
-sign({ name = 'DiagnosticSignHint', text = '⚑' })
-sign({ name = 'DiagnosticSignInfo', text = '' })
+  signs = {
+    text = {
+      [sev.ERROR] = '✘',
+      [sev.WARN]  = '▲',
+      [sev.INFO]  = '⚑',
+      [sev.HINT]  = '',
+    },
+  },
+})
 
 local function o(buf, desc)
   return { noremap = true, silent = true, buffer = buf, desc = desc }
