@@ -43,13 +43,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
     local s = vim.keymap.set
-    local builtin = require('telescope.builtin')
 
     s('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
     s('n', '<leader>ek', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
-    s('n', 'gd', builtin.lsp_definitions, o(event.buf, '[lsp] go to definition'))
+    s('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', o(event.buf, '[lsp] go to definition'))
     s('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', o(event.buf, '[lsp]: go to declaration'))
-    s('n', 'gt', builtin.lsp_type_definitions, o(event.buf, '[lsp]: go to type definition'))
+    s('n', 'gt', '<cmd>lua vim.lsp.buf.lsp_type_definitions', o(event.buf, '[lsp]: go to type definition'))
 
     s('n', '<leader>em', Snacks.picker.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
     s('n', '<leader>es', '<cmd>lua vim.lsp.buf.signature_help()<cr>', o(event.buf, '[lsp]: show signature'))
@@ -69,12 +68,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     s('n', '<leader>et', Snacks.picker.lsp_type_definitions, o(event.buf, "all project diagnostics"))
     -- I'm not sure what the difference is to lsp_dynamic_workspace_symbols.
     s('n', '<leader>ps', Snacks.picker.lsp_workspace_symbols,
-      -- function()
-      --   builtin.lsp_dynamic_workspace_symbols({
-      --     symbol_type_width = 10,
-      --     fname_width = 50,
-      --   })
-      -- end,
       o(event.buf, "dynamic workspace symbols"))
   end,
 })
