@@ -150,7 +150,6 @@ return {
       }
     end,
   },
-  { 'tveskag/nvim-blame-line', lazy = false },
   { 'sheerun/vim-polyglot',    lazy = false },
   { 'tpope/vim-fugitive',      lazy = false },
   {

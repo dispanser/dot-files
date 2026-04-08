@@ -95,7 +95,7 @@ return {
     -- Picker: git
     ---------------------------------------------------------------------------
     { "<leader>gs",       function() Snacks.picker.git_status() end,                             desc = "git status" },
-    { "<leader>gb",       function() Snacks.picker.git_log_file() end,                           desc = "git buffer commits" },
+    { "<leader>gf",       function() Snacks.picker.git_log_file() end,                           desc = "git buffer commits" },
     { "<leader>gx",       function() Snacks.picker.git_log() end,                                desc = "git commits" },
     { "<leader>gt",       function() Snacks.picker.git_branches() end,                           desc = "git branches" },
     { "<leader>gd",       function() Snacks.picker.git_diff() end,                               desc = "git diff (hunks)" },
@@ -114,11 +114,7 @@ return {
     ---------------------------------------------------------------------------
     { "<leader>tu",       function() Snacks.picker.undo() end,                                   desc = "undo history" },
 
-    ---------------------------------------------------------------------------
-    -- Git browse (replaces git-link.nvim)
-    ---------------------------------------------------------------------------
-    { "<leader>gu",       function() Snacks.gitbrowse({ notify = false, clipboard = true }) end, desc = "Copy code link to clipboard", mode = { "n", "x" } },
-    { "<leader>go",       function() Snacks.gitbrowse() end,                                     desc = "Open code link in browser",   mode = { "n", "x" } },
+    { "<leader>go",       function() Snacks.gitbrowse({ notify = false, clipboard = true }) end, desc = "Copy code link to clipboard", mode = { "n", "x" } },
 
     ---------------------------------------------------------------------------
     -- Buffer delete (replaces vim-bbye)
