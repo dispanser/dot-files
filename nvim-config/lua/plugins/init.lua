@@ -105,7 +105,24 @@ return {
     }
   },
   'roxma/vim-tmux-clipboard',
-  'christoomey/vim-tmux-navigator',
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
+    },
+    keys = {
+      { "<A-h>", vim.cmd.TmuxNavigateLeft },
+      { "<A-j>", vim.cmd.TmuxNavigateDown },
+      { "<A-k>", vim.cmd.TmuxNavigateUp },
+      { "<A-l>", vim.cmd.TmuxNavigateRight },
+      { "<A-\\>", vim.cmd.TmuxNavigatePrevious },
+    },
+  },
   'nvim-tree/nvim-web-devicons',
   'tpope/vim-commentary',
   'tpope/vim-rsi',
