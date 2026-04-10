@@ -65,12 +65,16 @@
         # termOption = if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color";
         termOption = "tmux-256color";
       in ''
+          # bind-key -n S-Enter send-keys -l "[13;2u"
           bind C-Space send-prefix
           set-option -sa terminal-overrides ",*:Tc"
           set -ga terminal-overrides ",alacritty:Tc"
           set -g default-terminal "${termOption}"
           set -g extended-keys on
+          # set -g extended-keys always
           set -g extended-keys-format csi-u
+          set -as terminal-features ',*alacritty*:extkeys'
+
           set-option -g set-titles on
           set-option -g set-titles-string "#S"
           set-option -g status on

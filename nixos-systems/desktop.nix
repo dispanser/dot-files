@@ -32,6 +32,7 @@
     QT_IM_MODULE = "xim";
   };
 
+  services.noctalia-shell.enable = true;
   programs.niri.enable = true;
   programs.uwsm.enable = true;
 

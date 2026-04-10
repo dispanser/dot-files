@@ -3,8 +3,6 @@
 {
   services.joycond.enable = true;
 
-  services.noctalia-shell.enable = true;
-
   imports = [
     ./laptop.nix
     ./desktop.nix

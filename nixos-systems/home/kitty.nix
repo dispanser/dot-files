@@ -26,7 +26,7 @@
     font = {
       name = "VictorMono Nerd Font";
       package = pkgs.nerd-fonts.victor-mono;
-      size = 20;
+      size = 15;
     };
     extraConfig = ''
       # BEGIN_KITTY_THEME

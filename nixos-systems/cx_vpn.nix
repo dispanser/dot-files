@@ -2,6 +2,7 @@
 {
   programs.openvpn3.enable = true;
 
+  environment.systemPackages = [ pkgs.openvpn ];
   # Configure dnscrypt-proxy to use forwarding rules
   # Format: domain resolver (space-separated, no leading dot)
   services.dnscrypt-proxy.settings.forwarding_rules = "${pkgs.writeText "dnscrypt-forwarding-rules.txt" ''
