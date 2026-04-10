@@ -221,12 +221,11 @@ in
     dircolors.enable = true;
     home-manager.enable = true;
     jq.enable = true;
-  };
-
-  programs.voxtype = {
-    enable = true;
-    configFile = ../../configs/voxtype.toml;
-    package = pkgs.voxtype-vulkan;
+    voxtype = {
+        enable = true;
+        configFile = ../../configs/voxtype.toml;
+        package = pkgs.voxtype-vulkan;
+    };
   };
 
   services.swayidle = {

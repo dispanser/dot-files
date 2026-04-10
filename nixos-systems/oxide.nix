@@ -16,7 +16,6 @@
 
   services.joycond.enable = true;
   services.noctalia-shell.enable = true;
-  programs.voxtype.enable = true;
 
   services.handheld-daemon = {
     enable = false;
