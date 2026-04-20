@@ -143,12 +143,10 @@
   # regular pass + new salt + touch key
   boot = {
     initrd.luks = {
-      fido2Support = true;
       devices = {
         konsole = {
           preLVM = true;
           device = "/dev/disk/by-uuid/65693a87-f256-4644-aaa1-262594df19a1";
-          # fido2.credential = "0d05ca72aa2dd7ebba29a6467eef6bed84fbcd94cd34da3cff7c8dbaf3ee2d6e";
         };
       };
     };
