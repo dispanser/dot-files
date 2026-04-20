@@ -27,7 +27,6 @@
         {
           nixpkgs.overlays = [
             (import ../overlays/tilth.nix)
-            (import ../overlays/tuicr.nix)
           ];
 
           home-manager = {

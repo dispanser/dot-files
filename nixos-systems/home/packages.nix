@@ -59,7 +59,7 @@ with pkgs; let
     uv
     lazygit
     tree-sitter
-  ] ++ (with llm-agents; [ tuicr tilth rtk claude-code pi ]);
+  ] ++ (with llm-agents; [ tilth rtk claude-code pi ]);
   linuxOnly = [
     brightnessctl
     touchscreen-gestures

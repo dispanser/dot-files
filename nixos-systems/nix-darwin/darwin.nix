@@ -26,7 +26,6 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     tilth
-    tuicr
     neovim
     alacritty
     tmux
