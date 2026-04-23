@@ -77,8 +77,8 @@ inoremap('<C-j>', '<C-\\><C-N><C-w>j')
 inoremap('<C-k>', '<C-\\><C-N><C-w>k')
 inoremap('<C-l>', '<C-\\><C-N><C-w>l')
 
-vim.keymap.set('', '<M-j>', 'gT')
-vim.keymap.set('', '<M-k>', 'gt')
+vim.keymap.set('', '<C-j>', 'gT')
+vim.keymap.set('', '<C-k>', 'gt')
 
 nnoremap('<leader>sc', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>', "clear search")
 nnoremap('<Leader>t-', ':let &scrolloff=999-&scrolloff<CR>', "toggle centered mode")

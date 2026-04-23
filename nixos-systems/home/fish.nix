@@ -109,9 +109,10 @@
       ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
     functions = {
-      gdt.body   = ''nvim "+DiffviewOpen $argv"'';
-      gdc.body   = ''nvim "+DiffviewOpen $argv[1]^1..$argv[1]"'';
-      gdh.body   = ''nvim "+DiffviewOpen HEAD^1"'';
+      gdt.body   = ''nvim "+CodeDiff $argv"'';
+      gdc.body   = ''nvim "+CodeDiff $argv[1]~1..$argv[1]"'';
+      gdh.body   = ''nvim "+CodeDiff HEAD~1"'';
+      gdm.body   = ''nvim "+Codeiff master..."'';
       epoch.body = "date --date=@$argv[1] --iso-8601=seconds -u";
       epochns.body = "date --date=@(echo $Rrgv[1] / 1000000000| bc) --iso-8601=seconds -u";
       ",rh"      = ''echo (echo "$argv[1] / 3600 * 3600" | bc)'';

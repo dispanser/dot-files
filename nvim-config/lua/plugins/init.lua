@@ -1,6 +1,26 @@
 return {
   { "carderne/pi-nvim" },
   {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+    event = "VeryLazy",
+    opts = {
+      explorer = {
+        view_mode = "tree",    -- "list" or "tree"
+        flatten_dirs = true,   -- Flatten single-child directory chains in tree view
+      },
+      history = {
+        view_mode = "tree",   -- "list" or "tree" for files under commits
+      },
+    },
+    keys = {
+      { '<leader>gv', vim.cmd.CodeDiff, desc = "open diff view" },
+      { '<leader>ghf', "<Cmd>%CodeDiff history<CR>", desc = "open project history diff view", mode = { "n" } },
+      { '<leader>ghs', "<Cmd>'<,'>CodeDiff history<CR>", desc = "open project history diff view", mode = { "v" } },
+      { '<leader>ghp', "<Cmd>CodeDiff history<CR>", desc = "open project history diff view", mode = { "n" } },
+    },
+  },
+  {
     "zbirenbaum/copilot.lua",
     enabled = true,
     requires = {
