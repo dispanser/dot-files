@@ -33,9 +33,10 @@
       }
       {
         plugin = tmux-thumbs;
-        extraConfig = ''
+        extraConfig = let
+          thumbsCopyCmd = if pkgs.stdenv.isDarwin then "pbcopy" else "wl-copy";
+        in ''
           set -g @thumbs-key m
-          # gives shorter hints closer to the curser; evaluate
           set -g @thumbs-reverse enabled
           set -g @thumbs-unique enabled
           set -g @thumbs-fg-color blue
@@ -44,8 +45,8 @@
           set -g @thumbs-osc52 0
           # set -g @thumbs-bg-color
           # bind-key -n C-M-t thumbs-pick
-          
-          set -g @thumbs-command 'tmux set-buffer -- {} && echo -n {} | pbcopy && tmux display-message \"tyx/Copied {}\"'
+
+          set -g @thumbs-command 'tmux set-buffer -- {} && echo -n {} | ${thumbsCopyCmd} && tmux display-message \"tyx/Copied {}\"'
           # set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\"'
         '';
       }
