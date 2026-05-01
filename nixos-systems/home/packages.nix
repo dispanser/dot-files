@@ -15,16 +15,13 @@ with pkgs; let
   desktopPkgs = [
     hueadm
     any-nix-shell
-    yt-dlp
     units
     feh
     entr
     zathura
     dmenu
-    pandoc
     eza ripgrep neovim fzf fd
     iftop
-    stow
     libnotify
     kanata
     vial
@@ -37,7 +34,6 @@ with pkgs; let
     nodejs # for copilot
     dig
     devenv
-    llm
     docker
     kubectl
     zig
@@ -47,17 +43,13 @@ with pkgs; let
     watchexec
     ctags
     sloc
-    zellij
-    hyperfine
     lua-language-server
     vscode-langservers-extracted
     samply
     k9s stern
-    markdown-oxide
     bc
     teleport
-    uv
-    lazygit
+    # uv
     tree-sitter
   ] ++ (with llm-agents; [ tilth rtk claude-code pi ]);
   linuxOnly = [
@@ -68,21 +60,11 @@ with pkgs; let
     vlc
     pinentry-all
     simple-scan
-    xmodmap xev xbacklight xlockmore libxcb
-    xbindkeys
-    xclip xsel
-    xmessage xdotool
-    pavucontrol ponymix
-    xinit
     rofi
     scrot 
     signal-desktop
-    # nextcloud-client
+    nextcloud-client
     firefox
-    xfontsel
-    xlsfonts
-    xss-lock
-    xvkbd
     ungoogled-chromium
     qutebrowser
     iotop
