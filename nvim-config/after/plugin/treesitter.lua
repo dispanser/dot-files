@@ -1,15 +1,6 @@
 local ts = require'nvim-treesitter'
-ts.install { 'help', 'lua', 'rust', 'vim', 'fish', 'bash', 'regex' }
+ts.install { "help", "lua", "rust", "vim", "fish", "bash", "regex" }
 ts.setup {
-  -- A list of parser names, or "all"
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript", "help" },
 
   highlight = {
     -- `false` will disable the whole extension
