@@ -79,12 +79,16 @@
     initrd.luks = {
       fido2Support = false;
       devices = {
+        tiny = {
+          preLVM = true;
+          device = "/dev/disk/by-uuid/47da6f1e-3200-442b-9171-da5bdc1df818";
+        };
         sanjota = {
           preLVM = true;
-          device = "/dev/disk/by-uuid/462786d0-1145-4540-9212-d14c8db7b341";
+          device = "/dev/disk/by-uuid/afed8d0b-5948-4425-9c68-2b0352f3d4bd";
         };
       };
-    }; 
+    };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -106,7 +110,7 @@
     usePredictableInterfaceNames = false;
     hostName        = "tiny";
     wireless = {
-      enable = true;
+      enable = false;
       interfaces = [ "wlan0" ];
     };
     firewall = {
@@ -121,9 +125,10 @@
   };
 
   fileSystems  = {
-    "/boot"      = { device = "/dev/disk/by-uuid/5658-E93A"; fsType = "vfat"; neededForBoot = true;};
-    "/"          = { device = "/dev/sanjota/nix-root";       fsType = "ext4"; neededForBoot = true;};
-    "/home"      = { device = "/dev/sanjota/home";           fsType = "ext4"; neededForBoot = true;};
+    "/boot"      = { device = "/dev/disk/by-uuid/C1AB-B00A"; fsType = "vfat"; neededForBoot = true;};
+    "/"          = { device = "/dev/tiny/nix-root";          fsType = "ext4"; neededForBoot = true;};
+    "/home"      = { device = "/dev/tiny/home";              fsType = "ext4"; neededForBoot = true;};
+    "/home/data" = { device = "/dev/sanjota/data";           fsType = "ext4"; neededForBoot = true; };
   };
 
   nix.settings.max-jobs                     = lib.mkDefault 8;
