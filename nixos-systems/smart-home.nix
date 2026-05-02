@@ -4,6 +4,18 @@
     enable = true;
   };
 
+  systemd.services.influxdb2 = {
+    unitConfig.RequiresMountsFor = [ "/var/lib/influxdb2" ];
+    serviceConfig.StateDirectoryMode = "0700";
+  };
+
+
+  fileSystems."/var/lib/influxdb2" = {
+     device = "/home/influxdb2";
+     fsType = "none";
+     options = [ "bind" ];
+  };
+
   services.telegraf = {
     enable = true;
     extraConfig = {
