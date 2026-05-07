@@ -27,7 +27,7 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       overlays = (import ./overlays { tsg = inputs.tsg; });
-      hosts = [ "tiny" "kite" "oxide" "x12" "chatham" ];
+      hosts = [ "tiny" "kite" "oxide" "x12" "chatham" "tachi" ];
       system = "x86_64-linux";
     in
     {
