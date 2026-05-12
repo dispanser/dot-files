@@ -162,6 +162,38 @@ in
   programs = {
     atuin = {
       enable = true;
+      package = pkgs.rustPlatform.buildRustPackage ({
+        pname = "atuin";
+        version = "18.13.6";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "atuinsh";
+          repo = "atuin";
+          rev = "v18.13.6";
+          hash = "sha256-yAw+ty6FUnFbiRTdAe2QQHzj6uU24fZ/bEIXcHl/thg=";
+        };
+
+        cargoHash = "sha256-jirVe0+N5+UHZWioj8AipUhawMBameqEJJpa8HPTnfw=";
+
+        buildNoDefaultFeatures = true;
+        buildFeatures = [
+          "ai"
+          "client"
+          "clipboard"
+          "daemon"
+          "hex"
+          "sync"
+        ];
+
+        nativeBuildInputs = [ pkgs.installShellFiles ];
+
+        doCheck = false;
+
+        postInstall = ''
+          installShellCompletion --cmd atuin --bash <($out/bin/atuin gen-completions -s bash) --fish <($out/bin/atuin gen-completions -s fish) --zsh <($out/bin/atuin gen-completions -s zsh)
+        '';
+      });
+      daemon.enable = true;
       settings = {
         style = "full";
         search_mode = "fuzzy";
