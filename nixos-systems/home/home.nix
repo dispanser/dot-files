@@ -233,7 +233,7 @@ in
     enable = true;
     timeouts = [
       { timeout = 180; command = "${pkgs.niri}/bin/niri msg action power-off-monitors"; }
-      # { timeout = 90; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+      { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
   };
 }

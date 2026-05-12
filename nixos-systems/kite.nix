@@ -164,7 +164,6 @@
     ];
     extraModprobeConfig = ''
       options acpi ec_no_wakeup=1
-      options thinkpad_acpi fan_control=1
     '';
     kernelParams = [
       "mem_sleep_default=deep"
@@ -184,6 +183,7 @@
       "nvidia.NVreg_DynamicPowerManagementVideoMemoryThreshold=1024"
       # try this out: a separate chip that handles parts of power management etc, disabled via:
       "nvidia.NVreg_EnableGpuFirmware=0"
+      "acpi_osi=\"!Windows 2015\""
     ];
     kernelPackages     = pkgs.linuxPackages_latest;
   };
