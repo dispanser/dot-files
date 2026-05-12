@@ -3,14 +3,14 @@ let
   browser = (
     pkgs.writeShellApplication {
       name = "browser.sh"; # this will be the name of the binary
-      runtimeInputs = with pkgs; [ wmctrl qutebrowser niri ];
+      runtimeInputs = with pkgs; [ qutebrowser niri ];
       text = ''
         if [ $# -eq 0 ]; then
           echo "$(date -Iseconds) starting browser without url" >> /tmp/browser.log
-          /home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru browser >> /tmp/browser.log
+          nuru browser >> /tmp/browser.log
         else
           echo "$(date -Iseconds) starting browser with url: $1" >> /tmp/browser.log
-          /home/pi/src/github/dispanser/nuru/.devenv/state/cargo-install/bin/nuru browser --url "$1" >> /tmp/browser.log
+          nuru browser --url "$1" >> /tmp/browser.log
         fi
       '';
     }
