@@ -40,17 +40,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local s = vim.keymap.set
 
-    s('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
-    s('n', '<leader>ek', '<cmd>lua vim.lsp.buf.hover()<cr>', o(event.buf, 'hover'))
-    s('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', o(event.buf, '[lsp] go to definition'))
-    s('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', o(event.buf, '[lsp]: go to declaration'))
-    s('n', 'gt', '<cmd>lua vim.lsp.buf.lsp_type_definitions<cr>', o(event.buf, '[lsp]: go to type definition'))
+    s('n', 'K', vim.lsp.buf.hover, o(event.buf, 'hover'))
+    s('n', '<leader>ek', vim.lsp.buf.hover, o(event.buf, 'hover'))
+    s('n', 'gd', vim.lsp.buf.definition, o(event.buf, '[lsp] go to definition'))
+    s('n', 'gD', vim.lsp.buf.declaration, o(event.buf, '[lsp]: go to declaration'))
+    s('n', 'gt', vim.lsp.buf.type_definition, o(event.buf, '[lsp]: go to type definition'))
 
     s('n', '<leader>em', Snacks.picker.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
-    s('n', '<leader>es', '<cmd>lua vim.lsp.buf.signature_help()<cr>', o(event.buf, '[lsp]: show signature'))
-    s('n', '<leader>en', '<cmd>lua vim.lsp.buf.rename()<cr>', o(event.buf, '[lsp]: rename'))
-    s({ 'n', 'x' }, '<leader>ef', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', o(event.buf, '[lsp]: format'))
-    s('n', '<leader>ea', '<cmd>lua vim.lsp.buf.code_action()<cr>', o(event.buf, '[lsp]: code action'))
+    s('n', '<leader>es', vim.lsp.buf.signature_help, o(event.buf, '[lsp]: show signature'))
+    s('n', '<leader>en', vim.lsp.buf.rename, o(event.buf, '[lsp]: rename'))
+    s({ 'n', 'x' }, '<leader>ef', function() vim.lsp.buf.format({async = true}) end, o(event.buf, '[lsp]: format'))
+    s('n', '<leader>ea', vim.lsp.buf.code_action, o(event.buf, '[lsp]: code action'))
 
     s('n', '[e', function() vim.diagnostic.jump({ count = -1}) end, o(event.buf, "next code problem"))
     s('n', ']e', function() vim.diagnostic.jump({ count = 1}) end, o(event.buf, "prev code problem"))
