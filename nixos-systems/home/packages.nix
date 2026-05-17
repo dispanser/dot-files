@@ -70,6 +70,7 @@ with pkgs; let
     iotop
     onboard
     wlr-randr xwayland-satellite fuzzel wtype wl-clipboard-rs
+    yt-dlp
   ];
 in {
   desktopPkgs = desktopPkgs;
