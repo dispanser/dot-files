@@ -2,11 +2,6 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "slack"
-    ];
   nix.enable = true;
   users.users."thomas.peiselt" = {
     home = "/Users/thomas.peiselt";
@@ -155,10 +150,24 @@
   launchd.daemons.unison = {
     script = ''
       ${pkgs.unison}/bin/unison \
-        /Users/thomas.peiselt/src/github/coralogix/ \
-        ssh://tiny//home/data/sync/home/pi/projects/coralogix/src \
+        -root /Users/thomas.peiselt/projects/coralogix/ \
+        -root ssh://tiny//home/data/sync/home/pi/projects/coralogix/ \
         -repeat watch -auto -batch \
-        -ignore="Name target" -ignore="Name .tp/targets" -ignore="Name build" -ignore="Name perf.data*" -ignore="Name debug"
+        -ignore="Name target" -ignore="Name .tp/targets" -ignore="Name build" -ignore="Name perf.data*" -ignore="Name debug" \
+        -ignore="Name *.o" \
+        -ignore="Name *.hi" \
+        -ignore="Name *.class" \
+        -ignore="Name *.jar" \
+        -ignore="Name .qute/cache" \
+        -ignore="Name .qute/data" \
+        -ignore="Name .qute/runtime" \
+        -ignore="Name *.log" \
+        -ignore="Name .direnv" \
+        -ignore="Name .devenv*" \
+        -ignore="Name __pycache__" \
+        -path=src \
+        -path=wip \
+        -path=notes
     '';
     environment = {
     };
