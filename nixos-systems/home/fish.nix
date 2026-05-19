@@ -152,16 +152,16 @@
       # note that a later incarnation of this command overwrites everything, even unmentioned
       fzf_configure_bindings --git_status=\e\cg --git_log=\e\cl --directory=\co --processes=\e\cp
       bind --mode insert \cz fg
-      set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
-      set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
-      set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
-      set -gx TAVILY_API_KEY (cat ${config.sops.secrets.tavily_api_key.path})
 
       set -gx LLM_USER_PATH "$HOME/projects/personal/llm"
       fish_add_path --move $HOME/.cargo/bin
       fish_add_path --move $HOME/bin
       fish_add_path --move {$HOME}/projects/coralogix/src/scripts
       '' + (if pkgs.stdenv.isDarwin then ''
+        set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
+        set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
+        set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
+        set -gx TAVILY_API_KEY (cat ${config.sops.secrets.tavily_api_key.path})
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
         for p in (string split " " $NIX_PROFILES)
