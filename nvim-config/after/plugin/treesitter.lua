@@ -1,6 +1,7 @@
-require'nvim-treesitter'.setup {
+local ts = require'nvim-treesitter'
+ts.install { 'help', 'lua', 'rust', 'vim', 'fish', 'bash', 'regex' }
+ts.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "help", "lua", "rust", "vim", "fish", "bash", "regex" },
   sync_install = false,
 
   -- Automatically install missing parsers when entering buffer
@@ -24,16 +25,6 @@ require'nvim-treesitter'.setup {
       node_decremental = "<BS>",
     },
   },
-  -- textsubjects = {
-  --     enable = true,
-  --     prev_selection = ',', -- (Optional) keymap to select the previous selection
-  --     keymaps = {
-  --         ['.'] = 'textsubjects-smart',
-  --         [';'] = 'textsubjects-container-outer',
-  --         ['i;'] = 'textsubjects-container-inner',
-  --         ['i;'] = { 'textsubjects-container-inner', desc = "Select inside containers (classes, functions, etc.)" },
-  --     },
-  -- },
   textobjects = {
     select = {
       enable = true,
@@ -103,12 +94,14 @@ require'nvim-treesitter'.setup {
 }
 
 -- from https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+-- local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
 
 -- Repeat movement with ; and ,
 -- ensure ; goes forward and , goes backward regardless of the last direction
-vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false;
+-- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+-- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+
+-- disabled: testing nvim-ufo
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldenable = false;

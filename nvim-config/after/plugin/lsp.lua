@@ -42,9 +42,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     s('n', 'K', vim.lsp.buf.hover, o(event.buf, 'hover'))
     s('n', '<leader>ek', vim.lsp.buf.hover, o(event.buf, 'hover'))
-    s('n', 'gd', vim.lsp.buf.definition, o(event.buf, '[lsp] go to definition'))
-    s('n', 'gD', vim.lsp.buf.declaration, o(event.buf, '[lsp]: go to declaration'))
-    s('n', 'gt', vim.lsp.buf.type_definition, o(event.buf, '[lsp]: go to type definition'))
+    s('n', 'gd', Snacks.picker.lsp_definitions, o(event.buf, '[lsp] go to definition'))
+    s('n', 'gD', Snacks.picker.lsp_declarations, o(event.buf, '[lsp]: go to declaration'))
+    s('n', 'gt', Snacks.picker.lsp_type_definitions, o(event.buf, '[lsp]: go to type definition'))
 
     s('n', '<leader>em', Snacks.picker.lsp_implementations, o(event.buf, '[lsp]: go to implementation'))
     s('n', '<leader>es', vim.lsp.buf.signature_help, o(event.buf, '[lsp]: show signature'))

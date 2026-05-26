@@ -21,3 +21,7 @@ nnoremap("<leader>rmd", function() vim.cmd.RustLsp { 'moveItem', 'down' } end, "
 
 vim.keymap.set({ "n", "v" }, "<leader>rj", function() vim.cmd.RustLsp { 'joinLines' } end,
   { noremap = true, silent = true, desc = "join lines" })
+
+vim.treesitter.start()
+-- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- vim.wo[0][0].foldmethod = 'expr'

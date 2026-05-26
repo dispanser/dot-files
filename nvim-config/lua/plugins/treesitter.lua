@@ -1,18 +1,16 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })()
-    end,
+    lazy = false,
+    build = 'TSUpdate',
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = 'BufRead',
+    branch = "main",
   },
-  {
-    'RRethy/nvim-treesitter-textsubjects',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  },
+  -- dead for now :-( https://github.com/RRethy/nvim-treesitter-textsubjects/issues/52
+  -- { 'RRethy/nvim-treesitter-textsubjects', dependencies = { 'nvim-treesitter/nvim-treesitter' }, },
   {
     'nvim-treesitter/nvim-treesitter-context',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
