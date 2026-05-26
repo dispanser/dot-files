@@ -17,7 +17,7 @@ let
   );
 in
 {
-  xdg.mimeApps.defaultApplications = {
+  xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
     # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop"?
     "text/html" = [ "browser.desktop" ];
   };
@@ -30,7 +30,7 @@ in
     mimeType = [ "text/html" "text/xml" ];
   };
 
-  home.packages = [ browser ];
+  home.packages = lib.mkIf pkgs.stdenv.isLinux [ browser ];
 
   xdg.configFile."qutebrowser/add-nextcloud-bookmarks.ini" = {
     text = ''
@@ -44,6 +44,7 @@ in
   };
 
   programs.qutebrowser = {
+    package = null;
     enable = true;
     enableDefaultBindings = true; # Default
     extraConfig = ''

@@ -6,11 +6,10 @@ with pkgs; let
     goku
     pass # on linux, pass is installed system-wide because it can be used outside of my home context
     mc
-    rclone
     rsync
     coreutils
     docker-credential-helpers
-    restic unison
+    unison
   ];
   desktopPkgs = [
     hueadm
@@ -18,7 +17,6 @@ with pkgs; let
     units
     feh
     entr
-    zathura
     dmenu
     eza ripgrep neovim fzf fd
     iftop
@@ -65,6 +63,7 @@ with pkgs; let
     scrot 
     signal-desktop
     nextcloud-client
+    zathura
     firefox
     ungoogled-chromium
     qutebrowser
