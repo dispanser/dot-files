@@ -44,7 +44,7 @@ in
   };
 
   programs.qutebrowser = {
-    package = null;
+    package = if pkgs.stdenv.isDarwin then null else pkgs.qutebrowser;
     enable = true;
     enableDefaultBindings = true; # Default
     extraConfig = ''
