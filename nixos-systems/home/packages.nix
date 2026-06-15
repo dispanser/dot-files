@@ -51,6 +51,7 @@ with pkgs; let
     teleport
     # uv
     tree-sitter
+    rustup
   ] ++ (with llm-agents; [ tilth rtk claude-code pi ]);
   linuxOnly = [
     brightnessctl
