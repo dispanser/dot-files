@@ -203,7 +203,7 @@ in
         max_preview_height = 10;
         show_help = true;
         enableFishIntegration = true;
-        daemon.enable = true;
+        # daemon.enable = true;
       };
     };
     zoxide.enable = true;

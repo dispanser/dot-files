@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+cd $HOME/.password-store
+set selection (fd --type file | sed 's/\.[^.]*$//'| fuzzel --dmenu --width 80)
+set login (string split '/' $selection | tail -n 1)
+wtype $login

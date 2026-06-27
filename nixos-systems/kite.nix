@@ -65,13 +65,7 @@
     enable = false;
     useXkbConfig = true;
     hwRender = true;
-    fonts = [
-      {
-        name = "VictorMono Nerd Font";
-        package = pkgs.nerd-fonts.victor-mono;
-      }
-    ];
-
+    config.font-name = "VictorMono Nerd Font";
     extraOptions = "--term xterm-256color";
   };
 
