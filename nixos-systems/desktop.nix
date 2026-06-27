@@ -73,7 +73,7 @@
 
   services.displayManager = {
     enable = true;
-    defaultSession = "none+niri";
+    defaultSession = "niri-uwsm";
     # lemurs.enable = true;
   };
 
