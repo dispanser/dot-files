@@ -10,7 +10,10 @@ in
     radeontop
     lact
     llama-swap
+    bolt
   ];
+
+  services.hardware.bolt.enable = true;
 
   services.llama-cpp = {
     enable = false;

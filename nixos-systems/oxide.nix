@@ -1,6 +1,17 @@
 { config, lib, pkgs,... }:
 
 {
+
+  hardware.graphics.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
+    rocmPackages.rocminfo
+    rocmPackages.rocm-smi
+  ];
+
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
   imports = [
     ./laptop.nix
     ./desktop.nix
@@ -10,6 +21,7 @@
     ./adguard_dns.nix
     ./brother.nix
     ./yubico.nix
+    ./llm.nix
     ./fingerprint.nix
     ./cx_vpn.nix
   ];
@@ -106,17 +118,23 @@
     }; 
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" "thunderbolt" ];
+    initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" "thunderbolt" ];
     kernelModules                   = [ "coretemp" "tp_smapi" "acpi_call" "uinput" ];
     extraModulePackages             = [ config.boot.kernelPackages.tp_smapi config.boot.kernelPackages.acpi_call ];
     extraModprobeConfig = ''
       options acpi ec_no_wakeup=1
       options thinkpad_acpi fan_control=1
       options usbcore autosuspend=-1
+      options amdgpu pcie_gen_cap=0x80000
     '';
       
-    kernelParams = [ "zswap.enabled=1" "zswap.compressor=lz4" "zswap.shrinker_enabled=1" ];
+    kernelParams = [
+      "zswap.enabled=1" "zswap.compressor=lz4" "zswap.shrinker_enabled=1"
+      # "pci=realloc" "pci=hpmemsize=512M" "pcie_ports=native"
+      # "pci=assign-busses,hpbussize=0x33,realloc,hpmmiosize=128M,hpmmioprefsize=16G"
+      # "amdgpu.gpu_recovery=1" "amdgpu.runpm=0"
+    ];
 
      # whether to shrink the pool proactively on high memory pressure
     kernelPackages     = pkgs.linuxPackages_latest;
