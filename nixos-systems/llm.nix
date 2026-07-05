@@ -15,16 +15,6 @@ in
 
   services.hardware.bolt.enable = true;
 
-  services.llama-cpp = {
-    enable = false;
-    model = "${models}/Mistral-Small-24B-Instruct-2501-IQ4_XS.gguf";
-    extraFlags = [
-      "--temp"
-      "0.6" # recommended for R1
-    ];
-    port = 9001;
-  };
-
   services.llama-swap = {
     enable = false;
     port = 3333;
