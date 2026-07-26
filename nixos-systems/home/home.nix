@@ -161,7 +161,6 @@ in
 
   programs = {
     atuin = {
-      enable = true;
       package = pkgs.rustPlatform.buildRustPackage ({
         pname = "atuin";
         version = "18.13.6";
