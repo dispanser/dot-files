@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 
 {
+  ids.gids.nixbld = 350;
   nixpkgs.config.allowUnfree = true;
   nix.enable = true;
   users.users."thomas.peiselt" = {
@@ -42,6 +43,7 @@
       "zerotier-one"
       "stats"
       "teleport"
+      "orbstack"
     ];
     brews = [
       "awscli"
@@ -88,6 +90,8 @@
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToEscape = true;
+    swapLeftCommandAndLeftAlt = true;
+    swapRightCommandAndRightOption = true;
   };
 
   system.defaults.dock = {
@@ -100,6 +104,10 @@
   };
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
+
+  security.sudo.extraConfig = ''
+    thomas.peiselt ALL=(root) NOPASSWD: /etc/profiles/per-user/thomas.peiselt/bin/openvpn *
+  '';
 
   # services.karabiner-elements.enable = true;
 

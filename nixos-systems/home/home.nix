@@ -4,6 +4,7 @@
   lib,
   osConfig,
   llm-agents,
+  isLinux ? true,
   ...
 }:
 
@@ -79,7 +80,6 @@ in
     with pkgSets;
     desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly); 
 
-  programs.fish.enable = true;
   imports = [
     (import ./fish.nix {
       pkgs = pkgs;
@@ -94,9 +94,10 @@ in
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    (import ./touch.nix { inherit config lib pkgs osConfig; })
     ./inputplug.nix
     (import ./unison.nix { inherit lib pkgs isServer; })
+  ] ++ lib.optionals isLinux [
+    (import ./touch.nix { inherit config lib pkgs osConfig; })
     ./voxtype.nix
   ] ++ (if isServer then [
     ./mail.nix
@@ -105,7 +106,7 @@ in
   ] else []);
 
 
-  services.inputplug.enable = true;
+  services.inputplug.enable = isLinux;
 
   services.notify-osd.enable = if pkgs.stdenv.isLinux then true else false;
 
@@ -160,6 +161,7 @@ in
   };
 
   programs = {
+    fish.enable = true;
     atuin = {
       enable = true;
       package = pkgs.rustPlatform.buildRustPackage ({
@@ -253,15 +255,16 @@ in
     dircolors.enable = true;
     home-manager.enable = true;
     jq.enable = true;
+  } // lib.optionalAttrs isLinux {
     voxtype = {
-        enable = true;
-        configFile = ../../configs/voxtype.toml;
-        package = pkgs.voxtype-vulkan;
+      enable = true;
+      configFile = ../../configs/voxtype.toml;
+      package = pkgs.voxtype-vulkan;
     };
   };
 
   services.swayidle = {
-    enable = true;
+    enable = isLinux;
     timeouts = [
       { timeout = 180; command = "${pkgs.niri}/bin/niri msg action power-off-monitors"; }
       { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
