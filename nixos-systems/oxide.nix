@@ -24,6 +24,7 @@
     ./llm.nix
     ./fingerprint.nix
     ./cx_vpn.nix
+    ./steam.nix
   ];
 
   services.joycond.enable = true;
