@@ -41,8 +41,12 @@
       };
     };
   };
-  programs.noctalia.enable = true;
+
   programs.niri.enable = true;
+  programs.noctalia = {
+    enable = true;
+    systemd.enable = false;
+  };
   systemd.user.services.niri.enableDefaultPath = false;
 
 
@@ -51,7 +55,7 @@
     niri = {
       prettyName = "Niri";
       comment = "Niri compositor managed by UWSM";
-      binPath = "/run/current-system/sw/bin/niri --session";
+      binPath = "${pkgs.niri}/bin/niri --session";
     };
   };
 
