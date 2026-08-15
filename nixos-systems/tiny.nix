@@ -2,8 +2,6 @@
 
 {
 
-  services.noctalia-shell.enable = true;
-
   imports = [
     ./laptop.nix
     ./desktop.nix
