@@ -104,8 +104,8 @@
       gcm  = "git rev-parse --verify main && git switch main || git switch master";
       tree = "eza -Tl --git";
       ls   = "eza --git";
-      lt   = "ls -l --sort newest";
-      l    = "ls -laF";
+      lt   = "eza -l --sort newest --git";
+      l    = "eza -la --git";
       ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
     functions = {
@@ -114,7 +114,7 @@
       gdh.body   = ''nvim "+CodeDiff HEAD~1"'';
       gdm.body   = ''nvim "+Codeiff master..."'';
       epoch.body = "date --date=@$argv[1] --iso-8601=seconds -u";
-      epochns.body = "date --date=@(echo $Rrgv[1] / 1000000000| bc) --iso-8601=seconds -u";
+      epochns.body = "date --date=@(echo $argv[1] / 1000000000| bc) --iso-8601=seconds -u";
       ",rh"      = ''echo (echo "$argv[1] / 3600 * 3600" | bc)'';
       depochi    = ''date -u -d "$argv[1]" +%s'';
       depoch     = ''date -u -d (string replace ":" " " $argv[1]) +%s'';
@@ -133,7 +133,7 @@
         sleep $argv;
         systemctl --user start xidlehook.service
       '';
-    } // (if pkgs.stdenv.isLinux then {
+    } // (if pkgs.stdenv.hostPlatform.isLinux then {
         rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | wl-copy";
         rlfp.body  = "readlink -f $argv[1] | tr -d '\n' | wl-copy --primary";
       } else {
@@ -157,7 +157,7 @@
       fish_add_path --move $HOME/.cargo/bin
       fish_add_path --move $HOME/bin
       fish_add_path --move {$HOME}/projects/coralogix/src/scripts
-      '' + (if pkgs.stdenv.isDarwin then ''
+      '' + (if pkgs.stdenv.hostPlatform.isDarwin then ''
         set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
         set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
         set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})

@@ -77,8 +77,8 @@ nnoremap('<leader>wf', ':tab split<CR>', "split active window into separate tab"
 -- inoremap('<C-k>', '<C-\\><C-N><C-w>k')
 -- inoremap('<C-l>', '<C-\\><C-N><C-w>l')
 
-vim.keymap.set('', '<C-j>', 'gT')
-vim.keymap.set('', '<C-k>', 'gt')
+vim.keymap.set('', '<M-S-j>', 'gT')
+vim.keymap.set('', '<M-S-k>', 'gt')
 
 nnoremap('<leader>sc', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>', "clear search")
 nnoremap('<Leader>t-', ':let &scrolloff=999-&scrolloff<CR>', "toggle centered mode")

@@ -49,7 +49,7 @@
     #   secureSocket = true;
     #   extraConfig = 
     #   let 
-    #     termOption = if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color";
+    #     termOption = if pkgs.stdenv.hostPlatform.isDarwin then "screen-256color" else "tmux-256color";
     #   in ''
     #       set-option -sa terminal-overrides ",*:Tc"
     #       set -g default-terminal "${termOption}"

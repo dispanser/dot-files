@@ -15,12 +15,14 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    cx-cli.url = "github:coralogix/cx-cli";
   };
   outputs = { self, nix-darwin, home-manager, ...}@inputs:
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#yukon
-    darwinConfigurations."yukon" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."ord" = nix-darwin.lib.darwinSystem {
       modules = [
         ./darwin.nix
         home-manager.darwinModules.home-manager
@@ -36,6 +38,10 @@
             sharedModules = [
               inputs.sops-nix.homeManagerModules.sops
             ];
+            extraSpecialArgs = {
+              isLinux = false;
+              inputs = inputs;
+            };
           };
         }
       ];

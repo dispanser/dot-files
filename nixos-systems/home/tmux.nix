@@ -34,7 +34,7 @@
       {
         plugin = tmux-thumbs;
         extraConfig = let
-          thumbsCopyCmd = if pkgs.stdenv.isDarwin then "pbcopy" else "wl-copy";
+          thumbsCopyCmd = if pkgs.stdenv.hostPlatform.isDarwin then "pbcopy" else "wl-copy";
         in ''
           set -g @thumbs-key m
           set -g @thumbs-reverse enabled
@@ -63,7 +63,6 @@
       mouse = true;
       extraConfig = 
       let 
-        # termOption = if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color";
         termOption = "tmux-256color";
       in ''
           # bind-key -n S-Enter send-keys -l "[13;2u"

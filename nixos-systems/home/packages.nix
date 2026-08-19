@@ -1,4 +1,4 @@
-{ pkgs, llm-agents, ... }:
+{ pkgs, inputs, ... }:
 
 with pkgs; let 
   darwinOnly = [
@@ -10,21 +10,17 @@ with pkgs; let
     coreutils
     docker-credential-helpers
     unison
+    openvpn
   ];
   desktopPkgs = [
     hueadm
     any-nix-shell
     units
-    feh
     entr
-    dmenu
     eza ripgrep neovim fzf fd
     iftop
-    libnotify
     kanata
-    vial
     sox
-    voxtype-vulkan
   ];
   develPkgs = [
     tabiew
@@ -46,14 +42,19 @@ with pkgs; let
     samply
     k9s stern
     bc
-    teleport
     # uv
     tree-sitter
     rustup
-  ] ++ (with llm-agents; [ tilth rtk claude-code pi ]);
+    inputs.cx-cli.packages.${pkgs.system}.default
+  ] ++ (with inputs.llm-agents.packages.aarch64-darwin; [ tilth rtk claude-code pi ]);
   linuxOnly = [
     brightnessctl
     touchscreen-gestures
+    voxtype-vulkan
+    feh
+    dmenu
+    libnotify
+    vial
     perf
     slack
     vlc

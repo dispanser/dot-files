@@ -1,11 +1,12 @@
-{ config, lib, pkgs, osConfig, ... }:
+{ lib, pkgs, osConfig, ... }:
 
 let
   isServer = osConfig.networking.hostName == "tiny";
   isKite = osConfig.networking.hostName == "kite";
+  isTouch = !isServer && !isKite && pkgs.stdenv.hostPlatform.isLinux;
 in
 {
-  programs.touchscreen-gestures = lib.mkIf (!isServer && !isKite) {
+  programs.touchscreen-gestures = lib.mkIf isTouch {
     enable = true;
     package = pkgs.touchscreen-gestures;
     pollIntervalMs = 500;

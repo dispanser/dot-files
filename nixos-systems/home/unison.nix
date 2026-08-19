@@ -42,7 +42,7 @@
       exec ${pkgs.openssh}/bin/ssh "$@"
     ''}";
   in {
-    enable = lib.mkIf pkgs.stdenv.isLinux true;
+    enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
     pairs = {
       tiny_sync = {
         roots = [

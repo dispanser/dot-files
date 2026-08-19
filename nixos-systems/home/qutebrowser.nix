@@ -17,12 +17,12 @@ let
   );
 in
 {
-  xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
+  xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop"?
     "text/html" = [ "browser.desktop" ];
   };
 
-  xdg.desktopEntries.browser = lib.mkIf pkgs.stdenv.isLinux {
+  xdg.desktopEntries.browser = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     type = "Application";
     exec = "browser.sh %u";
     name = "qute-project";
@@ -30,7 +30,7 @@ in
     mimeType = [ "text/html" "text/xml" ];
   };
 
-  home.packages = lib.mkIf pkgs.stdenv.isLinux [ browser ];
+  home.packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [ browser ];
 
   xdg.configFile."qutebrowser/add-nextcloud-bookmarks.ini" = {
     text = ''
@@ -44,7 +44,7 @@ in
   };
 
   programs.qutebrowser = {
-    package = if pkgs.stdenv.isDarwin then null else pkgs.qutebrowser;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.qutebrowser;
     enable = true;
     enableDefaultBindings = true; # Default
     extraConfig = ''
@@ -107,7 +107,7 @@ in
       editor.command = [
         "${pkgs.alacritty}/bin/alacritty"
       ]
-      ++ [ (if pkgs.stdenv.isDarwin then "--title" else "--name") ]
+      ++ [ (if pkgs.stdenv.hostPlatform.isDarwin then "--title" else "--name") ]
       ++ [
         "browser-edit"
         "-e"
@@ -193,6 +193,7 @@ in
     quickmarks = {
       gn = "https://github.com/notifications";
       gp = "https://github.com/pulls";
+      ga = "https://github.com/pulls/authored";
       gr = "https://github.com/pulls/review-requested";
       ba = "https://nc.kulturguerilla.org/apps/bookmarks/";
     };

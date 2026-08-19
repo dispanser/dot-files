@@ -5,7 +5,7 @@
   nixpkgs.config.allowUnfree = true;
   nix.enable = true;
   users.users."thomas.peiselt" = {
-    home = "/Users/thomas.peiselt";
+    home = /Users/thomas.peiselt;
     name = "thomas.peiselt";
     shell = pkgs.fish;
     uid = 502;

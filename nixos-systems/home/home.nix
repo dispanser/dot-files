@@ -1,9 +1,9 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
   osConfig,
-  llm-agents,
   isLinux ? true,
   ...
 }:
@@ -12,6 +12,7 @@ let
   editor = "nvim";
   isServer = osConfig.networking.hostName == "tiny";
   isKite = osConfig.networking.hostName == "kite";
+  cx_skills = inputs.cx-cli.packages.${pkgs.system}.skills;
 in
 {
 
@@ -39,8 +40,8 @@ in
     VISUAL = "${editor}";
   };
 
-  home.username = if pkgs.stdenv.isDarwin then "thomas.peiselt" else "pi";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/thomas.peiselt" else "/home/pi";
+  home.username = if pkgs.stdenv.hostPlatform.isDarwin then "thomas.peiselt" else "pi";
+  home.homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then /Users/thomas.peiselt else /home/pi;
 
   home.stateVersion = "22.05";
 
@@ -52,17 +53,17 @@ in
     "bin/darwin" = {
       source = ../../darwin-scripts;
       recursive = true;
-      enable = lib.mkIf pkgs.stdenv.isDarwin true;
+      enable = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin true;
     };
     ".xbindkeysrc" = {
-      enable = lib.mkIf pkgs.stdenv.isLinux true;
+      enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
       source = ../../configs/xbindkeys/rc;
     };
     ".psqlrc" = {
       enable = true;
       source = ../../configs/psql/.psqlrc;
     };
-    ".cargo/config.toml" = lib.mkIf pkgs.stdenv.isLinux {
+    ".cargo/config.toml" = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       text = ''
         [target.x86_64-unknown-linux-gnu]
         linker = "${pkgs.clang}/bin/clang"
@@ -71,14 +72,16 @@ in
         ]
       '';
     };
-  };
+  } // lib.mapAttrs'
+    (name: _: lib.nameValuePair ".claude/skills/${name}" { source = "${cx_skills}/${name}"; })
+    (lib.filterAttrs (_: t: t == "directory") (builtins.readDir cx_skills));
 
   home.packages =
     let
-      pkgSets = import ./packages.nix { inherit pkgs llm-agents; };
+      pkgSets = import ./packages.nix { inherit pkgs inputs; };
     in
     with pkgSets;
-    desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.isLinux then linuxOnly else darwinOnly); 
+    desktopPkgs ++ develPkgs ++ (if pkgs.stdenv.hostPlatform.isLinux then linuxOnly else darwinOnly);
 
   imports = [
     (import ./fish.nix {
@@ -97,7 +100,7 @@ in
     ./inputplug.nix
     (import ./unison.nix { inherit lib pkgs isServer; })
   ] ++ lib.optionals isLinux [
-    (import ./touch.nix { inherit config lib pkgs osConfig; })
+    (import ./touch.nix { inherit lib pkgs osConfig; })
     ./voxtype.nix
   ] ++ (if isServer then [
     ./mail.nix
@@ -106,9 +109,9 @@ in
   ] else []);
 
 
-  services.inputplug.enable = isLinux;
+  services.inputplug.enable = pkgs.stdenv.hostPlatform.isLinux;
 
-  services.notify-osd.enable = if pkgs.stdenv.isLinux then true else false;
+  services.notify-osd.enable = if pkgs.stdenv.hostPlatform.isLinux then true else false;
 
   # TBD - this is not perfect because it doesn't allow for actually editing these files
   xdg.configFile.nvim = {
@@ -127,7 +130,7 @@ in
   };
 
   services.xidlehook = {
-    enable = !isServer && !isKite && pkgs.stdenv.isLinux;
+    enable = !isServer && !isKite && pkgs.stdenv.hostPlatform.isLinux;
     detect-sleep = true;
     not-when-audio = true;
     not-when-fullscreen = false; # TBE
@@ -152,7 +155,7 @@ in
     ];
   };
   services.gpg-agent = {
-    enable = if pkgs.stdenv.isLinux then true else false;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     enableSshSupport = true;
     defaultCacheTtl = 3600;
     defaultCacheTtlSsh = 3600;
@@ -195,7 +198,7 @@ in
           installShellCompletion --cmd atuin --bash <($out/bin/atuin gen-completions -s bash) --fish <($out/bin/atuin gen-completions -s fish) --zsh <($out/bin/atuin gen-completions -s zsh)
         '';
       });
-      daemon.enable = true;
+      # daemon.enable = true;
       settings = {
         style = "full";
         search_mode = "fuzzy";
@@ -229,6 +232,7 @@ in
 
     fzf = {
       enable = true;
+      historyWidget.command = "";
       defaultOptions = [
         ''--cycle''
         ''--layout=reverse''
@@ -255,7 +259,7 @@ in
     dircolors.enable = true;
     home-manager.enable = true;
     jq.enable = true;
-  } // lib.optionalAttrs isLinux {
+  } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
     voxtype = {
       enable = true;
       configFile = ../../configs/voxtype.toml;
@@ -264,7 +268,7 @@ in
   };
 
   services.swayidle = {
-    enable = isLinux;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     timeouts = [
       { timeout = 180; command = "${pkgs.niri}/bin/niri msg action power-off-monitors"; }
       { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }

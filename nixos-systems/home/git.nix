@@ -1,4 +1,4 @@
-{ ... }:
+{ config,  ... }:
 
 {
   programs.gh.enable = true;
@@ -8,12 +8,10 @@
 
     includes = [
       {
-        condition = "gitdir:~/src/github/coralogix";
+        condition = "gitdir:${config.home.homeDirectory}/";
         contents.user.email = "thomas.peiselt@coralogix.com";
-      }
-      {
-        condition = "gitdir:~/projects/coralogix";
-        contents.user.email = "thomas.peiselt@coralogix.com";
+        contents.gpg.format = "ssh";
+        contents.user.signingKey = "/Users/thomas.peiselt/.ssh/coralogix-github.pub";
       }
     ];
 

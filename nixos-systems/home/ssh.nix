@@ -1,9 +1,7 @@
-{ pkgs, ... }:
+{ config, ... }:
 
 let 
-  home = if pkgs.stdenv.isDarwin
-    then "/Users/thomas.peiselt/.ssh"
-    else "/home/pi/.ssh";
+  home = "${config.home.homeDirectory}/.ssh";
   id_yubi =  "${home}/yubikey_a.pub";
   id_feitian_solo = "${home}/id_feitian_solo_ecdsa_sk";
   id_feitian_chain = "${home}/id_feitian_chain_ecdsa_sk";
@@ -11,6 +9,7 @@ let
   cl_ed = "${home}/coralogix-github";
   unison_tiny = "${home}/unison_tiny";
   id_keys = [ id_yubi id_feitian_solo id_feitian_chain id_ecdsa_pass ];
+
 in {
   programs.ssh = {
     enable = true;
@@ -18,13 +17,11 @@ in {
     extraConfig = ''
       ControlMaster auto
     '';
-    matchBlocks = {
+    settings = {
       "*" = {
         compression = true;
         forwardAgent = true;
-        extraOptions = {
-          IdentitiesOnly = "yes";
-        };
+        IdentitiesOnly = "yes";
       };
 
       "tiny" = {
