@@ -16,11 +16,6 @@
       url = "github:dispanser/touchscreen-gestures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-    };
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
@@ -41,7 +36,6 @@
           };
           modules = [
             ./${name}.nix
-            inputs.noctalia.nixosModules.default
             overlays
             home-manager.nixosModules.home-manager
             {

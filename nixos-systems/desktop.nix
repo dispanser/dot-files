@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [ 
@@ -32,11 +32,22 @@
     QT_IM_MODULE = "xim";
   };
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${config.programs.niri.package}/bin/niri-session";
+        user = "pi";
+      };
+    };
+  };
   programs.noctalia.enable = true;
   programs.niri.enable = true;
-  programs.uwsm.enable = true;
+  systemd.user.services.niri.enableDefaultPath = false;
+
 
   programs.uwsm.waylandCompositors = {
+    enable = true;
     niri = {
       prettyName = "Niri";
       comment = "Niri compositor managed by UWSM";
@@ -73,7 +84,7 @@
 
   services.displayManager = {
     enable = true;
-    defaultSession = "niri-uwsm";
+    defaultSession = "niri";
     # lemurs.enable = true;
   };
 
