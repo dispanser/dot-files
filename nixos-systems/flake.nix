@@ -17,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    cx-cli = {
+      url = "github:coralogix/cx-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -49,6 +53,8 @@
                 ];
                 extraSpecialArgs = {
                   llm-agents = inputs.llm-agents.packages.${system};
+                  isLinux = true;
+                  inherit inputs;
                 };
               };
             }

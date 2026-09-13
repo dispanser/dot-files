@@ -34,10 +34,10 @@
   # run unpatched binaries on nixos
   programs.nix-ld.enable = true;
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=100M
-    MaxFileSec=7day
-  '';
+  services.journald.settings.Journal = {
+    SystemMaxUse = "100M";
+    MaxFileSec = "7day";
+  };
 
   environment.systemPackages = with pkgs; [
     file

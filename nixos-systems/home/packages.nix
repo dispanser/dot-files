@@ -46,7 +46,7 @@ with pkgs; let
     tree-sitter
     rustup
     inputs.cx-cli.packages.${pkgs.system}.default
-  ] ++ (with inputs.llm-agents.packages.aarch64-darwin; [ tilth rtk pi ]);
+  ] ++ (with inputs.llm-agents.packages.${pkgs.system}; [ tilth pi ]);
   linuxOnly = [
     brightnessctl
     touchscreen-gestures

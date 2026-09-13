@@ -1,4 +1,4 @@
-{ config,  ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.gh.enable = true;
@@ -6,12 +6,12 @@
   programs.git = {
     enable    = true;
 
-    includes = [
+    includes = lib.optionals pkgs.stdenv.isDarwin [
       {
-        condition = "gitdir:${config.home.homeDirectory}/";
         contents.user.email = "thomas.peiselt@coralogix.com";
         contents.gpg.format = "ssh";
-        contents.user.signingKey = "/Users/thomas.peiselt/.ssh/coralogix-github.pub";
+        contents.user.signingKey =
+          "${config.home.homeDirectory}/.ssh/coralogix-github.pub";
       }
     ];
 

@@ -158,10 +158,6 @@
       fish_add_path --move $HOME/bin
       fish_add_path --move {$HOME}/projects/coralogix/src/scripts
       '' + (if pkgs.stdenv.hostPlatform.isDarwin then ''
-        set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
-        set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
-        set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
-        set -gx TAVILY_API_KEY (cat ${config.sops.secrets.tavily_api_key.path})
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
         for p in (string split " " $NIX_PROFILES)
@@ -171,6 +167,10 @@
         # under test
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
+        set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
+        set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
+        set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
+        set -gx TAVILY_API_KEY (cat ${config.sops.secrets.tavily_api_key.path})
         set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
         set PROJECT_DIR ~/projects/$PROJECT
         fish_add_path {$HOME}/bin/linux
