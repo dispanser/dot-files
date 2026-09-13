@@ -3,12 +3,16 @@
 (defcfg
   sequence-timeout 50
   sequence-input-mode hidden-delay-type
-  linux-dev-names-include (
-    "Darfon Thinkpad X12 Detachable Gen 1 Folio case -1"
-    "Darfon ThinkPad X12 Detachable Gen 2 Folio Keyboard"
-    "Chicony ThinkPad X1 Tablet Thin Keyboard Gen 3"
-    "Lenovo ThinkPad Compact USB Keyboard with TrackPoint"
-  )
+;; on wayland with `libinput`: sudo libinput list-devices
+;; I don't remember why I listed those, but IIRC I just wanted to avoid
+;; piantor keyboard itself from being remapped by kanata. Activating this
+;; below blocks the touchpad from working, cf. https://github.com/jtroo/kanata/issues/2138
+;;  linux-dev-names-include (
+;;    "Darfon Thinkpad X12 Detachable Gen 1 Folio case -1"
+;;    "Darfon ThinkPad X12 Detachable Gen 2 Folio Keyboard"
+;;    "Chicony ThinkPad X1 Tablet Thin Keyboard Gen 3"
+;;    "Lenovo ThinkPad Compact USB Keyboard with TrackPoint"
+;;  )
   process-unmapped-keys yes
 )
 

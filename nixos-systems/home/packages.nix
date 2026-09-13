@@ -75,6 +75,7 @@ with pkgs; let
     onboard
     wlr-randr xwayland-satellite fuzzel wtype wl-clipboard-rs
     yt-dlp
+    libinput
   ];
 in {
   desktopPkgs = desktopPkgs;
