@@ -106,6 +106,7 @@
       ls   = "eza --git";
       lt   = "eza -l --sort newest --git";
       l    = "eza -la --git";
+      ll   = "eza -l --git";
       ",c" = "clear; ${pkgs.tmux}/bin/tmux clear-history";
     };
     functions = {
@@ -128,10 +129,10 @@
       k9d.body   = ''kubectl config get-contexts -o name | fzf --query "$argv[1]" -1 | xargs k9s -c deploy --context'';
       k9p.body   = ''kubectl config get-contexts -o name | fzf --query "$argv[1]" -1 | xargs k9s -c pods --context'';
       k9c.body   = ''kubectl config get-contexts -o name | fzf --query "$argv[1]" -1 | xargs kubectl config use-context'';
-      unidle     = ''
-        systemctl --user stop xidlehook.service
-        sleep $argv;
-        systemctl --user start xidlehook.service
+      ",nosleep"     = ''
+        noctalia msg caffeine-enable
+        sleep $argv
+        noctalia msg caffeine-disable
       '';
     } // (if pkgs.stdenv.hostPlatform.isLinux then {
         rlfs.body  = "readlink -f $argv[1] | tr -d '\n' | wl-copy";

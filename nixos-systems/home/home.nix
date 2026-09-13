@@ -30,6 +30,8 @@ in
     defaultSopsFormat = "yaml";
   };
 
+  wayland.windowManager.niri.enable = true;
+
   # toggle to false when sourcehut is down, as downloadeding from git.sr.ht/~rycee/nmd fails
   manual.html.enable = true;
   manual.manpages.enable = true;

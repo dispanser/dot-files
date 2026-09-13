@@ -56,6 +56,12 @@ window-rule {
     default-floating-position x=16 y=8 relative-to="top-right"
 }
 
+debug {
+    // honor-xdg-activation-with-invalid-serial
+    // render-drm-device "/dev/dri/by-path/pci-0000:06:00.0-render" // amd gpu
+    ignore-drm-device "/dev/dri/renderD129"
+}
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
@@ -320,12 +326,6 @@ layout {
     }
 }
 
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "noctalia"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:

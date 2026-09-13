@@ -45,7 +45,7 @@
   programs.niri.enable = true;
   programs.noctalia = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
   };
   systemd.user.services.niri.enableDefaultPath = false;
 

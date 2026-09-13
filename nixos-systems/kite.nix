@@ -35,6 +35,8 @@
     clickMethod        = "buttonareas";
     tapping            = false;
   };
+
+  hardware.nvidia-container-toolkit.enable = true;
   virtualisation.docker = {
     enable = true;
     daemon.settings.data-root = "/mnt/your-big-drive/docker";
