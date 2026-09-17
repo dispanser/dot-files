@@ -111,7 +111,7 @@
     };
     functions = {
       gdt.body   = ''nvim "+CodeDiff $argv"'';
-      gdc.body   = ''nvim "+CodeDiff $argv[1]~1..$argv[1]"'';
+      gdc.body   = ''nvim "+CodeDiff $argv[1]^1...$argv[1]"'';
       gdh.body   = ''nvim "+CodeDiff HEAD~1"'';
       gdm.body   = ''nvim "+Codeiff master..."'';
       epoch.body = "date --date=@$argv[1] --iso-8601=seconds -u";
@@ -159,6 +159,7 @@
       fish_add_path --move $HOME/bin
       fish_add_path --move {$HOME}/projects/coralogix/src/scripts
       '' + (if pkgs.stdenv.hostPlatform.isDarwin then ''
+        set -gx DOCKER_HOST unix:///Users/thomas.peiselt/.orbstack/run/docker.sock
         fish_add_path --move {$HOME}/go/bin
         fish_add_path --move {$HOME}/darwin/bin
         for p in (string split " " $NIX_PROFILES)

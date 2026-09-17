@@ -48,23 +48,23 @@ vim.keymap.set('n', '<leader>DD', function()
 end, { noremap = true, silent = true, desc = "[dap] enable keybindings" })
 
 local dap_keymaps = {
-  { '<leader>dc', function() dap.toggle_breakpoint() end, "[dap] toggle breakpoint" },
-  { '<leader>db', function()
+  { '<leader>Dc', function() dap.toggle_breakpoint() end, "[dap] toggle breakpoint" },
+  { '<leader>Db', function()
     dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
   end, "[dap] set breakpoint condition" },
-  { '<leader>dl', function() dap.repl.run_last() end,     "[dap] open repl" },
-  { '<leader>dr', function() dap.continue() end,          "[dap] continue" },
-  { '<leader>dR', function() dap.reverse_continue() end,  "[dap] reverse continue" },
-  { '<leader>do', function() dap.step_over() end,         "[dap] step over" },
+  { '<leader>Dl', function() dap.repl.run_last() end,     "[dap] open repl" },
+  { '<leader>Dr', function() dap.continue() end,          "[dap] continue" },
+  { '<leader>DR', function() dap.reverse_continue() end,  "[dap] reverse continue" },
+  { '<leader>Do', function() dap.step_over() end,         "[dap] step over" },
   { '<M-Space>',  function() dap.step_over() end,         "[dap] step over" },
-  { '<leader>di', function() dap.step_into() end,         "[dap] step into" },
+  { '<leader>Di', function() dap.step_into() end,         "[dap] step into" },
   { '<M-CR>',     function() dap.step_into() end,         "[dap] step into" },
-  { '<leader>dO', function() dap.step_out() end,          "[dap] step out" },
+  { '<leader>DO', function() dap.step_out() end,          "[dap] step out" },
   { '<M-BS>',     function() dap.step_out() end,          "[dap] step out" },
-  { '<leader>dd', function() dap.disconnect() end,        "[dap] disconnect" },
-  { '<leader>dx', function() dap.terminate() end,         "[dap] terminate" },
-  { '<leader>dk', function() dapui.eval() end,            "[dap] hover" },
-  { '<leader>de', function()
+  { '<leader>Dd', function() dap.disconnect() end,        "[dap] disconnect" },
+  { '<leader>Dx', function() dap.terminate() end,         "[dap] terminate" },
+  { '<leader>Dk', function() dapui.eval() end,            "[dap] hover" },
+  { '<leader>De', function()
     dapui.eval(vim.fn.input('evaluate: '))
   end, "[dap] eval expression" },
   { '<leader>dh', function() require('dap.ui.widgets').hover() end,    "[dap] hover" },

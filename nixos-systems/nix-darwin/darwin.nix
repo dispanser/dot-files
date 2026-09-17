@@ -42,7 +42,7 @@
       "signal"
       "zerotier-one"
       "stats"
-      "teleport"
+      "teleport-suite"
       "orbstack"
     ];
     brews = [

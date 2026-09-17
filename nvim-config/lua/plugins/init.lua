@@ -6,18 +6,43 @@ return {
     event = "VeryLazy",
     opts = {
       explorer = {
-        view_mode = "tree",    -- "list" or "tree"
-        flatten_dirs = true,   -- Flatten single-child directory chains in tree view
+        view_mode = "tree",  -- "list" or "tree"
+        flatten_dirs = true, -- Flatten single-child directory chains in tree view
       },
       history = {
-        view_mode = "tree",   -- "list" or "tree" for files under commits
+        view_mode = "tree", -- "list" or "tree" for files under commits
+      },
+      keymaps = {
+        view = {
+          quit = "q",                          -- Close diff tab
+          toggle_explorer = "<leader>dt",       -- Toggle explorer visibility (explorer mode only)
+          focus_explorer = "X",        -- Focus explorer panel (explorer mode only)
+          next_hunk = "]c",                    -- Jump to next change
+          prev_hunk = "[c",                    -- Jump to previous change
+          next_file = "]f",                    -- Next file in explorer/history mode
+          prev_file = "[f",                    -- Previous file in explorer/history mode
+          diff_get = "do",                     -- Get change from other buffer (like vimdiff)
+          diff_put = "dp",                     -- Put change to other buffer (like vimdiff)
+          open_in_prev_tab = "gf",             -- Open current buffer in previous tab (or create one before)
+          close_on_open_in_prev_tab = false,   -- Close codediff tab after gf opens file in previous tab
+          toggle_stage = "-",                  -- Stage/unstage current file (works in explorer and diff buffers)
+          toggle_staged_view = "gS",           -- Swap between staged/unstaged view of current file (#352)
+          stage_hunk = "<leader>hs",           -- Stage hunk under cursor to git index
+          unstage_hunk = "<leader>hu",         -- Unstage hunk under cursor from git index
+          discard_hunk = "<leader>hr",         -- Discard hunk under cursor (working tree only)
+          hunk_textobject = "ih",              -- Textobject for hunk (vih to select, yih to yank, etc.)
+          show_help = "g?",                    -- Show floating window with available keymaps
+          align_move = "gm",                   -- Temporarily align moved code blocks across panes
+          toggle_layout = "t",                 -- Toggle between side-by-side and inline layout
+          toggle_compact = "gc",               -- Toggle compact mode (fold unchanged regions)
+        },
       },
     },
     keys = {
-      { '<leader>gv', vim.cmd.CodeDiff, desc = "open diff view" },
-      { '<leader>ghf', "<Cmd>%CodeDiff history<CR>", desc = "open project history diff view", mode = { "n" } },
+      { '<leader>gv',  vim.cmd.CodeDiff,                 desc = "open diff view" },
+      { '<leader>ghf', "<Cmd>%CodeDiff history<CR>",     desc = "open project history diff view", mode = { "n" } },
       { '<leader>ghs', "<Cmd>'<,'>CodeDiff history<CR>", desc = "open project history diff view", mode = { "v" } },
-      { '<leader>ghp', "<Cmd>CodeDiff history<CR>", desc = "open project history diff view", mode = { "n" } },
+      { '<leader>ghp', "<Cmd>CodeDiff history<CR>",      desc = "open project history diff view", mode = { "n" } },
     },
   },
   {
@@ -71,7 +96,7 @@ return {
   },
   -- vim-bbye: replaced by Snacks.bufdelete
   -- { 'moll/vim-bbye' },
-  { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
   {
     'rebelot/kanagawa.nvim',
     -- color scheme determines highlight groups that should be loaded first
@@ -145,10 +170,10 @@ return {
       "TmuxNavigatorProcessList",
     },
     keys = {
-      { "<A-h>", vim.cmd.TmuxNavigateLeft },
-      { "<A-j>", vim.cmd.TmuxNavigateDown },
-      { "<A-k>", vim.cmd.TmuxNavigateUp },
-      { "<A-l>", vim.cmd.TmuxNavigateRight },
+      { "<A-h>",  vim.cmd.TmuxNavigateLeft },
+      { "<A-j>",  vim.cmd.TmuxNavigateDown },
+      { "<A-k>",  vim.cmd.TmuxNavigateUp },
+      { "<A-l>",  vim.cmd.TmuxNavigateRight },
       { "<A-\\>", vim.cmd.TmuxNavigatePrevious },
     },
   },
@@ -196,8 +221,8 @@ return {
       }
     end,
   },
-  { 'sheerun/vim-polyglot',    lazy = false },
-  { 'tpope/vim-fugitive',      lazy = false },
+  { 'sheerun/vim-polyglot', lazy = false },
+  { 'tpope/vim-fugitive',   lazy = false },
   {
     'andymass/vim-matchup',
     init = function()
@@ -223,66 +248,66 @@ return {
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       require("dapui").setup(
-        -- {
-        --   icons = {
-        --     expanded = "⯆",
-        --     collapsed = "⯈",
-        --     circular = "↺"
-        --   },
-        --   mappings = {
-        --     expand = "<CR>",
-        --     open = "o",
-        --     remove = "d"
-        --   },
-        --   sidebar = {
-        --     elements = {
-        --       elements.SCOPES,
-        --       elements.STACKS,
-        --       elements.WATCHES
-        --     },
-        --     width = 40,
-        --     position = "left"
-        --   },
-        --   tray = {
-        --     elements = {
-        --       elements.REPL
-        --     },
-        --     height = 10,
-        --     position = "bottom"
-        --   }
-        -- }
-        -- {
-        -- layouts = {
-        --   {
-        --     elements = {
-        --       { id = "stacks", size = 0.5 },
-        --       { id = "scopes", size = 0.5 },
-        --     },
-        --     position = "bottom",
-        --     size = 15,
-        --   },
-        -- },
+      -- {
+      --   icons = {
+      --     expanded = "⯆",
+      --     collapsed = "⯈",
+      --     circular = "↺"
+      --   },
+      --   mappings = {
+      --     expand = "<CR>",
+      --     open = "o",
+      --     remove = "d"
+      --   },
+      --   sidebar = {
+      --     elements = {
+      --       elements.SCOPES,
+      --       elements.STACKS,
+      --       elements.WATCHES
+      --     },
+      --     width = 40,
+      --     position = "left"
+      --   },
+      --   tray = {
+      --     elements = {
+      --       elements.REPL
+      --     },
+      --     height = 10,
+      --     position = "bottom"
+      --   }
+      -- }
+      -- {
+      -- layouts = {
+      --   {
+      --     elements = {
+      --       { id = "stacks", size = 0.5 },
+      --       { id = "scopes", size = 0.5 },
+      --     },
+      --     position = "bottom",
+      --     size = 15,
+      --   },
+      -- },
       -- }
       )
     end,
     keys = {
-      { '<leader>Du', function() require('dapui').toggle() end, desc = "[dap] toggle ui" },
+      { '<leader>Du', function() require('dapui').toggle() end,          desc = "[dap] toggle ui" },
       { '<leader>dc', function() require('dap').toggle_breakpoint() end, "[dap] toggle breakpoint" },
       { '<leader>db', function()
         require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
       end, "[dap] set breakpoint condition" },
-      { '<leader>dl', function() require('dap').repl.run_last() end,     "[dap] open repl" },
-      { '<leader>dr', function() require('dap').continue() end,          "[dap] continue" },
-      { '<leader>dR', function() require('dap').reverse_continue() end,  "[dap] reverse continue" },
-      { '<leader>do', function() require('dap').step_over() end,         "[dap] step over" },
-      { '<M-Space>',  function() require('dap').step_over() end,         "[dap] step over" },
-      { '<leader>di', function() require('dap').step_into() end,         "[dap] step into" },
-      { '<M-CR>',     function() require('dap').step_into() end,         "[dap] step into" },
-      { '<leader>dO', function() require('dap').step_out() end,          "[dap] step out" },
-      { '<M-BS>',     function() require('dap').step_out() end,          "[dap] step out" },
-      { '<leader>dd', function() require('dap').disconnect() end,        "[dap] disconnect" },
-      { '<leader>dx', function() require('dap').terminate() end,         "[dap] terminate" },
-      { '<leader>dk', function() require('dapui').eval() end,            "[dap] hover" },
+      { '<leader>dl', function() require('dap').repl.run_last() end,    "[dap] open repl" },
+      { '<leader>dr', function() require('dap').continue() end,         "[dap] continue" },
+      { '<leader>dR', function() require('dap').reverse_continue() end, "[dap] reverse continue" },
+      { '<leader>do', function() require('dap').step_over() end,        "[dap] step over" },
+      { '<M-Space>',  function() require('dap').step_over() end,        "[dap] step over" },
+      { '<leader>di', function() require('dap').step_into() end,        "[dap] step into" },
+      { '<M-CR>',     function() require('dap').step_into() end,        "[dap] step into" },
+      { '<leader>dO', function() require('dap').step_out() end,         "[dap] step out" },
+      { '<M-BS>',     function() require('dap').step_out() end,         "[dap] step out" },
+      { '<leader>dd', function() require('dap').disconnect() end,       "[dap] disconnect" },
+      { '<leader>dx', function() require('dap').terminate() end,        "[dap] terminate" },
+      { '<leader>dk', function() require('dapui').eval() end,           "[dap] hover" },
       { '<leader>de', function()
         require('dapui').eval(vim.fn.input('evaluate: '))
       end, "[dap] eval expression" },
@@ -291,7 +316,7 @@ return {
         local widgets = require('dap.ui.widgets')
         widgets.centered_float(widgets.scopes)
       end, "[dap] scopes" },
-      { '<leader>df', function() require('dapui').float_element() end,                "[dap] float" },
+      { '<leader>df', function() require('dapui').float_element() end,     "[dap] float" },
       { '<leader>dS', function() require('dap.ui.variables').scopes() end, "[dap] variable scopes" },
     },
   },
