@@ -30,6 +30,36 @@
       "Name __pycache__"
       "Name src/github/NixOS"
       "Name .local"
+
+      # git: derived caches. Git regenerates these on demand; syncing them can
+      # leave one side with a chain/MIDX referencing a file that only exists on
+      # the other side (e.g. "warning: unable to find all commit-graph files").
+      "Name .git/objects/info/commit-graph"
+      "Name .git/objects/info/commit-graphs"
+      "Name .git/objects/info/multi-pack-index"
+      "Name .git/objects/info/multi-pack-index-*"
+      "Name .git/objects/pack/multi-pack-index"
+      "Name .git/objects/pack/multi-pack-index-*"
+
+      # git: transient locks and per-machine refs.
+      "Name .git/*.lock"
+      "Name .git/FETCH_HEAD"
+      "Name .git/ORIG_HEAD"
+
+      # git: mid-operation state — never sync a half-finished merge/rebase/etc.
+      "Name .git/MERGE_HEAD"
+      "Name .git/CHERRY_PICK_HEAD"
+      "Name .git/REVERT_HEAD"
+      "Name .git/REBASE_HEAD"
+      "Name .git/AUTO_MERGE"
+      "Name .git/BISECT_*"
+      "Name .git/rebase-merge"
+      "Name .git/rebase-apply"
+      "Name .git/sequencer"
+
+      # NOTE: .git/index is intentionally NOT ignored so `git status` is clean
+      # on the other machine; core.checkStat=minimal (git.nix) keeps it stable
+      # across OSes. If it ever churns, ignore it and run `git reset` on arrival.
     ];
     paths = [
       "projects"

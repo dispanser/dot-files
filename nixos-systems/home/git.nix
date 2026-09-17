@@ -34,6 +34,8 @@
       commit.gpgsign = true;
       signing.format = "openpgp";
       core = {
+        # Compare only mtime/size/mode, not inode/device/ctime/uid/gid, for Linux <-> MacOS sync
+        checkStat = "minimal";
         # sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
       };
       # Default signing key: YubiKey (0x2DAC058D2C07F848)
