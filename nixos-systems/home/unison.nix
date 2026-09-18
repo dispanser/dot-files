@@ -2,7 +2,11 @@
 
 {
   services.unison =
-    let ignores = [
+    let
+      # ~/.pi/agent is a symlink into this project dir, so pi's agent state
+      # physically lives inside the synced tree and must be addressed here.
+      piAgent = "projects/coralogix/src/agentic/pi";
+      ignores = [
       "Name *.o"
       "Name *.hi"
       "Name xmonad-x86_64-linux"
@@ -30,6 +34,11 @@
       "Name __pycache__"
       "Name src/github/NixOS"
       "Name .local"
+
+      # pi: per-machine caches and scratch state, never portable.
+      "Name ${piAgent}/tmp"
+      "Name ${piAgent}/mcp-cache.json"
+      "Name ${piAgent}/web-search-cache"
 
       # git: derived caches. Git regenerates these on demand; syncing them can
       # leave one side with a chain/MIDX referencing a file that only exists on
