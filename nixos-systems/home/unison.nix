@@ -35,6 +35,10 @@
       "Name src/github/NixOS"
       "Name .local"
 
+      # pi: per-machine settings.
+      "Name ${piAgent}/settings.json"
+      "Name ${piAgent}/trust.json"
+
       # pi: per-machine caches and scratch state, never portable.
       "Name ${piAgent}/tmp"
       "Name ${piAgent}/mcp-cache.json"
