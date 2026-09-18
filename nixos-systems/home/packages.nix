@@ -42,7 +42,9 @@ with pkgs; let
     samply
     k9s stern
     bc
-    # uv
+    ddgr
+    zat
+    codegraph
     tree-sitter
     rustup
     inputs.cx-cli.packages.${pkgs.system}.default

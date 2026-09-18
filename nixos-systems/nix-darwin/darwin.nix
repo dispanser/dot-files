@@ -36,9 +36,7 @@
     casks = [
       "bluesnooze"
       "qutebrowser"
-      "pritunl"
       "postman"
-      "notion"
       "signal"
       "zerotier-one"
       "stats"
@@ -49,7 +47,7 @@
       "awscli"
       "golang"
       "openssh"
-      "vcluster"
+      "sandgardenhq/tap/mdfetch"
     ];
   };
 
