@@ -45,6 +45,7 @@ with pkgs; let
     ddgr
     zat
     codegraph
+    llama-benchy
     tree-sitter
     rustup
     inputs.cx-cli.packages.${pkgs.system}.default

@@ -8,6 +8,7 @@
     (import ./tp-smapi.nix)
     (import ./mlc.nix)
     (import ./llama-cpp.nix)
+    (import ./llama-benchy.nix)
     ((import ./touchscreen-gestures.nix) { inherit tsg; })
   ];
 }
