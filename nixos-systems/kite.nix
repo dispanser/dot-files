@@ -14,7 +14,13 @@
     ./yubico.nix
     ./llm.nix
     ./cx_vpn.nix
+    ./modules/caffeine-control.nix
   ];
+
+  services.caffeine-control = {
+    enable = true;
+    listenAddress = "10.1.3.4";
+  };
 
   nixpkgs.config.cudaSupport = true;
   nixpkgs.config.nvidia.acceptLicense = true;
