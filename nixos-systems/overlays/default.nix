@@ -3,6 +3,7 @@
 {
   nixpkgs.overlays = [
     (import ./llm.nix)
+    (import ./llm-proxy.nix)
     (import ./tilth.nix)
     (import ./tp-smapi.nix)
     (import ./mlc.nix)

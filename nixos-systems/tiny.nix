@@ -14,7 +14,54 @@
     ./mqtt.nix
     ./smart-home.nix
     ./unifi.nix
+    ./modules/llm-proxy.nix
   ];
+
+  # Secrets for system services. /run/secrets is tmpfs, so the default
+  # activation-script install would leave it empty after a reboot: install the
+  # secrets through a systemd unit instead.
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    age.keyFile = "/home/pi/.config/sops/age/keys.txt";
+    useSystemdActivation = true;
+
+    # Bare API key for the TabbyAPI backend, rendered into a dotenv file below.
+    secrets.tabby_api_key = { };
+    templates.llm_proxy_env.content =
+      "TABBY_API_KEY=${config.sops.placeholder.tabby_api_key}";
+  };
+
+  # Declarative equivalent of the hand-written llm-proxy/config.toml that this
+  # checkout used to be started with by hand (`target/release/llm-proxy`).
+  services.llm-proxy = {
+    enable = true;
+
+    listen = "10.1.3.10:3333";
+
+    backends.default = {
+      url = "http://10.1.3.4:3333";
+
+      # Wake the backend (WOL) and wait for its /health before forwarding.
+      preRequestHook = "${config.services.llm-proxy.hooksSource}/start-backend.sh";
+      # config.toml raised the 30 s default because a cold boot takes a while.
+      hookTimeoutSecs = 60;
+
+      # noctalia caffeine on the backend, so it does not suspend mid-response.
+      keepAwakeEnableHook = "${config.services.llm-proxy.hooksSource}/caffeine-enable.sh";
+      keepAwakeDisableHook = "${config.services.llm-proxy.hooksSource}/caffeine-disable.sh";
+      keepAwakeGraceSecs = 300;
+
+      # Save the active conversation's KV-cache slot well before the grace
+      # period ends and the backend suspends.
+      preloadSaveIdleSecs = 60;
+
+      # Injected toward the backend as `Authorization: Bearer <key>`, replacing
+      # whatever the client sent; the value comes from environmentFile.
+      apiKey = "$TABBY_API_KEY";
+    };
+
+    environmentFile = config.sops.templates.llm_proxy_env.path;
+  };
 
   services.undervolt = {
     temp = 90;
