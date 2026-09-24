@@ -31,8 +31,8 @@ in
   };
 
   wayland.windowManager.niri = {
-    enable = true;
-    systemd.enable = true;
+    enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
+    systemd.enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
   };
 
   # toggle to false when sourcehut is down, as downloadeding from git.sr.ht/~rycee/nmd fails

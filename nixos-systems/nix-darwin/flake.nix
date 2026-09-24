@@ -28,6 +28,7 @@
         home-manager.darwinModules.home-manager
         {
           nixpkgs.overlays = [
+            (import ../overlays/llama-benchy.nix)
             (import ../overlays/tilth.nix)
           ];
 
