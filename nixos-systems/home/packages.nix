@@ -48,8 +48,8 @@ with pkgs; let
     llama-benchy
     tree-sitter
     rustup
-    inputs.cx-cli.packages.${pkgs.system}.default
-  ] ++ (with inputs.llm-agents.packages.${pkgs.system}; [ tilth pi ]);
+    inputs.cx-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ] ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [ tilth pi ]);
   linuxOnly = [
     brightnessctl
     touchscreen-gestures

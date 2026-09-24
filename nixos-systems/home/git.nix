@@ -6,7 +6,7 @@
   programs.git = {
     enable    = true;
 
-    includes = lib.optionals pkgs.stdenv.isDarwin [
+    includes = lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       {
         contents.user.email = "thomas.peiselt@coralogix.com";
         contents.gpg.format = "ssh";

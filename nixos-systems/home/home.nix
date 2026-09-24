@@ -12,7 +12,7 @@ let
   editor = "nvim";
   isServer = osConfig.networking.hostName == "tiny";
   isKite = osConfig.networking.hostName == "kite";
-  cx_skills = inputs.cx-cli.packages.${pkgs.system}.skills;
+  cx_skills = inputs.cx-cli.packages.${pkgs.stdenv.hostPlatform.system}.skills;
 in
 {
 
@@ -198,6 +198,10 @@ in
         nativeBuildInputs = [ pkgs.installShellFiles ];
 
         doCheck = false;
+
+        meta = {
+          mainProgram = "atuin";
+        };
 
         postInstall = ''
           installShellCompletion --cmd atuin --bash <($out/bin/atuin gen-completions -s bash) --fish <($out/bin/atuin gen-completions -s fish) --zsh <($out/bin/atuin gen-completions -s zsh)
