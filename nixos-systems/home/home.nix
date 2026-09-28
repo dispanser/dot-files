@@ -124,41 +124,6 @@ in
     recursive = true;
   };
 
-  xdg.configFile.xmonad = {
-    source = ../../xmonad-config/xmonad;
-    recursive = true;
-  };
-
-  xdg.configFile."xmonad/lib" = {
-    source = ../../xmonad-config/src;
-    recursive = true;
-  };
-
-  services.xidlehook = {
-    enable = !isServer && !isKite && pkgs.stdenv.hostPlatform.isLinux;
-    detect-sleep = true;
-    not-when-audio = true;
-    not-when-fullscreen = false; # TBE
-    environment = {
-      DISPLAY = ":0";
-      XAUTHORITY = "/home/${config.home.username}/.Xauthority";
-    };
-    # TODO: xrandr brightness changes don't actually work because this script can't access :X
-    timers = [
-      {
-        delay = 540;
-        command = "${pkgs.brightnessctl}/bin/brightnessctl --save set 50%- >> /tmp/xih";
-        canceller = "${pkgs.brightnessctl}/bin/brightnessctl --restore >> /tmp/xih";
-      }
-      {
-        delay = 600;
-        # hack: re-activate the screen briefly before suspend, otherwise kite can no longer see EDID
-        # from LG display and falls back to VGA (or worse, requires a hard reset)
-        command = "${pkgs.xset}/bin/xset dpms force on; ${pkgs.systemd}/bin/systemctl suspend >> /tmp/xih";
-        canceller = "${pkgs.brightnessctl}/bin/brightnessctl --restore >> /tmp/xih";
-      }
-    ];
-  };
   services.gpg-agent = {
     enable = pkgs.stdenv.hostPlatform.isLinux;
     enableSshSupport = true;
@@ -172,46 +137,12 @@ in
     fish.enable = true;
     atuin = {
       enable = true;
-      package = pkgs.rustPlatform.buildRustPackage ({
-        pname = "atuin";
-        version = "18.13.6";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "atuinsh";
-          repo = "atuin";
-          rev = "v18.13.6";
-          hash = "sha256-yAw+ty6FUnFbiRTdAe2QQHzj6uU24fZ/bEIXcHl/thg=";
-        };
-
-        cargoHash = "sha256-jirVe0+N5+UHZWioj8AipUhawMBameqEJJpa8HPTnfw=";
-
-        buildNoDefaultFeatures = true;
-        buildFeatures = [
-          "ai"
-          "client"
-          "clipboard"
-          "daemon"
-          "hex"
-          "sync"
-        ];
-
-        nativeBuildInputs = [ pkgs.installShellFiles ];
-
-        doCheck = false;
-
-        meta = {
-          mainProgram = "atuin";
-        };
-
-        postInstall = ''
-          installShellCompletion --cmd atuin --bash <($out/bin/atuin gen-completions -s bash) --fish <($out/bin/atuin gen-completions -s fish) --zsh <($out/bin/atuin gen-completions -s zsh)
-        '';
-      });
-      # daemon.enable = true;
+      daemon.enable = true;
       settings = {
         style = "full";
-        search_mode = "fuzzy";
+        search_mode = "daemon-fuzzy";
         filter_mode_shell_up_key_binding = "directory";
+        filters = [ "directory" "global" "host" "session" ];
         dialect = "uk";
         update_check = false;
         show_preview = true;
