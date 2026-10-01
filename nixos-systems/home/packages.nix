@@ -52,6 +52,7 @@ with pkgs; let
   ] ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [ tilth pi ]);
   linuxOnly = [
     brightnessctl
+    ddcutil
     touchscreen-gestures
     voxtype-vulkan
     feh
