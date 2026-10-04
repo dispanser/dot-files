@@ -11,7 +11,6 @@
 let
   editor = "nvim";
   isServer = osConfig.networking.hostName == "tiny";
-  isKite = osConfig.networking.hostName == "kite";
   cx_skills = inputs.cx-cli.packages.${pkgs.stdenv.hostPlatform.system}.skills;
 in
 {
