@@ -34,8 +34,6 @@ with pkgs; let
     marksman
     markdown-oxide
     nil
-    watchexec
-    ctags
     sloc
     lua-language-server
     vscode-langservers-extracted
@@ -45,7 +43,6 @@ with pkgs; let
     ddgr
     zat
     codegraph
-    llama-benchy
     tree-sitter
     rustup
     inputs.cx-cli.packages.${pkgs.stdenv.hostPlatform.system}.default

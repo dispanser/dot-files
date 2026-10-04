@@ -67,15 +67,14 @@
     patchelf
     wget
     htop iotop iftop psmisc
-    stow
     gptfdisk parted hdparm smartmontools
     powertop acpi dmidecode
     ethtool
     lm_sensors lshw pciutils usbutils
     gnutls
-    zip unzip p7zip rsnapshot
+    zip unzip p7zip
     gnupg offlineimap msmtp mutt mu
-    i7z mprime fwupd s-tui
+    i7z fwupd s-tui
   ];
 
   powerManagement = {
