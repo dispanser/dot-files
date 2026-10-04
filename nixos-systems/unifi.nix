@@ -5,7 +5,7 @@
 	# unifi.http.port
 	# server name: townhall
   services.unifi = {
-	  enable = false;
+	  enable = true;
 		openFirewall = true;
 	  initialJavaHeapSize = 256;
 	  maximumJavaHeapSize = 256;
