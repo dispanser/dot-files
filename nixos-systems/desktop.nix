@@ -61,23 +61,6 @@
 
   # also re-use xkb config for console keyboards (tbd)
   console.useXkbConfig = true;
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable                 = false;
-    enableCtrlAltBackspace = true;
-    xkb = {
-      layout                 = "us";
-      options                = "caps:escape,compose:lwin-altgr,lv3:ralt_switch";
-    };
-    windowManager = {
-      xmonad = {
-        enable                 = true;
-        enableContribAndExtras = true; 
-      };
-    };
-
-    exportConfiguration = true;
-  };
 
   services.xserver.displayManager.sessionCommands = ''
     # ${pkgs.onboard}/bin/onboard -l /home/pi/src/github/dispanser/dot-files/configs/onboard/mine.onboard
