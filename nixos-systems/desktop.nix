@@ -59,32 +59,21 @@
     };
   };
 
-  # also re-use xkb config for console keyboards (tbd)
-  console.useXkbConfig = true;
-  # Enable the X11 windowing system.
+  # No X server / XMonad anymore, but keep the xkb settings: they are the
+  # single source for
+  #  - /etc/X11/xorg.conf.d/00-keyboard.conf (written by graphical-desktop,
+  #    read by systemd-localed → org.freedesktop.locale1 → niri)
+  #  - the virtual console keymap via console.useXkbConfig
   services.xserver = {
-    enable                 = false;
-    enableCtrlAltBackspace = true;
+    enable = false;
     xkb = {
-      layout                 = "us";
-      options                = "caps:escape,compose:lwin-altgr,lv3:ralt_switch";
+      layout  = "us";
+      options = "caps:escape,compose:lwin-altgr,lv3:ralt_switch";
     };
-    windowManager = {
-      xmonad = {
-        enable                 = true;
-        enableContribAndExtras = true; 
-      };
-    };
-
-    exportConfiguration = true;
   };
 
-  services.xserver.displayManager.sessionCommands = ''
-    # ${pkgs.onboard}/bin/onboard -l /home/pi/src/github/dispanser/dot-files/configs/onboard/mine.onboard
-    ${pkgs.setxkbmap}/bin/setxkbmap -layout us -option -option caps:escape -option compose:lwin-altgr -option lv3:ralt_switch
-    ${pkgs.xbindkeys}/bin/xbindkeys
-    ${pkgs.xmodmap}/bin/xmodmap ~/.Xmodmap
-  '';
+  # also re-use xkb config for console keyboards (tbd)
+  console.useXkbConfig = true;
 
   services.displayManager = {
     enable = true;
