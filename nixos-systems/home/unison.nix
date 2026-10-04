@@ -9,6 +9,7 @@
       ignores = [
       "Name *.o"
       "Name *.hi"
+      "Name xmonad-x86_64-linux"
       "Name *.class"
       "Name *.jar"
       "Name .password-store/.git"

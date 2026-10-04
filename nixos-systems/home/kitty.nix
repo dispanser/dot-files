@@ -12,7 +12,7 @@
       # darwin-specific options
       macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
-      hide_window_decorations = "yes";
+      hide_window_decorations = "yes"; # darwin only because xmonad doesn't care
     };
     keybindings = {
       "ctrl+minus"             = "change_font_size all -2.0";
