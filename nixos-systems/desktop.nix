@@ -138,7 +138,7 @@
       source-sans-pro
       terminus_font
       terminus_font_ttf
-      ttf_bitstream_vera
+      ttf-bitstream-vera
     ];
   };
 
