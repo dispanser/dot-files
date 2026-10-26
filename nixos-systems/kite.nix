@@ -150,11 +150,11 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" ];
-    kernelModules                   = [ "tp_smapi" "acpi_call" "zenpower" "amdgpu" "nvidia" "nvidia_uvm" ];
+    kernelModules                   = [ "acpi_call" "zenpower" "amdgpu" "nvidia" "nvidia_uvm" ];
 
     blacklistedKernelModules        = [ "k10temp" ];
     extraModulePackages             = with config.boot.kernelPackages; [
-      tp_smapi acpi_call zenpower
+      acpi_call zenpower
       # config.hardware.nvidia.package
       # nvidia_x11
     ];

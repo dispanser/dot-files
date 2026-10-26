@@ -8,3 +8,9 @@ How to upgrade:
   then bump `version` and the `fetchPypi` hash. Note the sdist is published under the
   normalized name `llama_benchy-<version>.tar.gz`, hence `pname = "llama_benchy"` for the fetch.
 - be smart: don't pull the entire repository - what's the right command to just list remote tags?
+
+## Temporary overlays
+
+`kernel-module-certs.nix`, `zat.nix` and `unifi.nix` work around upstream defects, not packaging
+choices. Each names the bug and the condition for its removal. Check them on every
+`nix flake update nixpkgs` and delete them once nixpkgs carries the fix.

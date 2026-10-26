@@ -50,8 +50,8 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules = [ "tp_smapi" "acpi_call" ];
-    extraModulePackages = with config.boot; [ kernelPackages.tp_smapi kernelPackages.acpi_call ];
+    kernelModules = [ "acpi_call" ];
+    extraModulePackages = with config.boot; [ kernelPackages.acpi_call ];
     extraModprobeConfig = ''
       			  options acpi ec_no_wakeup=1
       			  options thinkpad_acpi fan_control=1
