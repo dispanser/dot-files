@@ -51,7 +51,7 @@
     };
 
     ignores = [
-      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.devenv/" "/.tp/" "/tmp" "/.codegraph/"
+      "/target" "/.envrc" "/.direnv/" ".abbr" ".nvim.lua" "/.devenv/" "/.tp/" "tmp/" "/.codegraph/" "agent/"
     ];
   };
   programs.delta = {
