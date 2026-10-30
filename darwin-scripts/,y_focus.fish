@@ -1,41 +1,36 @@
 #!/usr/bin/env fish
-# filepath: darwin-scripts/,y_focus.fish
+# Focus an app's first window, or cycle when one of its windows has focus.
+# Usage: ,y_focus.fish [--regex] APP
+# APP is an exact name by default; --regex enables jq's regular expressions.
 
-# 1️⃣ Get a space‑separated list of all window IDs whose app matches the argument
-set -l ids (yabai -m query --windows \
-    | jq -r ".[] | select(.app == \"$argv[1]\") | .id")
+argparse --min-args=1 --max-args=1 regex -- $argv
+or exit 2
 
-# Exit if nothing matches
-if test -z "$ids"
+set -l regex false
+if set -q _flag_regex
+    set regex true
+end
+
+set -l windows (yabai -m query --windows)
+or exit $status
+
+set -l matches (printf '%s\n' "$windows" | jq --arg matcher "$argv[1]" --argjson regex $regex '
+    map(select(if $regex then (.app | test($matcher)) else .app == $matcher end))
+')
+or exit $status
+
+set -l ids (printf '%s\n' "$matches" | jq -r '.[].id')
+if test (count $ids) -eq 0
     exit 0
 end
 
-# 2️⃣ Find the ID of the currently focused window among those matches
-set -l focused_id (yabai -m query --windows \
-    | jq -r ".[] | select(.app == \"$argv[1]\" and .\"has-focus\" == true) | .id")
+set -l focused_id (printf '%s\n' "$matches" | jq -r '.[] | select(."has-focus" == true) | .id')
+set -l target_id $ids[1]
 
-set -l id_array $ids
-set -l target_id ""
-
-# 3️⃣ Determine which ID to focus
 if test -n "$focused_id"
-    # Locate the index of the focused window inside the array
-    set -l idx 0
-    for i in (seq (count $id_array))
-        if test $id_array[$i] = $focused_id
-            set idx $i
-            break
-        end
-    end
-
-    # Compute the next index, wrapping around to the first element if needed
-    set -l total (count $id_array)
-    set -l next_idx (math "$idx % $total + 1")
-    set target_id $id_array[$next_idx]
-else
-    # No matching window currently has focus – fall back to the original behaviour
-    set target_id $id_array[1]
+    set -l index (contains -i -- $focused_id $ids)
+    set -l next_index (math "$index % $(count $ids) + 1")
+    set target_id $ids[$next_index]
 end
 
-# 4️⃣ Focus the chosen window
 yabai -m window --focus $target_id

@@ -281,7 +281,7 @@
         ralt - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
 
         ralt - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"
-        ralt - a : ${homeDir}/bin/darwin/,y_focus.fish "ChatGPT"
+        ralt - a : ${homeDir}/bin/darwin/,y_focus.fish --regex '^T3 Code( \(Beta\))?$'
         ralt + shift - m : ${homeDir}/bin/darwin/,y_focus.fish "Signal"
         ralt - z : ${homeDir}/bin/darwin/,y_focus.fish "zoom.us"
         ralt - v : ${homeDir}/bin/darwin/,y_focus.fish "Pritunl"
