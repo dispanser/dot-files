@@ -48,7 +48,10 @@
          { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
          { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
          { key = "Minus"; mods = "Control|Alt"; action = "DecreaseFontSize"; }
-         { key = "Return"; mods = "Shift";         chars = ''\u001b\u000a''; }
+         # Shift+Enter must reach applications as the standard CSI-u sequence
+         # (ESC[13;2u). The old value (ESC + LF) is byte-identical to Ctrl+Alt+j
+         # and was intercepted by tmux's `bind -n C-M-j previous-window`.
+         { key = "Return"; mods = "Shift";         chars = ''\u001b[13;2u''; }
          { key = "Return"; mods = "Control";       chars = ''\u001b\u000d''; }
          { key = "Return"; mods = "Control|Shift"; chars = ''\u001b[13;6u''; }
        ];

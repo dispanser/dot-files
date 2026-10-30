@@ -65,7 +65,14 @@
       let 
         termOption = "tmux-256color";
       in ''
-          # bind-key -n S-Enter send-keys -l "[13;2u"
+          # Forward modifier+Enter keys (which tmux decodes from CSI-u sequences
+          # like ESC[13;2u) to applications as the same CSI-u bytes. Without
+          # these bindings tmux silently drops them, since they have no legacy
+          # encoding. pi's TUI parses these as shift+enter etc. (newline in the
+          # prompt). Requires tmux >= 3.4 for `send-keys -H`.
+          bind-key -n S-Enter send-keys -H 1b 5b 31 33 3b 32 75
+          bind-key -n C-Enter send-keys -H 1b 5b 31 33 3b 35 75
+          bind-key -n C-S-Enter send-keys -H 1b 5b 31 33 3b 36 75
           bind C-Space send-prefix
           set-option -sa terminal-overrides ",*:Tc"
           set -ga terminal-overrides ",alacritty:Tc"
