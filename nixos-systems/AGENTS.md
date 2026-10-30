@@ -7,12 +7,11 @@ NixOS configurations for multiple machines using flakes and home-manager. Each s
 ### Systems
 
 - **kite** - Desktop with NVIDIA GPU (Big Boy)
-- **chatham** - external SSD, supposed to boot into anything (recovery, turning any computer into my own)
 - **tiny** - Mini server
 - **oxide** - X12 Gen 2 laptop
-- **x12** - X12 laptop
+- **tachi** - external SSD, supposed to boot into anything (recovery, turning any computer into my own)
+- **x12** - X12 laptop Gen 1 laptop
 - **x1t3** - ThinkPad X1 Tablet Gen 3
-- **voyager** - Legion Go handheld
 
 ### Essential Commands
 
