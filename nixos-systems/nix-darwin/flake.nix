@@ -30,6 +30,7 @@
           nixpkgs.overlays = [
             (import ../overlays/llama-benchy.nix)
             (import ../overlays/tilth.nix)
+            (import ../overlays/pyqt6-moc-qt612.nix)
           ];
 
           home-manager = {
@@ -49,6 +50,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."yukon".pkgs;
+    darwinPackages = self.darwinConfigurations."ord".pkgs;
   };
 }

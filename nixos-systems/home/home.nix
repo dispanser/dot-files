@@ -45,7 +45,7 @@ in
   };
 
   home.username = lib.mkDefault (if pkgs.stdenv.hostPlatform.isDarwin then "thomas.peiselt" else "pi");
-  home.homeDirectory = lib.mkDefault (if pkgs.stdenv.hostPlatform.isDarwin then /Users/thomas.peiselt else /home/pi);
+  home.homeDirectory = lib.mkDefault (if pkgs.stdenv.hostPlatform.isDarwin then "/Users/thomas.peiselt" else "/home/pi");
 
   home.stateVersion = "22.05";
 
