@@ -1,7 +1,11 @@
 { lib, pkgs, ... }:
 let
-  browser = (
-    pkgs.writeShellApplication {
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+  # Linux-only: depends on nuru/niri, which are not available on macOS.
+  # lib.optionals keeps this lazy so the niri input is never evaluated on darwin.
+  browser = lib.optionals isLinux [
+    (pkgs.writeShellApplication {
       name = "browser.sh"; # this will be the name of the binary
       runtimeInputs = with pkgs; [ qutebrowser niri ];
       text = ''
@@ -13,26 +17,10 @@ let
           nuru browser --url "$1" >> /tmp/browser.log
         fi
       '';
-    }
-  );
-in
-{
-  xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-    # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop"?
-    "text/html" = [ "browser.desktop" ];
-  };
+    })
+  ];
 
-  xdg.desktopEntries.browser = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-    type = "Application";
-    exec = "browser.sh %u";
-    name = "qute-project";
-    comment = "Project-specific browser";
-    mimeType = [ "text/html" "text/xml" ];
-  };
-
-  home.packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [ browser ];
-
-  xdg.configFile."qutebrowser/add-nextcloud-bookmarks.ini" = {
+  bookmarksIni = {
     text = ''
       [nextcloud]
       HOST=https://nc.kulturguerilla.org
@@ -42,9 +30,28 @@ in
       TAGS=inbox
     '';
   };
+in
+{
+  xdg.mimeApps.defaultApplications = lib.mkIf isLinux {
+    # TODO: is this enough to cover "xdg-settings set default-web-browser browser.desktop"?
+    "text/html" = [ "browser.desktop" ];
+  };
+
+  xdg.desktopEntries.browser = lib.mkIf isLinux {
+    type = "Application";
+    exec = "browser.sh %u";
+    name = "qute-project";
+    comment = "Project-specific browser";
+    mimeType = [ "text/html" "text/xml" ];
+  };
+
+  home.packages = browser;
+
+  # qutebrowser's config dir on macOS is ~/.qutebrowser, not ~/.config/qutebrowser
+  xdg.configFile."qutebrowser/add-nextcloud-bookmarks.ini" = lib.mkIf isLinux bookmarksIni;
+  home.file.".qutebrowser/add-nextcloud-bookmarks.ini" = lib.mkIf isDarwin bookmarksIni;
 
   programs.qutebrowser = {
-    package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.qutebrowser;
     enable = true;
     enableDefaultBindings = true; # Default
     extraConfig = ''

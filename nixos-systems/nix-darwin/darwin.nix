@@ -35,7 +35,6 @@
     onActivation.cleanup = "zap";
     casks = [
       "bluesnooze"
-      "qutebrowser"
       "postman"
       "signal"
       "zerotier-one"
