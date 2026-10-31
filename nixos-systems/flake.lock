@@ -317,11 +317,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774715886,
-        "narHash": "sha256-RStU69epWAXmY+3KW1k0VSV6HQzWvlp46bcEHVle8c8=",
+        "lastModified": 1793437527,
+        "narHash": "sha256-XL/XXlbv2lZrh69KS0Of6cwCj2ZHEFRmxJdOBakGJ5M=",
         "owner": "dispanser",
         "repo": "touchscreen-gestures",
-        "rev": "7d5fca4605e794f6032cf2c0f953ed836c2e9e04",
+        "rev": "f0f5de0fec3ea2388e3f5cbe4c570061ea3e503d",
         "type": "github"
       },
       "original": {
