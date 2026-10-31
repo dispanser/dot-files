@@ -1,6 +1,13 @@
 { pkgs, inputs, ... }:
 
-with pkgs; let 
+with pkgs;
+let
+  llm = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+  # t3code wraps every agent provider it knows about into PATH. We use none
+  # of them, so the list is empty and no provider is referenced or built.
+  t3code = llm.t3code.override { providerPackages = [ ]; };
+  t3code-desktop = llm.t3code-desktop.override { inherit t3code; };
+
   darwinOnly = [
     openssh # override the ancient default install (TODO: could be homebrew'ed)
     goku
@@ -46,7 +53,7 @@ with pkgs; let
     tree-sitter
     rustup
     inputs.cx-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ] ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [ tilth pi t3code t3code-desktop ]);
+  ] ++ [ tilth llm.pi t3code t3code-desktop ];
   linuxOnly = [
     brightnessctl
     ddcutil
