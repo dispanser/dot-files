@@ -117,10 +117,10 @@ in
 
   services.notify-osd.enable = if pkgs.stdenv.hostPlatform.isLinux then true else false;
 
-  # TBD - this is not perfect because it doesn't allow for actually editing these files
+  # HM owns the top-level link into the live repo checkout, so I can quickly iterate on my config
   xdg.configFile.nvim = {
-    source = ../../nvim-config;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/src/github/dispanser/dot-files/nvim-config";
   };
 
   services.gpg-agent = {

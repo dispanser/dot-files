@@ -47,6 +47,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "hm-backup";
                 users.pi = import ./home/home.nix;
                 sharedModules = [
                   inputs.sops-nix.homeManagerModules.sops
