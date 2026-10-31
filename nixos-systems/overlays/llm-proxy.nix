@@ -1,40 +1,21 @@
 # llm-proxy (https://github.com/dispanser/llm-proxy) is a private checkout
-# without a git remote, so — like ./mlc.nix — the source is pinned to the local
-# working copy via `builtins.path`, which needs `nixos-rebuild --impure`.
+# without a git remote. The flake takes it in as a `git+file` input with
+# `flake = false`, so Nix copies the committed tree into the store before
+# evaluation and the build stays pure.
 #
 # Refresh `cargoHash` when Cargo.lock changes (build once with a bogus hash and
-# read the "got:" value from the error). Once the repository has a remote, swap
-# `src` for fetchFromGitHub and the impurity goes away.
-final: prev:
+# read the "got:" value from the error). Once the repository has a remote, only
+# the input URL changes.
+{ llm-proxy }: final: prev:
 let
-  # Keep the source small and rebuild-stable: `target/` is a multi-gigabyte
-  # cargo directory, the editor/devenv state directories are never part of the
-  # build, and `agent/` + `docs/` are notes that change independently of code.
+  # Git ships only committed files, so `target/` and the editor/devenv state
+  # directories never reach the input. `agent/` and `docs/` are notes that
+  # change independently of code; filter them out to keep rebuilds down.
   # `scripts/` stays in: the hook scripts ship with the program.
-  srcFilter =
-    path: _type:
-    let
-      name = baseNameOf path;
-    in
-    !(prev.lib.elem name [
-      "target"
-      "result"
-      ".git"
-      ".direnv"
-      ".devenv"
-      ".tp"
-      ".cargo"
-      ".github"
-      ".envrc"
-      "agent"
-      "docs"
-    ]);
+  srcFilter = path: _type: !(prev.lib.elem (baseNameOf path) [ "agent" "docs" ]);
   src = prev.lib.cleanSourceWith {
-    src = builtins.path {
-      name = "llm-proxy-src";
-      path = /home/pi/src/github/dispanser/llm-proxy;
-      filter = srcFilter;
-    };
+    src = llm-proxy;
+    filter = srcFilter;
   };
 in
 {

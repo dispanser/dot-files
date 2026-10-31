@@ -158,6 +158,22 @@
         "type": "github"
       }
     },
+    "llm-proxy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789922887,
+        "narHash": "sha256-fUwqRuwOaIttya58FggDigES2YMJQ02SDYU1wYjwpqo=",
+        "ref": "refs/heads/master",
+        "rev": "0fc5b5a5dbf67d4b2256bf8e9509a27e97f744a8",
+        "revCount": 10,
+        "type": "git",
+        "url": "file:///home/pi/src/github/dispanser/llm-proxy"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/pi/src/github/dispanser/llm-proxy"
+      }
+    },
     "naersk": {
       "inputs": {
         "fenix": "fenix",
@@ -215,6 +231,7 @@
         "cx-cli": "cx-cli",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
+        "llm-proxy": "llm-proxy",
         "nixpkgs": "nixpkgs_2",
         "sops-nix": "sops-nix",
         "tsg": "tsg"
