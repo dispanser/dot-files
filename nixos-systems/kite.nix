@@ -28,7 +28,6 @@
   environment.systemPackages = with pkgs; [
     ryzenadj
     llama-cpp
-    mlc
     # references the package defined below
     config.hardware.nvidia.package
     cudaPackages.cudatoolkit cudaPackages.cudatoolkit.lib cudaPackages.cudnn
