@@ -91,11 +91,11 @@ input {
     touchpad {
         // off
         tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
+        dwt
+        // drag false // drag allows tap-lift-tap-hold to work like a drag (press + move)
+        drag-lock     // allow brief lifting while dragging to reposition finger (useful for small pads)
         natural-scroll
+        click-method "clickfinger"
         // accel-speed 0.2
         // accel-profile "flat"
         // scroll-method "two-finger"
