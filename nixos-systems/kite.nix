@@ -28,6 +28,7 @@
   environment.systemPackages = with pkgs; [
     ryzenadj
     llama-cpp
+    betterbench
     # references the package defined below
     config.hardware.nvidia.package
     cudaPackages.cudatoolkit cudaPackages.cudatoolkit.lib cudaPackages.cudnn

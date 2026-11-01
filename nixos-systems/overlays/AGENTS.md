@@ -7,6 +7,10 @@ How to upgrade:
   `curl -s https://pypi.org/pypi/llama-benchy/json | jq -r .info.version` (tags: `v0.4.0`),
   then bump `version` and the `fetchPypi` hash. Note the sdist is published under the
   normalized name `llama_benchy-<version>.tar.gz`, hence `pname = "llama_benchy"` for the fetch.
+- `betterbench`: not on PyPI, so the package builds from the GitHub release tarball. Upstream
+  keeps the version in `betterbench/__init__.py`, which hatchling reads, so the tarball needs no
+  git metadata. Check `git ls-remote --tags --refs https://github.com/GGZ14/BetterBench | tail -1`,
+  then bump `version` and the `fetchFromGitHub` hash.
 - be smart: don't pull the entire repository - what's the right command to just list remote tags?
 
 ## Temporary overlays

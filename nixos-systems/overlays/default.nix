@@ -10,6 +10,7 @@
     (import ./unifi.nix)
     (import ./llama-cpp.nix)
     (import ./llama-benchy.nix)
+    (import ./betterbench.nix)
     ((import ./touchscreen-gestures.nix) { inherit tsg; })
   ];
 }
