@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   ids.gids.nixbld = 350;
@@ -277,7 +277,7 @@
         # ralt - r  : yabai -m space --focus recent # not without scripting additions :-(
         # ralt + shift - t : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
-        ralt - b : ${homeDir}/bin/darwin/,y_focus.fish "Firefox"
+        ralt - b : ${homeDir}/bin/darwin/,y_focus.fish --regex '(?i)^firefox$'
         ralt - 0x29 : ${homeDir}/bin/darwin/,y_focus.fish "qutebrowser"
 
         ralt - m : ${homeDir}/bin/darwin/,y_focus.fish "Slack"

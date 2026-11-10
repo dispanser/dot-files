@@ -102,6 +102,7 @@ in
     ./starship.nix
     ./tmux.nix
     ./inputplug.nix
+    ./keybindings.nix
     (import ./unison.nix { inherit lib pkgs isServer; })
   ] ++ lib.optionals isLinux [
     (import ./touch.nix { inherit lib pkgs osConfig; })

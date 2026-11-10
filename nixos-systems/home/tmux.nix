@@ -65,6 +65,9 @@
       let 
         termOption = "tmux-256color";
       in ''
+          # Start shells directly without depending on a store-path wrapper.
+          set -g default-command ""
+
           # Forward modifier+Enter keys (which tmux decodes from CSI-u sequences
           # like ESC[13;2u) to applications as the same CSI-u bytes. Without
           # these bindings tmux silently drops them, since they have no legacy
