@@ -100,22 +100,8 @@
     logEvents = true;
   };
 
-  # nix shell with fido2luks
-  # see https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
-  # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
-  # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
-  # regular pass + new salt + touch key
   boot = {
-    initrd.luks = {
-      fido2Support = false;
-      devices = {
-        oxide = {
-          preLVM = true;
-          device = "/dev/disk/by-uuid/c2aa7dd3-7c1c-4082-b8c0-be0bb5f5e358";
-          fido2.credential = "0d05ca72aa2dd7ebba29a6467eef6bed84fbcd94cd34da3cff7c8dbaf3ee2d6e";
-        };
-      };
-    }; 
+    initrd.luks.devices.oxide.device = "/dev/disk/by-uuid/c2aa7dd3-7c1c-4082-b8c0-be0bb5f5e358";
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "amdgpu" "thunderbolt" ];
