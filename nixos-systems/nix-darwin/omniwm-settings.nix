@@ -15,7 +15,7 @@
   };
 
   focus = {
-    followsMouse = true;
+    followsMouse = false;
     raiseOnMouseFocus = false;
     lockModifier = "off";
     moveMouseToFocusedWindow = false;
