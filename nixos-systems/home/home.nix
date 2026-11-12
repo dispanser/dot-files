@@ -71,6 +71,10 @@ in
       enable = true;
       source = ../../configs/psql/.psqlrc;
     };
+    # Keybindings change often, so link the live file and skip the rebuild.
+    ".t3/userdata/keybindings.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/github/dispanser/dot-files/configs/t3/keybindings.json";
+    };
     ".cargo/config.toml" = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       text = ''
         [target.x86_64-unknown-linux-gnu]
