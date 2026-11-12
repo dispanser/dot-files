@@ -17,6 +17,7 @@
   sops = {
     secrets.anthrophic_api_key = { };
     secrets.mistral_api_key = { };
+    secrets.vibe_api_key = { };
     secrets.openrouter_api_key = { };
     secrets.tavily_api_key = { };
   };
@@ -170,7 +171,8 @@
         /usr/bin/ssh-add --apple-use-keychain ~/.ssh/coralogix-github
       '' else ''
         set -gx ANTHROPIC_API_KEY (cat ${config.sops.secrets.anthrophic_api_key.path})
-        set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.mistral_api_key.path})
+        set -gx MISTRAL_API_KEY_FALLBACK (cat ${config.sops.secrets.mistral_api_key.path})
+        set -gx MISTRAL_API_KEY (cat ${config.sops.secrets.vibe_api_key.path})
         set -gx OPENROUTER_API_KEY (cat ${config.sops.secrets.openrouter_api_key.path})
         set -gx TAVILY_API_KEY (cat ${config.sops.secrets.tavily_api_key.path})
         set PROJECT (${pkgs.wmctrl}/bin/wmctrl -d | grep '\*' | cut -b 33- | cut -f 1 -d_)
