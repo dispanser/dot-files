@@ -86,7 +86,7 @@
   # see https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
   # HOSTNAME=(hostname) export FIDO2_LABEL="main @ $HOSTNAME"
   # sudo fido2luks -i add-key /dev/nvme0n1p1 <output of credentials>
-  # regulan pass + new salt + touch key
+  # regular pass + new salt + touch key
   boot = {
     initrd.luks = {
       fido2Support = false;
@@ -102,11 +102,12 @@
     loader.efi.canTouchEfiVariables = true;
     initrd.availableKernelModules   = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     initrd.kernelModules            = [ "xhci_pci" "uas" "usbhid" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    kernelModules                   = [ "acpi_call" "uinput" ];
+    kernelModules                   = [ "coretemp" "acpi_call" "uinput" ];
     extraModulePackages             = [ config.boot.kernelPackages.acpi_call ];
     extraModprobeConfig = ''
-    options acpi ec_no_wakeup=1
-    options thinkpad_acpi fan_control=1
+      options acpi ec_no_wakeup=1
+      options thinkpad_acpi fan_control=1
+      options usbcore autosuspend=-1
     '';
     kernelPackages     = pkgs.linuxPackages_latest;
   };
@@ -123,6 +124,8 @@
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
+      userControlled = true;
+      allowAuxiliaryImperativeNetworks = true;
     };
     firewall.enable = false;
   };
