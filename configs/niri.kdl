@@ -90,7 +90,7 @@ input {
     // All commented-out settings here are examples, not defaults.
     touchpad {
         // off
-        tap
+        // tap
         dwt
         // drag false // drag allows tap-lift-tap-hold to work like a drag (press + move)
         drag-lock     // allow brief lifting while dragging to reposition finger (useful for small pads)
