@@ -18,39 +18,45 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     cx-cli.url = "github:coralogix/cx-cli";
   };
-  outputs = { self, nix-darwin, home-manager, ...}@inputs:
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#yukon
-    darwinConfigurations."ord" = nix-darwin.lib.darwinSystem {
-      modules = [
-        ./darwin.nix
-        home-manager.darwinModules.home-manager
-        {
-          nixpkgs.overlays = [
-            (import ../overlays/llama-benchy.nix)
-            (import ../overlays/betterbench.nix)
-            (import ../overlays/tilth.nix)
-            (import ../overlays/pyqt6-moc-qt612.nix)
-          ];
-
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users."thomas.peiselt" = import ../home/home.nix;
-            sharedModules = [
-              inputs.sops-nix.homeManagerModules.sops
+  outputs =
+    {
+      self,
+      nix-darwin,
+      home-manager,
+      ...
+    }@inputs:
+    {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#ord
+      darwinConfigurations."ord" = nix-darwin.lib.darwinSystem {
+        modules = [
+          ./darwin.nix
+          home-manager.darwinModules.home-manager
+          {
+            nixpkgs.overlays = [
+              (import ../overlays/llama-benchy.nix)
+              (import ../overlays/betterbench.nix)
+              (import ../overlays/tilth.nix)
+              (import ../overlays/pyqt6-moc-qt612.nix)
             ];
-            extraSpecialArgs = {
-              isLinux = false;
-              inputs = inputs;
-            };
-          };
-        }
-      ];
-    };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."ord".pkgs;
-  };
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."thomas.peiselt" = import ../home/home.nix;
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
+              extraSpecialArgs = {
+                isLinux = false;
+                inputs = inputs;
+              };
+            };
+          }
+        ];
+      };
+
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations."ord".pkgs;
+    };
 }

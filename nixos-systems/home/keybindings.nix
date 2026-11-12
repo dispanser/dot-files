@@ -34,9 +34,6 @@
           /* undo */
           "^/"      = "undo:";                /* C-/ */
           "^_"      = "undo:";                /* C-_ */
-
-          /* word completion popup (suggests words from document + system lexicon) */
-          "~/"      = "complete:";            /* M-/ */
       }
     '';
   };
