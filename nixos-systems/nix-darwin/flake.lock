@@ -183,6 +183,22 @@
         "type": "github"
       }
     },
+    "nuru": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794481458,
+        "narHash": "sha256-N/8nCA2diuTvSTjkDO61xPEMv1nsVmH1Is83N0uR/18=",
+        "ref": "refs/heads/main",
+        "rev": "0e073f9ae3ede06a0dae52d525e5eca7d5a1ca62",
+        "revCount": 24,
+        "type": "git",
+        "url": "file:///Users/thomas.peiselt/projects/coralogix/src/nuru"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///Users/thomas.peiselt/projects/coralogix/src/nuru"
+      }
+    },
     "root": {
       "inputs": {
         "cx-cli": "cx-cli",
@@ -190,6 +206,7 @@
         "llm-agents": "llm-agents",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
+        "nuru": "nuru",
         "sops-nix": "sops-nix"
       }
     },

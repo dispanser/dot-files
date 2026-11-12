@@ -1,9 +1,15 @@
-{ tsg, llm-proxy, ... }:
+{
+  tsg,
+  llm-proxy,
+  nuru,
+  ...
+}:
 
 {
   nixpkgs.overlays = [
     (import ./llm.nix)
     ((import ./llm-proxy.nix) { inherit llm-proxy; })
+    ((import ./nuru.nix) { inherit nuru; })
     (import ./tilth.nix)
     (import ./kernel-module-certs.nix)
     (import ./zat.nix)

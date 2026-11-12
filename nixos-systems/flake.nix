@@ -21,22 +21,39 @@
       url = "github:coralogix/cx-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # llm-proxy is a private checkout without a git remote. `git+file` reads the
-    # committed tree into the store before evaluation, so the build stays pure.
-    # Commit changes there and run `nix flake update llm-proxy` to pick them up.
     llm-proxy = {
       url = "git+file:///home/pi/src/github/dispanser/llm-proxy";
       flake = false;
     };
+    nuru = {
+      url = "git+file:///home/pi/projects/coralogix/src/nuru";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
-      overlays = (import ./overlays {
-        tsg = inputs.tsg;
-        llm-proxy = inputs.llm-proxy;
-      });
-      hosts = [ "tiny" "kite" "oxide" "x12" "chatham" "tachi" ];
+      overlays = (
+        import ./overlays {
+          tsg = inputs.tsg;
+          llm-proxy = inputs.llm-proxy;
+          nuru = inputs.nuru;
+        }
+      );
+      hosts = [
+        "tiny"
+        "kite"
+        "oxide"
+        "x12"
+        "chatham"
+        "tachi"
+      ];
       system = "x86_64-linux";
     in
     {
@@ -62,6 +79,7 @@
                 sharedModules = [
                   inputs.sops-nix.homeManagerModules.sops
                   inputs.tsg.homeManagerModules.default
+                  ./modules/nuru.nix
                 ];
                 extraSpecialArgs = {
                   llm-agents = inputs.llm-agents.packages.${system};

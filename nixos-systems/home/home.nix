@@ -44,8 +44,12 @@ in
     VISUAL = "${editor}";
   };
 
-  home.username = lib.mkDefault (if pkgs.stdenv.hostPlatform.isDarwin then "thomas.peiselt" else "pi");
-  home.homeDirectory = lib.mkDefault (if pkgs.stdenv.hostPlatform.isDarwin then "/Users/thomas.peiselt" else "/home/pi");
+  home.username = lib.mkDefault (
+    if pkgs.stdenv.hostPlatform.isDarwin then "thomas.peiselt" else "pi"
+  );
+  home.homeDirectory = lib.mkDefault (
+    if pkgs.stdenv.hostPlatform.isDarwin then "/Users/thomas.peiselt" else "/home/pi"
+  );
 
   home.stateVersion = "22.05";
 
@@ -76,9 +80,10 @@ in
         ]
       '';
     };
-  } // lib.mapAttrs'
-    (name: _: lib.nameValuePair ".claude/skills/${name}" { source = "${cx_skills}/${name}"; })
-    (lib.filterAttrs (_: t: t == "directory") (builtins.readDir cx_skills));
+  }
+  // lib.mapAttrs' (
+    name: _: lib.nameValuePair ".claude/skills/${name}" { source = "${cx_skills}/${name}"; }
+  ) (lib.filterAttrs (_: t: t == "directory") (builtins.readDir cx_skills));
 
   home.packages =
     let
@@ -104,15 +109,21 @@ in
     ./inputplug.nix
     ./keybindings.nix
     (import ./unison.nix { inherit lib pkgs isServer; })
-  ] ++ lib.optionals isLinux [
+  ]
+  ++ lib.optionals isLinux [
     (import ./touch.nix { inherit lib pkgs osConfig; })
     ./voxtype.nix
-  ] ++ (if isServer then [
-    ./mail.nix
-    ./backup.nix
-    ./nextcloud.nix
-  ] else []);
-
+  ]
+  ++ (
+    if isServer then
+      [
+        ./mail.nix
+        ./backup.nix
+        ./nextcloud.nix
+      ]
+    else
+      [ ]
+  );
 
   services.inputplug.enable = pkgs.stdenv.hostPlatform.isLinux;
 
@@ -120,8 +131,7 @@ in
 
   # HM owns the top-level link into the live repo checkout, so I can quickly iterate on my config
   xdg.configFile.nvim = {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/src/github/dispanser/dot-files/nvim-config";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/github/dispanser/dot-files/nvim-config";
   };
 
   services.gpg-agent = {
@@ -135,6 +145,8 @@ in
 
   programs = {
     fish.enable = true;
+    # nuru drives niri sessions, so it is only installed on the Linux hosts.
+    nuru.enable = pkgs.stdenv.hostPlatform.isLinux;
     atuin = {
       enable = true;
       daemon.enable = true;
@@ -142,7 +154,12 @@ in
         style = "full";
         search_mode = "daemon-fuzzy";
         filter_mode_shell_up_key_binding = "directory";
-        filters = [ "directory" "global" "host" "session" ];
+        filters = [
+          "directory"
+          "global"
+          "host"
+          "session"
+        ];
         dialect = "uk";
         update_check = false;
         show_preview = true;
@@ -174,12 +191,12 @@ in
       enable = true;
       historyWidget.command = "";
       defaultOptions = [
-        ''--cycle''
-        ''--layout=reverse''
-        ''--border''
-        ''--height=90%''
-        ''--preview-window=wrap''
-        ''--info=inline''
+        "--cycle"
+        "--layout=reverse"
+        "--border"
+        "--height=90%"
+        "--preview-window=wrap"
+        "--info=inline"
         ''--pointer="▶"''
         ''--marker="✗"''
         ''--bind "?:toggle-preview"''
@@ -199,7 +216,8 @@ in
     dircolors.enable = true;
     home-manager.enable = true;
     jq.enable = true;
-  } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+  }
+  // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
     voxtype = {
       enable = true;
       configFile = ../../configs/voxtype.toml;

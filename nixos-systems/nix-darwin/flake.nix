@@ -17,6 +17,14 @@
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
     cx-cli.url = "github:coralogix/cx-cli";
+    # nuru is a private checkout without a git remote. `git+file` reads the
+    # committed tree into the store before evaluation, so the build stays pure.
+    # Commit changes in the checkout and run `nix flake update nuru` to pick
+    # them up.
+    nuru = {
+      url = "git+file:///Users/thomas.peiselt/projects/coralogix/src/nuru";
+      flake = false;
+    };
   };
   outputs =
     {
@@ -38,6 +46,7 @@
               (import ../overlays/betterbench.nix)
               (import ../overlays/tilth.nix)
               (import ../overlays/pyqt6-moc-qt612.nix)
+              ((import ../overlays/nuru.nix) { nuru = inputs.nuru; })
             ];
 
             home-manager = {
@@ -46,6 +55,7 @@
               users."thomas.peiselt" = import ../home/home.nix;
               sharedModules = [
                 inputs.sops-nix.homeManagerModules.sops
+                ../modules/nuru.nix
               ];
               extraSpecialArgs = {
                 isLinux = false;
