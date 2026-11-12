@@ -134,6 +134,11 @@ in
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/github/dispanser/dot-files/nvim-config";
   };
 
+  # Keybindings change often, so link the live file and skip the rebuild.
+  xdg.configFile."niri/config.kdl" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/github/dispanser/dot-files/configs/niri.kdl";
+  };
+
   services.gpg-agent = {
     enable = pkgs.stdenv.hostPlatform.isLinux;
     enableSshSupport = true;
