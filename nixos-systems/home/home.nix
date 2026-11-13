@@ -39,6 +39,8 @@ in
   manual.manpages.enable = true;
   manual.json.enable = true;
 
+  dconf.settings."org/gnome/desktop/interface".gtk-key-theme = "Emacs";
+
   home.sessionVariables = {
     EDITOR = "${editor}";
     VISUAL = "${editor}";

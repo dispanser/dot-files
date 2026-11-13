@@ -17,6 +17,8 @@
     extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
 
+  programs.dconf.enable = true;
+
   services.offlineimap = {
     enable = true;
     install = true;
