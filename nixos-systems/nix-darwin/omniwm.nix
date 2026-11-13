@@ -56,6 +56,8 @@ in
 
       ctrl + ralt - h : ${lib.getExe windowAction} move left
       ctrl + ralt - l : ${lib.getExe windowAction} move right
+      ctrl + ralt - j : ${lib.getExe windowAction} move down
+      ctrl + ralt - k : ${lib.getExe windowAction} move up
 
       ralt - 0x2B : ${lib.getExe windowAction} merge
       ralt - 0x2F : ${lib.getExe windowAction} split
@@ -93,6 +95,17 @@ in
       ralt - t : ${lib.getExe terminal} main
       ralt - o : ${lib.getExe terminal} overlay
       ralt - return : ${pkgs.alacritty}/Applications/Alacritty.app/Contents/MacOS/alacritty
+
+      # Native macOS Spaces sit outside OmniWM's model, for example native-fullscreen apps
+      # Mission Control shortcut exactly as macOS recorded it. skhd's own
+      # synthesis cannot fire these hotkeys on macOS 27.
+      ralt - 0x21 : ${lib.getExe windowAction} space left
+      ralt - 0x1E : ${lib.getExe windowAction} space right
+
+      ralt - e : ${pkgs.skhd}/bin/skhd -t "thomas.peiselt@coralogix.com"
+      0x0A : ${pkgs.skhd}/bin/skhd -t "`"
+      shift - 0x0A : ${pkgs.skhd}/bin/skhd -t "~"
+      ralt + cmd - s : pmset sleepnow
     '';
   };
 

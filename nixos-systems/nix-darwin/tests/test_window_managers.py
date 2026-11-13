@@ -170,6 +170,47 @@ class WindowManagerTests(unittest.TestCase):
                 self.assertTrue(command[0].endswith("/bin/omniwm-window"))
                 self.assertEqual(command[1:], [action])
 
+    def test_restored_non_window_manager_bindings(self):
+        """Text expansion, sleep, and the ISO key return from the yabai era."""
+        bindings = self.bindings()
+        restored = {
+            "ralt - e": ["skhd", "-t", "thomas.peiselt@coralogix.com"],
+            "ralt + cmd - s": ["pmset", "sleepnow"],
+            "0x0A": ["skhd", "-t", "`"],
+            "shift - 0x0A": ["skhd", "-t", "~"],
+        }
+        for chord, tail in restored.items():
+            with self.subTest(chord=chord):
+                command = bindings[chord]
+                if chord == "ralt + cmd - s":
+                    self.assertEqual(command, tail)
+                else:
+                    self.assertTrue(command[0].endswith("/bin/skhd"))
+                    self.assertEqual(command[1:], tail[1:])
+
+    def test_native_space_navigation_bindings(self):
+        """Bracket chords route to the helper's synthesized hotkey."""
+        bindings = self.bindings()
+        for chord, direction in (("ralt - 0x21", "left"), ("ralt - 0x1E", "right")):
+            with self.subTest(chord=chord):
+                command = bindings[chord]
+                self.assertTrue(command[0].endswith("/bin/omniwm-window"))
+                self.assertEqual(command[1:], ["space", direction])
+
+    def test_floating_move_bindings(self):
+        """Ctrl-Mod-hjkl nudge floating windows in all four directions."""
+        bindings = self.bindings()
+        for chord, direction in (
+            ("ctrl + ralt - h", "left"),
+            ("ctrl + ralt - j", "down"),
+            ("ctrl + ralt - k", "up"),
+            ("ctrl + ralt - l", "right"),
+        ):
+            with self.subTest(chord=chord):
+                command = bindings[chord]
+                self.assertTrue(command[0].endswith("/bin/omniwm-window"))
+                self.assertEqual(command[1:], ["move", direction])
+
     def test_layer_aware_navigation_bindings(self):
         """Focus and geometry shortcuts select the focused window's layer."""
         bindings = self.bindings()

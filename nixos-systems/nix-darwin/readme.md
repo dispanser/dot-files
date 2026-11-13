@@ -14,35 +14,39 @@ Skhd owns the bindings below.
 **Mod** is the existing right-side modifier (`ralt`).
 Previous-window switching and the remaining niri bindings are separate steps.
 
-| Binding | Action |
-| --- | --- |
-| Mod-H / Mod-L | Focus left / right within the focused layer. |
-| Mod-Ctrl-H / Mod-Ctrl-L | Reorder tiled columns; move a focused float left / right by 50 logical pixels. |
-| Mod-, | Pull one window from the column on the right into the bottom of the focused tiled column. |
-| Mod-. | Split the bottom window into a new column on the right. |
-| Mod-W | Toggle the focused column between stacked and tabbed windows, matching niri. |
-| Mod-Tab / Mod-Shift-Tab | Focus the next / previous window within the current group, wrapping locally. |
-| Mod-J / Mod-K | Focus down / up within the layer; continue to adjacent workspaces at vertical edges. |
-| Mod-1 / Mod-2 | Focus workspace 1 / 2, including its display. |
-| Mod-Shift-1 / Mod-Shift-2 | Send the focused window to workspace 1 / 2 and keep focus on the source workspace. |
-| Mod-S | Focus the next connected screen. |
-| Mod-Shift-S | Send the focused window to the next screen's visible workspace and follow it. |
-| Mod-V | Toggle the focused window between floating and tiled. |
-| Mod-Shift-V | Switch focus between floating and tiled windows. |
-| Mod-C | Center a tiled column or center the focused floating window. |
-| Mod-F | Toggle full-width column maximization; leave floating windows unchanged, matching niri. |
-| Mod-- / Mod-= | Shrink / grow the focused float's width or the tiled column width by 10 percentage points. |
-| Mod-Shift-- / Mod-Shift-= | Shrink / grow the focused window's height by 10 percentage points. |
-| Mod-R | Cycle tiled-column or floating-window widths: 50%, 75%, 90%. |
-| Mod-A | Focus T3 Code or cycle its windows. |
-| Mod-M | Focus Slack or cycle its windows. |
-| Mod-Z | Focus Zoom or cycle its windows. |
-| Mod-Shift-M | Focus Signal or cycle its windows. |
-| Mod-B / Mod-; | Focus Firefox or cycle its windows. |
-| Mod-U | Focus Alacritty or cycle its non-parked windows. |
-| Mod-T | Focus or launch the main terminal (`code/main`). |
-| Mod-O | Show, focus, or hide the overlay terminal (`code/overlay`). |
-| Mod-Return | Open Alacritty directly. |
+| Binding                   | Action                                                                                      |
+| ---                       | ---                                                                                         |
+| Mod-H / Mod-L             | Focus left / right within the focused layer.                                                |
+| Mod-Ctrl-H / Mod-Ctrl-L   | Reorder tiled columns; move a focused float left / right by 5% of the screen width.         |
+| Mod-Ctrl-J / Mod-Ctrl-K   | Reorder windows inside a column; move a focused float down / up by 5% of the screen height. |
+| Mod-,                     | Pull one window from the column on the right into the bottom of the focused tiled column.   |
+| Mod-.                     | Split the bottom window into a new column on the right.                                     |
+| Mod-W                     | Toggle the focused column between stacked and tabbed windows, matching niri.                |
+| Mod-Tab / Mod-Shift-Tab   | Focus the next / previous window within the current group, wrapping locally.                |
+| Mod-J / Mod-K             | Focus down / up within the layer; continue to adjacent workspaces at vertical edges.        |
+| Mod-1 / Mod-2             | Focus workspace 1 / 2, including its display.                                               |
+| Mod-Shift-1 / Mod-Shift-2 | Send the focused window to workspace 1 / 2 and keep focus on the source workspace.          |
+| Mod-S                     | Focus the next connected screen.                                                            |
+| Mod-Shift-S               | Send the focused window to the next screen's visible workspace and follow it.               |
+| Mod-`[` / Mod-`]`         | Move to the previous / next native macOS Space (reaches native-fullscreen apps).            |
+| Mod-E                     | Type the work email address.                                                                |
+| Mod-Cmd-S                 | Sleep the machine immediately.                                                              |
+| Mod-V                     | Toggle the focused window between floating and tiled.                                       |
+| Mod-Shift-V               | Switch focus between floating and tiled windows.                                            |
+| Mod-C                     | Center a tiled column or center the focused floating window.                                |
+| Mod-F                     | Toggle full-width column maximization; leave floating windows unchanged, matching niri.     |
+| Mod-- / Mod-=             | Shrink / grow the focused float's width or the tiled column width by 10 percentage points.  |
+| Mod-Shift-- / Mod-Shift-= | Shrink / grow the focused window's height by 10 percentage points.                          |
+| Mod-R                     | Cycle tiled-column or floating-window widths: 50%, 75%, 90%.                                |
+| Mod-A                     | Focus T3 Code or cycle its windows.                                                         |
+| Mod-M                     | Focus Slack or cycle its windows.                                                           |
+| Mod-Z                     | Focus Zoom or cycle its windows.                                                            |
+| Mod-Shift-M               | Focus Signal or cycle its windows.                                                          |
+| Mod-B / Mod-;             | Focus Firefox or cycle its windows.                                                         |
+| Mod-U                     | Focus Alacritty or cycle its non-parked windows.                                            |
+| Mod-T                     | Focus or launch the main terminal (`code/main`).                                            |
+| Mod-O                     | Show, focus, or hide the overlay terminal (`code/overlay`).                                 |
+| Mod-Return                | Open Alacritty directly.                                                                    |
 
 The workspace shortcuts use OmniWM's `switch-workspace anywhere` command.
 This lets either display reach both configured workspaces.

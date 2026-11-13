@@ -2,6 +2,7 @@
 
 import importlib.util
 import json
+import sys
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -614,21 +615,50 @@ class WindowActionTests(unittest.TestCase):
         self.assertEqual(self.commands, [])
 
     def test_floating_movement_uses_reference_step(self):
-        """Left/right reordering moves floats by niri's 50 logical pixels."""
+        """Horizontal movement steps by 5% of the usable screen width."""
         self.act("move", "left")
         self.assertEqual(self.native.frame["x"], 50)
         self.act("move", "right")
         self.assertEqual(self.native.frame["x"], 100)
         self.assertEqual(self.commands, [])
 
-    def test_floating_movement_keeps_a_visible_edge(self):
-        """Directional movement retains niri's visible portion of an off-screen float."""
+    def test_floating_vertical_movement_uses_reference_step(self):
+        """Vertical movement steps by 5% of the usable screen height."""
+        self.act("move", "up")
+        self.assertEqual(self.native.frame["y"], 60)
+        self.act("move", "down")
+        self.assertEqual(self.native.frame["y"], 100)
+        self.assertEqual(self.native.frame["x"], 100)
+        self.assertEqual(self.commands, [])
+
+    def test_floating_movement_keeps_the_window_onscreen(self):
+        """Directional movement clamps the whole float inside an inset screen."""
         self.native.frame["x"] = -300
         self.act("move", "left")
-        self.assertEqual(self.native.frame["x"], -325)
+        self.assertEqual(self.native.frame["x"], 5)
         self.native.frame["x"] = 900
         self.act("move", "right")
-        self.assertEqual(self.native.frame["x"], 925)
+        self.assertEqual(self.native.frame["x"], 595)
+        self.native.frame["y"] = -300
+        self.act("move", "up")
+        self.assertEqual(self.native.frame["y"], 25)
+        self.native.frame["y"] = 950
+        self.act("move", "down")
+        self.assertEqual(self.native.frame["y"], 515)
+
+    def test_floating_resize_keeps_the_window_onscreen(self):
+        """Growing or cycling width clamps the whole float inside the screen."""
+        self.native.frame.update(x=700, y=600)
+        self.act("resize", "horizontal", "grow")
+        self.assertEqual(self.native.frame["width"], 500)
+        self.assertEqual(self.native.frame["x"], 495)
+        self.assertEqual(self.native.frame["y"], 515)
+        self.act("resize", "vertical", "grow")
+        self.assertEqual(self.native.frame["height"], 380)
+        self.assertEqual(self.native.frame["y"], 435)
+        self.act("cycle-width")
+        self.assertEqual(self.native.frame["width"], 750)
+        self.assertEqual(self.native.frame["x"], 245)
 
     def test_switch_layer_restores_tiled_or_floating_focus(self):
         """The explicit layer shortcut works even with only one overlay."""
@@ -930,11 +960,38 @@ class WindowActionTests(unittest.TestCase):
                 self.assertEqual(self.commands, [])
                 self.assertEqual(self.native.changes, [])
 
+    def test_space_navigation_synthesizes_the_recorded_hotkey(self):
+        """Space navigation posts the arrow hotkey with a HID source and fn flag."""
+        posted = []
+
+        class FakeEvent:
+            pass
+
+        fake = mock.Mock()
+        fake.kCGEventSourceStateHIDSystemState = 0
+        fake.kCGHIDEventTap = 0
+        fake.CGEventCreateKeyboardEvent.side_effect = lambda source, keycode, pressed: (
+            posted.append((keycode, pressed))
+        )
+        for direction, keycode in (("left", 123), ("right", 124)):
+            with self.subTest(direction=direction):
+                posted.clear()
+                with mock.patch.dict(sys.modules, {"Quartz": fake}):
+                    self.act("space", direction)
+                self.assertEqual(posted, [(keycode, True), (keycode, False)])
+                self.assertEqual(self.commands, [])
+                self.assertEqual(fake.CGEventSourceCreate.call_count, 1)
+                self.assertEqual(fake.CGEventSetFlags.call_args.args[1], 0x8E0000)
+                fake.CGEventSourceCreate.reset_mock()
+                fake.CGEventSetFlags.reset_mock()
+
     def test_tiled_layout_operations_are_preserved(self):
         """Other tiled operations retain their existing native actions."""
         self.native.pid = 20
         for arguments, expected in (
             (["move", "left"], ("move-column", "left")),
+            (["move", "up"], ("move-column", "up")),
+            (["move", "down"], ("move-column", "down")),
             (["center"], ("center-column",)),
             (["maximize"], ("toggle-container-full-primary-span",)),
             (["cycle-width"], ("cycle-size", "forward")),

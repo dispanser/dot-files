@@ -48,6 +48,7 @@
       "golang"
       "openssh"
       "sandgardenhq/tap/mdfetch"
+      "nace-ai/tap/kapitsa"
     ];
   };
 
@@ -108,6 +109,18 @@
   '';
 
   # services.karabiner-elements.enable = true;
+
+  # Kapitsa: local inference server on 127.0.0.1:8000, model pinned in
+  # ~/.cache/kapitsa/serve.json. User agent so it sees ~/.cache/kapitsa.
+  launchd.user.agents.kapitsa = {
+    command = "/opt/homebrew/bin/kapitsa serve";
+    serviceConfig = {
+      KeepAlive = true;
+      RunAtLoad = true;
+      StandardOutPath = "/tmp/kapitsa.log";
+      StandardErrorPath = "/tmp/kapitsa-error.log";
+    };
+  };
 
   launchd.daemons.unison = {
     script = ''

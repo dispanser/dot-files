@@ -197,6 +197,48 @@ def send_window(current, workspace, *, follow=False, display_id=None):
                 raise
 
 
+# Floating windows step by this fraction of the relevant usable screen axis.
+# Niri's reference step is 50 logical pixels, which matches 5% on a 1000-wide
+# screen.
+MOVE_STEP_FRACTION = 0.05
+
+
+# Floated windows keep this distance to the screen edges so an edgeless
+# window (Alacritty) never looks like it extends past the screen. Matches
+# OmniWM's focus border width; keep in sync with omniwm-settings.nix.
+SCREEN_INSET = 5.0
+
+# The Mission Control "move one space" shortcut as recorded in System
+# Settings (shift + ctrl + option on the arrow keys), plus the phantom fn
+# flag macOS adds to real arrow events. Synthetic events need both to match
+# the hotkey, and must come from a HID-system event source.
+SPACE_HOTKEY_FLAGS = 0x8E0000
+SPACE_ARROW_KEYCODES = {"left": 123, "right": 124}
+
+
+def change_space(direction):
+    """Synthesize the recorded Mission Control shortcut for native Spaces."""
+    cg = importlib.import_module("Quartz")
+    source = cg.CGEventSourceCreate(cg.kCGEventSourceStateHIDSystemState)
+    keycode = SPACE_ARROW_KEYCODES[direction]
+    for pressed in (True, False):
+        event = cg.CGEventCreateKeyboardEvent(source, keycode, pressed)
+        cg.CGEventSetFlags(event, SPACE_HOTKEY_FLAGS)
+        cg.CGEventPost(cg.kCGHIDEventTap, event)
+
+
+def keep_onscreen(area, frame):
+    """Clamp a floating frame inside the usable screen, inset by the border."""
+    frame["x"] = max(
+        area["x"] + SCREEN_INSET,
+        min(frame["x"], area["x"] + area["width"] - frame["width"] - SCREEN_INSET),
+    )
+    frame["y"] = max(
+        area["y"] + SCREEN_INSET,
+        min(frame["y"], area["y"] + area["height"] - frame["height"] - SCREEN_INSET),
+    )
+
+
 def parse(arguments):
     """Validate the private shortcut command line."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -204,10 +246,13 @@ def parse(arguments):
     actions.add_parser("focus").add_argument(
         "direction", choices=("left", "right", "up", "down")
     )
-    actions.add_parser("move").add_argument("direction", choices=("left", "right"))
+    actions.add_parser("move").add_argument(
+        "direction", choices=("left", "right", "up", "down")
+    )
     actions.add_parser("send-workspace").add_argument("workspace")
     actions.add_parser("send-monitor")
     actions.add_parser("focus-monitor")
+    actions.add_parser("space").add_argument("direction", choices=("left", "right"))
     actions.add_parser("cycle-tabs").add_argument(
         "direction", choices=("forward", "backward")
     )
@@ -230,6 +275,9 @@ def parse(arguments):
 def perform(arguments, native, *, step=10, presets=(0.5, 0.75, 0.9)):
     """Apply niri-like keyboard semantics without changing an unfocused layer."""
     action = parse(arguments)
+    if action.action == "space":
+        change_space(action.direction)
+        return
     displays = None
     if action.action in ("focus-monitor", "send-monitor"):
         displays = query_list("displays")
@@ -344,18 +392,27 @@ def perform(arguments, native, *, step=10, presets=(0.5, 0.75, 0.9)):
             frame[dimension]
             + area[dimension] * step / 100 * (1 if action.change == "grow" else -1),
         )
+        keep_onscreen(area, frame)
     elif action.action == "cycle-width":
         widths = [area["width"] * preset for preset in presets]
         frame["width"] = next(
             (width for width in widths if width > frame["width"] + 1), widths[0]
         )
+        keep_onscreen(area, frame)
     elif action.action == "move":
-        frame["x"] += -50 if action.direction == "left" else 50
-        retained = min(frame["width"], max(10, min(75, frame["width"] / 4)))
-        frame["x"] = max(
-            area["x"] - frame["width"] + retained,
-            min(frame["x"], area["x"] + area["width"] - retained),
-        )
+        if action.direction in ("left", "right"):
+            frame["x"] += (
+                MOVE_STEP_FRACTION
+                * area["width"]
+                * (-1 if action.direction == "left" else 1)
+            )
+        else:
+            frame["y"] += (
+                MOVE_STEP_FRACTION
+                * area["height"]
+                * (-1 if action.direction == "up" else 1)
+            )
+        keep_onscreen(area, frame)
     elif action.action == "center":
         frame["x"] = area["x"] + max(0, (area["width"] - frame["width"]) / 2)
         frame["y"] = area["y"] + max(0, (area["height"] - frame["height"]) / 2)
