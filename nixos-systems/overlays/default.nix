@@ -10,7 +10,6 @@
     (import ./llm.nix)
     ((import ./llm-proxy.nix) { inherit llm-proxy; })
     ((import ./nuru.nix) { inherit nuru; })
-    (import ./tilth.nix)
     (import ./kernel-module-certs.nix)
     (import ./zat.nix)
     (import ./unifi.nix)

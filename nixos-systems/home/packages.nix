@@ -58,7 +58,7 @@ let
     tree-sitter
     rustup
     inputs.cx-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ] ++ [ tilth llm.pi t3code t3code-desktop ];
+  ] ++ [ llm.tilth llm.pi t3code t3code-desktop ];
   linuxOnly = [
     brightnessctl
     ddcutil

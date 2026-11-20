@@ -44,7 +44,6 @@
             nixpkgs.overlays = [
               (import ../overlays/llama-benchy.nix)
               (import ../overlays/betterbench.nix)
-              (import ../overlays/tilth.nix)
               (import ../overlays/pyqt6-moc-qt612.nix)
               ((import ../overlays/nuru.nix) { nuru = inputs.nuru; })
             ];
