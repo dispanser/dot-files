@@ -52,7 +52,7 @@ in
   home.file.".qutebrowser/add-nextcloud-bookmarks.ini" = lib.mkIf isDarwin bookmarksIni;
 
   programs.qutebrowser = {
-    enable = true;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     enableDefaultBindings = true; # Default
     extraConfig = ''
       config.unbind('<ctrl-p>')

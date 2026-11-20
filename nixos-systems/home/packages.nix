@@ -21,8 +21,6 @@ let
     coreutils
     findutils
     gawk
-    grep
-    sed
   ];
   desktopPkgs = [
     hueadm
