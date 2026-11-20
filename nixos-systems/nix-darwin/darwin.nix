@@ -151,7 +151,7 @@
       unison-fsmonitor
     ];
     serviceConfig = {
-      Disabled = true;
+      Disabled = false;
       KeepAlive = true;
       RunAtLoad = true;
       StandardOutPath = "/tmp/unison.log";

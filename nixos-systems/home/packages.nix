@@ -18,6 +18,11 @@ let
     docker-credential-helpers
     unison
     openvpn
+    coreutils
+    findutils
+    gawk
+    grep
+    sed
   ];
   desktopPkgs = [
     hueadm
