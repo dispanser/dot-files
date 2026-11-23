@@ -41,6 +41,7 @@
       "stats"
       "teleport-suite"
       "orbstack"
+      "incident-io"
     ];
     brews = [
       "awscli"
