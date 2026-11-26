@@ -59,9 +59,17 @@ in
       ctrl + ralt - j : ${lib.getExe windowAction} move down
       ctrl + ralt - k : ${lib.getExe windowAction} move up
 
+      shift + ctrl + ralt - h : ${lib.getExe windowAction} move-max left
+      shift + ctrl + ralt - l : ${lib.getExe windowAction} move-max right
+      shift + ctrl + ralt - j : ${lib.getExe windowAction} move-max down
+      shift + ctrl + ralt - k : ${lib.getExe windowAction} move-max up
+
       ralt - 0x2B : ${lib.getExe windowAction} merge
       ralt - 0x2F : ${lib.getExe windowAction} split
       ralt - w : ${lib.getExe windowAction} toggle-tabs
+      # Spotlight cannot be triggered from synthesized events on macOS 27, so
+      # the launcher is OmniWM's command palette in applications mode.
+      ralt - x : ${omniwmctl} command open-command-palette applications
       ralt - tab : ${lib.getExe windowAction} cycle-tabs forward
       ralt + shift - tab : ${lib.getExe windowAction} cycle-tabs backward
 
@@ -78,6 +86,15 @@ in
       ralt - c : ${lib.getExe windowAction} center
       ralt - f : ${lib.getExe windowAction} maximize
 
+      # Resize stays on pure ralt chords: skhd treats a chord containing the
+      # side-agnostic `alt` literal as matching either alt key, which fired
+      # resizes while typing special characters with left alt.
+      ralt + shift - h : ${lib.getExe windowAction} resize horizontal shrink
+      ralt + shift - l : ${lib.getExe windowAction} resize horizontal grow
+      ralt + shift - k : ${lib.getExe windowAction} resize vertical shrink
+      ralt + shift - j : ${lib.getExe windowAction} resize vertical grow
+      # The minus/equals family stays as an alternative until the preferred
+      # binding settles.
       ralt - 0x1B : ${lib.getExe windowAction} resize horizontal shrink
       ralt - 0x18 : ${lib.getExe windowAction} resize horizontal grow
       ralt + shift - 0x1B : ${lib.getExe windowAction} resize vertical shrink
@@ -105,6 +122,8 @@ in
       ralt - e : ${pkgs.skhd}/bin/skhd -t "thomas.peiselt@coralogix.com"
       0x0A : ${pkgs.skhd}/bin/skhd -t "`"
       shift - 0x0A : ${pkgs.skhd}/bin/skhd -t "~"
+      ralt - 0x0A : ${pkgs.skhd}/bin/skhd -t '```'
+      ralt - 0x32 : ${pkgs.skhd}/bin/skhd -t '```'
       ralt + cmd - s : pmset sleepnow
     '';
   };

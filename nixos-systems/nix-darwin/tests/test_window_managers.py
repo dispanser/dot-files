@@ -170,6 +170,14 @@ class WindowManagerTests(unittest.TestCase):
                 self.assertTrue(command[0].endswith("/bin/omniwm-window"))
                 self.assertEqual(command[1:], [action])
 
+    def test_spotlight_binding(self):
+        """Mod-X opens the launcher through OmniWM's application palette."""
+        command = self.bindings()["ralt - x"]
+        self.assertTrue(command[0].endswith("/bin/omniwmctl"))
+        self.assertEqual(
+            command[1:], ["command", "open-command-palette", "applications"]
+        )
+
     def test_restored_non_window_manager_bindings(self):
         """Text expansion, sleep, and the ISO key return from the yabai era."""
         bindings = self.bindings()
@@ -210,6 +218,38 @@ class WindowManagerTests(unittest.TestCase):
                 command = bindings[chord]
                 self.assertTrue(command[0].endswith("/bin/omniwm-window"))
                 self.assertEqual(command[1:], ["move", direction])
+
+    def test_maximized_movement_and_resize_bindings(self):
+        """Ctrl-Shift chords align moving edges with the screen border."""
+        bindings = self.bindings()
+        expected = {
+            "shift + ctrl + ralt - h": ["move-max", "left"],
+            "shift + ctrl + ralt - j": ["move-max", "down"],
+            "shift + ctrl + ralt - k": ["move-max", "up"],
+            "shift + ctrl + ralt - l": ["move-max", "right"],
+        }
+        for chord, tail in expected.items():
+            with self.subTest(chord=chord):
+                command = bindings[chord]
+                self.assertTrue(command[0].endswith("/bin/omniwm-window"))
+                self.assertEqual(command[1:], tail)
+        for removed in (
+            "ralt + cmd + shift - h",
+            "ralt + cmd + shift - l",
+            "ralt + cmd + shift - k",
+            "ralt + cmd + shift - j",
+        ):
+            with self.subTest(removed=removed):
+                self.assertNotIn(removed, bindings)
+
+    def test_code_fence_binding_types_one_triple_backtick(self):
+        """Both fence keys type exactly one set of three backticks."""
+        for chord in ("ralt - 0x32", "ralt - 0x0A"):
+            with self.subTest(chord=chord):
+                tokens = self.bindings()[chord]
+                self.assertEqual(len(tokens), 3)
+                self.assertTrue(tokens[0].endswith("/bin/skhd"))
+                self.assertEqual(tokens[1:], ["-t", "```"])
 
     def test_layer_aware_navigation_bindings(self):
         """Focus and geometry shortcuts select the focused window's layer."""
@@ -317,9 +357,13 @@ class WindowManagerTests(unittest.TestCase):
         self.assertEqual(overlay_rule["layout"], "float")
 
     def test_width_bindings_and_niri_presets(self):
-        """Width adjustments and preset cycling match the Linux configuration."""
+        """Resizing has step bindings on both Mod-Shift-H/J/K/L and minus/equals."""
         bindings = self.bindings()
         expected = {
+            "ralt + shift - h": ["resize", "horizontal", "shrink"],
+            "ralt + shift - l": ["resize", "horizontal", "grow"],
+            "ralt + shift - k": ["resize", "vertical", "shrink"],
+            "ralt + shift - j": ["resize", "vertical", "grow"],
             "ralt - 0x1B": ["resize", "horizontal", "shrink"],
             "ralt - 0x18": ["resize", "horizontal", "grow"],
             "ralt + shift - 0x1B": ["resize", "vertical", "shrink"],
@@ -331,6 +375,22 @@ class WindowManagerTests(unittest.TestCase):
                 self.assertIn(chord, bindings)
                 self.assertTrue(bindings[chord][0].endswith("/bin/omniwm-window"))
                 self.assertEqual(bindings[chord][1:], arguments)
+        for removed in (
+            "alt + ralt - h",
+            "alt + ralt - l",
+            "alt + ralt - k",
+            "alt + ralt - j",
+            "alt + ralt + shift - h",
+            "alt + ralt + shift - l",
+            "alt + ralt + shift - k",
+            "alt + ralt + shift - j",
+            "ralt + cmd + shift - h",
+            "ralt + cmd + shift - l",
+            "ralt + cmd + shift - k",
+            "ralt + cmd + shift - j",
+        ):
+            with self.subTest(removed=removed):
+                self.assertNotIn(removed, bindings)
         niri = self.config["settings"]["niri"]
         self.assertEqual(niri["containerPrimarySpanPresets"], [0.5, 0.75, 0.9])
         self.assertEqual(niri["defaultContainerPrimarySpan"], 0.5)

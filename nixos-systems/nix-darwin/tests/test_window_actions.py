@@ -985,6 +985,38 @@ class WindowActionTests(unittest.TestCase):
                 fake.CGEventSourceCreate.reset_mock()
                 fake.CGEventSetFlags.reset_mock()
 
+    def test_floating_move_max_aligns_one_edge_with_the_screen(self):
+        """Shifted movement snaps the leading edge to the inset screen border."""
+        expectations = {
+            "left": {"x": 5},
+            "right": {"x": 595},
+            "up": {"y": 25},
+            "down": {"y": 515},
+        }
+        for direction, expected in expectations.items():
+            with self.subTest(direction=direction):
+                self.native.frame.update(x=100, y=100)
+                self.act("move-max", direction)
+                for key, value in expected.items():
+                    self.assertEqual(self.native.frame[key], value)
+
+    def test_tiled_move_max_reorders_to_the_ends(self):
+        """Shifted tiled movement maps to first/last, vertical stays a step."""
+        self.native.pid = 20
+        for direction, expected in (
+            ("left", ("move-column-to-first",)),
+            ("right", ("move-column-to-last",)),
+            ("up", ("move-column", "up")),
+            ("down", ("move-column", "down")),
+        ):
+            with self.subTest(direction=direction):
+                self.commands.clear()
+                self.act("move-max", direction)
+                self.assertEqual(
+                    self.commands,
+                    [("window", "navigate", "tile"), ("command",) + expected],
+                )
+
     def test_tiled_layout_operations_are_preserved(self):
         """Other tiled operations retain their existing native actions."""
         self.native.pid = 20

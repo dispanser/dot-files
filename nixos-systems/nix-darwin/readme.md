@@ -19,9 +19,11 @@ Previous-window switching and the remaining niri bindings are separate steps.
 | Mod-H / Mod-L             | Focus left / right within the focused layer.                                                |
 | Mod-Ctrl-H / Mod-Ctrl-L   | Reorder tiled columns; move a focused float left / right by 5% of the screen width.         |
 | Mod-Ctrl-J / Mod-Ctrl-K   | Reorder windows inside a column; move a focused float down / up by 5% of the screen height. |
+| Mod-Ctrl-Shift-H/J/K/L    | Move a focused float so its edge aligns with the screen border; reorder a column to the first / last position (vertical: within the column). |
 | Mod-,                     | Pull one window from the column on the right into the bottom of the focused tiled column.   |
 | Mod-.                     | Split the bottom window into a new column on the right.                                     |
 | Mod-W                     | Toggle the focused column between stacked and tabbed windows, matching niri.                |
+| Mod-X                     | Open OmniWM's application launcher (matching Mod+X on NixOS).                               |
 | Mod-Tab / Mod-Shift-Tab   | Focus the next / previous window within the current group, wrapping locally.                |
 | Mod-J / Mod-K             | Focus down / up within the layer; continue to adjacent workspaces at vertical edges.        |
 | Mod-1 / Mod-2             | Focus workspace 1 / 2, including its display.                                               |
@@ -30,13 +32,16 @@ Previous-window switching and the remaining niri bindings are separate steps.
 | Mod-Shift-S               | Send the focused window to the next screen's visible workspace and follow it.               |
 | Mod-`[` / Mod-`]`         | Move to the previous / next native macOS Space (reaches native-fullscreen apps).            |
 | Mod-E                     | Type the work email address.                                                                |
+| Mod-` (backtick)          | Type three backticks. Also on the ISO key left of Y (Mod-<>|).                              |
 | Mod-Cmd-S                 | Sleep the machine immediately.                                                              |
 | Mod-V                     | Toggle the focused window between floating and tiled.                                       |
 | Mod-Shift-V               | Switch focus between floating and tiled windows.                                            |
 | Mod-C                     | Center a tiled column or center the focused floating window.                                |
 | Mod-F                     | Toggle full-width column maximization; leave floating windows unchanged, matching niri.     |
-| Mod-- / Mod-=             | Shrink / grow the focused float's width or the tiled column width by 10 percentage points.  |
-| Mod-Shift-- / Mod-Shift-= | Shrink / grow the focused window's height by 10 percentage points.                          |
+| Mod-Shift-H / Mod-Shift-L | Shrink / grow the focused float's width or the tiled column width by 10 percentage points.  |
+| Mod-Shift-K / Mod-Shift-J | Shrink / grow the focused window's height by 10 percentage points.                          |
+| Mod-- / Mod-=             | Same as Mod-Shift-H / L (alternative binding family).                                       |
+| Mod-Shift-- / Mod-Shift-= | Same as Mod-Shift-K / J (alternative binding family).                                       |
 | Mod-R                     | Cycle tiled-column or floating-window widths: 50%, 75%, 90%.                                |
 | Mod-A                     | Focus T3 Code or cycle its windows.                                                         |
 | Mod-M                     | Focus Slack or cycle its windows.                                                           |
@@ -88,8 +93,9 @@ Mod-; aliases Firefox because qutebrowser is absent from this Mac.
 
 ### Column sizing and membership
 
-Sizing shortcuts use the minus and equals/plus keys.
-Use them without Shift for width and with Shift for height, matching niri.
+Sizing shortcuts come in two equivalent families until the preferred binding settles: Mod-Shift with the direction keys (H/L width, K/J height), and the minus/equals keys (plain for width, Shift for height, matching niri).
+Resize chords deliberately avoid the Alt modifier: skhd matches a chord containing `alt` on either alt key, which collided with typing special characters.
+Holding Shift as well stretches that edge all the way to the screen border, or to full span when the edge is already there.
 New columns default to 50% width.
 OmniWM can expand underfilled tiled layouts to use available space.
 

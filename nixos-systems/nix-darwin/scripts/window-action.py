@@ -227,6 +227,19 @@ def change_space(direction):
         cg.CGEventPost(cg.kCGHIDEventTap, event)
 
 
+def align_window_edge(area, frame, edge):
+    """Move a float so its leading edge sits at the inset screen border."""
+    horizontal = edge in ("left", "right")
+    axis, dimension = ("x", "width") if horizontal else ("y", "height")
+    low = area[axis] + SCREEN_INSET
+    high = area[axis] + area[dimension] - SCREEN_INSET
+    if edge in ("right", "down"):
+        frame[axis] = high - frame[dimension]
+    else:
+        frame[axis] = low
+    keep_onscreen(area, frame)
+
+
 def keep_onscreen(area, frame):
     """Clamp a floating frame inside the usable screen, inset by the border."""
     frame["x"] = max(
@@ -247,6 +260,9 @@ def parse(arguments):
         "direction", choices=("left", "right", "up", "down")
     )
     actions.add_parser("move").add_argument(
+        "direction", choices=("left", "right", "up", "down")
+    )
+    actions.add_parser("move-max").add_argument(
         "direction", choices=("left", "right", "up", "down")
     )
     actions.add_parser("send-workspace").add_argument("workspace")
@@ -340,6 +356,13 @@ def perform(arguments, native, *, step=10, presets=(0.5, 0.75, 0.9)):
             ]
         elif action.action == "move":
             command = ["move-column", action.direction]
+        elif action.action == "move-max":
+            command = {
+                "left": ["move-column-to-first"],
+                "right": ["move-column-to-last"],
+                "up": ["move-column", "up"],
+                "down": ["move-column", "down"],
+            }[action.direction]
         elif action.action == "cycle-tabs":
             command = [
                 "focus-window",
@@ -413,6 +436,8 @@ def perform(arguments, native, *, step=10, presets=(0.5, 0.75, 0.9)):
                 * (-1 if action.direction == "up" else 1)
             )
         keep_onscreen(area, frame)
+    elif action.action == "move-max":
+        align_window_edge(area, frame, action.direction)
     elif action.action == "center":
         frame["x"] = area["x"] + max(0, (area["width"] - frame["width"]) / 2)
         frame["y"] = area["y"] + max(0, (area["height"] - frame["height"]) / 2)
