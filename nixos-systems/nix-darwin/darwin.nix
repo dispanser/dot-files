@@ -39,7 +39,6 @@
       "signal"
       "zerotier-one"
       "stats"
-      "teleport-suite"
       "orbstack"
       "incident-io"
     ];
